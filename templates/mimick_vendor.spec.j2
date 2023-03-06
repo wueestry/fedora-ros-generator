@@ -1,0 +1,20 @@
+{% extends "pkg.spec.j2" %}
+
+{% block install_catkin %}
+
+%undefine _hardened_build
+mkdir -p %{_builddir}/%{name}-%{version}/build/mimick_vendor/mimick_vendor_install
+
+colcon \
+  build \
+  --merge-install \
+  --cmake-args -DPYTHON_EXECUTABLE="/usr/bin/python" \
+  -DCMAKE_CXX_FLAGS="-flto=auto -ffat-lto-objects -fexceptions -g -grecord-gcc-switches -pipe -Wall -Werror=format-security -Wp,-D_GLIBCXX_ASSERTIONS -m64  -mtune=generic -fasynchronous-unwind-tables" \
+  -DCMAKE_C_FLAGS="-flto=auto -ffat-lto-objects -fexceptions -g -grecord-gcc-switches -pipe -Wall -Werror=format-security -Wp,-D_GLIBCXX_ASSERTIONS -m64  -mtune=generic -fasynchronous-unwind-tables" \
+  -DTHIRDPARTY_Asio=ON \
+  -DBUILD_TESTING=OFF \
+  --base-paths . \
+  --install-base %{buildroot}/%{_libdir}/ros2/ \
+  --packages-select mimick_vendor
+
+{% endblock %}

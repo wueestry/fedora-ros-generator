@@ -1,5 +1,5 @@
 {% block info %}
-Name:           ros-{{ pkg_name }}
+Name:           ros2-{{ pkg_name }}
 Version:        {{ distro }}.{{ pkg_version }}
 Release:        {{ pkg_release }}%{?dist}
 Summary:        ROS package {{ pkg_name }}
@@ -10,7 +10,7 @@ URL:            {{ pkg_url }}
 
 {% block sources %}
 {% for url in source_urls -%}
-Source{{ loop.index0 }}:        {{ url }}#/ros-{{ distro }}-{{ pkg_name }}-{{ pkg_version }}-source{{ loop.index0 }}.tar.gz
+Source{{ loop.index0 }}:        {{ url }}#/ros2-{{ distro }}-{{ pkg_name }}-{{ pkg_version }}-source{{ loop.index0 }}.tar.gz
 {% endfor %}
 {% endblock %}
 
@@ -27,38 +27,56 @@ BuildArch: noarch
 {% endblock %}
 
 # common BRs
-BuildRequires:  boost-devel
-BuildRequires:  console-bridge-devel
-BuildRequires:  gtest-devel
-BuildRequires:  log4cxx-devel
-BuildRequires:  python3-devel
-BuildRequires:  python-unversioned-command
+BuildRequires: patchelf
+BuildRequires: cmake
+BuildRequires: gcc-c++
+BuildRequires: git
+BuildRequires: make
+BuildRequires: patch
+BuildRequires: python3-devel
+BuildRequires: python-unversioned-command
+BuildRequires: python3-colcon-common-extensions
+BuildRequires: python3-pip
+BuildRequires: python3-pydocstyle
+BuildRequires: python3-pytest
+BuildRequires: python3-pytest-repeat
+BuildRequires: python3-pytest-rerunfailures
+BuildRequires: python3-rosdep
+BuildRequires: python3-setuptools
+BuildRequires: python3-vcstool
+
+# BuildRequires:  boost-devel
+# BuildRequires:  console-bridge-devel
+# BuildRequires:  gtest-devel
+# BuildRequires:  log4cxx-devel
+# BuildRequires:  python3-devel
+# BuildRequires:  python3-colcon-common-extensions
+# BuildRequires:  python-unversioned-command
 
 {% block dependencies %}
 {% for dep in build_dependencies.system|sort %}
 BuildRequires:  {{ dep }}
 {% endfor %}
 {% for dep in build_dependencies.ros|sort %}
-BuildRequires:  ros-{{ distro }}-{{ dep }}-devel
+BuildRequires:  ros2-{{ distro }}-{{ dep }}-devel
 {% endfor %}
 
 {% for dep in run_dependencies.system|sort %}
 Requires:       {{ dep }}
 {% endfor %}
 {% for dep in run_dependencies.ros|sort %}
-Requires:       ros-{{ distro }}-{{ dep }}
+Requires:       ros2-{{ distro }}-{{ dep }}
 {% endfor %}
 {% endblock %}
 
-Provides:  ros-{{ distro }}-{{ pkg_name }} = {{ pkg_version }}-{{ pkg_release }}
+Provides:  ros2-{{ distro }}-{{ pkg_name }} = {{ pkg_version }}-{{ pkg_release }}
 {% if obsolete_distro_pkg %}
-Obsoletes: ros-{{ distro }}-{{ pkg_name }} < {{ pkg_version }}-{{ pkg_release }}
-Obsoletes: ros-kinetic-{{ pkg_name }} < {{ pkg_version }}-{{ pkg_release }}
+Obsoletes: ros2-{{ distro }}-{{ pkg_name }} < {{ pkg_version }}-{{ pkg_release }}
 {% endif %}
 
 {% if not has_devel %}
 Provides:       %{name}-devel{% if not noarch %}%{?_isa}{% endif %} = %{version}-%{release}
-Provides:       ros-{{ distro }}-{{ pkg_name }}-devel = {{ pkg_version }}-{{ pkg_release }}
+Provides:       ros2-{{ distro }}-{{ pkg_name }}-devel = {{ pkg_version }}-{{ pkg_release }}
 {% endif %}
 
 {% block meta %}
@@ -78,7 +96,7 @@ Requires:       %{name}{% if not noarch %}%{?_isa}{% endif %} = %{version}-%{rel
 Requires:       {{ dep }}
 {% endfor %}
 {% for dep in run_dependencies_devel.ros|sort %}
-Requires:       ros-{{ distro }}-{{ dep }}-devel
+Requires:       ros2-{{ distro }}-{{ dep }}-devel
 {% endfor %}
 {% for dep in build_dependencies.system|sort %}
 {% if dep not in run_dependencies_devel.system %}
@@ -87,20 +105,19 @@ Requires:       {{ dep }}
 {% endfor %}
 {% for dep in build_dependencies.ros | sort %}
 {% if dep not in run_dependencies_devel.ros %}
-Requires:       ros-{{ distro }}-{{ dep }}-devel
+Requires:       ros2-{{ distro }}-{{ dep }}-devel
 {% endif %}
 {% endfor %}
 {% for dep in run_dependencies.ros | sort %}
 {% if dep not in run_dependencies_devel.ros and dep not in build_dependencies.ros %}
-Requires:       ros-{{ distro }}-{{ dep }}-devel
+Requires:       ros2-{{ distro }}-{{ dep }}-devel
 {% endif %}
 {% endfor %}
 {% endblock %}
 
-Provides: ros-{{ distro }}-{{ pkg_name }}-devel = {{ pkg_version }}-{{ pkg_release }}
+Provides: ros2-{{ distro }}-{{ pkg_name }}-devel = {{ pkg_version }}-{{ pkg_release }}
 {% if obsolete_distro_pkg %}
-Obsoletes: ros-{{ distro }}-{{ pkg_name }}-devel < {{ pkg_version }}-{{ pkg_release }}
-Obsoletes: ros-kinetic-{{ pkg_name }}-devel < {{ pkg_version }}-{{ pkg_release }}
+Obsoletes: ros2-{{ distro }}-{{ pkg_name }}-devel < {{ pkg_version }}-{{ pkg_release }}
 {% endif %}
 
 {% block meta_devel %}
@@ -149,50 +166,57 @@ FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 {% endblock %}
 
 {% block pre_install %}
-source %{_libdir}/ros/setup.bash
+source %{_libdir}/ros2/setup.bash
 {% endblock %}
 
 # substitute shebang before install block because we run the local catkin script
 %py3_shebang_fix .
 
-DESTDIR=%{buildroot} ; export DESTDIR
+# DESTDIR=%{buildroot} ; export DESTDIR
 
 {% block install_catkin %}
 
-catkin_make_isolated \
+colcon \
+  build \
+  --merge-install \
+  --cmake-args -DPYTHON_EXECUTABLE="/usr/bin/python" \
+  -DTHIRDPARTY_Asio=ON \
   -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-  -DCATKIN_ENABLE_TESTING=OFF \
-  -DPYTHON_VERSION=%{python3_version} \
-  -DPYTHON_VERSION_NODOTS=%{python3_version_nodots} \
+  -DCMAKE_CXX_FLAGS="$CXXFLAGS" \
+  -DCMAKE_C_FLAGS="$CFLAGS" \
+  -DCMAKE_LD_FLAGS="$LDFLAGS" \
+  -DBUILD_TESTING=OFF \
 {% block cmake_flags %}
 {% endblock %}
-  --source . \
-  --install \
-  --install-space %{_libdir}/ros/ \
+  --base-paths . \
+  --install-base %{buildroot}/%{_libdir}/ros2/ \
 {% if build_flags %}
-  --pkg {{ pkg_name }} \
+  --packages-select {{ pkg_name }} \
   {{ build_flags }}
 {% else %}
-  --pkg {{ pkg_name }}
+  --packages-select {{ pkg_name }}
 {% endif %}
 
 {% endblock %}
 
 
 {% block install_files %}
+# remove wrong buildroot prefixes
+find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
 
-rm -rf %{buildroot}/%{_libdir}/ros/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh}
+rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros/{bin,etc,lib64/python*,lib/python*/site-packages,share} \
+find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
-find %{buildroot}/%{_libdir}/ros/lib*/ -mindepth 1 -maxdepth 1 \
+find %{buildroot}/%{_libdir}/ros2/lib*/ -mindepth 1 -maxdepth 1 \
   ! -name pkgconfig ! -name "python*" \
   | sed "s:%{buildroot}/::" >> files.list
 
 {% if has_devel %}
 touch files_devel.list
-find %{buildroot}/%{_libdir}/ros/{include,lib*/pkgconfig,share/{{ pkg_name }}/cmake} \
+# TODO: is cmake/ necessary? it stems from the yaml vendor
+find %{buildroot}/%{_libdir}/ros2/{lib*/pkgconfig,include/,cmake/,{{ pkg_name }}/include/,share/{{ pkg_name }}/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 {% endif %}
 
@@ -201,6 +225,11 @@ find . -maxdepth 1 -type f -iname "*license*" | sed "s:^:%%license :" >> files.l
 
 {% endblock %}
 
+
+{% block patchelf %}
+find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --remove-rpath  {} \;
+# find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --force-rpath --add-rpath "%{_libdir}/ros2/lib" {} \;
+{% endblock %}
 {% block post_install %}
 
 # replace cmake python macro in shebang
@@ -213,7 +242,7 @@ done
 {% endblock %}
 
 echo "This is a package automatically generated with rosfed." >> README_FEDORA
-echo "See https://pagure.io/ros for more information." >> README_FEDORA
+echo "See  https://github.com/morxa/rosfed for more information." >> README_FEDORA
 install -m 0644 -p -D -t %{buildroot}/%{_docdir}/%{name} README_FEDORA
 echo %{_docdir}/%{name} >> files.list
 {% if has_devel %}

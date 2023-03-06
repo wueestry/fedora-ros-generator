@@ -1,0 +1,31 @@
+diff -ur geometry2-release-release-humble-tf2_kdl-0.25.2-1/CMakeLists.txt geometry2-release-release-humble-tf2_kdl-0.25.2-1-new/CMakeLists.txt
+--- geometry2-release-release-humble-tf2_kdl-0.25.2-1/CMakeLists.txt	2023-01-10 14:54:02.000000000 +0100
++++ geometry2-release-release-humble-tf2_kdl-0.25.2-1-new/CMakeLists.txt	2023-03-05 20:22:28.891955077 +0100
+@@ -13,7 +13,6 @@
+ find_package(ament_cmake REQUIRED)
+ find_package(builtin_interfaces REQUIRED)
+ find_package(geometry_msgs REQUIRED)
+-find_package(orocos_kdl_vendor REQUIRED)
+ find_package(orocos_kdl REQUIRED)
+ find_package(tf2 REQUIRED)
+ find_package(tf2_ros REQUIRED)
+@@ -62,6 +61,6 @@
+ # Export modern CMake targets
+ ament_export_targets(export_tf2_kdl)
+ 
+-ament_export_dependencies(builtin_interfaces geometry_msgs orocos_kdl_vendor orocos_kdl tf2 tf2_ros)
++ament_export_dependencies(builtin_interfaces geometry_msgs orocos_kdl tf2 tf2_ros)
+ 
+ ament_package()
+diff -ur geometry2-release-release-humble-tf2_kdl-0.25.2-1/package.xml geometry2-release-release-humble-tf2_kdl-0.25.2-1-new/package.xml
+--- geometry2-release-release-humble-tf2_kdl-0.25.2-1/package.xml	2023-01-10 14:54:02.000000000 +0100
++++ geometry2-release-release-humble-tf2_kdl-0.25.2-1-new/package.xml	2023-03-05 20:22:47.363017662 +0100
+@@ -15,7 +15,7 @@
+ 
+   <depend>builtin_interfaces</depend>
+   <depend>geometry_msgs</depend>
+-  <depend>orocos_kdl_vendor</depend>
++  <depend>orocos_kdl</depend>
+   <depend>tf2</depend>
+   <depend>tf2_ros</depend>
+ 

@@ -9,4 +9,4 @@ dependencies:
       # gtest-devel even if we don't build tests explicitly
       - gtest-devel
 patches:
-  - ros-resource_retriever.build-with-cpp17.patch
+  - ros-resource_retriever.system-libcurl.patch

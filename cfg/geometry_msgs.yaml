@@ -1,5 +1,0 @@
-noarch: true
-dependencies:
-  devel:
-    ros:
-      - roscpp_serialization

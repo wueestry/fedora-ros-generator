@@ -60,6 +60,8 @@ class SrpmBuilder:
         assert match, 'Unexpected output from rpmbuild: "%s"'.format(
             res.stdout)
         srpm = match.group(1)
+        #test = subprocess.Popen(["mock","-n","-N","--rebuild","--enable-network","--isolation=simple","--continue","--chain", srpm], stdout=subprocess.PIPE)
+        #output = test.communicate()[0]
         return srpm
 
 

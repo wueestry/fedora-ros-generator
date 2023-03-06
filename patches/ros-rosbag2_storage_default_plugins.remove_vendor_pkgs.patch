@@ -1,0 +1,45 @@
+diff -ur rosbag2-release-release-humble-rosbag2_storage_default_plugins-0.15.4-2/CMakeLists.txt rosbag2-release-release-humble-rosbag2_storage_default_plugins-0.15.4-2-new/CMakeLists.txt
+--- rosbag2-release-release-humble-rosbag2_storage_default_plugins-0.15.4-2/CMakeLists.txt	2023-01-11 22:12:46.000000000 +0100
++++ rosbag2-release-release-humble-rosbag2_storage_default_plugins-0.15.4-2-new/CMakeLists.txt	2023-03-05 21:48:56.026650232 +0100
+@@ -25,9 +25,8 @@
+ find_package(rcpputils REQUIRED)
+ find_package(rcutils REQUIRED)
+ find_package(rosbag2_storage REQUIRED)
+-find_package(sqlite3_vendor REQUIRED)
+ find_package(SQLite3 REQUIRED)  # provided by sqlite3_vendor
+-find_package(yaml_cpp_vendor REQUIRED)
++find_package(yaml-cpp REQUIRED)
+ 
+ add_library(${PROJECT_NAME} SHARED
+   src/rosbag2_storage_default_plugins/sqlite/sqlite_wrapper.cpp
+@@ -40,7 +39,7 @@
+   rcpputils
+   rcutils
+   SQLite3
+-  yaml_cpp_vendor)
++  yaml-cpp)
+ 
+ target_include_directories(${PROJECT_NAME}
+   PUBLIC
+@@ -69,7 +68,7 @@
+ ament_export_include_directories("include/${PROJECT_NAME}")
+ ament_export_libraries(${PROJECT_NAME})
+ 
+-ament_export_dependencies(rosbag2_storage rcpputils rcutils sqlite3_vendor SQLite3)
++ament_export_dependencies(rosbag2_storage rcpputils rcutils SQLite3)
+ 
+ if(BUILD_TESTING)
+   find_package(ament_cmake_gmock REQUIRED)
+diff -ur rosbag2-release-release-humble-rosbag2_storage_default_plugins-0.15.4-2/package.xml rosbag2-release-release-humble-rosbag2_storage_default_plugins-0.15.4-2-new/package.xml
+--- rosbag2-release-release-humble-rosbag2_storage_default_plugins-0.15.4-2/package.xml	2023-01-11 22:12:46.000000000 +0100
++++ rosbag2-release-release-humble-rosbag2_storage_default_plugins-0.15.4-2-new/package.xml	2023-03-05 20:16:32.046563976 +0100
+@@ -16,7 +16,7 @@
+   <depend>rcutils</depend>
+   <depend>rosbag2_storage</depend>
+   <depend>sqlite3_vendor</depend>
+-  <depend>yaml_cpp_vendor</depend>
++  <depend>yaml-cpp</depend>
+ 
+   <test_depend>ament_lint_auto</test_depend>
+   <test_depend>ament_lint_common</test_depend>
+Only in rosbag2-release-release-humble-rosbag2_storage_default_plugins-0.15.4-2-new: ros-rosbag2_storage_default_plugins.remove_vendor_pkgs.patch

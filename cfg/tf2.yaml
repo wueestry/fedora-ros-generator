@@ -3,7 +3,3 @@ dependencies:
     system:
       - gtest-devel
       - boost-devel
-    ros:
-      - roscpp_traits
-      - cpp_common
-      - roscpp_serialization

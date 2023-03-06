@@ -1,0 +1,33 @@
+diff -ur rosbag2-release-release-humble-rosbag2_transport-0.15.4-2/CMakeLists.txt rosbag2-release-release-humble-rosbag2_transport-0.15.4-2-new/CMakeLists.txt
+--- rosbag2-release-release-humble-rosbag2_transport-0.15.4-2/CMakeLists.txt	2023-01-11 22:12:57.000000000 +0100
++++ rosbag2-release-release-humble-rosbag2_transport-0.15.4-2-new/CMakeLists.txt	2023-03-05 23:13:36.669360265 +0100
+@@ -32,8 +32,7 @@
+ find_package(rosbag2_interfaces REQUIRED)
+ find_package(rosbag2_storage REQUIRED)
+ find_package(rmw_implementation_cmake REQUIRED)
+-find_package(shared_queues_vendor REQUIRED)
+-find_package(yaml_cpp_vendor REQUIRED)
++find_package(yaml-cpp REQUIRED)
+ 
+ add_library(${PROJECT_NAME} SHARED
+   src/rosbag2_transport/bag_rewrite.cpp
+@@ -56,8 +55,7 @@
+   rosbag2_cpp
+   rosbag2_interfaces
+   rosbag2_storage
+-  shared_queues_vendor
+-  yaml_cpp_vendor
++  yaml-cpp
+ )
+ 
+ # Causes the visibility macros to use dllexport rather than dllimport,
+@@ -88,8 +86,7 @@
+   rosbag2_cpp
+   rosbag2_compression
+   rosbag2_interfaces
+-  shared_queues_vendor
+-  yaml_cpp_vendor)
++  yaml-cpp)
+ 
+ function(create_tests_for_rmw_implementation)
+   # disable the following tests for connext

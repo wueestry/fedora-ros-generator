@@ -84,7 +84,12 @@ class RosPkg:
         self.name = name
         self.spec = ''
         self.distro_info = generator.get_wet_distro(distro)
-        xml_string = self.distro_info.get_release_package_xml(name)
+        try:
+          xml_string = self.distro_info.get_release_package_xml(name)
+        except:
+          print(self.distro_info)
+          print(name)
+          raise
         self.xml = ElementTree.fromstring(xml_string)
         self.build_deps = {'ros': set(), 'system': set()}
         self.run_deps = {'ros': set(), 'system': set()}
@@ -116,7 +121,7 @@ class RosPkg:
 
     def get_full_name(self):
         """ Get the full name of the package, e.g., ros-catkin. """
-        return 'ros-{}'.format(self.name)
+        return 'ros2-{}'.format(self.name)
 
     def compute_dependencies(self):
         for child in self.xml:
@@ -198,8 +203,8 @@ class RosPkg:
                     self.get_dependencies_from_cfg('exclude_build').get(
                         key, set())
         build_deps = self.translate_dependencies('build', build_deps)
-        if self.name != 'catkin':
-            build_deps['ros'].add('catkin')
+        if self.name != 'ament_package':
+            build_deps['ros'].add('ament_package')
         return build_deps
 
     def get_run_dependencies(self):
@@ -359,7 +364,7 @@ class SpecFileGenerator:
         sources = ros_pkg.get_sources()
         version = ros_pkg.get_version()
         outfile = os.path.join(self.destination,
-                               'ros-{}.spec'.format(ros_pkg.name))
+                               'ros2-{}.spec'.format(ros_pkg.name))
         ros_pkg.spec = outfile
         pkg_changelog_entry = self.changelog_entry
         if os.path.isfile(outfile):

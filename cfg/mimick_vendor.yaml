@@ -1,0 +1,7 @@
+noarch: true
+patches:
+  - mimick_vendor-optimization.patch
+dependencies:
+  build:
+    system:
+      - glibc-headers

@@ -1,0 +1,27 @@
+{% extends "pkg.spec.j2" %}
+
+{% block pre_install %}
+{% endblock %}
+
+{% block install_catkin %}
+DESTDIR=. ; export DESTDIR
+
+colcon \
+  build \
+  --merge-install \
+  --cmake-args -DPYTHON_EXECUTABLE="/usr/bin/python" \
+  -DTHIRDPARTY_Asio=ON \
+  -DBUILD_TESTING=OFF \
+{% block cmake_flags %}
+{% endblock %}
+  --base-paths . \
+  --install-base %{buildroot}/%{_libdir}/ros2/ \
+{% if build_flags %}
+  --packages-select {{ pkg_name }} \
+  {{ build_flags }}
+{% else %}
+  --packages-select {{ pkg_name }}
+{% endif %}
+
+{% endblock %}
+

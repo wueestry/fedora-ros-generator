@@ -1,0 +1,31 @@
+diff -ur rosbag2-release-release-humble-rosbag2_storage-0.15.4-2/CMakeLists.txt rosbag2-release-release-humble-rosbag2_storage-0.15.4-2-new/CMakeLists.txt
+--- rosbag2-release-release-humble-rosbag2_storage-0.15.4-2/CMakeLists.txt	2023-01-11 22:12:50.000000000 +0100
++++ rosbag2-release-release-humble-rosbag2_storage-0.15.4-2-new/CMakeLists.txt	2023-03-05 19:13:30.881293647 +0100
+@@ -24,7 +24,7 @@
+ find_package(pluginlib REQUIRED)
+ find_package(rcpputils REQUIRED)
+ find_package(rcutils REQUIRED)
+-find_package(yaml_cpp_vendor REQUIRED)
++find_package(yaml-cpp REQUIRED)
+ 
+ add_library(
+   ${PROJECT_NAME}
+@@ -43,8 +43,7 @@
+   ${PROJECT_NAME}
+   pluginlib
+   rcpputils
+-  rcutils
+-  yaml_cpp_vendor)
++  rcutils)
+ 
+ # Causes the visibility macros to use dllexport rather than dllimport,
+ # which is appropriate when building the dll but not consuming it.
+@@ -68,7 +67,7 @@
+ # Export modern CMake targets
+ ament_export_targets(export_${PROJECT_NAME})
+ 
+-ament_export_dependencies(pluginlib yaml_cpp_vendor)
++ament_export_dependencies(pluginlib)
+ 
+ if(BUILD_TESTING)
+   find_package(ament_lint_auto REQUIRED)

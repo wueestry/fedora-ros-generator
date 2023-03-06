@@ -1,4 +1,3 @@
-noarch: true
 dependencies:
   build:
     system:
