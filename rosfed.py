@@ -450,7 +450,7 @@ def main():
                         default=False,
                         help='Also generate Spec files for dependencies')
     parser.add_argument('--distro',
-                        default='noetic',
+                        default='humble',
                         help='The ROS distro (default: %(default)s)')
     parser.add_argument('-t',
                         '--template',
