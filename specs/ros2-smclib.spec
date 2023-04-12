@@ -1,12 +1,12 @@
 Name:           ros2-smclib
-Version:        noetic.1.8.6
+Version:        humble.3.0.2
 Release:        1%{?dist}
 Summary:        ROS package smclib
 
 License:        Mozilla Public License Version 1.1
 URL:            http://smc.sourceforge.net/
 
-Source0:        https://github.com/ros-gbp/bond_core-release/archive/release/noetic/smclib/1.8.6-1.tar.gz#/ros2-noetic-smclib-1.8.6-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/bond_core-release/archive/release/humble/smclib/3.0.2-3.tar.gz#/ros2-humble-smclib-3.0.2-source0.tar.gz
 
 
 BuildArch: noarch
@@ -20,7 +20,6 @@ BuildRequires: make
 BuildRequires: patch
 BuildRequires: python3-devel
 BuildRequires: python-unversioned-command
-BuildRequires: ros2-ament_package
 BuildRequires: python3-colcon-common-extensions
 BuildRequires: python3-pip
 BuildRequires: python3-pydocstyle
@@ -39,13 +38,15 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python3-colcon-common-extensions
 # BuildRequires:  python-unversioned-command
 
-BuildRequires:  python3-setuptools
-BuildRequires:  ros2-noetic-ament_package-devel
-BuildRequires:  ros2-noetic-catkin-devel
+BuildRequires:  ros2-humble-ament_cmake-devel
+BuildRequires:  ros2-humble-ament_cmake_python-devel
+BuildRequires:  ros2-humble-ament_lint_auto-devel
+BuildRequires:  ros2-humble-ament_lint_common-devel
+BuildRequires:  ros2-humble-ament_package-devel
 
 
-Provides:  ros2-noetic-smclib = 1.8.6-1
-Obsoletes: ros2-noetic-smclib < 1.8.6-1
+Provides:  ros2-humble-smclib = 3.0.2-1
+Obsoletes: ros2-humble-smclib < 3.0.2-1
 
 
 
@@ -59,12 +60,14 @@ not contain the compiler itself.
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
-Requires:       python3-setuptools
-Requires:       ros2-noetic-catkin-devel
-Requires:       ros2-noetic-ament_package-devel
+Requires:       ros2-humble-ament_cmake-devel
+Requires:       ros2-humble-ament_cmake_python-devel
+Requires:       ros2-humble-ament_lint_auto-devel
+Requires:       ros2-humble-ament_lint_common-devel
+Requires:       ros2-humble-ament_package-devel
 
-Provides: ros2-noetic-smclib-devel = 1.8.6-1
-Obsoletes: ros2-noetic-smclib-devel < 1.8.6-1
+Provides: ros2-humble-smclib-devel = 3.0.2-1
+Obsoletes: ros2-humble-smclib-devel < 3.0.2-1
 
 
 %description devel
@@ -109,7 +112,6 @@ colcon \
   -DCMAKE_CXX_FLAGS="$CXXFLAGS" \
   -DCMAKE_C_FLAGS="$CFLAGS" \
   -DCMAKE_LD_FLAGS="$LDFLAGS" \
-  -DCMAKE_SKIP_INSTALL_RPATH=ON \
   -DBUILD_TESTING=OFF \
   --base-paths . \
   --install-base %{buildroot}/%{_libdir}/ros2/ \
@@ -140,7 +142,7 @@ find . -maxdepth 1 -type f -iname "*license*" | sed "s:^:%%license :" >> files.l
 
 
 find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --remove-rpath  {} \;
-find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --add-rpath "%{_libdir}/ros2/lib" {} \;
+# find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --force-rpath --add-rpath "%{_libdir}/ros2/lib" {} \;
 
 # replace cmake python macro in shebang
 for file in $(grep -rIl '^#!.*@PYTHON_EXECUTABLE@.*$' %{buildroot}) ; do
@@ -170,5 +172,7 @@ done
 
 
 %changelog
+* Mon Apr 10 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.0.2-1
+- update to latest release
 * Mon Mar 20 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - noetic.1.8.6-1
 - update to latest release

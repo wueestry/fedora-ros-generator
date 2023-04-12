@@ -170,5 +170,5 @@ done
 
 
 %changelog
-* Mon Mar 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.12.5-1
-- Initial humble build
+* Mon Apr 10 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.12.5-1
+- update to latest upsteam

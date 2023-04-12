@@ -1,12 +1,12 @@
-Name:           ros2-diagnostic_updater
-Version:        humble.3.1.2
+Name:           ros2-navigation2
+Version:        humble.1.1.6
 Release:        1%{?dist}
-Summary:        ROS package diagnostic_updater
+Summary:        ROS package navigation2
 
-License:        BSD-3-Clause
-URL:            http://www.ros.org/wiki/diagnostic_updater
+License:        Apache-2.0
+URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/diagnostics-release/archive/release/humble/diagnostic_updater/3.1.2-1.tar.gz#/ros2-humble-diagnostic_updater-3.1.2-source0.tar.gz
+Source0:        https://github.com/SteveMacenski/navigation2-release/archive/release/humble/navigation2/1.1.6-1.tar.gz#/ros2-humble-navigation2-1.1.6-source0.tar.gz
 
 
 
@@ -38,51 +38,77 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python-unversioned-command
 
 BuildRequires:  ros2-humble-ament_cmake-devel
-BuildRequires:  ros2-humble-ament_cmake_gtest-devel
-BuildRequires:  ros2-humble-ament_cmake_pytest-devel
-BuildRequires:  ros2-humble-ament_cmake_python-devel
-BuildRequires:  ros2-humble-ament_lint_auto-devel
-BuildRequires:  ros2-humble-ament_lint_common-devel
 BuildRequires:  ros2-humble-ament_package-devel
-BuildRequires:  ros2-humble-diagnostic_msgs-devel
-BuildRequires:  ros2-humble-rclcpp-devel
-BuildRequires:  ros2-humble-rclcpp_lifecycle-devel
-BuildRequires:  ros2-humble-rclpy-devel
-BuildRequires:  ros2-humble-std_msgs-devel
 
-Requires:       ros2-humble-diagnostic_msgs
-Requires:       ros2-humble-rclcpp
-Requires:       ros2-humble-rclpy
-Requires:       ros2-humble-std_msgs
+Requires:       ros2-humble-nav2_amcl
+Requires:       ros2-humble-nav2_behavior_tree
+Requires:       ros2-humble-nav2_behaviors
+Requires:       ros2-humble-nav2_bt_navigator
+Requires:       ros2-humble-nav2_collision_monitor
+Requires:       ros2-humble-nav2_constrained_smoother
+Requires:       ros2-humble-nav2_controller
+Requires:       ros2-humble-nav2_core
+Requires:       ros2-humble-nav2_costmap_2d
+Requires:       ros2-humble-nav2_dwb_controller
+Requires:       ros2-humble-nav2_lifecycle_manager
+Requires:       ros2-humble-nav2_map_server
+Requires:       ros2-humble-nav2_msgs
+Requires:       ros2-humble-nav2_navfn_planner
+Requires:       ros2-humble-nav2_planner
+Requires:       ros2-humble-nav2_regulated_pure_pursuit_controller
+Requires:       ros2-humble-nav2_rotation_shim_controller
+Requires:       ros2-humble-nav2_rviz_plugins
+Requires:       ros2-humble-nav2_simple_commander
+Requires:       ros2-humble-nav2_smac_planner
+Requires:       ros2-humble-nav2_smoother
+Requires:       ros2-humble-nav2_theta_star_planner
+Requires:       ros2-humble-nav2_util
+Requires:       ros2-humble-nav2_velocity_smoother
+Requires:       ros2-humble-nav2_voxel_grid
+Requires:       ros2-humble-nav2_waypoint_follower
 
-Provides:  ros2-humble-diagnostic_updater = 3.1.2-1
-Obsoletes: ros2-humble-diagnostic_updater < 3.1.2-1
+Provides:  ros2-humble-navigation2 = 1.1.6-1
+Obsoletes: ros2-humble-navigation2 < 1.1.6-1
 
 
 
 %description
-diagnostic_updater contains tools for easily updating diagnostics. it
-is commonly used in device drivers to keep track of the status of
-output topics, device status, etc.
+ROS2 Navigation Stack
 
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       ros2-humble-ament_cmake-devel
-Requires:       ros2-humble-ament_cmake_python-devel
-Requires:       ros2-humble-ament_cmake_gtest-devel
-Requires:       ros2-humble-ament_cmake_pytest-devel
-Requires:       ros2-humble-ament_lint_auto-devel
-Requires:       ros2-humble-ament_lint_common-devel
 Requires:       ros2-humble-ament_package-devel
-Requires:       ros2-humble-diagnostic_msgs-devel
-Requires:       ros2-humble-rclcpp-devel
-Requires:       ros2-humble-rclcpp_lifecycle-devel
-Requires:       ros2-humble-rclpy-devel
-Requires:       ros2-humble-std_msgs-devel
+Requires:       ros2-humble-nav2_amcl-devel
+Requires:       ros2-humble-nav2_behavior_tree-devel
+Requires:       ros2-humble-nav2_behaviors-devel
+Requires:       ros2-humble-nav2_bt_navigator-devel
+Requires:       ros2-humble-nav2_collision_monitor-devel
+Requires:       ros2-humble-nav2_constrained_smoother-devel
+Requires:       ros2-humble-nav2_controller-devel
+Requires:       ros2-humble-nav2_core-devel
+Requires:       ros2-humble-nav2_costmap_2d-devel
+Requires:       ros2-humble-nav2_dwb_controller-devel
+Requires:       ros2-humble-nav2_lifecycle_manager-devel
+Requires:       ros2-humble-nav2_map_server-devel
+Requires:       ros2-humble-nav2_msgs-devel
+Requires:       ros2-humble-nav2_navfn_planner-devel
+Requires:       ros2-humble-nav2_planner-devel
+Requires:       ros2-humble-nav2_regulated_pure_pursuit_controller-devel
+Requires:       ros2-humble-nav2_rotation_shim_controller-devel
+Requires:       ros2-humble-nav2_rviz_plugins-devel
+Requires:       ros2-humble-nav2_simple_commander-devel
+Requires:       ros2-humble-nav2_smac_planner-devel
+Requires:       ros2-humble-nav2_smoother-devel
+Requires:       ros2-humble-nav2_theta_star_planner-devel
+Requires:       ros2-humble-nav2_util-devel
+Requires:       ros2-humble-nav2_velocity_smoother-devel
+Requires:       ros2-humble-nav2_voxel_grid-devel
+Requires:       ros2-humble-nav2_waypoint_follower-devel
 
-Provides: ros2-humble-diagnostic_updater-devel = 3.1.2-1
-Obsoletes: ros2-humble-diagnostic_updater-devel < 3.1.2-1
+Provides: ros2-humble-navigation2-devel = 1.1.6-1
+Obsoletes: ros2-humble-navigation2-devel < 1.1.6-1
 
 
 %description devel
@@ -130,7 +156,7 @@ colcon \
   -DBUILD_TESTING=OFF \
   --base-paths . \
   --install-base %{buildroot}/%{_libdir}/ros2/ \
-  --packages-select diagnostic_updater
+  --packages-select navigation2
 
 
 
@@ -148,7 +174,7 @@ find %{buildroot}/%{_libdir}/ros2/lib*/ -mindepth 1 -maxdepth 1 \
 
 touch files_devel.list
 # TODO: is cmake/ necessary? it stems from the yaml vendor
-find %{buildroot}/%{_libdir}/ros2/{lib*/pkgconfig,include/,cmake/,diagnostic_updater/include/,share/diagnostic_updater/cmake} \
+find %{buildroot}/%{_libdir}/ros2/{lib*/pkgconfig,include/,cmake/,navigation2/include/,share/navigation2/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 
 find . -maxdepth 1 -type f -iname "*readme*" | sed "s:^:%%doc :" >> files.list
@@ -187,7 +213,5 @@ done
 
 
 %changelog
-* Mon Apr 10 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.1.2-1
+* Mon Apr 10 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.6-1
 - update to latest upsteam
-* Mon Mar 20 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - noetic.1.11.0-1
-- update to latest release

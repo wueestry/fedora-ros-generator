@@ -1,13 +1,14 @@
-Name:           ros2-diagnostic_updater
-Version:        humble.3.1.2
+Name:           ros2-nav2_costmap_2d
+Version:        humble.1.1.6
 Release:        1%{?dist}
-Summary:        ROS package diagnostic_updater
+Summary:        ROS package nav2_costmap_2d
 
 License:        BSD-3-Clause
-URL:            http://www.ros.org/wiki/diagnostic_updater
+URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/diagnostics-release/archive/release/humble/diagnostic_updater/3.1.2-1.tar.gz#/ros2-humble-diagnostic_updater-3.1.2-source0.tar.gz
+Source0:        https://github.com/SteveMacenski/navigation2-release/archive/release/humble/nav2_costmap_2d/1.1.6-1.tar.gz#/ros2-humble-nav2_costmap_2d-1.1.6-source0.tar.gz
 
+Patch0: ros-nav2_costmap_2d.init_variables.patch
 
 
 # common BRs
@@ -39,50 +40,107 @@ BuildRequires: python3-vcstool
 
 BuildRequires:  ros2-humble-ament_cmake-devel
 BuildRequires:  ros2-humble-ament_cmake_gtest-devel
-BuildRequires:  ros2-humble-ament_cmake_pytest-devel
-BuildRequires:  ros2-humble-ament_cmake_python-devel
 BuildRequires:  ros2-humble-ament_lint_auto-devel
 BuildRequires:  ros2-humble-ament_lint_common-devel
 BuildRequires:  ros2-humble-ament_package-devel
-BuildRequires:  ros2-humble-diagnostic_msgs-devel
+BuildRequires:  ros2-humble-angles-devel
+BuildRequires:  ros2-humble-geometry_msgs-devel
+BuildRequires:  ros2-humble-laser_geometry-devel
+BuildRequires:  ros2-humble-launch-devel
+BuildRequires:  ros2-humble-launch_testing-devel
+BuildRequires:  ros2-humble-map_msgs-devel
+BuildRequires:  ros2-humble-message_filters-devel
+BuildRequires:  ros2-humble-nav2_common-devel
+BuildRequires:  ros2-humble-nav2_lifecycle_manager-devel
+BuildRequires:  ros2-humble-nav2_map_server-devel
+BuildRequires:  ros2-humble-nav2_msgs-devel
+BuildRequires:  ros2-humble-nav2_util-devel
+BuildRequires:  ros2-humble-nav2_voxel_grid-devel
+BuildRequires:  ros2-humble-nav_msgs-devel
+BuildRequires:  ros2-humble-pluginlib-devel
 BuildRequires:  ros2-humble-rclcpp-devel
 BuildRequires:  ros2-humble-rclcpp_lifecycle-devel
-BuildRequires:  ros2-humble-rclpy-devel
+BuildRequires:  ros2-humble-sensor_msgs-devel
 BuildRequires:  ros2-humble-std_msgs-devel
+BuildRequires:  ros2-humble-std_srvs-devel
+BuildRequires:  ros2-humble-tf2-devel
+BuildRequires:  ros2-humble-tf2_geometry_msgs-devel
+BuildRequires:  ros2-humble-tf2_ros-devel
+BuildRequires:  ros2-humble-tf2_sensor_msgs-devel
+BuildRequires:  ros2-humble-visualization_msgs-devel
 
-Requires:       ros2-humble-diagnostic_msgs
+Requires:       ros2-humble-angles
+Requires:       ros2-humble-geometry_msgs
+Requires:       ros2-humble-laser_geometry
+Requires:       ros2-humble-map_msgs
+Requires:       ros2-humble-message_filters
+Requires:       ros2-humble-nav2_msgs
+Requires:       ros2-humble-nav2_util
+Requires:       ros2-humble-nav2_voxel_grid
+Requires:       ros2-humble-nav_msgs
+Requires:       ros2-humble-pluginlib
 Requires:       ros2-humble-rclcpp
-Requires:       ros2-humble-rclpy
+Requires:       ros2-humble-rclcpp_lifecycle
+Requires:       ros2-humble-sensor_msgs
 Requires:       ros2-humble-std_msgs
+Requires:       ros2-humble-std_srvs
+Requires:       ros2-humble-tf2
+Requires:       ros2-humble-tf2_geometry_msgs
+Requires:       ros2-humble-tf2_ros
+Requires:       ros2-humble-tf2_sensor_msgs
+Requires:       ros2-humble-visualization_msgs
 
-Provides:  ros2-humble-diagnostic_updater = 3.1.2-1
-Obsoletes: ros2-humble-diagnostic_updater < 3.1.2-1
+Provides:  ros2-humble-nav2_costmap_2d = 1.1.6-1
+Obsoletes: ros2-humble-nav2_costmap_2d < 1.1.6-1
 
 
 
 %description
-diagnostic_updater contains tools for easily updating diagnostics. it
-is commonly used in device drivers to keep track of the status of
-output topics, device status, etc.
+This package provides an implementation of a 2D costmap that takes in
+sensor data from the world, builds a 2D or 3D occupancy grid of the
+data (depending on whether a voxel based implementation is used), and
+inflates costs in a 2D costmap based on the occupancy grid and a user
+specified inflation radius. This package also provides support for
+map_server based initialization of a costmap, rolling window based
+costmaps, and parameter based subscription to and configuration of
+sensor topics.
 
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       ros2-humble-ament_cmake-devel
-Requires:       ros2-humble-ament_cmake_python-devel
 Requires:       ros2-humble-ament_cmake_gtest-devel
-Requires:       ros2-humble-ament_cmake_pytest-devel
 Requires:       ros2-humble-ament_lint_auto-devel
 Requires:       ros2-humble-ament_lint_common-devel
 Requires:       ros2-humble-ament_package-devel
-Requires:       ros2-humble-diagnostic_msgs-devel
+Requires:       ros2-humble-angles-devel
+Requires:       ros2-humble-geometry_msgs-devel
+Requires:       ros2-humble-laser_geometry-devel
+Requires:       ros2-humble-launch-devel
+Requires:       ros2-humble-launch_testing-devel
+Requires:       ros2-humble-map_msgs-devel
+Requires:       ros2-humble-message_filters-devel
+Requires:       ros2-humble-nav2_common-devel
+Requires:       ros2-humble-nav2_lifecycle_manager-devel
+Requires:       ros2-humble-nav2_map_server-devel
+Requires:       ros2-humble-nav2_msgs-devel
+Requires:       ros2-humble-nav2_util-devel
+Requires:       ros2-humble-nav2_voxel_grid-devel
+Requires:       ros2-humble-nav_msgs-devel
+Requires:       ros2-humble-pluginlib-devel
 Requires:       ros2-humble-rclcpp-devel
 Requires:       ros2-humble-rclcpp_lifecycle-devel
-Requires:       ros2-humble-rclpy-devel
+Requires:       ros2-humble-sensor_msgs-devel
 Requires:       ros2-humble-std_msgs-devel
+Requires:       ros2-humble-std_srvs-devel
+Requires:       ros2-humble-tf2-devel
+Requires:       ros2-humble-tf2_geometry_msgs-devel
+Requires:       ros2-humble-tf2_ros-devel
+Requires:       ros2-humble-tf2_sensor_msgs-devel
+Requires:       ros2-humble-visualization_msgs-devel
 
-Provides: ros2-humble-diagnostic_updater-devel = 3.1.2-1
-Obsoletes: ros2-humble-diagnostic_updater-devel < 3.1.2-1
+Provides: ros2-humble-nav2_costmap_2d-devel = 1.1.6-1
+Obsoletes: ros2-humble-nav2_costmap_2d-devel < 1.1.6-1
 
 
 %description devel
@@ -95,6 +153,7 @@ applications that use %{name}.
 
 %setup -c -T
 tar --strip-components=1 -xf %{SOURCE0}
+%patch0 -p1
 
 %build
 # nothing to do here
@@ -130,7 +189,7 @@ colcon \
   -DBUILD_TESTING=OFF \
   --base-paths . \
   --install-base %{buildroot}/%{_libdir}/ros2/ \
-  --packages-select diagnostic_updater
+  --packages-select nav2_costmap_2d
 
 
 
@@ -148,7 +207,7 @@ find %{buildroot}/%{_libdir}/ros2/lib*/ -mindepth 1 -maxdepth 1 \
 
 touch files_devel.list
 # TODO: is cmake/ necessary? it stems from the yaml vendor
-find %{buildroot}/%{_libdir}/ros2/{lib*/pkgconfig,include/,cmake/,diagnostic_updater/include/,share/diagnostic_updater/cmake} \
+find %{buildroot}/%{_libdir}/ros2/{lib*/pkgconfig,include/,cmake/,nav2_costmap_2d/include/,share/nav2_costmap_2d/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 
 find . -maxdepth 1 -type f -iname "*readme*" | sed "s:^:%%doc :" >> files.list
@@ -187,7 +246,5 @@ done
 
 
 %changelog
-* Mon Apr 10 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.1.2-1
+* Mon Apr 10 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.6-1
 - update to latest upsteam
-* Mon Mar 20 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - noetic.1.11.0-1
-- update to latest release

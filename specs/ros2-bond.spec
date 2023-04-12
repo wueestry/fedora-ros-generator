@@ -1,12 +1,12 @@
 Name:           ros2-bond
-Version:        noetic.1.8.6
+Version:        humble.3.0.2
 Release:        1%{?dist}
 Summary:        ROS package bond
 
 License:        BSD
 URL:            http://www.ros.org/wiki/bond
 
-Source0:        https://github.com/ros-gbp/bond_core-release/archive/release/noetic/bond/1.8.6-1.tar.gz#/ros2-noetic-bond-1.8.6-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/bond_core-release/archive/release/humble/bond/3.0.2-3.tar.gz#/ros2-humble-bond-3.0.2-source0.tar.gz
 
 
 
@@ -19,7 +19,6 @@ BuildRequires: make
 BuildRequires: patch
 BuildRequires: python3-devel
 BuildRequires: python-unversioned-command
-BuildRequires: ros2-ament_package
 BuildRequires: python3-colcon-common-extensions
 BuildRequires: python3-pip
 BuildRequires: python3-pydocstyle
@@ -38,16 +37,20 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python3-colcon-common-extensions
 # BuildRequires:  python-unversioned-command
 
-BuildRequires:  ros2-noetic-ament_package-devel
-BuildRequires:  ros2-noetic-catkin-devel
-BuildRequires:  ros2-noetic-message_generation-devel
-BuildRequires:  ros2-noetic-std_msgs-devel
+BuildRequires:  ros2-humble-ament_cmake-devel
+BuildRequires:  ros2-humble-ament_lint_auto-devel
+BuildRequires:  ros2-humble-ament_lint_common-devel
+BuildRequires:  ros2-humble-ament_package-devel
+BuildRequires:  ros2-humble-builtin_interfaces-devel
+BuildRequires:  ros2-humble-rosidl_default_generators-devel
+BuildRequires:  ros2-humble-std_msgs-devel
 
-Requires:       ros2-noetic-message_runtime
-Requires:       ros2-noetic-std_msgs
+Requires:       ros2-humble-builtin_interfaces
+Requires:       ros2-humble-rosidl_default_runtime
+Requires:       ros2-humble-std_msgs
 
-Provides:  ros2-noetic-bond = 1.8.6-1
-Obsoletes: ros2-noetic-bond < 1.8.6-1
+Provides:  ros2-humble-bond = 3.0.2-1
+Obsoletes: ros2-humble-bond < 3.0.2-1
 
 
 
@@ -59,14 +62,17 @@ until it is either broken explicitly or until a heartbeat times out.
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       ros2-noetic-catkin-devel
-Requires:       ros2-noetic-ament_package-devel
-Requires:       ros2-noetic-message_generation-devel
-Requires:       ros2-noetic-std_msgs-devel
-Requires:       ros2-noetic-message_runtime-devel
+Requires:       ros2-humble-ament_cmake-devel
+Requires:       ros2-humble-rosidl_default_generators-devel
+Requires:       ros2-humble-ament_lint_auto-devel
+Requires:       ros2-humble-ament_lint_common-devel
+Requires:       ros2-humble-ament_package-devel
+Requires:       ros2-humble-builtin_interfaces-devel
+Requires:       ros2-humble-std_msgs-devel
+Requires:       ros2-humble-rosidl_default_runtime-devel
 
-Provides: ros2-noetic-bond-devel = 1.8.6-1
-Obsoletes: ros2-noetic-bond-devel < 1.8.6-1
+Provides: ros2-humble-bond-devel = 3.0.2-1
+Obsoletes: ros2-humble-bond-devel < 3.0.2-1
 
 
 %description devel
@@ -111,7 +117,6 @@ colcon \
   -DCMAKE_CXX_FLAGS="$CXXFLAGS" \
   -DCMAKE_C_FLAGS="$CFLAGS" \
   -DCMAKE_LD_FLAGS="$LDFLAGS" \
-  -DCMAKE_SKIP_INSTALL_RPATH=ON \
   -DBUILD_TESTING=OFF \
   --base-paths . \
   --install-base %{buildroot}/%{_libdir}/ros2/ \
@@ -142,7 +147,7 @@ find . -maxdepth 1 -type f -iname "*license*" | sed "s:^:%%license :" >> files.l
 
 
 find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --remove-rpath  {} \;
-find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --add-rpath "%{_libdir}/ros2/lib" {} \;
+# find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --force-rpath --add-rpath "%{_libdir}/ros2/lib" {} \;
 
 # replace cmake python macro in shebang
 for file in $(grep -rIl '^#!.*@PYTHON_EXECUTABLE@.*$' %{buildroot}) ; do
@@ -172,6 +177,8 @@ done
 
 
 %changelog
+* Mon Apr 10 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.0.2-1
+- update to latest upsteam
 * Mon Mar 20 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - noetic.1.8.6-1
 - update to latest release
 * Mon Mar 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.0.2-1

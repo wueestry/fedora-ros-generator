@@ -1,12 +1,12 @@
-Name:           ros2-diagnostic_updater
-Version:        humble.3.1.2
+Name:           ros2-nav2_collision_monitor
+Version:        humble.1.1.6
 Release:        1%{?dist}
-Summary:        ROS package diagnostic_updater
+Summary:        ROS package nav2_collision_monitor
 
-License:        BSD-3-Clause
-URL:            http://www.ros.org/wiki/diagnostic_updater
+License:        Apache-2.0
+URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/diagnostics-release/archive/release/humble/diagnostic_updater/3.1.2-1.tar.gz#/ros2-humble-diagnostic_updater-3.1.2-source0.tar.gz
+Source0:        https://github.com/SteveMacenski/navigation2-release/archive/release/humble/nav2_collision_monitor/1.1.6-1.tar.gz#/ros2-humble-nav2_collision_monitor-1.1.6-source0.tar.gz
 
 
 
@@ -39,50 +39,60 @@ BuildRequires: python3-vcstool
 
 BuildRequires:  ros2-humble-ament_cmake-devel
 BuildRequires:  ros2-humble-ament_cmake_gtest-devel
-BuildRequires:  ros2-humble-ament_cmake_pytest-devel
-BuildRequires:  ros2-humble-ament_cmake_python-devel
 BuildRequires:  ros2-humble-ament_lint_auto-devel
 BuildRequires:  ros2-humble-ament_lint_common-devel
 BuildRequires:  ros2-humble-ament_package-devel
-BuildRequires:  ros2-humble-diagnostic_msgs-devel
+BuildRequires:  ros2-humble-geometry_msgs-devel
+BuildRequires:  ros2-humble-nav2_common-devel
+BuildRequires:  ros2-humble-nav2_costmap_2d-devel
+BuildRequires:  ros2-humble-nav2_util-devel
 BuildRequires:  ros2-humble-rclcpp-devel
-BuildRequires:  ros2-humble-rclcpp_lifecycle-devel
-BuildRequires:  ros2-humble-rclpy-devel
-BuildRequires:  ros2-humble-std_msgs-devel
+BuildRequires:  ros2-humble-rclcpp_components-devel
+BuildRequires:  ros2-humble-sensor_msgs-devel
+BuildRequires:  ros2-humble-tf2-devel
+BuildRequires:  ros2-humble-tf2_geometry_msgs-devel
+BuildRequires:  ros2-humble-tf2_ros-devel
 
-Requires:       ros2-humble-diagnostic_msgs
+Requires:       ros2-humble-geometry_msgs
+Requires:       ros2-humble-nav2_common
+Requires:       ros2-humble-nav2_costmap_2d
+Requires:       ros2-humble-nav2_util
 Requires:       ros2-humble-rclcpp
-Requires:       ros2-humble-rclpy
-Requires:       ros2-humble-std_msgs
+Requires:       ros2-humble-rclcpp_components
+Requires:       ros2-humble-sensor_msgs
+Requires:       ros2-humble-tf2
+Requires:       ros2-humble-tf2_geometry_msgs
+Requires:       ros2-humble-tf2_ros
 
-Provides:  ros2-humble-diagnostic_updater = 3.1.2-1
-Obsoletes: ros2-humble-diagnostic_updater < 3.1.2-1
+Provides:  ros2-humble-nav2_collision_monitor = 1.1.6-1
+Obsoletes: ros2-humble-nav2_collision_monitor < 1.1.6-1
 
 
 
 %description
-diagnostic_updater contains tools for easily updating diagnostics. it
-is commonly used in device drivers to keep track of the status of
-output topics, device status, etc.
+Collision Monitor
 
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       ros2-humble-ament_cmake-devel
-Requires:       ros2-humble-ament_cmake_python-devel
 Requires:       ros2-humble-ament_cmake_gtest-devel
-Requires:       ros2-humble-ament_cmake_pytest-devel
 Requires:       ros2-humble-ament_lint_auto-devel
 Requires:       ros2-humble-ament_lint_common-devel
 Requires:       ros2-humble-ament_package-devel
-Requires:       ros2-humble-diagnostic_msgs-devel
+Requires:       ros2-humble-geometry_msgs-devel
+Requires:       ros2-humble-nav2_common-devel
+Requires:       ros2-humble-nav2_costmap_2d-devel
+Requires:       ros2-humble-nav2_util-devel
 Requires:       ros2-humble-rclcpp-devel
-Requires:       ros2-humble-rclcpp_lifecycle-devel
-Requires:       ros2-humble-rclpy-devel
-Requires:       ros2-humble-std_msgs-devel
+Requires:       ros2-humble-rclcpp_components-devel
+Requires:       ros2-humble-sensor_msgs-devel
+Requires:       ros2-humble-tf2-devel
+Requires:       ros2-humble-tf2_geometry_msgs-devel
+Requires:       ros2-humble-tf2_ros-devel
 
-Provides: ros2-humble-diagnostic_updater-devel = 3.1.2-1
-Obsoletes: ros2-humble-diagnostic_updater-devel < 3.1.2-1
+Provides: ros2-humble-nav2_collision_monitor-devel = 1.1.6-1
+Obsoletes: ros2-humble-nav2_collision_monitor-devel < 1.1.6-1
 
 
 %description devel
@@ -130,7 +140,7 @@ colcon \
   -DBUILD_TESTING=OFF \
   --base-paths . \
   --install-base %{buildroot}/%{_libdir}/ros2/ \
-  --packages-select diagnostic_updater
+  --packages-select nav2_collision_monitor
 
 
 
@@ -148,7 +158,7 @@ find %{buildroot}/%{_libdir}/ros2/lib*/ -mindepth 1 -maxdepth 1 \
 
 touch files_devel.list
 # TODO: is cmake/ necessary? it stems from the yaml vendor
-find %{buildroot}/%{_libdir}/ros2/{lib*/pkgconfig,include/,cmake/,diagnostic_updater/include/,share/diagnostic_updater/cmake} \
+find %{buildroot}/%{_libdir}/ros2/{lib*/pkgconfig,include/,cmake/,nav2_collision_monitor/include/,share/nav2_collision_monitor/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 
 find . -maxdepth 1 -type f -iname "*readme*" | sed "s:^:%%doc :" >> files.list
@@ -187,7 +197,5 @@ done
 
 
 %changelog
-* Mon Apr 10 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.1.2-1
+* Mon Apr 10 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.6-1
 - update to latest upsteam
-* Mon Mar 20 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - noetic.1.11.0-1
-- update to latest release

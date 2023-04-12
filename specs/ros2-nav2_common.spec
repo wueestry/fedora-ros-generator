@@ -1,14 +1,15 @@
-Name:           ros2-diagnostic_updater
-Version:        humble.3.1.2
+Name:           ros2-nav2_common
+Version:        humble.1.1.6
 Release:        1%{?dist}
-Summary:        ROS package diagnostic_updater
+Summary:        ROS package nav2_common
 
-License:        BSD-3-Clause
-URL:            http://www.ros.org/wiki/diagnostic_updater
+License:        Apache-2.0
+URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/diagnostics-release/archive/release/humble/diagnostic_updater/3.1.2-1.tar.gz#/ros2-humble-diagnostic_updater-3.1.2-source0.tar.gz
+Source0:        https://github.com/SteveMacenski/navigation2-release/archive/release/humble/nav2_common/1.1.6-1.tar.gz#/ros2-humble-nav2_common-1.1.6-source0.tar.gz
 
 
+BuildArch: noarch
 
 # common BRs
 BuildRequires: patchelf
@@ -37,52 +38,43 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python3-colcon-common-extensions
 # BuildRequires:  python-unversioned-command
 
-BuildRequires:  ros2-humble-ament_cmake-devel
-BuildRequires:  ros2-humble-ament_cmake_gtest-devel
-BuildRequires:  ros2-humble-ament_cmake_pytest-devel
+BuildRequires:  python3-pyyaml
+BuildRequires:  ros2-humble-ament_cmake_core-devel
 BuildRequires:  ros2-humble-ament_cmake_python-devel
-BuildRequires:  ros2-humble-ament_lint_auto-devel
-BuildRequires:  ros2-humble-ament_lint_common-devel
 BuildRequires:  ros2-humble-ament_package-devel
-BuildRequires:  ros2-humble-diagnostic_msgs-devel
-BuildRequires:  ros2-humble-rclcpp-devel
-BuildRequires:  ros2-humble-rclcpp_lifecycle-devel
+BuildRequires:  ros2-humble-launch-devel
+BuildRequires:  ros2-humble-launch_ros-devel
+BuildRequires:  ros2-humble-osrf_pycommon-devel
 BuildRequires:  ros2-humble-rclpy-devel
-BuildRequires:  ros2-humble-std_msgs-devel
 
-Requires:       ros2-humble-diagnostic_msgs
-Requires:       ros2-humble-rclcpp
+Requires:       python3-pyyaml
+Requires:       ros2-humble-launch
+Requires:       ros2-humble-launch_ros
+Requires:       ros2-humble-osrf_pycommon
 Requires:       ros2-humble-rclpy
-Requires:       ros2-humble-std_msgs
 
-Provides:  ros2-humble-diagnostic_updater = 3.1.2-1
-Obsoletes: ros2-humble-diagnostic_updater < 3.1.2-1
+Provides:  ros2-humble-nav2_common = 1.1.6-1
+Obsoletes: ros2-humble-nav2_common < 1.1.6-1
 
 
 
 %description
-diagnostic_updater contains tools for easily updating diagnostics. it
-is commonly used in device drivers to keep track of the status of
-output topics, device status, etc.
+Common support functionality used throughout the navigation 2 stack
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       ros2-humble-ament_cmake-devel
+Requires:       %{name} = %{version}-%{release}
+Requires:       ros2-humble-ament_cmake_core-devel
+Requires:       python3-pyyaml
 Requires:       ros2-humble-ament_cmake_python-devel
-Requires:       ros2-humble-ament_cmake_gtest-devel
-Requires:       ros2-humble-ament_cmake_pytest-devel
-Requires:       ros2-humble-ament_lint_auto-devel
-Requires:       ros2-humble-ament_lint_common-devel
 Requires:       ros2-humble-ament_package-devel
-Requires:       ros2-humble-diagnostic_msgs-devel
-Requires:       ros2-humble-rclcpp-devel
-Requires:       ros2-humble-rclcpp_lifecycle-devel
+Requires:       ros2-humble-launch-devel
+Requires:       ros2-humble-launch_ros-devel
+Requires:       ros2-humble-osrf_pycommon-devel
 Requires:       ros2-humble-rclpy-devel
-Requires:       ros2-humble-std_msgs-devel
 
-Provides: ros2-humble-diagnostic_updater-devel = 3.1.2-1
-Obsoletes: ros2-humble-diagnostic_updater-devel < 3.1.2-1
+Provides: ros2-humble-nav2_common-devel = 1.1.6-1
+Obsoletes: ros2-humble-nav2_common-devel < 1.1.6-1
 
 
 %description devel
@@ -130,7 +122,7 @@ colcon \
   -DBUILD_TESTING=OFF \
   --base-paths . \
   --install-base %{buildroot}/%{_libdir}/ros2/ \
-  --packages-select diagnostic_updater
+  --packages-select nav2_common
 
 
 
@@ -148,7 +140,7 @@ find %{buildroot}/%{_libdir}/ros2/lib*/ -mindepth 1 -maxdepth 1 \
 
 touch files_devel.list
 # TODO: is cmake/ necessary? it stems from the yaml vendor
-find %{buildroot}/%{_libdir}/ros2/{lib*/pkgconfig,include/,cmake/,diagnostic_updater/include/,share/diagnostic_updater/cmake} \
+find %{buildroot}/%{_libdir}/ros2/{lib*/pkgconfig,include/,cmake/,nav2_common/include/,share/nav2_common/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 
 find . -maxdepth 1 -type f -iname "*readme*" | sed "s:^:%%doc :" >> files.list
@@ -187,7 +179,5 @@ done
 
 
 %changelog
-* Mon Apr 10 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.1.2-1
+* Mon Apr 10 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.6-1
 - update to latest upsteam
-* Mon Mar 20 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - noetic.1.11.0-1
-- update to latest release

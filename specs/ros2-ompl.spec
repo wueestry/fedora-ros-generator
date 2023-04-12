@@ -9,6 +9,7 @@ URL:            https://ompl.kavrakilab.org
 Source0:        https://github.com/ros2-gbp/ompl-release/archive/release/humble/ompl/1.6.0-1.tar.gz#/ros2-humble-ompl-1.6.0-source0.tar.gz
 
 
+AutoReq: no
 
 # common BRs
 BuildRequires: patchelf
@@ -43,7 +44,6 @@ BuildRequires:  eigen3-devel
 BuildRequires:  flann-devel
 BuildRequires:  ode-devel
 BuildRequires:  pkgconfig
-BuildRequires:  ros2-humble-ament_package-devel
 
 
 Provides:  ros2-humble-ompl = 1.6.0-1
@@ -63,7 +63,6 @@ Requires:       eigen3-devel
 Requires:       flann-devel
 Requires:       ode-devel
 Requires:       pkgconfig
-Requires:       ros2-humble-ament_package-devel
 
 Provides: ros2-humble-ompl-devel = 1.6.0-1
 Obsoletes: ros2-humble-ompl-devel < 1.6.0-1
@@ -74,6 +73,7 @@ The %{name}-devel package contains libraries and header files for developing
 applications that use %{name}.
 
 
+%global debug_package %{nil}
 
 %prep
 
@@ -112,7 +112,7 @@ colcon \
   -DCMAKE_C_FLAGS="$CFLAGS" \
   -DCMAKE_LD_FLAGS="$LDFLAGS" \
   -DBUILD_TESTING=OFF \
-  -DCMAKE_INSTALL_LIBDIR=${buildroot}/%{_libdir}/ros2/lib \
+  -DCMAKE_INSTALL_LIBDIR=%{buildroot}/%{_libdir}/ros2/lib \
   -DOMPL_REGISTRATION=OFF \
   --base-paths . \
   --install-base %{buildroot}/%{_libdir}/ros2/ \
@@ -142,11 +142,8 @@ find . -maxdepth 1 -type f -iname "*license*" | sed "s:^:%%license :" >> files.l
 
 
 
-find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --print-rpath  {} \;
 find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --remove-rpath  {} \;
 # find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --force-rpath --add-rpath "%{_libdir}/ros2/lib" {} \;
-find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --print-rpath  {} \;
-find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f
 
 # replace cmake python macro in shebang
 for file in $(grep -rIl '^#!.*@PYTHON_EXECUTABLE@.*$' %{buildroot}) ; do

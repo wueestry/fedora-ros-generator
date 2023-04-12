@@ -1,12 +1,12 @@
 Name:           ros2-diagnostics
-Version:        noetic.1.11.0
+Version:        humble.3.1.2
 Release:        1%{?dist}
 Summary:        ROS package diagnostics
 
-License:        BSD
+License:        BSD-3-Clause
 URL:            http://www.ros.org/wiki/diagnostics
 
-Source0:        https://github.com/ros-gbp/diagnostics-release/archive/release/noetic/diagnostics/1.11.0-1.tar.gz#/ros2-noetic-diagnostics-1.11.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/diagnostics-release/archive/release/humble/diagnostics/3.1.2-1.tar.gz#/ros2-humble-diagnostics-3.1.2-source0.tar.gz
 
 
 BuildArch: noarch
@@ -20,7 +20,6 @@ BuildRequires: make
 BuildRequires: patch
 BuildRequires: python3-devel
 BuildRequires: python-unversioned-command
-BuildRequires: ros2-ament_package
 BuildRequires: python3-colcon-common-extensions
 BuildRequires: python3-pip
 BuildRequires: python3-pydocstyle
@@ -39,17 +38,16 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python3-colcon-common-extensions
 # BuildRequires:  python-unversioned-command
 
-BuildRequires:  ros2-noetic-ament_package-devel
-BuildRequires:  ros2-noetic-catkin-devel
+BuildRequires:  ros2-humble-ament_cmake-devel
+BuildRequires:  ros2-humble-ament_package-devel
 
-Requires:       ros2-noetic-diagnostic_aggregator
-Requires:       ros2-noetic-diagnostic_analysis
-Requires:       ros2-noetic-diagnostic_common_diagnostics
-Requires:       ros2-noetic-diagnostic_updater
-Requires:       ros2-noetic-self_test
+Requires:       ros2-humble-diagnostic_aggregator
+Requires:       ros2-humble-diagnostic_common_diagnostics
+Requires:       ros2-humble-diagnostic_updater
+Requires:       ros2-humble-self_test
 
-Provides:  ros2-noetic-diagnostics = 1.11.0-1
-Obsoletes: ros2-noetic-diagnostics < 1.11.0-1
+Provides:  ros2-humble-diagnostics = 3.1.2-1
+Obsoletes: ros2-humble-diagnostics < 3.1.2-1
 
 
 
@@ -59,16 +57,15 @@ diagnostics
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
-Requires:       ros2-noetic-catkin-devel
-Requires:       ros2-noetic-ament_package-devel
-Requires:       ros2-noetic-diagnostic_aggregator-devel
-Requires:       ros2-noetic-diagnostic_analysis-devel
-Requires:       ros2-noetic-diagnostic_common_diagnostics-devel
-Requires:       ros2-noetic-diagnostic_updater-devel
-Requires:       ros2-noetic-self_test-devel
+Requires:       ros2-humble-ament_cmake-devel
+Requires:       ros2-humble-ament_package-devel
+Requires:       ros2-humble-diagnostic_aggregator-devel
+Requires:       ros2-humble-diagnostic_common_diagnostics-devel
+Requires:       ros2-humble-diagnostic_updater-devel
+Requires:       ros2-humble-self_test-devel
 
-Provides: ros2-noetic-diagnostics-devel = 1.11.0-1
-Obsoletes: ros2-noetic-diagnostics-devel < 1.11.0-1
+Provides: ros2-humble-diagnostics-devel = 3.1.2-1
+Obsoletes: ros2-humble-diagnostics-devel < 3.1.2-1
 
 
 %description devel
@@ -113,7 +110,6 @@ colcon \
   -DCMAKE_CXX_FLAGS="$CXXFLAGS" \
   -DCMAKE_C_FLAGS="$CFLAGS" \
   -DCMAKE_LD_FLAGS="$LDFLAGS" \
-  -DCMAKE_SKIP_INSTALL_RPATH=ON \
   -DBUILD_TESTING=OFF \
   --base-paths . \
   --install-base %{buildroot}/%{_libdir}/ros2/ \
@@ -144,7 +140,7 @@ find . -maxdepth 1 -type f -iname "*license*" | sed "s:^:%%license :" >> files.l
 
 
 find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --remove-rpath  {} \;
-find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --add-rpath "%{_libdir}/ros2/lib" {} \;
+# find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --force-rpath --add-rpath "%{_libdir}/ros2/lib" {} \;
 
 # replace cmake python macro in shebang
 for file in $(grep -rIl '^#!.*@PYTHON_EXECUTABLE@.*$' %{buildroot}) ; do
@@ -174,5 +170,7 @@ done
 
 
 %changelog
+* Mon Apr 10 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.1.2-1
+- update to latest upsteam
 * Mon Mar 20 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - noetic.1.11.0-1
 - update to latest release
