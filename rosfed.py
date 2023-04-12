@@ -129,6 +129,11 @@ class RosPkg:
                 if child.tag == dep_key:
                     pkg = child.text
                     try:
+                        try:
+                            if(child.attrib["condition"] == "$ROS_VERSION == 1"):
+                             continue
+                        except KeyError:
+                            pass
                         self.distro_info.get_release_package_xml(pkg)
                         for dep_list in dep_lists:
                             dep_list['ros'].add(pkg)
