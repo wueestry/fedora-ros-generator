@@ -1,8 +1,14 @@
+#! /usr/bin/env python3
+
 import argparse
 import os
 import subprocess
 import sys
 
+import build_tree
+import copr_build
+
+from utils.build_order import get_build_order
 from utils.spec_generator import SpecFileGenerator
 
 
@@ -103,6 +109,32 @@ def main() -> None:
         args.obsolete_distro_pkg,
         args.destination,
     )
+    packages = spec_file_generator.generate(args.ros_pkg)
+    if args.build_order_file:
+        order = get_build_order(packages)
+        for stage in order:
+            args.build_order_file.write(" ".join(stage) + "\n")
+    if args.build_srpm:
+        srpm_builder = copr_build.SrpmBuilder()
+        for chroot in args.chroot:
+            for pkg in list(packages.values()):
+                srpm_builder.build_spec(chroot, pkg.spec)
+    if args.build:
+        assert args.copr_owner, "You need to provide a COPR owner"
+        assert args.copr_project, "You need to provide a COPR user"
+        assert args.chroot, "You need to provide a chroot to use for builds."
+        copr_builder = copr_build.CoprBuilder(
+            copr_owner=args.copr_owner, copr_project=args.copr_project
+        )
+        success = True
+        for chroot in args.chroot:
+            tree = build_tree.Tree(list(packages.values()))
+            success &= copr_builder.build_tree(chroot, tree, only_new=args.only_new)
+        if success:
+            sys.exit(0)
+        else:
+            sys.exit(1)
+    sys.exit(0)
 
 
 if __name__ == "__main__":
