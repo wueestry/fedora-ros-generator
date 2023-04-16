@@ -5,8 +5,7 @@ import os
 import subprocess
 import sys
 
-import build_tree
-import copr_build
+from utils import build_tree, copr_build
 
 from utils.build_order import get_build_order
 from utils.spec_generator import SpecFileGenerator

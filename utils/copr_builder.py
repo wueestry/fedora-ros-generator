@@ -1,0 +1,176 @@
+from utils.srpm_builder import SrpmBuilder
+import copr.v3
+from utils import build_tree
+
+from termcolor import cprint
+
+class CoprBuilder:
+    def __init__(self, copr_owner, copr_project):
+        """ Initialize the CoprBuilder using the given project ID.
+
+        Args:
+            copr_owner: the owner of the COPR project
+            copr_project: the name of the COPR project
+        """
+        self.owner = copr_owner
+        self.project = copr_project
+        self.copr_client = copr.v3.Client.create_from_config_file()
+        self.srpm_builder = SrpmBuilder()
+
+    def build_spec(self, chroot, spec, wait_for_completion=False):
+        """ Build a package in COPR from a SPEC.
+
+        Args:
+            chroot: The chroot to use for the build, e.g., fedora-26-x86_64
+            spec: The path to the SPEC file of the package.
+            wait_for_completion: If set to true, wait for the build to finish
+
+        Returns:
+            The build object created for this build.
+        """
+        return self.build_srpm(chroot,
+                               self.srpm_builder.build_spec(chroot, spec),
+                               wait_for_completion)
+
+    def build_srpm(self, chroot, srpm, wait_for_completion):
+        """ Build a package in COPR from a SRPM.
+
+        Args:
+            chroot: The chroot to use for the build, e.g., fedora-26-x86_64
+            srpm: The path to the SRPM file of the package.
+            wait_for_completion: If set to true, wait for the build to finish
+
+        Returns:
+            The build object created for this build.
+        """
+        print('Building {} for project {}/{} with chroot {}'.format(
+            srpm, self.owner, self.project, chroot))
+        build = self.copr_client.build_proxy.create_from_file(
+            ownername=self.owner,
+            projectname=self.project,
+            path=srpm,
+            buildopts={'chroots': [chroot]})
+        assert build, 'COPR client returned build object "{}"'.format(build)
+        if wait_for_completion:
+            self.wait_for_completion([build])
+            assert build.state == 'succeeded', \
+                    'Build failed, state is {}.'.format(build.state)
+            cprint('Building {} was successful.'.format(srpm), 'green')
+        return build
+
+    def get_node_of_build(self, nodes, build_id):
+        for node in nodes:
+            if node.build_id == build_id:
+                return node
+        raise Exception(
+            'Could not find node of build {} in build tree'.format(build))
+
+    def build_tree(self, chroot, tree, only_new=False):
+        """ Build a set of packages in order of dependencies. """
+        build_ids = []
+        while not tree.is_built():
+            wait_for_build = True
+            leaves = tree.get_build_leaves()
+            print('Found {} leave node(s)'.format(len(leaves)))
+            if not build_ids and not leaves:
+                cprint('No pending builds and no leave packages, abort.',
+                       'red')
+                return False
+            for node in leaves:
+                if only_new:
+                    pkg_version = None
+                else:
+                    pkg_version = node.pkg.get_version_release()
+                if self.pkg_is_built(chroot, node.pkg.get_full_name(),
+                                     pkg_version):
+                    node.state = build_tree.BuildState.SUCCEEDED
+                    build_progress = tree.get_build_progress()
+                    cprint(
+                        '{}/{}/{}: {} is already built, skipping!'.format(
+                            build_progress['building'],
+                            build_progress['finished'],
+                            build_progress['total'], node.name), 'green')
+                    wait_for_build = False
+                else:
+                    assert node.state == build_tree.BuildState.PENDING, \
+                            'Unexpected build state {} of package node ' \
+                            '{}'.format(node.state, node.name)
+                    build = self.build_spec(chroot=chroot, spec=node.pkg.spec)
+                    node.build_id = build.id
+                    node.state = build_tree.BuildState.BUILDING
+                    build_ids.append(node.build_id)
+            if not wait_for_build:
+                continue
+            print('Waiting for a build to finish...')
+            finished_build = self.wait_for_one_build(build_ids)
+            node = self.get_node_of_build(tree.nodes.values(),
+                                          finished_build.id)
+            build_ids.remove(finished_build.id)
+            if finished_build.state == 'succeeded':
+                node.state = build_tree.BuildState.SUCCEEDED
+                build_progress = tree.get_build_progress()
+                cprint(
+                    '{}/{}/{}: Successful build: {}'.format(
+                        build_progress['building'], build_progress['finished'],
+                        build_progress['total'], node.name), 'green')
+            else:
+                node.state = build_tree.BuildState.FAILED
+                build_progress = tree.get_build_progress()
+                cprint(
+                    '{}/{}/{}: Failed build: {}'.format(
+                        build_progress['building'], build_progress['finished'],
+                        build_progress['total'], node.name), 'red')
+        return tree.is_built()
+
+    @functools.lru_cache(16)
+    def get_builds(self):
+        return self.copr_client.build_proxy.get_list(self.owner, self.project)
+
+    def pkg_is_built(self, chroot, pkg_name, pkg_version):
+        """ Check if the given package is already built in the COPR.
+
+        Args:
+            chroot: The chroot to check, e.g., fedora-26-x86_64.
+            pkg_name: The name of the package to look for.
+            pkg_version: Check for the given version in format $version-$release
+
+        Returns:
+            True iff the package was already built in the project and chroot.
+        """
+        for build in self.copr_client.build_proxy.get_list(
+                self.owner, self.project, pkg_name):
+            if build.state != 'succeeded':
+                continue
+            if chroot not in build.chroots:
+                continue
+            build_version = re.fullmatch(
+                '(.+?)(?:\.(?:fc|rhel|epel|el)\d+)?',
+                build['source_package']['version']).group(1)
+            if build_version == pkg_version:
+                return True
+        return False
+
+    def wait_for_completion(self, builds):
+        """ Wait until all given builds are finished.
+
+        Args:
+            builds: A list of builds to wait for.
+        """
+        print('Waiting for {} build(s) to complete...'.format(len(builds)))
+        finished = wait(builds)
+
+    def wait_for_one_build(self, build_ids):
+        """ Wait for one of the given builds to complete.
+
+        Args:
+            build_ids: A list of COPR build IDs.
+        Returns:
+            The build that completed.
+        """
+        while True:
+            for build_id in build_ids:
+                build = self.copr_client.build_proxy.get(build_id)
+                if build.state in [
+                        'succeeded', 'failed', 'canceled', 'cancelled'
+                ]:
+                    return build
