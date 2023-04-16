@@ -1,0 +1,19 @@
+diff -u -r ompl-release-release-humble-ompl-1.6.0-1/src/ompl/CMakeLists.txt ompl-release-release-humble-ompl-1.6.0-1-new/src/ompl/CMakeLists.txt
+--- ompl-release-release-humble-ompl-1.6.0-1/src/ompl/CMakeLists.txt	2023-01-17 01:47:48.000000000 +0100
++++ ompl-release-release-humble-ompl-1.6.0-1-new/src/ompl/CMakeLists.txt	2023-04-15 10:47:04.147660089 +0200
+@@ -87,9 +87,9 @@
+ install(TARGETS ompl
+     DESTINATION ${CMAKE_INSTALL_LIBDIR}
+     COMPONENT ompl)
+-if (NOT MSVC)
+-    add_custom_command(TARGET ompl POST_BUILD
+-        COMMAND "${CMAKE_COMMAND}" -E copy "$<TARGET_FILE:ompl>"
+-        "${CMAKE_CURRENT_SOURCE_DIR}/../../py-bindings/ompl/util/libompl${CMAKE_SHARED_LIBRARY_SUFFIX}"
+-        WORKING_DIRECTORY "${LIBRARY_OUTPUT_PATH}")
+-endif (NOT MSVC)
++#if (NOT MSVC)
++#    add_custom_command(TARGET ompl POST_BUILD
++#        COMMAND "${CMAKE_COMMAND}" -E copy "$<TARGET_FILE:ompl>"
++#        "${CMAKE_CURRENT_SOURCE_DIR}/../../py-bindings/ompl/util/libompl${CMAKE_SHARED_LIBRARY_SUFFIX}"
++#        WORKING_DIRECTORY "${LIBRARY_OUTPUT_PATH}")
++#endif (NOT MSVC)

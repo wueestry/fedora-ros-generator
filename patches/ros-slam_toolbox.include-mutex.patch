@@ -1,0 +1,11 @@
+diff -u -r slam_toolbox-release-release-humble-slam_toolbox-2.6.4-1/lib/karto_sdk/include/karto_sdk/Karto.h slam_toolbox-release-release-humble-slam_toolbox-2.6.4-1-new/lib/karto_sdk/include/karto_sdk/Karto.h
+--- slam_toolbox-release-release-humble-slam_toolbox-2.6.4-1/lib/karto_sdk/include/karto_sdk/Karto.h	2022-12-21 02:25:26.000000000 +0100
++++ slam_toolbox-release-release-humble-slam_toolbox-2.6.4-1-new/lib/karto_sdk/include/karto_sdk/Karto.h	2023-04-15 20:44:08.522751297 +0200
+@@ -49,6 +49,7 @@
+ #include <iomanip>
+ #include <sstream>
+ #include <stdexcept>
++#include <mutex>
+ #include <shared_mutex>
+ 
+ #ifdef USE_POCO

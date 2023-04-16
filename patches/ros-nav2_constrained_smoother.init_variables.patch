@@ -1,0 +1,13 @@
+diff --git nav2_constrained_smoother/include/nav2_constrained_smoother/smoother.hpp nav2_constrained_smoother/include/nav2_constrained_smoother/smoother.hpp
+index b5432bf6..d0f3210e 100644
+--- nav2_constrained_smoother/include/nav2_constrained_smoother/smoother.hpp
++++ nav2_constrained_smoother/include/nav2_constrained_smoother/smoother.hpp
+@@ -292,7 +292,7 @@ private:
+     }
+     int last_i = 0;
+     int prelast_i = -1;
+-    Eigen::Vector2d prelast_dir;
++    Eigen::Vector2d prelast_dir = {0,0}; 
+     for (int i = 1; i <= static_cast<int>(path_optim.size()); i++) {
+       if (i == static_cast<int>(path_optim.size()) || optimized[i]) {
+         if (prelast_i != -1) {

@@ -1,0 +1,2 @@
+patches:
+  - ros-nav2_behaviors.init_variables.patch

@@ -1,12 +1,12 @@
 Name:           ros2-xacro
-Version:        noetic.1.14.15
+Version:        humble.2.0.8
 Release:        1%{?dist}
 Summary:        ROS package xacro
 
 License:        BSD
 URL:            http://ros.org/wiki/xacro
 
-Source0:        https://github.com/ros-gbp/xacro-release/archive/release/noetic/xacro/1.14.15-1.tar.gz#/ros2-noetic-xacro-1.14.15-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/xacro-release/archive/release/humble/xacro/2.0.8-1.tar.gz#/ros2-humble-xacro-2.0.8-source0.tar.gz
 
 
 BuildArch: noarch
@@ -20,7 +20,6 @@ BuildRequires: make
 BuildRequires: patch
 BuildRequires: python3-devel
 BuildRequires: python-unversioned-command
-BuildRequires: ros2-ament_package
 BuildRequires: python3-colcon-common-extensions
 BuildRequires: python3-pip
 BuildRequires: python3-pydocstyle
@@ -39,15 +38,19 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python3-colcon-common-extensions
 # BuildRequires:  python-unversioned-command
 
-BuildRequires:  ros2-noetic-ament_package-devel
-BuildRequires:  ros2-noetic-catkin-devel
-BuildRequires:  ros2-noetic-roslint-devel
-BuildRequires:  ros2-noetic-rostest-devel
+BuildRequires:  python3-pyyaml
+BuildRequires:  ros2-humble-ament_cmake-devel
+BuildRequires:  ros2-humble-ament_cmake_pytest-devel
+BuildRequires:  ros2-humble-ament_cmake_python-devel
+BuildRequires:  ros2-humble-ament_index_python-devel
+BuildRequires:  ros2-humble-ament_lint_auto-devel
+BuildRequires:  ros2-humble-ament_package-devel
 
-Requires:       ros2-noetic-roslaunch
+Requires:       python3-pyyaml
+Requires:       ros2-humble-ament_index_python
 
-Provides:  ros2-noetic-xacro = 1.14.15-1
-Obsoletes: ros2-noetic-xacro < 1.14.15-1
+Provides:  ros2-humble-xacro = 2.0.8-1
+Obsoletes: ros2-humble-xacro < 2.0.8-1
 
 
 
@@ -59,14 +62,16 @@ expand to larger XML expressions.
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
-Requires:       ros2-noetic-catkin-devel
-Requires:       ros2-noetic-ament_package-devel
-Requires:       ros2-noetic-roslint-devel
-Requires:       ros2-noetic-rostest-devel
-Requires:       ros2-noetic-roslaunch-devel
+Requires:       ros2-humble-ament_cmake-devel
+Requires:       ros2-humble-ament_cmake_python-devel
+Requires:       python3-pyyaml
+Requires:       ros2-humble-ament_cmake_pytest-devel
+Requires:       ros2-humble-ament_index_python-devel
+Requires:       ros2-humble-ament_lint_auto-devel
+Requires:       ros2-humble-ament_package-devel
 
-Provides: ros2-noetic-xacro-devel = 1.14.15-1
-Obsoletes: ros2-noetic-xacro-devel < 1.14.15-1
+Provides: ros2-humble-xacro-devel = 2.0.8-1
+Obsoletes: ros2-humble-xacro-devel < 2.0.8-1
 
 
 %description devel
@@ -111,7 +116,6 @@ colcon \
   -DCMAKE_CXX_FLAGS="$CXXFLAGS" \
   -DCMAKE_C_FLAGS="$CFLAGS" \
   -DCMAKE_LD_FLAGS="$LDFLAGS" \
-  -DCMAKE_SKIP_INSTALL_RPATH=ON \
   -DBUILD_TESTING=OFF \
   --base-paths . \
   --install-base %{buildroot}/%{_libdir}/ros2/ \
@@ -142,7 +146,7 @@ find . -maxdepth 1 -type f -iname "*license*" | sed "s:^:%%license :" >> files.l
 
 
 find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --remove-rpath  {} \;
-find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --add-rpath "%{_libdir}/ros2/lib" {} \;
+# find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --force-rpath --add-rpath "%{_libdir}/ros2/lib" {} \;
 
 # replace cmake python macro in shebang
 for file in $(grep -rIl '^#!.*@PYTHON_EXECUTABLE@.*$' %{buildroot}) ; do
@@ -172,6 +176,8 @@ done
 
 
 %changelog
+* Sat Apr 15 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.0.8-1
+- update to latest release
 * Mon Mar 20 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - noetic.1.14.15-1
 - update to latest release
 * Thu Mar 09 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.0.8-1

@@ -1,13 +1,14 @@
-Name:           ros2-control_msgs
-Version:        humble.4.1.1
+Name:           ros2-slam_toolbox
+Version:        humble.2.6.4
 Release:        1%{?dist}
-Summary:        ROS package control_msgs
+Summary:        ROS package slam_toolbox
 
-License:        BSD
+License:        LGPL
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/control_msgs-release/archive/release/humble/control_msgs/4.1.1-1.tar.gz#/ros2-humble-control_msgs-4.1.1-source0.tar.gz
+Source0:        https://github.com/SteveMacenski/slam_toolbox-release/archive/release/humble/slam_toolbox/2.6.4-1.tar.gz#/ros2-humble-slam_toolbox-2.6.4-source0.tar.gz
 
+Patch0: ros-slam_toolbox.include-mutex.patch
 
 
 # common BRs
@@ -37,54 +38,118 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python3-colcon-common-extensions
 # BuildRequires:  python-unversioned-command
 
-BuildRequires:  ros2-humble-action_msgs-devel
+BuildRequires:  boost-devel
+BuildRequires:  ceres-solver-devel suitesparse-devel flexiblas-devel
+BuildRequires:  eigen3-devel
+BuildRequires:  lapack-devel
+BuildRequires:  qt5-qtbase
+BuildRequires:  qt5-qtbase-devel
+BuildRequires:  suitesparse-devel
+BuildRequires:  tbb-devel
 BuildRequires:  ros2-humble-ament_cmake-devel
+BuildRequires:  ros2-humble-ament_cmake_cpplint-devel
+BuildRequires:  ros2-humble-ament_cmake_flake8-devel
+BuildRequires:  ros2-humble-ament_cmake_gtest-devel
+BuildRequires:  ros2-humble-ament_cmake_uncrustify-devel
 BuildRequires:  ros2-humble-ament_lint_auto-devel
-BuildRequires:  ros2-humble-ament_lint_common-devel
 BuildRequires:  ros2-humble-ament_package-devel
 BuildRequires:  ros2-humble-builtin_interfaces-devel
-BuildRequires:  ros2-humble-geometry_msgs-devel
+BuildRequires:  ros2-humble-interactive_markers-devel
+BuildRequires:  ros2-humble-launch-devel
+BuildRequires:  ros2-humble-launch_testing-devel
+BuildRequires:  ros2-humble-message_filters-devel
+BuildRequires:  ros2-humble-nav_msgs-devel
+BuildRequires:  ros2-humble-pluginlib-devel
+BuildRequires:  ros2-humble-rclcpp-devel
 BuildRequires:  ros2-humble-rosidl_default_generators-devel
+BuildRequires:  ros2-humble-rviz_common-devel
+BuildRequires:  ros2-humble-rviz_default_plugins-devel
+BuildRequires:  ros2-humble-rviz_ogre_vendor-devel
+BuildRequires:  ros2-humble-rviz_rendering-devel
 BuildRequires:  ros2-humble-sensor_msgs-devel
 BuildRequires:  ros2-humble-std_msgs-devel
-BuildRequires:  ros2-humble-trajectory_msgs-devel
+BuildRequires:  ros2-humble-std_srvs-devel
+BuildRequires:  ros2-humble-tf2-devel
+BuildRequires:  ros2-humble-tf2_geometry_msgs-devel
+BuildRequires:  ros2-humble-tf2_ros-devel
+BuildRequires:  ros2-humble-tf2_sensor_msgs-devel
+BuildRequires:  ros2-humble-visualization_msgs-devel
 
-Requires:       ros2-humble-action_msgs
+Requires:       qt5-qtbase
+Requires:       qt5-qtbase-gui
 Requires:       ros2-humble-builtin_interfaces
-Requires:       ros2-humble-geometry_msgs
-Requires:       ros2-humble-rosidl_default_runtime
+Requires:       ros2-humble-interactive_markers
+Requires:       ros2-humble-message_filters
+Requires:       ros2-humble-nav2_map_server
+Requires:       ros2-humble-nav_msgs
+Requires:       ros2-humble-pluginlib
+Requires:       ros2-humble-rclcpp
+Requires:       ros2-humble-rosidl_default_generators
+Requires:       ros2-humble-rviz_common
+Requires:       ros2-humble-rviz_default_plugins
+Requires:       ros2-humble-rviz_ogre_vendor
+Requires:       ros2-humble-rviz_rendering
 Requires:       ros2-humble-sensor_msgs
 Requires:       ros2-humble-std_msgs
-Requires:       ros2-humble-trajectory_msgs
+Requires:       ros2-humble-std_srvs
+Requires:       ros2-humble-tf2
+Requires:       ros2-humble-tf2_geometry_msgs
+Requires:       ros2-humble-tf2_ros
+Requires:       ros2-humble-tf2_sensor_msgs
+Requires:       ros2-humble-visualization_msgs
 
-Provides:  ros2-humble-control_msgs = 4.1.1-1
-Obsoletes: ros2-humble-control_msgs < 4.1.1-1
+Provides:  ros2-humble-slam_toolbox = 2.6.4-1
+Obsoletes: ros2-humble-slam_toolbox < 2.6.4-1
 
 
 
 %description
-control_msgs contains base messages and actions useful for controlling
-robots. It provides representations for controller setpoints and joint
-and cartesian trajectories.
+This package provides a sped up improved slam karto with updated SDK
+and visualization and modification toolsets
 
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       ros2-humble-ament_cmake-devel
-Requires:       ros2-humble-rosidl_default_generators-devel
-Requires:       ros2-humble-action_msgs-devel
+Requires:       boost-devel
+Requires:       ceres-solver-devel suitesparse-devel flexiblas-devel
+Requires:       eigen3-devel
+Requires:       lapack-devel
+Requires:       qt5-qtbase
+Requires:       qt5-qtbase-devel
+Requires:       suitesparse-devel
+Requires:       tbb-devel
+Requires:       ros2-humble-ament_cmake_cpplint-devel
+Requires:       ros2-humble-ament_cmake_flake8-devel
+Requires:       ros2-humble-ament_cmake_gtest-devel
+Requires:       ros2-humble-ament_cmake_uncrustify-devel
 Requires:       ros2-humble-ament_lint_auto-devel
-Requires:       ros2-humble-ament_lint_common-devel
 Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-builtin_interfaces-devel
-Requires:       ros2-humble-geometry_msgs-devel
+Requires:       ros2-humble-interactive_markers-devel
+Requires:       ros2-humble-launch-devel
+Requires:       ros2-humble-launch_testing-devel
+Requires:       ros2-humble-message_filters-devel
+Requires:       ros2-humble-nav_msgs-devel
+Requires:       ros2-humble-pluginlib-devel
+Requires:       ros2-humble-rclcpp-devel
+Requires:       ros2-humble-rosidl_default_generators-devel
+Requires:       ros2-humble-rviz_common-devel
+Requires:       ros2-humble-rviz_default_plugins-devel
+Requires:       ros2-humble-rviz_ogre_vendor-devel
+Requires:       ros2-humble-rviz_rendering-devel
 Requires:       ros2-humble-sensor_msgs-devel
 Requires:       ros2-humble-std_msgs-devel
-Requires:       ros2-humble-trajectory_msgs-devel
-Requires:       ros2-humble-rosidl_default_runtime-devel
+Requires:       ros2-humble-std_srvs-devel
+Requires:       ros2-humble-tf2-devel
+Requires:       ros2-humble-tf2_geometry_msgs-devel
+Requires:       ros2-humble-tf2_ros-devel
+Requires:       ros2-humble-tf2_sensor_msgs-devel
+Requires:       ros2-humble-visualization_msgs-devel
+Requires:       ros2-humble-nav2_map_server-devel
 
-Provides: ros2-humble-control_msgs-devel = 4.1.1-1
-Obsoletes: ros2-humble-control_msgs-devel < 4.1.1-1
+Provides: ros2-humble-slam_toolbox-devel = 2.6.4-1
+Obsoletes: ros2-humble-slam_toolbox-devel < 2.6.4-1
 
 
 %description devel
@@ -97,6 +162,7 @@ applications that use %{name}.
 
 %setup -c -T
 tar --strip-components=1 -xf %{SOURCE0}
+%patch0 -p1
 
 %build
 # nothing to do here
@@ -132,7 +198,7 @@ colcon \
   -DBUILD_TESTING=OFF \
   --base-paths . \
   --install-base %{buildroot}/%{_libdir}/ros2/ \
-  --packages-select control_msgs
+  --packages-select slam_toolbox
 
 
 
@@ -150,7 +216,7 @@ find %{buildroot}/%{_libdir}/ros2/lib*/ -mindepth 1 -maxdepth 1 \
 
 touch files_devel.list
 # TODO: is cmake/ necessary? it stems from the yaml vendor
-find %{buildroot}/%{_libdir}/ros2/{lib*/pkgconfig,include/,cmake/,control_msgs/include/,share/control_msgs/cmake} \
+find %{buildroot}/%{_libdir}/ros2/{lib*/pkgconfig,include/,cmake/,slam_toolbox/include/,share/slam_toolbox/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 
 find . -maxdepth 1 -type f -iname "*readme*" | sed "s:^:%%doc :" >> files.list
@@ -189,9 +255,5 @@ done
 
 
 %changelog
-* Sat Apr 15 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.4.1.1-1
+* Sat Apr 15 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.6.4-1
 - update to latest release
-* Mon Mar 20 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - noetic.1.5.2-1
-- update to latest release
-* Thu Mar 09 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.4.1.0-1
-- Initial humble build

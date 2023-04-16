@@ -1,0 +1,12 @@
+diff --git nav2_costmap_2d/plugins/costmap_filters/costmap_filter.cpp nav2_costmap_2d/plugins/costmap_filters/costmap_filter.cpp
+index 40045494..c3502f69 100644
+--- nav2_costmap_2d/plugins/costmap_filters/costmap_filter.cpp
++++ nav2_costmap_2d/plugins/costmap_filters/costmap_filter.cpp
+@@ -72,7 +72,7 @@ void CostmapFilter::onInitialize()
+     // Get parameters
+     node->get_parameter(name_ + "." + "enabled", enabled_);
+     filter_info_topic_ = node->get_parameter(name_ + "." + "filter_info_topic").as_string();
+-    double transform_tolerance;
++    double transform_tolerance = 0.0;
+     node->get_parameter(name_ + "." + "transform_tolerance", transform_tolerance);
+     transform_tolerance_ = tf2::durationFromSec(transform_tolerance);

@@ -9,6 +9,7 @@ URL:            http://www.ros.org/
 Source0:        https://github.com/SteveMacenski/navigation2-release/archive/release/humble/nav2_dwb_controller/1.1.6-1.tar.gz#/ros2-humble-nav2_dwb_controller-1.1.6-source0.tar.gz
 
 
+BuildArch: noarch
 
 # common BRs
 BuildRequires: patchelf
@@ -65,7 +66,7 @@ ROS2 controller (DWB) metapackage
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       %{name} = %{version}-%{release}
 Requires:       ros2-humble-ament_cmake-devel
 Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-costmap_queue-devel

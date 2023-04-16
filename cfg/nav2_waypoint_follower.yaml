@@ -1,0 +1,2 @@
+patches:
+  - ros-nav2_waypoint_follower.init_variables.patch
