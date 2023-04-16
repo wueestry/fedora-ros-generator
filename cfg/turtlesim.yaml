@@ -1,0 +1,7 @@
+dependencies:
+  build:
+    system:
+      - boost-devel
+      - tinyxml-devel
+      - log4cxx-devel
+      - console-bridge-devel

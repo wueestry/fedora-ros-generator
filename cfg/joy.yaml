@@ -1,0 +1,2 @@
+patches:
+  - ros-joy.build-with-cpp17.patch

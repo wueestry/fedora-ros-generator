@@ -1,0 +1,14 @@
+dependencies:
+  build:
+    system:
+      - sip-devel
+      - python-qt5-devel
+      - poco-devel
+      - tinyxml2-devel
+      - lz4-devel
+      - urdfdom-devel
+      - libXext-devel
+patches:
+  - ros-rviz.no-rpath.patch
+  - ros-rviz.assimp-decompose-quaternion.patch
+  - ros-rviz.ogre-plugin-dir.patch

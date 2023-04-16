@@ -1,0 +1,7 @@
+dependencies:
+  build:
+    system:
+      - boost-devel
+      - log4cxx-devel
+    ros:
+      - rostime
