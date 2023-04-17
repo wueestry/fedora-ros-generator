@@ -1,16 +1,14 @@
-Name:           ros-noetic-rviz
-Version:        noetic.1.14.20
+Name:           ros-noetic-gazebo_plugins
+Version:        noetic.2.9.2
 Release:        1%{?dist}
-Summary:        ROS package rviz
+Summary:        ROS package gazebo_plugins
 
-License:        BSD
-URL:            http://wiki.ros.org/rviz
+License:        BSD, Apache 2.0
+URL:            http://gazebosim.org/tutorials?cat=connect_ros
 
-Source0:        https://github.com/ros-gbp/rviz-release/archive/release/noetic/rviz/1.14.20-1.tar.gz#/ros-noetic-rviz-1.14.20-source0.tar.gz
+Source0:        https://github.com/ros-gbp/gazebo_ros_pkgs-release/archive/release/noetic/gazebo_plugins/2.9.2-1.tar.gz#/ros-noetic-gazebo_plugins-2.9.2-source0.tar.gz
 
-Patch0: ros-rviz.no-rpath.patch
-Patch1: ros-rviz.assimp-decompose-quaternion.patch
-Patch2: ros-rviz.ogre-plugin-dir.patch
+Patch0: ros-gazebo_plugins.build-with-cpp17.patch
 
 
 # common BRs
@@ -21,133 +19,124 @@ BuildRequires:  log4cxx-devel
 BuildRequires:  python3-devel
 BuildRequires:  python-unversioned-command
 
-BuildRequires:  assimp
-BuildRequires:  assimp-devel
-BuildRequires:  eigen3-devel
-BuildRequires:  libXext-devel
-BuildRequires:  lz4-devel
-BuildRequires:  mesa-libGL-devel mesa-libGLU-devel
-BuildRequires:  ogre-devel
+BuildRequires:  bullet-devel
+BuildRequires:  gazebo-devel
+BuildRequires:  libuuid-devel
+BuildRequires:  opencv-devel
 BuildRequires:  poco-devel
-BuildRequires:  python3-qt5-devel
-BuildRequires:  python3-sip-devel
-BuildRequires:  qt5-qtbase-devel
+BuildRequires:  tinyxml-devel
 BuildRequires:  tinyxml2-devel
 BuildRequires:  urdfdom-devel
-BuildRequires:  urdfdom-headers-devel
-BuildRequires:  yaml-cpp-devel
+BuildRequires:  ros-noetic-angles-devel
+BuildRequires:  ros-noetic-camera_info_manager-devel
 BuildRequires:  ros-noetic-catkin-devel
-BuildRequires:  ros-noetic-cmake_modules-devel
+BuildRequires:  ros-noetic-cv_bridge-devel
+BuildRequires:  ros-noetic-diagnostic_updater-devel
+BuildRequires:  ros-noetic-dynamic_reconfigure-devel
+BuildRequires:  ros-noetic-gazebo_dev-devel
+BuildRequires:  ros-noetic-gazebo_msgs-devel
+BuildRequires:  ros-noetic-gazebo_ros-devel
 BuildRequires:  ros-noetic-geometry_msgs-devel
 BuildRequires:  ros-noetic-image_transport-devel
-BuildRequires:  ros-noetic-interactive_markers-devel
-BuildRequires:  ros-noetic-laser_geometry-devel
-BuildRequires:  ros-noetic-map_msgs-devel
-BuildRequires:  ros-noetic-message_filters-devel
 BuildRequires:  ros-noetic-message_generation-devel
 BuildRequires:  ros-noetic-nav_msgs-devel
-BuildRequires:  ros-noetic-pluginlib-devel
-BuildRequires:  ros-noetic-python_qt_binding-devel
-BuildRequires:  ros-noetic-resource_retriever-devel
+BuildRequires:  ros-noetic-nodelet-devel
+BuildRequires:  ros-noetic-polled_camera-devel
 BuildRequires:  ros-noetic-rosconsole-devel
 BuildRequires:  ros-noetic-roscpp-devel
-BuildRequires:  ros-noetic-roslib-devel
+BuildRequires:  ros-noetic-rosgraph_msgs-devel
 BuildRequires:  ros-noetic-rospy-devel
 BuildRequires:  ros-noetic-rostest-devel
-BuildRequires:  ros-noetic-rosunit-devel
 BuildRequires:  ros-noetic-sensor_msgs-devel
 BuildRequires:  ros-noetic-std_msgs-devel
 BuildRequires:  ros-noetic-std_srvs-devel
-BuildRequires:  ros-noetic-tf2_geometry_msgs-devel
+BuildRequires:  ros-noetic-tf-devel
 BuildRequires:  ros-noetic-tf2_ros-devel
+BuildRequires:  ros-noetic-trajectory_msgs-devel
 BuildRequires:  ros-noetic-urdf-devel
 BuildRequires:  ros-noetic-visualization_msgs-devel
 
-Requires:       qt5-qtbase
-Requires:       qt5-qtbase-gui
+Requires:       ros-noetic-angles
+Requires:       ros-noetic-camera_info_manager
+Requires:       ros-noetic-cv_bridge
+Requires:       ros-noetic-diagnostic_updater
+Requires:       ros-noetic-dynamic_reconfigure
+Requires:       ros-noetic-gazebo_dev
+Requires:       ros-noetic-gazebo_msgs
+Requires:       ros-noetic-gazebo_ros
 Requires:       ros-noetic-geometry_msgs
 Requires:       ros-noetic-image_transport
-Requires:       ros-noetic-interactive_markers
-Requires:       ros-noetic-laser_geometry
-Requires:       ros-noetic-map_msgs
-Requires:       ros-noetic-media_export
-Requires:       ros-noetic-message_filters
 Requires:       ros-noetic-message_runtime
 Requires:       ros-noetic-nav_msgs
-Requires:       ros-noetic-pluginlib
-Requires:       ros-noetic-python_qt_binding
-Requires:       ros-noetic-resource_retriever
+Requires:       ros-noetic-nodelet
+Requires:       ros-noetic-polled_camera
 Requires:       ros-noetic-rosconsole
 Requires:       ros-noetic-roscpp
-Requires:       ros-noetic-roslib
+Requires:       ros-noetic-rosgraph_msgs
 Requires:       ros-noetic-rospy
 Requires:       ros-noetic-sensor_msgs
 Requires:       ros-noetic-std_msgs
 Requires:       ros-noetic-std_srvs
-Requires:       ros-noetic-tf2_geometry_msgs
+Requires:       ros-noetic-tf
 Requires:       ros-noetic-tf2_ros
+Requires:       ros-noetic-trajectory_msgs
 Requires:       ros-noetic-urdf
 Requires:       ros-noetic-visualization_msgs
 
-Provides:  ros-noetic-rviz = 1.14.20-1
-Obsoletes: ros-noetic-rviz < 1.14.20-1
-Obsoletes: ros-kinetic-rviz < 1.14.20-1
+Provides:  ros-noetic-gazebo_plugins = 2.9.2-1
+Obsoletes: ros-noetic-gazebo_plugins < 2.9.2-1
+Obsoletes: ros-kinetic-gazebo_plugins < 2.9.2-1
 
 
 
 %description
-3D visualization tool for ROS.
+Robot-independent Gazebo plugins for sensors, motors and dynamic
+reconfigurable components.
 
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
-Requires:       ogre-devel
 Requires:       ros-noetic-catkin-devel
-Requires:       assimp
-Requires:       assimp-devel
-Requires:       eigen3-devel
-Requires:       libXext-devel
-Requires:       lz4-devel
-Requires:       mesa-libGL-devel mesa-libGLU-devel
+Requires:       bullet-devel
+Requires:       gazebo-devel
+Requires:       libuuid-devel
+Requires:       opencv-devel
 Requires:       poco-devel
-Requires:       python3-qt5-devel
-Requires:       python3-sip-devel
-Requires:       qt5-qtbase-devel
+Requires:       tinyxml-devel
 Requires:       tinyxml2-devel
 Requires:       urdfdom-devel
-Requires:       urdfdom-headers-devel
-Requires:       yaml-cpp-devel
-Requires:       ros-noetic-cmake_modules-devel
+Requires:       ros-noetic-angles-devel
+Requires:       ros-noetic-camera_info_manager-devel
+Requires:       ros-noetic-cv_bridge-devel
+Requires:       ros-noetic-diagnostic_updater-devel
+Requires:       ros-noetic-dynamic_reconfigure-devel
+Requires:       ros-noetic-gazebo_dev-devel
+Requires:       ros-noetic-gazebo_msgs-devel
+Requires:       ros-noetic-gazebo_ros-devel
 Requires:       ros-noetic-geometry_msgs-devel
 Requires:       ros-noetic-image_transport-devel
-Requires:       ros-noetic-interactive_markers-devel
-Requires:       ros-noetic-laser_geometry-devel
-Requires:       ros-noetic-map_msgs-devel
-Requires:       ros-noetic-message_filters-devel
 Requires:       ros-noetic-message_generation-devel
 Requires:       ros-noetic-nav_msgs-devel
-Requires:       ros-noetic-pluginlib-devel
-Requires:       ros-noetic-python_qt_binding-devel
-Requires:       ros-noetic-resource_retriever-devel
+Requires:       ros-noetic-nodelet-devel
+Requires:       ros-noetic-polled_camera-devel
 Requires:       ros-noetic-rosconsole-devel
 Requires:       ros-noetic-roscpp-devel
-Requires:       ros-noetic-roslib-devel
+Requires:       ros-noetic-rosgraph_msgs-devel
 Requires:       ros-noetic-rospy-devel
 Requires:       ros-noetic-rostest-devel
-Requires:       ros-noetic-rosunit-devel
 Requires:       ros-noetic-sensor_msgs-devel
 Requires:       ros-noetic-std_msgs-devel
 Requires:       ros-noetic-std_srvs-devel
-Requires:       ros-noetic-tf2_geometry_msgs-devel
+Requires:       ros-noetic-tf-devel
 Requires:       ros-noetic-tf2_ros-devel
+Requires:       ros-noetic-trajectory_msgs-devel
 Requires:       ros-noetic-urdf-devel
 Requires:       ros-noetic-visualization_msgs-devel
-Requires:       ros-noetic-media_export-devel
 Requires:       ros-noetic-message_runtime-devel
 
-Provides: ros-noetic-rviz-devel = 1.14.20-1
-Obsoletes: ros-noetic-rviz-devel < 1.14.20-1
-Obsoletes: ros-kinetic-rviz-devel < 1.14.20-1
+Provides: ros-noetic-gazebo_plugins-devel = 2.9.2-1
+Obsoletes: ros-noetic-gazebo_plugins-devel < 2.9.2-1
+Obsoletes: ros-kinetic-gazebo_plugins-devel < 2.9.2-1
 
 
 %description devel
@@ -161,8 +150,6 @@ applications that use %{name}.
 %setup -c -T
 tar --strip-components=1 -xf %{SOURCE0}
 %patch0 -p1
-%patch1 -p1
-%patch2 -p1
 
 %build
 # nothing to do here
@@ -178,7 +165,6 @@ FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
-PATH="$PATH:%{_qt5_bindir}" ; export PATH
 source %{_libdir}/ros/setup.bash
 
 # substitute shebang before install block because we run the local catkin script
@@ -192,11 +178,10 @@ catkin_make_isolated \
   -DCATKIN_ENABLE_TESTING=OFF \
   -DPYTHON_VERSION=%{python3_version} \
   -DPYTHON_VERSION_NODOTS=%{python3_version_nodots} \
-  -DOGRE_PLUGIN_DIR=%{_libdir}/OGRE \
   --source . \
   --install \
   --install-space %{_libdir}/ros/ \
-  --pkg rviz
+  --pkg gazebo_plugins
 
 
 
@@ -211,7 +196,7 @@ find %{buildroot}/%{_libdir}/ros/lib*/ -mindepth 1 -maxdepth 1 \
   | sed "s:%{buildroot}/::" >> files.list
 
 touch files_devel.list
-find %{buildroot}/%{_libdir}/ros/{include,lib*/pkgconfig,share/rviz/cmake} \
+find %{buildroot}/%{_libdir}/ros/{include,lib*/pkgconfig,share/gazebo_plugins/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 
 find . -maxdepth 1 -type f -iname "*readme*" | sed "s:^:%%doc :" >> files.list
@@ -247,5 +232,5 @@ done
 
 
 %changelog
-* 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.1.14.20-1
-- Initial desktop generation
+* 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.2.9.2-1
+- Generate desktop-full
