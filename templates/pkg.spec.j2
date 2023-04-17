@@ -1,0 +1,243 @@
+{% block info %}
+Name:           ros-{{ distro }}-{{ pkg_name }}
+Version:        {{ distro }}.{{ pkg_version }}
+Release:        {{ pkg_release }}%{?dist}
+Summary:        ROS package {{ pkg_name }}
+
+License:        {{ license }}
+URL:            {{ pkg_url }}
+{% endblock %}
+
+{% block sources %}
+{% for url in source_urls -%}
+Source{{ loop.index0 }}:        {{ url }}#/ros-{{ distro }}-{{ pkg_name }}-{{ pkg_version }}-source{{ loop.index0 }}.tar.gz
+{% endfor %}
+{% endblock %}
+
+{% block patches %}
+{% for patch in patches -%}
+Patch{{ loop.index0 }}: {{ patch }}
+{% endfor %}
+{% endblock %}
+
+{% if noarch == true %}
+BuildArch: noarch
+{% endif %}
+{% block globals %}
+{% endblock %}
+
+# common BRs
+BuildRequires:  boost-devel
+BuildRequires:  console-bridge-devel
+BuildRequires:  gtest-devel
+BuildRequires:  log4cxx-devel
+BuildRequires:  python3-devel
+BuildRequires:  python-unversioned-command
+
+{% block dependencies %}
+{% for dep in build_dependencies.system|sort %}
+BuildRequires:  {{ dep }}
+{% endfor %}
+{% for dep in build_dependencies.ros|sort %}
+BuildRequires:  ros-{{ distro }}-{{ dep }}-devel
+{% endfor %}
+
+{% for dep in run_dependencies.system|sort %}
+Requires:       {{ dep }}
+{% endfor %}
+{% for dep in run_dependencies.ros|sort %}
+Requires:       ros-{{ distro }}-{{ dep }}
+{% endfor %}
+{% endblock %}
+
+Provides:  ros-{{ distro }}-{{ pkg_name }} = {{ pkg_version }}-{{ pkg_release }}
+{% if obsolete_distro_pkg %}
+Obsoletes: ros-{{ distro }}-{{ pkg_name }} < {{ pkg_version }}-{{ pkg_release }}
+Obsoletes: ros-kinetic-{{ pkg_name }} < {{ pkg_version }}-{{ pkg_release }}
+{% endif %}
+
+{% if not has_devel %}
+Provides:       %{name}-devel{% if not noarch %}%{?_isa}{% endif %} = %{version}-%{release}
+Provides:       ros-{{ distro }}-{{ pkg_name }}-devel = {{ pkg_version }}-{{ pkg_release }}
+{% endif %}
+
+{% block meta %}
+{% endblock %}
+
+%description
+{% block description %}
+{{ pkg_description }}
+{% endblock %}
+
+{% if has_devel %}
+%package        devel
+Summary:        Development files for %{name}
+Requires:       %{name}{% if not noarch %}%{?_isa}{% endif %} = %{version}-%{release}
+{% block devel_dependencies %}
+{% for dep in run_dependencies_devel.system|sort %}
+Requires:       {{ dep }}
+{% endfor %}
+{% for dep in run_dependencies_devel.ros|sort %}
+Requires:       ros-{{ distro }}-{{ dep }}-devel
+{% endfor %}
+{% for dep in build_dependencies.system|sort %}
+{% if dep not in run_dependencies_devel.system %}
+Requires:       {{ dep }}
+{% endif %}
+{% endfor %}
+{% for dep in build_dependencies.ros | sort %}
+{% if dep not in run_dependencies_devel.ros %}
+Requires:       ros-{{ distro }}-{{ dep }}-devel
+{% endif %}
+{% endfor %}
+{% for dep in run_dependencies.ros | sort %}
+{% if dep not in run_dependencies_devel.ros and dep not in build_dependencies.ros %}
+Requires:       ros-{{ distro }}-{{ dep }}-devel
+{% endif %}
+{% endfor %}
+{% endblock %}
+
+Provides: ros-{{ distro }}-{{ pkg_name }}-devel = {{ pkg_version }}-{{ pkg_release }}
+{% if obsolete_distro_pkg %}
+Obsoletes: ros-{{ distro }}-{{ pkg_name }}-devel < {{ pkg_version }}-{{ pkg_release }}
+Obsoletes: ros-kinetic-{{ pkg_name }}-devel < {{ pkg_version }}-{{ pkg_release }}
+{% endif %}
+
+{% block meta_devel %}
+{% endblock %}
+
+%description devel
+{% block description_devel %}
+The %{name}-devel package contains libraries and header files for developing
+applications that use %{name}.
+{% endblock %}
+
+{% endif %}
+
+{% if no_debug %}
+%global debug_package %{nil}
+{% endif %}
+
+%prep
+{% block prep %}
+
+%setup -c -T
+{% for url in source_urls %}
+tar --strip-components=1 -xf %{SOURCE{{ loop.index0 }}}
+{% endfor %}
+{% for patch in patches %}
+%patch{{ loop.index0 }} -p1
+{% endfor %}
+{% endblock %}
+
+%build
+{% block build %}
+# nothing to do here
+{% endblock %}
+
+
+%install
+
+PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
+
+{% block install_environment %}
+CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
+CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
+FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
+FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
+%{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
+{% endblock %}
+
+{% block pre_install %}
+source %{_libdir}/ros/setup.bash
+{% endblock %}
+
+# substitute shebang before install block because we run the local catkin script
+%py3_shebang_fix .
+
+DESTDIR=%{buildroot} ; export DESTDIR
+
+{% block install_catkin %}
+
+catkin_make_isolated \
+  -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+  -DCATKIN_ENABLE_TESTING=OFF \
+  -DPYTHON_VERSION=%{python3_version} \
+  -DPYTHON_VERSION_NODOTS=%{python3_version_nodots} \
+{% block cmake_flags %}
+{% endblock %}
+  --source . \
+  --install \
+  --install-space %{_libdir}/ros/ \
+{% if build_flags %}
+  --pkg {{ pkg_name }} \
+  {{ build_flags }}
+{% else %}
+  --pkg {{ pkg_name }}
+{% endif %}
+
+{% endblock %}
+
+
+{% block install_files %}
+
+rm -rf %{buildroot}/%{_libdir}/ros/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh}
+
+touch files.list
+find %{buildroot}/%{_libdir}/ros/{bin,etc,lib64/python*,lib/python*/site-packages,share} \
+  -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
+find %{buildroot}/%{_libdir}/ros/lib*/ -mindepth 1 -maxdepth 1 \
+  ! -name pkgconfig ! -name "python*" \
+  | sed "s:%{buildroot}/::" >> files.list
+
+{% if has_devel %}
+touch files_devel.list
+find %{buildroot}/%{_libdir}/ros/{include,lib*/pkgconfig,share/{{ pkg_name }}/cmake} \
+  -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
+{% endif %}
+
+find . -maxdepth 1 -type f -iname "*readme*" | sed "s:^:%%doc :" >> files.list
+find . -maxdepth 1 -type f -iname "*license*" | sed "s:^:%%license :" >> files.list
+
+{% endblock %}
+
+{% block post_install %}
+
+# replace cmake python macro in shebang
+for file in $(grep -rIl '^#!.*@PYTHON_EXECUTABLE@.*$' %{buildroot}) ; do
+  sed -i.orig 's:^#!\s*@PYTHON_EXECUTABLE@\s*:%{__python3}:' $file
+  touch -r $file.orig $file
+  rm $file.orig
+done
+
+{% endblock %}
+
+echo "This is a package automatically generated with rosfed." >> README_FEDORA
+echo "See https://pagure.io/ros for more information." >> README_FEDORA
+install -m 0644 -p -D -t %{buildroot}/%{_docdir}/%{name} README_FEDORA
+echo %{_docdir}/%{name} >> files.list
+{% if has_devel %}
+install -m 0644 -p -D -t %{buildroot}/%{_docdir}/%{name}-devel README_FEDORA
+echo %{_docdir}/%{name}-devel >> files_devel.list
+{% endif %}
+
+%py3_shebang_fix %{buildroot}
+
+# Also fix .py.in files
+for pyfile in $(grep -rIl '^#!.*python.*$' %{buildroot}) ; do
+  %py3_shebang_fix $pyfile
+done
+
+
+%files -f files.list
+{% if has_devel %}
+%files devel -f files_devel.list
+{% endif %}
+
+
+%changelog
+{% if changelog_entry %}
+* {{ date }} {{ user_string }} - {{ distro }}.{{ pkg_version }}-{{ pkg_release }}
+- {{ changelog_entry }}
+{% endif %}
+{{ changelog }}

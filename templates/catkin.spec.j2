@@ -1,0 +1,54 @@
+{% extends "pkg.spec.j2" %}
+{% block meta %}
+Obsoletes: ros-kdl_parser_py < melodic.1.13.1-4
+Obsoletes: ros-orocos_kdl < melodic.1.4.0-4
+Obsoletes: ros-python_orocos_kdl < melodic.1.4.0-6
+{% endblock %}
+{% block meta_devel %}
+Obsoletes: ros-kdl_parser_py-devel < melodic.1.13.1-4
+Obsoletes: ros-orocos_kdl-devel < melodic.1.4.0-4
+Obsoletes: ros-python_orocos_kdl-devel < melodic.1.4.0-6
+{% endblock %}
+{% block pre_install %}
+{% endblock %}
+
+{% block install_catkin %}
+./bin/catkin_make_isolated \
+  -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+  -DCATKIN_ENABLE_TESTING=OFF \
+{% block cmake_flags %}
+{% endblock %}
+  --source . \
+  --install \
+  --install-space %{_libdir}/ros/ \
+{% if build_flags %}
+  --pkg {{ pkg_name }} \
+  {{ build_flags }}
+{% else %}
+  --pkg {{ pkg_name }}
+{% endif %}
+{% endblock %}
+
+{% block install_files %}
+touch files.list
+find %{buildroot}/%{_libdir}/ros/{bin,etc,lib64/python*,lib/python*/site-packages,share} \
+  -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
+find %{buildroot}/%{_libdir}/ros/lib*/ -mindepth 1 -maxdepth 1 \
+  ! -name pkgconfig ! -name "python*" \
+  | sed "s:%{buildroot}/::" >> files.list
+
+{% if has_devel %}
+touch files_devel.list
+find %{buildroot}/%{_libdir}/ros/{include,lib*/pkgconfig} \
+  -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
+{% endif %}
+
+find %{buildroot}/%{_libdir}/ros -maxdepth 1 \
+  -name .catkin -o -name .rosinstall \
+  -o -name "_setup*" -o -name "setup.*" -o -name "local_setup.*" -o -name env.sh \
+  | sed -e "s:%{buildroot}/::" -e "s:.py$:.py{,o,c}:" >> files.list
+
+find . -maxdepth 1 -type f -iname "*readme*" | sed "s:^:%%doc :" >> files.list
+find . -maxdepth 1 -type f -iname "*license*" | sed "s:^:%%license :" >> files.list
+
+{% endblock %}
