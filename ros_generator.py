@@ -61,9 +61,9 @@ def main() -> None:
         "--build-srpm", action="store_true", default=False, help="Generate a SRPM"
     )
     build_args.add_argument(
-        "--copr-owner", type=str, help="The owner of the COPR project to use for builds"
+        "-o", "--copr-owner", type=str, help="The owner of the COPR project to use for builds"
     )
-    build_args.add_argument("--copr-project", type=str, help="The COPR project to use for builds")
+    build_args.add_argument("-p", "--copr-project", type=str, help="The COPR project to use for builds")
     build_args.add_argument(
         "--chroot",
         action="append",
