@@ -1,4 +1,4 @@
-def get_build_order(packages):
+def get_build_order(packages: dict) -> list:
     """Get the order in which to build the given dictionary of packages.
     Each key is a ROS package name, each value is the set of RosPkgs."""
     order = []

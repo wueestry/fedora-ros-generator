@@ -1,7 +1,7 @@
 import re
 
 
-def get_changelog_from_spec(spec):
+def get_changelog_from_spec(spec: str) -> str:
     """Get the changelog of an existing Spec file.
 
     Args:
@@ -13,7 +13,7 @@ def get_changelog_from_spec(spec):
     return "".join(spec_as_list[spec_as_list.index("%changelog\n") + 1 :])
 
 
-def get_version_from_spec(spec):
+def get_version_from_spec(spec: str) -> str:
     """Get the version and release from a Spec file.
 
     Args:

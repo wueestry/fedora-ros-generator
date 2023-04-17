@@ -1,5 +1,6 @@
 import enum
 
+
 class BuildState(enum.Enum):
     PENDING = enum.auto()
     BUILDING = enum.auto()

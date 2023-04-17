@@ -67,7 +67,7 @@ class RosPkg:
                             for dep_list in dep_lists:
                                 dep_list["system"].add(system_pkg)
 
-    def get_dependencies_from_cfg(self, dependency_type) -> Dict[str, set]:
+    def get_dependencies_from_cfg(self, dependency_type: str) -> Dict[str, set]:
         try:
             deps = self.pkg_config["dependencies"][dependency_type]
         except KeyError:
@@ -76,7 +76,7 @@ class RosPkg:
             deps[key] = set(val)
         return deps
 
-    def translate_dependencies(self, dep_type, dependencies) -> Dict[str, set]:
+    def translate_dependencies(self, dep_type: str, dependencies: str) -> Dict[str, set]:
         """Translate a dependency from ROS' package.xml into a user-defined dep.
         This allows to use system replacements, e.g., by translating the ROS
         package opencv3 to the system package opencv."""
@@ -101,7 +101,7 @@ class RosPkg:
         new_dependencies["system"] = self.translate_python_dependencies(new_dependencies["system"])
         return new_dependencies
 
-    def translate_python_dependencies(self, dependencies) -> set:
+    def translate_python_dependencies(self, dependencies: list) -> set:
         """For a set of dependencies, translate all python packages to python3 packages."""
         translated_dependencies = set()
         for dep in dependencies:
@@ -153,19 +153,26 @@ class RosPkg:
         sources.append(ros_pkg[0]["tar"]["uri"])
         return sources
 
-    def get_version(self):
+    def get_version(self) -> str:
         ros_pkg = generator.generate_rosinstall(
             self.rosdistro, [self.name], deps=False, wet_only=True, tar=True
         )
         return re.match("[\w-]*-([0-9-_.]*)(-[0-9-]*)", ros_pkg[0]["tar"]["version"]).group(1)
 
-    def set_release(self, release):
+    def get_version_release(self) -> None:
+        return f"{self.rosdistro}.{self.get_version()}-{self.get_release()}"
+
+    def set_release(self, release: str) -> None:
         self.release = release
 
-    def get_release(self):
+    def get_release(self) -> str:
         return self.release
 
-    def get_license(self):
+    def get_full_name(self) -> str:
+        """Get the full name of the package, e.g., ros-catkin."""
+        return f"ros-{self.rosdistro}-{self.name}"
+
+    def get_license(self) -> str:
         return self.xml.find("license").text
 
     def get_website(self) -> str:
@@ -174,26 +181,26 @@ class RosPkg:
                 return url.text
         return "http://www.ros.org/"
 
-    def get_description(self):
+    def get_description(self) -> str:
         return textwrap.fill(
             self.xml.find("description").text or f"ROS {self.rosdistro} package {self.name}."
         )
 
-    def is_noarch(self):
+    def is_noarch(self) -> bool:
         return self.pkg_config.get("noarch", False)
 
-    def has_devel(self):
+    def has_devel(self) -> bool:
         """Returns True iff the package is a devel package."""
         if "split_devel" in self.pkg_config.keys():
             return self.pkg_config["split_devel"]
         else:
             return True
 
-    def get_patches(self):
+    def get_patches(self) -> list:
         return self.pkg_config.get("patches", [])
 
-    def get_build_flags(self):
+    def get_build_flags(self) -> str:
         return self.pkg_config.get("build_flags", "")
 
-    def has_no_debug(self):
+    def has_no_debug(self) -> bool:
         return self.pkg_config.get("no_debug", False)

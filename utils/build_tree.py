@@ -1,20 +1,24 @@
-
 import pygraphviz as pgv
+
 from utils.build_node import Node
 from utils.build_state import BuildState
+from utils.ros_package import RosPkg
+
 
 class Tree:
-    def __init__(self, pkgs):
+    def __init__(self, pkgs) -> None:
         self.nodes = {}
         for pkg in pkgs:
             self.add_pkg(pkg)
-        assert len([n for n in self.nodes.values() if n.is_initialized()]) == len(pkgs), f'Unexpected number of nodes: {len(self.nodes)}, ' 'expected: {len(pkgs)}'
+        assert len([n for n in self.nodes.values() if n.is_initialized()]) == len(pkgs), (
+            f"Unexpected number of nodes: {len(self.nodes)}, " "expected: {len(pkgs)}"
+        )
         for node in self.nodes.values():
             if not node.is_initialized():
                 node.state = BuildState.SKIPPED
 
-    def add_pkg_stub(self, pkg_name):
-        """ Add a node that only contains the name to the tree.
+    def add_pkg_stub(self, pkg_name: str) -> Node:
+        """Add a node that only contains the name to the tree.
 
         Returns:
             The newly created node if not yet in the tree or the tree node if
@@ -27,7 +31,7 @@ class Tree:
             self.nodes[pkg_name] = node
             return node
 
-    def add_pkg(self, pkg):
+    def add_pkg(self, pkg: RosPkg) -> None:
         if not pkg.name in self.nodes:
             node = Node(pkg.name)
             node.pkg = pkg
@@ -36,13 +40,12 @@ class Tree:
             node = self.nodes[pkg.name]
         if not node.is_initialized():
             deps = []
-            for dep in pkg.get_build_dependencies()['ros'] | \
-                       pkg.get_run_dependencies()['ros']:
+            for dep in pkg.get_build_dependencies()["ros"] | pkg.get_run_dependencies()["ros"]:
                 deps.append(self.add_pkg_stub(dep))
             node.init_deps(deps)
             node.pkg = pkg
 
-    def get_build_leaves(self):
+    def get_build_leaves(self) -> list:
         """Return all nodes that have no unbuilt dependencies."""
         leaves = []
         for node in self.nodes.values():
@@ -56,22 +59,22 @@ class Tree:
                 leaves.append(node)
         return leaves
 
-    def is_built(self):
-        """ Check if all packages have been built successfully. """
+    def is_built(self) -> bool:
+        """Check if all packages have been built successfully."""
         for node in self.nodes.values():
             if not node.state in [BuildState.SUCCEEDED, BuildState.SKIPPED]:
                 return False
         return True
 
-    def is_failed(self):
-        """ Check if any build and therefore the build tree failed. """
+    def is_failed(self) -> bool:
+        """Check if any build and therefore the build tree failed."""
         for node in self.nodes.values():
             if node.state == BuildState.FAILED:
                 return True
         return False
 
-    def get_build_progress(self):
-        """ Count the number of finished and failed builds in the tree."""
+    def get_build_progress(self) -> dict:
+        """Count the number of finished and failed builds in the tree."""
         building = 0
         finished = 0
         failed = 0
@@ -83,20 +86,20 @@ class Tree:
             elif node.state == BuildState.FAILED:
                 failed += 1
         return {
-            'building': building,
-            'finished': finished,
-            'failed': failed,
-            'total': len(self.nodes)
+            "building": building,
+            "finished": finished,
+            "failed": failed,
+            "total": len(self.nodes),
         }
 
-    def to_dot(self):
-        """ Generate a DOT representation of the tree.
+    def to_dot(self) -> pgv.AGraph:
+        """Generate a DOT representation of the tree.
 
         Returns:
             A pgv graph object.
         """
         graph = pgv.AGraph(directed=True)
-        graph.node_attr['shape'] = 'rectangle'
+        graph.node_attr["shape"] = "rectangle"
         for node in self.nodes:
             graph.add_node(node)
         for node in self.nodes.values():
@@ -104,6 +107,6 @@ class Tree:
                 graph.add_edge(node.name, dep.name)
         return graph
 
-    def draw_tree(self, output_file):
+    def draw_tree(self, output_file: str) -> None:
         graph = self.to_dot()
-        graph.draw(output_file, prog='dot')
+        graph.draw(output_file, prog="dot")

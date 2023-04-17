@@ -5,10 +5,11 @@ import os
 import subprocess
 import sys
 
-from utils import build_tree, copr_build
-
 from utils.build_order import get_build_order
+from utils.build_tree import Tree
+from utils.copr_builder import CoprBuilder
 from utils.spec_generator import SpecFileGenerator
+from utils.srpm_builder import SrpmBuilder
 
 
 def main() -> None:
@@ -22,7 +23,9 @@ def main() -> None:
         default=False,
         help="Also generate Spec files for dependencies",
     )
-    parser.add_argument("--distro", default="noetic", help="The ROS distro (default: %(default)s)")
+    parser.add_argument(
+        "-D", "--distro", default="noetic", help="The ROS distro (default: %(default)s)"
+    )
     parser.add_argument(
         "-t",
         "--template",
@@ -30,7 +33,7 @@ def main() -> None:
         help="Path to the Jinja template for the Spec file",
     )
     parser.add_argument(
-        "--user_string", default="", help="The user string to use for the changelog"
+        "-U", "--user_string", default="", help="The user string to use for the changelog"
     )
     parser.add_argument(
         "--bump-release",
@@ -39,7 +42,7 @@ def main() -> None:
         help="If set to true, bump the Release: tag by 1",
     )
     parser.add_argument(
-        "--release-version", default="", help="The Release: of the resulting Spec files"
+        "-v", "--release-version", default="", help="The Release: of the resulting Spec files"
     )
     parser.add_argument(
         "-d",
@@ -114,7 +117,7 @@ def main() -> None:
         for stage in order:
             args.build_order_file.write(" ".join(stage) + "\n")
     if args.build_srpm:
-        srpm_builder = copr_build.SrpmBuilder()
+        srpm_builder = SrpmBuilder()
         for chroot in args.chroot:
             for pkg in list(packages.values()):
                 srpm_builder.build_spec(chroot, pkg.spec)
@@ -122,12 +125,10 @@ def main() -> None:
         assert args.copr_owner, "You need to provide a COPR owner"
         assert args.copr_project, "You need to provide a COPR user"
         assert args.chroot, "You need to provide a chroot to use for builds."
-        copr_builder = copr_build.CoprBuilder(
-            copr_owner=args.copr_owner, copr_project=args.copr_project
-        )
+        copr_builder = CoprBuilder(copr_owner=args.copr_owner, copr_project=args.copr_project)
         success = True
         for chroot in args.chroot:
-            tree = build_tree.Tree(list(packages.values()))
+            tree = Tree(list(packages.values()))
             success &= copr_builder.build_tree(chroot, tree, only_new=args.only_new)
         if success:
             sys.exit(0)

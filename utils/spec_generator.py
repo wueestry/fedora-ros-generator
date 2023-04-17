@@ -47,15 +47,14 @@ class SpecFileGenerator:
         self.generated_packages: Dict[str, set] = {}
         self.packages_lock = threading.Lock()
 
-    def tprint(self, msg) -> None:
+    def tprint(self, msg: str) -> None:
         """Multi-threaded print."""
         self.print_lock.acquire()
         print(msg)
         self.print_lock.release()
 
-    def generate(self, packages) -> Dict[str, str]:
+    def generate(self, packages: list) -> Dict[str, str]:
         self.packages = packages
-        print("packages", type(packages))
         for i in range(multiprocessing.cpu_count()):
             threading.Thread(target=self.worker, daemon=True).start()
         for pkg in packages:
@@ -70,8 +69,7 @@ class SpecFileGenerator:
             self.generate_spec_file(pkg)
             self.package_queue.task_done()
 
-    def generate_spec_file(self, package) -> RosPkg:
-        print("package", type(package))
+    def generate_spec_file(self, package: str) -> RosPkg:
         self.tprint(f"Generating Spec file for {package}.")
         ros_pkg = RosPkg(package, distro=self.distro, pkg_resolver=self.pkg_resolver)
         build_deps = ros_pkg.get_build_dependencies()
@@ -134,7 +132,7 @@ class SpecFileGenerator:
             pkg_description=ros_pkg.get_description(),
             pkg_release=ros_pkg.get_release(),
             user_string=self.user_string,
-            date=time.strftime("%a %b %d %Y", time.gmtime()),
+            date=time.strftime("%Y-%m-%d", time.gmtime()),
             changelog=changelog,
             changelog_entry=pkg_changelog_entry,
             noarch=ros_pkg.is_noarch(),

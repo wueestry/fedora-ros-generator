@@ -1,7 +1,8 @@
 from utils.build_state import BuildState
-
+from utils.ros_package import RosPkg
+from typing import Optional, List
 class Node:
-    def __init__(self, name, pkg=None):
+    def __init__(self, name: str, pkg: Optional[RosPkg]=None) -> None:
         """Fully initialize the note.
 
         Args:
@@ -15,8 +16,8 @@ class Node:
         self.pkg = pkg
         self.dependencies = None
 
-    def init_deps(self, deps):
-        """ Initialize the dependencies of the node.
+    def init_deps(self, deps: List["Node"]):
+        """Initialize the dependencies of the node.
 
         This must happen in a separate step because the dependencies may not yet
         be in the tree during the creation of this object.
@@ -26,8 +27,8 @@ class Node:
         """
         self.dependencies = deps
 
-    def is_initialized(self):
+    def is_initialized(self) -> bool:
         return self.pkg != None and self.dependencies != None
 
-    def is_built(self):
-        return self.built
+    def is_built(self) -> bool:
+        return self.state == BuildState.SUCCEEDED
