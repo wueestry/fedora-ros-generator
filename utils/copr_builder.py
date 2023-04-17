@@ -2,6 +2,7 @@ import functools
 import re
 
 import copr.v3
+import time
 from termcolor import cprint
 
 from utils.build_node import Node
@@ -49,29 +50,25 @@ class CoprBuilder:
         Returns:
             The build object created for this build.
         """
-        print(
-            "Building {} for project {}/{} with chroot {}".format(
-                srpm, self.owner, self.project, chroot
-            )
-        )
+        print(f"Building {srpm} for project {self.owner}/{self.project} with chroot {chroot}")
         build = self.copr_client.build_proxy.create_from_file(
             ownername=self.owner,
             projectname=self.project,
             path=srpm,
             buildopts={"chroots": [chroot]},
         )
-        assert build, 'COPR client returned build object "{}"'.format(build)
+        assert build, f'COPR client returned build object "{build}"'
         if wait_for_completion:
             self.wait_for_completion([build])
-            assert build.state == "succeeded", "Build failed, state is {}.".format(build.state)
-            cprint("Building {} was successful.".format(srpm), "green")
+            assert build.state == "succeeded", f"Build failed, state is {build.state}."
+            cprint(f"Building {srpm} was successful.", "green")
         return build
 
     def get_node_of_build(self, nodes: list, build_id: int) -> Node:
         for node in nodes:
             if node.build_id == build_id:
                 return node
-        raise Exception("Could not find node of build {} in build tree".format(build_id))
+        raise Exception(f"Could not find node of build {build_id} in build tree")
 
     def build_tree(self, chroot: str, tree: Tree, only_new: bool = False) -> bool:
         """Build a set of packages in order of dependencies."""
@@ -79,7 +76,7 @@ class CoprBuilder:
         while not tree.is_built():
             wait_for_build = True
             leaves = tree.get_build_leaves()
-            print("Found {} leave node(s)".format(len(leaves)))
+            print(f"Found {len(leaves)} leave node(s)")
             if not build_ids and not leaves:
                 cprint("No pending builds and no leave packages, abort.", "red")
                 return False
@@ -91,22 +88,12 @@ class CoprBuilder:
                 if self.pkg_is_built(chroot, node.pkg.get_full_name(), pkg_version):
                     node.state = BuildState.SUCCEEDED
                     build_progress = tree.get_build_progress()
-                    cprint(
-                        "{}/{}/{}: {} is already built, skipping!".format(
-                            build_progress["building"],
-                            build_progress["finished"],
-                            build_progress["total"],
-                            node.name,
-                        ),
-                        "green",
-                    )
+                    cprint(f'{build_progress["building"]}/{build_progress["finished"]}/{build_progress["total"]}: {node.name} is already built, skipping!',"green")
                     wait_for_build = False
                 else:
                     assert (
                         node.state == BuildState.PENDING
-                    ), "Unexpected build state {} of package node " "{}".format(
-                        node.state, node.name
-                    )
+                    ), f'Unexpected build state {node.state} of package node {node.name}'
                     build = self.build_spec(chroot=chroot, spec=node.pkg.spec)
                     node.build_id = build.id
                     node.state = BuildState.BUILDING
@@ -120,27 +107,11 @@ class CoprBuilder:
             if finished_build.state == "succeeded":
                 node.state = BuildState.SUCCEEDED
                 build_progress = tree.get_build_progress()
-                cprint(
-                    "{}/{}/{}: Successful build: {}".format(
-                        build_progress["building"],
-                        build_progress["finished"],
-                        build_progress["total"],
-                        node.name,
-                    ),
-                    "green",
-                )
+                cprint(f'{build_progress["building"]}/{build_progress["finished"]}/{build_progress["total"]}: Successful build: {node.name}', "green")
             else:
                 node.state = BuildState.FAILED
                 build_progress = tree.get_build_progress()
-                cprint(
-                    "{}/{}/{}: Failed build: {}".format(
-                        build_progress["building"],
-                        build_progress["finished"],
-                        build_progress["total"],
-                        node.name,
-                    ),
-                    "red",
-                )
+                cprint(f'{build_progress["building"]}/{build_progress["finished"]}/{build_progress["total"]}: Failed build: {node.name}',"red")
         return tree.is_built()
 
     @functools.lru_cache(16)
@@ -176,7 +147,7 @@ class CoprBuilder:
         Args:
             builds: A list of builds to wait for.
         """
-        print("Waiting for {} build(s) to complete...".format(len(builds)))
+        print(f"Waiting for {len(builds)} build(s) to complete...")
         finished = wait(builds)
 
     def wait_for_one_build(self, build_ids: int) -> list:
@@ -189,6 +160,10 @@ class CoprBuilder:
         """
         while True:
             for build_id in build_ids:
-                build = self.copr_client.build_proxy.get(build_id)
-                if build.state in ["succeeded", "failed", "canceled", "cancelled"]:
-                    return build
+                try:
+                    build = self.copr_client.build_proxy.get(build_id)
+                    if build.state in ["succeeded", "failed", "canceled", "cancelled"]:
+                        return build
+                except copr.v3.CoprRequestException:
+                    print("No connection to copr. Trying again")
+                    time.sleep(1)

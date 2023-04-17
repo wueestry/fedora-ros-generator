@@ -39,7 +39,7 @@ def main() -> None:
             need_build = args.force
             if not need_build:
                 version_info = spec_utils.get_version_from_spec(spec)
-                ver_rel = "{}-{}".format(version_info["version"], version_info["release"])
+                ver_rel = f'{version_info["version"]}-{version_info["release"]}'
                 need_build = not copr_builder.pkg_is_built(chroot, pkg, ver_rel)
             if need_build:
                 copr_builder.build_spec(chroot=chroot, spec=spec, wait_for_completion=True)

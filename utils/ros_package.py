@@ -63,9 +63,12 @@ class RosPkg:
                             for dep_list in dep_lists:
                                 dep_list["system"].add(dep)
                         except KeyError:
-                            system_pkg = self.resolver.get_system_package_name(pkg, self.rosdistro)
-                            for dep_list in dep_lists:
-                                dep_list["system"].add(system_pkg)
+                            try:
+                                system_pkg = self.resolver.get_system_package_name(pkg, self.rosdistro)
+                                for dep_list in dep_lists:
+                                    dep_list["system"].add(system_pkg)
+                            except AssertionError:
+                                print(f"Couldn't find the system package {system_pkg}. Skipping")
 
     def get_dependencies_from_cfg(self, dependency_type: str) -> Dict[str, set]:
         try:
