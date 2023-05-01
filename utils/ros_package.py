@@ -32,9 +32,9 @@ class RosPkg:
             common_config = {}
 
         try:
-            name_versioned = self.name if self.rosdistro in ros else f"ros2-{name}"
+            name_versioned = self.name if self.rosdistro in ros else f"ros2_{self.name}"
             pkg_specific_config = cast(
-                dict, yaml.load(open(f"cfg/{self.name}.yaml", "r"), Loader=yaml.FullLoader)
+                dict, yaml.load(open(f"cfg/{name_versioned}.yaml", "r"), Loader=yaml.FullLoader)
             )
         except FileNotFoundError:
             pkg_specific_config = {}

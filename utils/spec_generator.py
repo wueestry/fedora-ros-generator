@@ -10,6 +10,7 @@ import jinja2
 from utils.package_resolver import PkgResolver
 from utils.ros_package import RosPkg
 from utils.spec_utils import get_changelog_from_spec, get_version_from_spec
+from utils.rosdistros import ros
 
 
 class SpecFileGenerator:
@@ -115,9 +116,16 @@ class SpecFileGenerator:
             assert pkg_changelog_entry, "Please provide a changelog entry."
 
         try:
-            spec_template = self.jinja_env.get_template(f"{ros_pkg.name}.spec.j2")
+            if self.distro in ros:
+                spec_template = self.jinja_env.get_template(f"{ros_pkg.name}.spec.j2")
+            else:
+                spec_template = self.jinja_env.get_template(f"ros2-{ros_pkg.name}.spec.j2")
+
         except jinja2.exceptions.TemplateNotFound:
-            spec_template = self.jinja_env.get_template("pkg.spec.j2")
+            if self.distro in ros:
+                spec_template = self.jinja_env.get_template("pkg.spec.j2")
+            else:
+                spec_template = self.jinja_env.get_template("ros2-pkg.spec.j2")
 
         spec = spec_template.render(
             pkg_name=ros_pkg.name,
