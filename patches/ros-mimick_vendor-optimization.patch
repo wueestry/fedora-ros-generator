@@ -1,0 +1,28 @@
+diff -ur mimick_vendor-release-release-humble-mimick_vendor-0.2.8-2/CMakeLists.txt mimick_vendor-release-release-humble-mimick_vendor-0.2.8-2_patch/CMakeLists.txt
+--- mimick_vendor-release-release-humble-mimick_vendor-0.2.8-2/CMakeLists.txt	2022-04-20 03:10:27.000000000 +0200
++++ mimick_vendor-release-release-humble-mimick_vendor-0.2.8-2_patch/CMakeLists.txt	2023-01-25 10:53:58.061944333 +0100
+@@ -1,5 +1,15 @@
+ cmake_minimum_required(VERSION 3.5)
+ 
++# MUST be done before call to 'project'
++get_cmake_property(vars CACHE_VARIABLES)
++foreach(var ${vars})
++  get_property(currentHelpString CACHE "${var}" PROPERTY HELPSTRING)
++    if("${currentHelpString}" MATCHES "No help, variable specified on the command line." OR "${currentHelpString}" STREQUAL "")
++        # message("${var} = [${${var}}]  --  ${currentHelpString}") # uncomment to see the variables being processed
++        list(APPEND CL_ARGS "-D${var}=${${var}}")
++    endif()
++endforeach()
++
+ project(mimick_vendor)
+ 
+ find_package(ament_cmake REQUIRED)
+@@ -68,7 +82,7 @@
+     TIMEOUT 6000
+     ${cmake_commands}
+     CMAKE_ARGS
+-      ${cmake_configure_args}
++     ${cmake_configure_args} ${CL_ARGS}
+   )
+ 
+   # The external project will install to the build folder, but we'll install that on make install.

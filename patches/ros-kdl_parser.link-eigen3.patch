@@ -1,0 +1,19 @@
+diff -ur kdl_parser-release-release-humble-kdl_parser-2.6.4-1/CMakeLists.txt kdl_parser-release-release-humble-kdl_parser-2.6.4-1-new/CMakeLists.txt
+--- kdl_parser-release-release-humble-kdl_parser-2.6.4-1/CMakeLists.txt	2023-01-10 15:16:22.000000000 +0100
++++ kdl_parser-release-release-humble-kdl_parser-2.6.4-1-new/CMakeLists.txt	2023-03-05 16:38:12.947504103 +0100
+@@ -8,6 +8,7 @@
+ find_package(urdf REQUIRED)
+ find_package(urdfdom_headers REQUIRED)
+ find_package(rcutils REQUIRED)
++find_package (Eigen3 REQUIRED)
+ 
+ # Default to C++14
+ if(NOT CMAKE_CXX_STANDARD)
+@@ -26,6 +27,7 @@
+   urdfdom_headers::urdfdom_headers)
+ target_link_libraries(${PROJECT_NAME} PRIVATE
+   rcutils::rcutils
++  Eigen3::Eigen
+   urdf::urdf)
+ 
+ if(WIN32)

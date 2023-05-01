@@ -1,0 +1,126 @@
+diff -ur rviz-release-release-humble-rviz_rendering-11.2.5-1/CMakeLists.txt rviz-release-release-humble-rviz_rendering-11.2.5-1-new/CMakeLists.txt
+--- rviz-release-release-humble-rviz_rendering-11.2.5-1/CMakeLists.txt	2023-01-10 15:05:58.000000000 +0100
++++ rviz-release-release-humble-rviz_rendering-11.2.5-1-new/CMakeLists.txt	2023-03-05 18:48:43.688209339 +0100
+@@ -29,8 +29,11 @@
+ find_package(ament_cmake REQUIRED)
+ 
+ # do find_package(rviz_ogre_vendor) first to make sure the custom OGRE is found
+-find_package(rviz_ogre_vendor REQUIRED)
+-find_package(rviz_assimp_vendor REQUIRED)
++find_package(OGRE REQUIRED)
++include_directories(${OGRE_INCLUDE_DIRS})
++link_directories(${OGRE_LIBRARY_DIRS})
++
++find_package(assimp REQUIRED)
+ 
+ find_package(Qt5 REQUIRED COMPONENTS Widgets)
+ 
+@@ -97,8 +100,8 @@
+ 
+ target_link_libraries(rviz_rendering
+   PUBLIC
+-  rviz_ogre_vendor::OgreMain
+-  rviz_ogre_vendor::OgreOverlay
++  OgreMain
++  OgreOverlay
+   Qt5::Widgets
+   ament_index_cpp::ament_index_cpp
+   resource_retriever::resource_retriever
+@@ -116,11 +119,11 @@
+ 
+ ament_target_dependencies(rviz_rendering
+   SYSTEM PUBLIC
+-  rviz_assimp_vendor
++  assimp
+ )
+ ament_export_dependencies(
+-  rviz_assimp_vendor
+-  rviz_ogre_vendor
++  assimp
++  OGRE
+   eigen3_cmake_module
+   Eigen3
+   resource_retriever
+@@ -169,7 +172,7 @@
+   )
+   target_link_libraries(rviz_rendering_test_utils
+     PUBLIC
+-    rviz_ogre_vendor::OgreMain
++    OgreMain
+     rviz_rendering
+   )
+ 
+@@ -183,7 +186,7 @@
+     ${SKIP_DISPLAY_TESTS})
+   if(TARGET point_cloud_test_target)
+     target_link_libraries(point_cloud_test_target
+-      rviz_ogre_vendor::OgreMain
++      OgreMain
+       rviz_rendering
+       rviz_rendering_test_utils
+       Qt5::Widgets  # explicitly do this for include directories (not necessary for external use)
+@@ -195,7 +198,7 @@
+     ${SKIP_DISPLAY_TESTS})
+   if(TARGET point_cloud_renderable_test_target)
+     target_link_libraries(point_cloud_renderable_test_target
+-      rviz_ogre_vendor::OgreMain
++      OgreMain
+       rviz_rendering
+       rviz_rendering_test_utils
+       Qt5::Widgets  # explicitly do this for include directories (not necessary for external use)
+@@ -207,7 +210,7 @@
+     ${SKIP_DISPLAY_TESTS})
+   if(TARGET billboard_line_test_target)
+     target_link_libraries(billboard_line_test_target
+-      rviz_ogre_vendor::OgreMain
++      OgreMain
+       rviz_rendering
+       rviz_rendering_test_utils
+       Qt5::Widgets  # explicitly do this for include directories (not necessary for external use)
+@@ -219,7 +222,7 @@
+     ${SKIP_DISPLAY_TESTS})
+   if(TARGET covariance_visual_test_target)
+     target_link_libraries(covariance_visual_test_target
+-      rviz_ogre_vendor::OgreMain
++      OgreMain
+       rviz_rendering
+       rviz_rendering_test_utils
+       Qt5::Widgets  # explicitly do this for include directories (not necessary for external use)
+@@ -231,7 +234,7 @@
+     ${SKIP_DISPLAY_TESTS})
+   if(TARGET grid_test_target)
+     target_link_libraries(grid_test_target
+-      rviz_ogre_vendor::OgreMain
++      OgreMain
+       rviz_rendering
+       rviz_rendering_test_utils
+       Qt5::Widgets  # explicitly do this for include directories (not necessary for external use)
+@@ -243,8 +246,8 @@
+     ${SKIP_DISPLAY_TESTS})
+   if(TARGET movable_text_test_target)
+     target_link_libraries(movable_text_test_target
+-      rviz_ogre_vendor::OgreMain
+-      rviz_ogre_vendor::OgreOverlay
++      OgreMain
++      OgreOverlay
+       rviz_rendering
+       rviz_rendering_test_utils
+       Qt5::Widgets
+@@ -256,7 +259,7 @@
+     ${SKIP_DISPLAY_TESTS})
+   if(TARGET line_test_target)
+     target_link_libraries(line_test_target
+-      rviz_ogre_vendor::OgreMain
++      OgreMain
+       rviz_rendering
+       rviz_rendering_test_utils
+       Qt5::Widgets  # explicitly do this for include directories (not necessary for external use)
+@@ -268,7 +271,7 @@
+     ${SKIP_DISPLAY_TESTS})
+   if(TARGET wrench_visual_test_target)
+     target_link_libraries(wrench_visual_test_target
+-      rviz_ogre_vendor::OgreMain
++      OgreMain
+       rviz_rendering
+       rviz_rendering_test_utils
+       Qt5::Widgets  # explicitly do this for include directories (not necessary for external use)
