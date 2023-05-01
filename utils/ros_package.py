@@ -5,6 +5,7 @@ from typing import Dict, cast
 import yaml
 from defusedxml import ElementTree
 from rosinstall_generator import generator
+from utils.rosdistros import ros, ros2
 
 
 class RosPkg:
@@ -15,7 +16,11 @@ class RosPkg:
         self.spec = ""
 
         self.distro_info = generator.get_wet_distro(distro)
-        xml_string = self.distro_info.get_release_package_xml(name)
+        try:
+            xml_string = self.distro_info.get_release_package_xml(name)
+        except Exception as e:
+            print(self.distro_info, name)
+            raise Exception(e)
         self.xml = ElementTree.fromstring(xml_string)
         self.build_deps: Dict[str, set] = {"ros": set(), "system": set()}
         self.run_deps: Dict[str, set] = {"ros": set(), "system": set()}
@@ -27,6 +32,7 @@ class RosPkg:
             common_config = {}
 
         try:
+            name_versioned = self.name if self.rosdistro in ros else f"ros2-{name}"
             pkg_specific_config = cast(
                 dict, yaml.load(open(f"cfg/{self.name}.yaml", "r"), Loader=yaml.FullLoader)
             )
@@ -64,11 +70,15 @@ class RosPkg:
                                 dep_list["system"].add(dep)
                         except KeyError:
                             try:
-                                system_pkg = self.resolver.get_system_package_name(pkg, self.rosdistro)
+                                system_pkg = self.resolver.get_system_package_name(
+                                    pkg, self.rosdistro
+                                )
                                 for dep_list in dep_lists:
                                     dep_list["system"].add(system_pkg)
                             except AssertionError:
-                                print(f"Couldn't find the system package {system_pkg}. Skipping")
+                                print(f"Couldn't find the system package {pkg}. Skipping")
+                            except KeyError:
+                                print(f"Key {pkg} not found in list. Skipping")
 
     def get_dependencies_from_cfg(self, dependency_type: str) -> Dict[str, set]:
         try:
@@ -118,8 +128,10 @@ class RosPkg:
             build_deps[key] = val | self.get_dependencies_from_cfg("build").get(key, set())
             build_deps[key] -= self.get_dependencies_from_cfg("exclude_build").get(key, set())
         build_deps = self.translate_dependencies("build", build_deps)
-        if self.name != "catkin":
+        if self.rosdistro in ros and self.name != "catkin":
             build_deps["ros"].add("catkin")
+        if self.rosdistro in ros2 and self.name != "ament_package":
+            build_deps["ros"].add("ament_package")
         return build_deps
 
     def get_run_dependencies(self) -> Dict[str, set]:

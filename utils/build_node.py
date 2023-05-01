@@ -1,8 +1,11 @@
+from typing import List, Optional
+
 from utils.build_state import BuildState
 from utils.ros_package import RosPkg
-from typing import Optional, List
+
+
 class Node:
-    def __init__(self, name: str, pkg: Optional[RosPkg]=None) -> None:
+    def __init__(self, name: str, pkg: Optional[RosPkg] = None) -> None:
         """Fully initialize the note.
 
         Args:

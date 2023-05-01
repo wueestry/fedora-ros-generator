@@ -28,6 +28,8 @@ class PkgResolver:
         else:
             res = self.available_pkgs.filter(name=pkg_name)
             deps = set([pkg.name for pkg in res])
-            assert len(deps) > 0, f"Could not find system package {pkg_name}: {cmd.stderr.decode().rstrip() or cmd.stdout.decode().rstrip()}"
+            assert (
+                len(deps) > 0
+            ), f"Could not find system package {pkg_name}: {cmd.stderr.decode().rstrip() or cmd.stdout.decode().rstrip()}"
         assert len(deps) == 1, f"Expected exactly one name, got: {deps}"
         return deps.pop()

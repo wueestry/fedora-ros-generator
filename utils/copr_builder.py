@@ -1,8 +1,8 @@
 import functools
 import re
+import time
 
 import copr.v3
-import time
 from termcolor import cprint
 
 from utils.build_node import Node
@@ -88,12 +88,15 @@ class CoprBuilder:
                 if self.pkg_is_built(chroot, node.pkg.get_full_name(), pkg_version):
                     node.state = BuildState.SUCCEEDED
                     build_progress = tree.get_build_progress()
-                    cprint(f'{build_progress["building"]}/{build_progress["finished"]}/{build_progress["total"]}: {node.name} is already built, skipping!',"green")
+                    cprint(
+                        f'{build_progress["building"]}/{build_progress["finished"]}/{build_progress["total"]}: {node.name} is already built, skipping!',
+                        "green",
+                    )
                     wait_for_build = False
                 else:
                     assert (
                         node.state == BuildState.PENDING
-                    ), f'Unexpected build state {node.state} of package node {node.name}'
+                    ), f"Unexpected build state {node.state} of package node {node.name}"
                     build = self.build_spec(chroot=chroot, spec=node.pkg.spec)
                     node.build_id = build.id
                     node.state = BuildState.BUILDING
@@ -107,11 +110,17 @@ class CoprBuilder:
             if finished_build.state == "succeeded":
                 node.state = BuildState.SUCCEEDED
                 build_progress = tree.get_build_progress()
-                cprint(f'{build_progress["building"]}/{build_progress["finished"]}/{build_progress["total"]}: Successful build: {node.name}', "green")
+                cprint(
+                    f'{build_progress["building"]}/{build_progress["finished"]}/{build_progress["total"]}: Successful build: {node.name}',
+                    "green",
+                )
             else:
                 node.state = BuildState.FAILED
                 build_progress = tree.get_build_progress()
-                cprint(f'{build_progress["building"]}/{build_progress["finished"]}/{build_progress["total"]}: Failed build: {node.name}',"red")
+                cprint(
+                    f'{build_progress["building"]}/{build_progress["finished"]}/{build_progress["total"]}: Failed build: {node.name}',
+                    "red",
+                )
         return tree.is_built()
 
     @functools.lru_cache(16)

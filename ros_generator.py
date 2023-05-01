@@ -63,7 +63,9 @@ def main() -> None:
     build_args.add_argument(
         "-o", "--copr-owner", type=str, help="The owner of the COPR project to use for builds"
     )
-    build_args.add_argument("-p", "--copr-project", type=str, help="The COPR project to use for builds")
+    build_args.add_argument(
+        "-p", "--copr-project", type=str, help="The COPR project to use for builds"
+    )
     build_args.add_argument(
         "--chroot",
         action="append",
