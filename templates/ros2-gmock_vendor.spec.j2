@@ -1,0 +1,28 @@
+{% extends "ros2-pkg.spec.j2" %}
+
+{% block install_files %}
+# remove wrong buildroot prefixes
+find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
+
+
+rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
+
+touch files.list
+find %{buildroot}/%{_libdir}/ros2/{bin,etc,lib64/python*,lib/python*/site-packages,share} \
+  -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
+find %{buildroot}/%{_libdir}/ros2/lib*/ -mindepth 1 -maxdepth 1 \
+  ! -name pkgconfig ! -name "python*" \
+  | sed "s:%{buildroot}/::" >> files.list
+
+{% if has_devel %}
+touch files_devel.list
+find %{buildroot}/%{_libdir}/ros2/{lib*/pkgconfig,src/{{ pkg_name }}/include/,share/{{ pkg_name }}/cmake} \
+  -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
+rm -rf %{buildroot}/%{_libdir}/ros2/src/{{ pkg_name }}/src
+rm -rf %{buildroot}/%{_libdir}/ros2/src/{{ pkg_name }}/CMakeLists.txt
+{% endif %}
+
+find . -maxdepth 1 -type f -iname "*readme*" | sed "s:^:%%doc :" >> files.list
+find . -maxdepth 1 -type f -iname "*license*" | sed "s:^:%%license :" >> files.list
+
+{% endblock %}

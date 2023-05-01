@@ -1,0 +1,18 @@
+{% extends "ros2-pkg.spec.j2" %}
+{% block globals %}
+BuildRequires: patchelf
+{% endblock %}
+
+{% block post_install %}
+# fix broken runpath
+find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --shrink-rpath --allowed-rpath-prefixes "%{_libdir}/ros2/lib" {} \;
+
+# replace cmake python macro in shebang
+for file in $(grep -rIl '^#!.*@PYTHON_EXECUTABLE@.*$' %{buildroot}) ; do
+  sed -i.orig 's:^#!\s*@PYTHON_EXECUTABLE@\s*:%{__python3}:' $file
+  touch -r $file.orig $file
+  rm $file.orig
+done
+
+{% endblock %}
+

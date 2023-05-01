@@ -1,0 +1,5 @@
+{% extends "ros2-pkg.spec.j2" %}
+{% block pre_install %}
+PATH="$PATH:%{_qt5_bindir}" ; export PATH
+source %{_libdir}/ros2/setup.bash
+{% endblock %}

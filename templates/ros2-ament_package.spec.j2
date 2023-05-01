@@ -1,0 +1,32 @@
+{% extends "ros2-pkg.spec.j2" %}
+
+{% block pre_install %}
+{% endblock %}
+
+{% block install_files %}
+# remove wrong buildroot and builddir prefixes
+find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i 's:COLCON_CURRENT_PREFIX="%{buildroot}:COLCON_CURRENT_PREFIX=":g' {} \;
+find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i 's:COLCON_CURRENT_PREFIX=%{buildroot}:COLCON_CURRENT_PREFIX=:g' {} \;
+
+touch files.list
+find %{buildroot}/%{_libdir}/ros2/{bin,etc,lib64/python*,lib/python*/site-packages,share} \
+  -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
+find %{buildroot}/%{_libdir}/ros2/lib*/ -mindepth 1 -maxdepth 1 \
+  ! -name pkgconfig ! -name "python*" \
+  | sed "s:%{buildroot}/::" >> files.list
+
+{% if has_devel %}
+touch files_devel.list
+find %{buildroot}/%{_libdir}/ros2/{lib*/pkgconfig,{{ pkg_name }}/include,share/{{ pkg_name }}/cmake} \
+  -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
+{% endif %}
+
+find %{buildroot}/%{_libdir}/ros2 -maxdepth 1 \
+  -name .colcon_install_layout -o -name COLCON_IGNORE -o -name .rosinstall \
+  -o -name "_setup*" -o -name "setup.*" -o -name "local_setup.*" -o -name _local_setup* \
+  | sed -e "s:%{buildroot}/::" -e "s:.py$:.py{,o,c}:" >> files.list
+
+find . -maxdepth 1 -type f -iname "*readme*" | sed "s:^:%%doc :" >> files.list
+find . -maxdepth 1 -type f -iname "*license*" | sed "s:^:%%license :" >> files.list
+
+{% endblock %}
