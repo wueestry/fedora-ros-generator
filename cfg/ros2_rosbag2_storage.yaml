@@ -1,0 +1,2 @@
+patches:
+  - ros-rosbag2_storage.system-yaml-cpp.patch

@@ -1,0 +1,7 @@
+noarch: true
+patches:
+  - ros-mimick_vendor-optimization.patch
+dependencies:
+  build:
+    system:
+      - glibc-headers

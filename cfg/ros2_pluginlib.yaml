@@ -1,0 +1,9 @@
+noarch: true
+dependencies:
+  build:
+    system:
+      - console-bridge-devel
+      - poco-devel
+      - log4cxx-devel
+      - tinyxml-devel
+      - tinyxml2-devel

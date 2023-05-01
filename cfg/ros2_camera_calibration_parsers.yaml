@@ -1,0 +1,10 @@
+dependencies:
+  build:
+    system:
+      - python3-devel
+      - log4cxx-devel
+      - console-bridge-devel
+      - boost-python3-devel
+patches:
+  - ros-camera_calibration_parsers.boost-python3.patch
+  - ros-camera_calibration_parsers.system-yaml-cpp.patch

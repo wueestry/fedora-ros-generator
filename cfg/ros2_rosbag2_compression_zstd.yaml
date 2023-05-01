@@ -1,0 +1,2 @@
+patches:
+  - ros-rosbag2_compression_zstd.system-libzstd.patch
