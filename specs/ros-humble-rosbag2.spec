@@ -43,6 +43,7 @@ BuildRequires:  ros2-humble-ament_package-devel
 BuildRequires:  ros2-humble-rosbag2_test_common-devel
 BuildRequires:  ros2-humble-rosbag2_tests-devel
 
+Requires:       libsqlite3x-devel
 Requires:       ros2-humble-ros2bag
 Requires:       ros2-humble-rosbag2_compression
 Requires:       ros2-humble-rosbag2_compression_zstd
@@ -52,7 +53,6 @@ Requires:       ros2-humble-rosbag2_storage
 Requires:       ros2-humble-rosbag2_storage_default_plugins
 Requires:       ros2-humble-rosbag2_transport
 Requires:       ros2-humble-shared_queues_vendor
-Requires:       ros2-humble-sqlite3_vendor
 
 Provides:  ros2-humble-rosbag2 = 0.15.5-1
 Obsoletes: ros2-humble-rosbag2 < 0.15.5-1
@@ -78,7 +78,6 @@ Requires:       ros2-humble-rosbag2_storage-devel
 Requires:       ros2-humble-rosbag2_storage_default_plugins-devel
 Requires:       ros2-humble-rosbag2_transport-devel
 Requires:       ros2-humble-shared_queues_vendor-devel
-Requires:       ros2-humble-sqlite3_vendor-devel
 
 Provides: ros2-humble-rosbag2-devel = 0.15.5-1
 Obsoletes: ros2-humble-rosbag2-devel < 0.15.5-1

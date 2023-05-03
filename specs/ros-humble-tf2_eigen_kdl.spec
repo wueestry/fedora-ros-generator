@@ -39,12 +39,12 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python-unversioned-command
 
 BuildRequires:  eigen3-devel
+BuildRequires:  orocos-kdl-devel
 BuildRequires:  ros2-humble-ament_cmake-devel
 BuildRequires:  ros2-humble-ament_cmake_gtest-devel
 BuildRequires:  ros2-humble-ament_lint_auto-devel
 BuildRequires:  ros2-humble-ament_lint_common-devel
 BuildRequires:  ros2-humble-ament_package-devel
-BuildRequires:  ros2-humble-orocos_kdl_vendor-devel
 BuildRequires:  ros2-humble-tf2-devel
 
 Requires:       ros2-humble-orocos_kdl_vendor
@@ -63,12 +63,13 @@ Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       eigen3-devel
 Requires:       ros2-humble-ament_cmake-devel
+Requires:       orocos-kdl-devel
 Requires:       ros2-humble-ament_cmake_gtest-devel
 Requires:       ros2-humble-ament_lint_auto-devel
 Requires:       ros2-humble-ament_lint_common-devel
 Requires:       ros2-humble-ament_package-devel
-Requires:       ros2-humble-orocos_kdl_vendor-devel
 Requires:       ros2-humble-tf2-devel
+Requires:       ros2-humble-orocos_kdl_vendor-devel
 
 Provides: ros2-humble-tf2_eigen_kdl-devel = 0.25.2-1
 Obsoletes: ros2-humble-tf2_eigen_kdl-devel < 0.25.2-1

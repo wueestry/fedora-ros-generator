@@ -27,7 +27,8 @@ class RosPkg:
         self.devel_deps: Dict[str, set] = {"ros": set(), "system": set()}
 
         try:
-            common_config = cast(dict, yaml.load(open("cfg/common.yaml"), Loader=yaml.FullLoader))
+            common_file = "common.yaml" if self.rosdistro in ros else "ros2_common.yaml"
+            common_config = cast(dict, yaml.load(open(f"cfg/{common_file}"), Loader=yaml.FullLoader))
         except FileNotFoundError:
             common_config = {}
 

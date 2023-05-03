@@ -40,6 +40,7 @@ BuildRequires: python3-vcstool
 BuildRequires:  cmake
 BuildRequires:  eigen3-devel
 BuildRequires:  git
+BuildRequires:  ignition-math
 BuildRequires:  ros2-humble-ament_cmake_copyright-devel
 BuildRequires:  ros2-humble-ament_cmake_lint_cmake-devel
 BuildRequires:  ros2-humble-ament_cmake_test-devel
@@ -47,6 +48,7 @@ BuildRequires:  ros2-humble-ament_cmake_xmllint-devel
 BuildRequires:  ros2-humble-ament_package-devel
 BuildRequires:  ros2-humble-ignition_cmake2_vendor-devel
 
+Requires:       ignition-math
 Requires:       ros2-humble-ignition_cmake2_vendor
 
 Provides:  ros2-humble-ignition_math6_vendor = 0.0.2-1
@@ -64,6 +66,7 @@ Requires:       cmake
 Requires:       git
 Requires:       ros2-humble-ament_cmake_test-devel
 Requires:       eigen3-devel
+Requires:       ignition-math
 Requires:       ros2-humble-ament_cmake_copyright-devel
 Requires:       ros2-humble-ament_cmake_lint_cmake-devel
 Requires:       ros2-humble-ament_cmake_xmllint-devel

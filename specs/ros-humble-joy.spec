@@ -38,18 +38,18 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python3-colcon-common-extensions
 # BuildRequires:  python-unversioned-command
 
+BuildRequires:  SDL2-devel
 BuildRequires:  ros2-humble-ament_cmake_ros-devel
 BuildRequires:  ros2-humble-ament_lint_auto-devel
 BuildRequires:  ros2-humble-ament_lint_common-devel
 BuildRequires:  ros2-humble-ament_package-devel
 BuildRequires:  ros2-humble-rclcpp-devel
 BuildRequires:  ros2-humble-rclcpp_components-devel
-BuildRequires:  ros2-humble-sdl2_vendor-devel
 BuildRequires:  ros2-humble-sensor_msgs-devel
 
+Requires:       SDL2-devel
 Requires:       ros2-humble-rclcpp
 Requires:       ros2-humble-rclcpp_components
-Requires:       ros2-humble-sdl2_vendor
 Requires:       ros2-humble-sensor_msgs
 
 Provides:  ros2-humble-joy = 3.1.0-1
@@ -66,12 +66,12 @@ the current state of each one of the joystick's buttons and axes.
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       ros2-humble-ament_cmake_ros-devel
+Requires:       SDL2-devel
 Requires:       ros2-humble-ament_lint_auto-devel
 Requires:       ros2-humble-ament_lint_common-devel
 Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-rclcpp-devel
 Requires:       ros2-humble-rclcpp_components-devel
-Requires:       ros2-humble-sdl2_vendor-devel
 Requires:       ros2-humble-sensor_msgs-devel
 
 Provides: ros2-humble-joy-devel = 3.1.0-1

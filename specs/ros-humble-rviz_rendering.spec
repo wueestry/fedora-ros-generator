@@ -38,6 +38,7 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python3-colcon-common-extensions
 # BuildRequires:  python-unversioned-command
 
+BuildRequires:  assimp-devel
 BuildRequires:  eigen3-devel
 BuildRequires:  qt5-qtbase-devel
 BuildRequires:  ros2-humble-ament_cmake-devel
@@ -53,14 +54,13 @@ BuildRequires:  ros2-humble-ament_lint_auto-devel
 BuildRequires:  ros2-humble-ament_package-devel
 BuildRequires:  ros2-humble-eigen3_cmake_module-devel
 BuildRequires:  ros2-humble-resource_retriever-devel
-BuildRequires:  ros2-humble-rviz_assimp_vendor-devel
 BuildRequires:  ros2-humble-rviz_ogre_vendor-devel
 
+Requires:       assimp-devel
 Requires:       qt5-qtbase
 Requires:       qt5-qtbase-gui
 Requires:       ros2-humble-ament_index_cpp
 Requires:       ros2-humble-resource_retriever
-Requires:       ros2-humble-rviz_assimp_vendor
 Requires:       ros2-humble-rviz_ogre_vendor
 
 Provides:  ros2-humble-rviz_rendering = 11.2.5-1
@@ -79,6 +79,7 @@ Requires:       qt5-qtbase-devel
 Requires:       ros2-humble-ament_cmake-devel
 Requires:       ros2-humble-eigen3_cmake_module-devel
 Requires:       ros2-humble-rviz_ogre_vendor-devel
+Requires:       assimp-devel
 Requires:       ros2-humble-ament_cmake_cppcheck-devel
 Requires:       ros2-humble-ament_cmake_cpplint-devel
 Requires:       ros2-humble-ament_cmake_gmock-devel
@@ -90,7 +91,6 @@ Requires:       ros2-humble-ament_index_cpp-devel
 Requires:       ros2-humble-ament_lint_auto-devel
 Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-resource_retriever-devel
-Requires:       ros2-humble-rviz_assimp_vendor-devel
 
 Provides: ros2-humble-rviz_rendering-devel = 11.2.5-1
 Obsoletes: ros2-humble-rviz_rendering-devel < 11.2.5-1

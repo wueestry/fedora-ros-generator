@@ -37,11 +37,11 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python3-colcon-common-extensions
 # BuildRequires:  python-unversioned-command
 
+BuildRequires:  orocos-kdl-devel
 BuildRequires:  ros2-humble-ament_cmake_ros-devel
 BuildRequires:  ros2-humble-ament_lint_auto-devel
 BuildRequires:  ros2-humble-ament_lint_common-devel
 BuildRequires:  ros2-humble-ament_package-devel
-BuildRequires:  ros2-humble-orocos_kdl_vendor-devel
 BuildRequires:  ros2-humble-rcutils-devel
 BuildRequires:  ros2-humble-urdf-devel
 BuildRequires:  ros2-humble-urdfdom_headers-devel
@@ -64,12 +64,13 @@ Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       ros2-humble-ament_cmake_ros-devel
 Requires:       ros2-humble-urdfdom_headers-devel
+Requires:       orocos-kdl-devel
 Requires:       ros2-humble-ament_lint_auto-devel
 Requires:       ros2-humble-ament_lint_common-devel
 Requires:       ros2-humble-ament_package-devel
-Requires:       ros2-humble-orocos_kdl_vendor-devel
 Requires:       ros2-humble-rcutils-devel
 Requires:       ros2-humble-urdf-devel
+Requires:       ros2-humble-orocos_kdl_vendor-devel
 
 Provides: ros2-humble-kdl_parser-devel = 2.6.4-1
 Obsoletes: ros2-humble-kdl_parser-devel < 2.6.4-1

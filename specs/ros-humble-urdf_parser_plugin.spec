@@ -9,6 +9,7 @@ URL:            http://www.ros.org/
 Source0:        https://github.com/ros2-gbp/urdf-release/archive/release/humble/urdf_parser_plugin/2.6.0-2.tar.gz#/ros2-humble-urdf_parser_plugin-2.6.0-source0.tar.gz
 
 
+BuildArch: noarch
 
 # common BRs
 BuildRequires: patchelf
@@ -54,7 +55,7 @@ This package contains a C++ base class for URDF parsers.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       %{name} = %{version}-%{release}
 Requires:       ros2-humble-ament_cmake_ros-devel
 Requires:       ros2-humble-urdfdom_headers-devel
 Requires:       ros2-humble-ament_lint_auto-devel

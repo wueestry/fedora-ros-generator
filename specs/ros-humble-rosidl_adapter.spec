@@ -9,6 +9,7 @@ URL:            http://www.ros.org/
 Source0:        https://github.com/ros2-gbp/rosidl-release/archive/release/humble/rosidl_adapter/3.1.4-1.tar.gz#/ros2-humble-rosidl_adapter-3.1.4-source0.tar.gz
 
 
+BuildArch: noarch
 
 # common BRs
 BuildRequires: patchelf
@@ -59,7 +60,7 @@ API and scripts to parse .msg/.srv/.action files and convert them to
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       %{name} = %{version}-%{release}
 Requires:       python3-devel
 Requires:       ros2-humble-ament_cmake_core-devel
 Requires:       ros2-humble-ament_cmake-devel

@@ -9,6 +9,7 @@ URL:            http://ros.org/wiki/qt_dotgraph
 Source0:        https://github.com/ros2-gbp/qt_gui_core-release/archive/release/humble/qt_dotgraph/2.2.2-1.tar.gz#/ros2-humble-qt_dotgraph-2.2.2-source0.tar.gz
 
 
+BuildArch: noarch
 
 # common BRs
 BuildRequires: patchelf
@@ -57,7 +58,7 @@ qt_dotgraph provides helpers to work with dot graphs.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       %{name} = %{version}-%{release}
 Requires:       ros2-humble-ament_cmake-devel
 Requires:       python3-pygraphviz
 Requires:       ros2-humble-ament_cmake_pytest-devel

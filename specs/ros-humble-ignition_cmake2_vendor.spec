@@ -41,6 +41,7 @@ BuildRequires: python3-vcstool
 BuildRequires:  cmake
 BuildRequires:  doxygen
 BuildRequires:  git
+BuildRequires:  ignition-cmake-devel
 BuildRequires:  ros2-humble-ament_cmake_copyright-devel
 BuildRequires:  ros2-humble-ament_cmake_lint_cmake-devel
 BuildRequires:  ros2-humble-ament_cmake_test-devel
@@ -63,6 +64,7 @@ Requires:       cmake
 Requires:       doxygen
 Requires:       git
 Requires:       ros2-humble-ament_cmake_test-devel
+Requires:       ignition-cmake-devel
 Requires:       ros2-humble-ament_cmake_copyright-devel
 Requires:       ros2-humble-ament_cmake_lint_cmake-devel
 Requires:       ros2-humble-ament_cmake_xmllint-devel

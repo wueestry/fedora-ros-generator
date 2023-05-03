@@ -39,6 +39,7 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python3-colcon-common-extensions
 # BuildRequires:  python-unversioned-command
 
+BuildRequires:  orocos-kdl-devel
 BuildRequires:  ros2-humble-ament_cmake-devel
 BuildRequires:  ros2-humble-ament_cmake_gtest-devel
 BuildRequires:  ros2-humble-ament_cmake_pytest-devel
@@ -46,7 +47,6 @@ BuildRequires:  ros2-humble-ament_lint_auto-devel
 BuildRequires:  ros2-humble-ament_lint_common-devel
 BuildRequires:  ros2-humble-ament_package-devel
 BuildRequires:  ros2-humble-geometry_msgs-devel
-BuildRequires:  ros2-humble-orocos_kdl_vendor-devel
 BuildRequires:  ros2-humble-python_cmake_module-devel
 BuildRequires:  ros2-humble-rclcpp-devel
 BuildRequires:  ros2-humble-tf2-devel
@@ -72,16 +72,17 @@ Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
 Requires:       ros2-humble-ament_cmake-devel
 Requires:       ros2-humble-python_cmake_module-devel
+Requires:       orocos-kdl-devel
 Requires:       ros2-humble-ament_cmake_gtest-devel
 Requires:       ros2-humble-ament_cmake_pytest-devel
 Requires:       ros2-humble-ament_lint_auto-devel
 Requires:       ros2-humble-ament_lint_common-devel
 Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-geometry_msgs-devel
-Requires:       ros2-humble-orocos_kdl_vendor-devel
 Requires:       ros2-humble-rclcpp-devel
 Requires:       ros2-humble-tf2-devel
 Requires:       ros2-humble-tf2_ros-devel
+Requires:       ros2-humble-orocos_kdl_vendor-devel
 Requires:       ros2-humble-tf2_ros_py-devel
 
 Provides: ros2-humble-tf2_geometry_msgs-devel = 0.25.2-1

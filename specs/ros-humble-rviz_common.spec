@@ -39,6 +39,7 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python-unversioned-command
 
 BuildRequires:  qt5-qtbase-devel
+BuildRequires:  yaml-cpp-devel
 BuildRequires:  ros2-humble-ament_cmake-devel
 BuildRequires:  ros2-humble-ament_cmake_cppcheck-devel
 BuildRequires:  ros2-humble-ament_cmake_cpplint-devel
@@ -63,10 +64,10 @@ BuildRequires:  ros2-humble-tf2_geometry_msgs-devel
 BuildRequires:  ros2-humble-tf2_ros-devel
 BuildRequires:  ros2-humble-tinyxml2_vendor-devel
 BuildRequires:  ros2-humble-urdf-devel
-BuildRequires:  ros2-humble-yaml_cpp_vendor-devel
 
 Requires:       qt5-qtbase
 Requires:       qt5-qtbase-gui
+Requires:       yaml-cpp-devel
 Requires:       ros2-humble-geometry_msgs
 Requires:       ros2-humble-message_filters
 Requires:       ros2-humble-pluginlib
@@ -81,7 +82,6 @@ Requires:       ros2-humble-tf2_geometry_msgs
 Requires:       ros2-humble-tf2_ros
 Requires:       ros2-humble-tinyxml2_vendor
 Requires:       ros2-humble-urdf
-Requires:       ros2-humble-yaml_cpp_vendor
 
 Provides:  ros2-humble-rviz_common = 11.2.5-1
 Obsoletes: ros2-humble-rviz_common < 11.2.5-1
@@ -96,6 +96,7 @@ Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       qt5-qtbase-devel
 Requires:       ros2-humble-ament_cmake-devel
+Requires:       yaml-cpp-devel
 Requires:       ros2-humble-ament_cmake_cppcheck-devel
 Requires:       ros2-humble-ament_cmake_cpplint-devel
 Requires:       ros2-humble-ament_cmake_gmock-devel
@@ -119,7 +120,6 @@ Requires:       ros2-humble-tf2_geometry_msgs-devel
 Requires:       ros2-humble-tf2_ros-devel
 Requires:       ros2-humble-tinyxml2_vendor-devel
 Requires:       ros2-humble-urdf-devel
-Requires:       ros2-humble-yaml_cpp_vendor-devel
 
 Provides: ros2-humble-rviz_common-devel = 11.2.5-1
 Obsoletes: ros2-humble-rviz_common-devel < 11.2.5-1

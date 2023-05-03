@@ -8,7 +8,9 @@ URL:            http://www.ros.org/
 
 Source0:        https://github.com/ros2-gbp/python_qt_binding-release/archive/release/humble/python_qt_binding/1.1.1-3.tar.gz#/ros2-humble-python_qt_binding-1.1.1-source0.tar.gz
 
+Patch0: ros-python_qt_binding.lflags-fix.patch
 
+BuildArch: noarch
 
 # common BRs
 BuildRequires: patchelf
@@ -64,7 +66,7 @@ very easy to switch between these.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       %{name} = %{version}-%{release}
 Requires:       ros2-humble-ament_cmake-devel
 Requires:       python3-pyside2
 Requires:       qt5-qtbase-devel
@@ -87,6 +89,7 @@ applications that use %{name}.
 
 %setup -c -T
 tar --strip-components=1 -xf %{SOURCE0}
+%patch0 -p1
 
 %build
 # nothing to do here

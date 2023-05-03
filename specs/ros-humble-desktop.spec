@@ -9,6 +9,7 @@ URL:            http://www.ros.org/
 Source0:        https://github.com/ros2-gbp/variants-release/archive/release/humble/desktop/0.10.0-1.tar.gz#/ros2-humble-desktop-0.10.0-source0.tar.gz
 
 
+BuildArch: noarch
 
 # common BRs
 BuildRequires: patchelf
@@ -100,7 +101,7 @@ like vizualization tools and demos.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       %{name} = %{version}-%{release}
 Requires:       ros2-humble-ament_cmake-devel
 Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-action_tutorials_cpp-devel

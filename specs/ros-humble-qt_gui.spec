@@ -9,6 +9,7 @@ URL:            http://ros.org/wiki/qt_gui
 Source0:        https://github.com/ros2-gbp/qt_gui_core-release/archive/release/humble/qt_gui/2.2.2-1.tar.gz#/ros2-humble-qt_gui-2.2.2-source0.tar.gz
 
 
+BuildArch: noarch
 
 # common BRs
 BuildRequires: patchelf
@@ -62,7 +63,7 @@ arbitrary widgets. It requires either PyQt or PySide bindings.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       %{name} = %{version}-%{release}
 Requires:       ros2-humble-ament_cmake-devel
 Requires:       python3-pyside2
 Requires:       qt5-qtbase-devel

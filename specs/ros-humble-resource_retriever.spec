@@ -41,6 +41,7 @@ BuildRequires: python3-vcstool
 BuildRequires:  boost-devel
 BuildRequires:  console-bridge-devel
 BuildRequires:  gtest-devel
+BuildRequires:  libcurl-devel
 BuildRequires:  log4cxx-devel
 BuildRequires:  python3-pytest
 BuildRequires:  tinyxml-devel
@@ -52,12 +53,11 @@ BuildRequires:  ros2-humble-ament_index_python-devel
 BuildRequires:  ros2-humble-ament_lint_auto-devel
 BuildRequires:  ros2-humble-ament_lint_common-devel
 BuildRequires:  ros2-humble-ament_package-devel
-BuildRequires:  ros2-humble-libcurl_vendor-devel
 BuildRequires:  ros2-humble-python_cmake_module-devel
 
+Requires:       libcurl-devel
 Requires:       ros2-humble-ament_index_cpp
 Requires:       ros2-humble-ament_index_python
-Requires:       ros2-humble-libcurl_vendor
 
 Provides:  ros2-humble-resource_retriever = 3.1.1-1
 Obsoletes: ros2-humble-resource_retriever < 3.1.1-1
@@ -79,6 +79,7 @@ Requires:       ros2-humble-ament_cmake_ros-devel
 Requires:       boost-devel
 Requires:       console-bridge-devel
 Requires:       gtest-devel
+Requires:       libcurl-devel
 Requires:       log4cxx-devel
 Requires:       python3-pytest
 Requires:       tinyxml-devel
@@ -89,7 +90,6 @@ Requires:       ros2-humble-ament_index_python-devel
 Requires:       ros2-humble-ament_lint_auto-devel
 Requires:       ros2-humble-ament_lint_common-devel
 Requires:       ros2-humble-ament_package-devel
-Requires:       ros2-humble-libcurl_vendor-devel
 Requires:       ros2-humble-python_cmake_module-devel
 
 Provides: ros2-humble-resource_retriever-devel = 3.1.1-1
