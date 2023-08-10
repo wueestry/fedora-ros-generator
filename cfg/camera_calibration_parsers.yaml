@@ -7,4 +7,3 @@ dependencies:
       - boost-python3-devel
 patches:
   - ros-camera_calibration_parsers.boost-python3.patch
-  - ros-camera_calibration_parsers.system-yaml-cpp.patch
