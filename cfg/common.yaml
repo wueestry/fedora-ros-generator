@@ -16,13 +16,6 @@ common:
           to:
             type: system
             pkg: SDL2-devel
-        - sqlite3:
-          from:
-            type: ros
-            pkg: sqlite3_vendor
-          to:
-            type: system
-            pkg: libsqlite3x-devel
         - zstd:
           from:
             type: ros
@@ -30,13 +23,13 @@ common:
           to:
             type: system
             pkg: libzstd-devel
-        - yamlcpp:
-          from:
-            type: ros
-            pkg: yaml_cpp_vendor
-          to:
-            type: system
-            pkg: yaml-cpp-devel
+              #- yamlcpp:
+              #  from:
+              #    type: ros
+              #    pkg: yaml_cpp_vendor
+              #  to:
+              #    type: system
+              #    pkg: yaml-cpp-devel
         - tinyxml:
           from:
             type: ros
@@ -123,13 +116,6 @@ common:
           to:
             type: system
             pkg: SDL2-devel
-        - sqlite3:
-          from:
-            type: ros
-            pkg: sqlite3_vendor
-          to:
-            type: system
-            pkg: libsqlite3x-devel
         - zstd:
           from:
             type: ros
@@ -137,13 +123,13 @@ common:
           to:
             type: system
             pkg: libzstd-devel
-        - yamlcpp:
-          from:
-            type: ros
-            pkg: yaml_cpp_vendor
-          to:
-            type: system
-            pkg: yaml-cpp-devel
+              #- yamlcpp:
+              #  from:
+              #    type: ros
+              #    pkg: yaml_cpp_vendor
+              #  to:
+              #    type: system
+              #    pkg: yaml-cpp-devel
         - tinyxml:
           from:
             type: ros
