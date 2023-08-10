@@ -1,0 +1,2 @@
+patches:
+  - ros2-rcpputils.include-stdint.patch
