@@ -1,0 +1,12 @@
+diff -ur webots_ros2-release-release-humble-webots_ros2_driver-2023.1.1-2/CMakeLists.txt webots_ros2-release-release-humble-webots_ros2_driver-2023.1.1-2-new/CMakeLists.txt
+--- webots_ros2-release-release-humble-webots_ros2_driver-2023.1.1-2/CMakeLists.txt	2023-08-11 09:37:22.655589465 +0200
++++ webots_ros2-release-release-humble-webots_ros2_driver-2023.1.1-2-new/CMakeLists.txt	2023-08-11 09:49:06.475371667 +0200
+@@ -29,7 +29,7 @@
+ find_package(tinyxml2_vendor REQUIRED)
+ find_package(TinyXML2 REQUIRED)
+ find_package(yaml-cpp REQUIRED)
+-find_package(PythonLibs 3.10 EXACT REQUIRED)
++find_package(PythonLibs REQUIRED)
+ 
+ add_custom_target(compile-lib-controller ALL
+   COMMAND ${CMAKE_COMMAND} -E env "WEBOTS_HOME=${CMAKE_CURRENT_SOURCE_DIR}/webots" make release -f Makefile > /dev/null 2>&1
