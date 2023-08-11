@@ -1,13 +1,14 @@
 Name:           ros2-rosbag2_compression
-Version:        humble.0.15.4
+Version:        humble.0.15.7
 Release:        1%{?dist}
 Summary:        ROS package rosbag2_compression
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rosbag2-release/archive/release/humble/rosbag2_compression/0.15.4-2.tar.gz#/ros2-humble-rosbag2_compression-0.15.4-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rosbag2-release/archive/release/humble/rosbag2_compression/0.15.7-1.tar.gz#/ros2-humble-rosbag2_compression-0.15.7-source0.tar.gz
 
+Patch0: ros2-rosbag2_compression.cstdint.patch
 
 
 # common BRs
@@ -54,8 +55,8 @@ Requires:       ros2-humble-rcutils
 Requires:       ros2-humble-rosbag2_cpp
 Requires:       ros2-humble-rosbag2_storage
 
-Provides:  ros2-humble-rosbag2_compression = 0.15.4-1
-Obsoletes: ros2-humble-rosbag2_compression < 0.15.4-1
+Provides:  ros2-humble-rosbag2_compression = 0.15.7-1
+Obsoletes: ros2-humble-rosbag2_compression < 0.15.7-1
 
 
 
@@ -77,8 +78,8 @@ Requires:       ros2-humble-rosbag2_cpp-devel
 Requires:       ros2-humble-rosbag2_storage-devel
 Requires:       ros2-humble-rosbag2_test_common-devel
 
-Provides: ros2-humble-rosbag2_compression-devel = 0.15.4-1
-Obsoletes: ros2-humble-rosbag2_compression-devel < 0.15.4-1
+Provides: ros2-humble-rosbag2_compression-devel = 0.15.7-1
+Obsoletes: ros2-humble-rosbag2_compression-devel < 0.15.7-1
 
 
 %description devel
@@ -91,6 +92,7 @@ applications that use %{name}.
 
 %setup -c -T
 tar --strip-components=1 -xf %{SOURCE0}
+%patch 0 -p1
 
 %build
 # nothing to do here
@@ -134,6 +136,10 @@ colcon \
 find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
 
 rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
+
+# remove __pycache__
+find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
+find . -name '*.pyc' -delete
 
 touch files.list
 find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
@@ -183,5 +189,9 @@ done
 
 
 %changelog
+* Tue Aug 08 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.15.7-1
+- update to latest upstream
+* Thu Jun 29 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.15.6-1
+- update to latest upstream release
 * Mon Mar 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.15.4-1
 - Initial humble build

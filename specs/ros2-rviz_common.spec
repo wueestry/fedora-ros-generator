@@ -1,14 +1,13 @@
 Name:           ros2-rviz_common
-Version:        humble.11.2.5
+Version:        humble.11.2.7
 Release:        1%{?dist}
 Summary:        ROS package rviz_common
 
 License:        BSD
 URL:            https://github.com/ros2/rviz/blob/ros2/README.md
 
-Source0:        https://github.com/ros2-gbp/rviz-release/archive/release/humble/rviz_common/11.2.5-1.tar.gz#/ros2-humble-rviz_common-11.2.5-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rviz-release/archive/release/humble/rviz_common/11.2.7-1.tar.gz#/ros2-humble-rviz_common-11.2.7-source0.tar.gz
 
-Patch0: ros-rviz_common.system-yaml-cpp.patch
 
 
 # common BRs
@@ -39,7 +38,7 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python-unversioned-command
 
 BuildRequires:  qt5-qtbase-devel
-BuildRequires:  yaml-cpp-devel
+BuildRequires:  qt5-qtsvg-devel
 BuildRequires:  ros2-humble-ament_cmake-devel
 BuildRequires:  ros2-humble-ament_cmake_cppcheck-devel
 BuildRequires:  ros2-humble-ament_cmake_cpplint-devel
@@ -64,10 +63,11 @@ BuildRequires:  ros2-humble-tf2_geometry_msgs-devel
 BuildRequires:  ros2-humble-tf2_ros-devel
 BuildRequires:  ros2-humble-tinyxml2_vendor-devel
 BuildRequires:  ros2-humble-urdf-devel
+BuildRequires:  ros2-humble-yaml_cpp_vendor-devel
 
 Requires:       qt5-qtbase
 Requires:       qt5-qtbase-gui
-Requires:       yaml-cpp-devel
+Requires:       qt5-qtsvg
 Requires:       ros2-humble-geometry_msgs
 Requires:       ros2-humble-message_filters
 Requires:       ros2-humble-pluginlib
@@ -82,9 +82,10 @@ Requires:       ros2-humble-tf2_geometry_msgs
 Requires:       ros2-humble-tf2_ros
 Requires:       ros2-humble-tinyxml2_vendor
 Requires:       ros2-humble-urdf
+Requires:       ros2-humble-yaml_cpp_vendor
 
-Provides:  ros2-humble-rviz_common = 11.2.5-1
-Obsoletes: ros2-humble-rviz_common < 11.2.5-1
+Provides:  ros2-humble-rviz_common = 11.2.7-1
+Obsoletes: ros2-humble-rviz_common < 11.2.7-1
 
 
 
@@ -96,7 +97,7 @@ Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       qt5-qtbase-devel
 Requires:       ros2-humble-ament_cmake-devel
-Requires:       yaml-cpp-devel
+Requires:       qt5-qtsvg-devel
 Requires:       ros2-humble-ament_cmake_cppcheck-devel
 Requires:       ros2-humble-ament_cmake_cpplint-devel
 Requires:       ros2-humble-ament_cmake_gmock-devel
@@ -120,9 +121,10 @@ Requires:       ros2-humble-tf2_geometry_msgs-devel
 Requires:       ros2-humble-tf2_ros-devel
 Requires:       ros2-humble-tinyxml2_vendor-devel
 Requires:       ros2-humble-urdf-devel
+Requires:       ros2-humble-yaml_cpp_vendor-devel
 
-Provides: ros2-humble-rviz_common-devel = 11.2.5-1
-Obsoletes: ros2-humble-rviz_common-devel < 11.2.5-1
+Provides: ros2-humble-rviz_common-devel = 11.2.7-1
+Obsoletes: ros2-humble-rviz_common-devel < 11.2.7-1
 
 
 %description devel
@@ -135,7 +137,6 @@ applications that use %{name}.
 
 %setup -c -T
 tar --strip-components=1 -xf %{SOURCE0}
-%patch0 -p1
 
 %build
 # nothing to do here
@@ -179,6 +180,10 @@ colcon \
 find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
 
 rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
+
+# remove __pycache__
+find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
+find . -name '*.pyc' -delete
 
 touch files.list
 find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
@@ -228,5 +233,9 @@ done
 
 
 %changelog
+* Tue Aug 08 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.7-1
+- update to latest upstream
+* Thu Jul 20 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.6-1
+- update to latest release
 * Mon Mar 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.5-1
 - Initial humble build

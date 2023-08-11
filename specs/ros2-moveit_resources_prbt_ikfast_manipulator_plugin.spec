@@ -6,7 +6,7 @@ Summary:        ROS package moveit_resources_prbt_ikfast_manipulator_plugin
 License:        Apache 2.0
 URL:            http://moveit.ros.org
 
-Source0:        https://github.com/moveit/moveit2-release/archive/release/humble/moveit_resources_prbt_ikfast_manipulator_plugin/2.5.4-1.tar.gz#/ros2-humble-moveit_resources_prbt_ikfast_manipulator_plugin-2.5.4-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/moveit2-release/archive/release/humble/moveit_resources_prbt_ikfast_manipulator_plugin/2.5.4-1.tar.gz#/ros2-humble-moveit_resources_prbt_ikfast_manipulator_plugin-2.5.4-source0.tar.gz
 
 
 
@@ -19,7 +19,6 @@ BuildRequires: make
 BuildRequires: patch
 BuildRequires: python3-devel
 BuildRequires: python-unversioned-command
-BuildRequires: ros2-ament_package
 BuildRequires: python3-colcon-common-extensions
 BuildRequires: python3-pip
 BuildRequires: python3-pydocstyle
@@ -121,7 +120,6 @@ colcon \
   -DCMAKE_CXX_FLAGS="$CXXFLAGS" \
   -DCMAKE_C_FLAGS="$CFLAGS" \
   -DCMAKE_LD_FLAGS="$LDFLAGS" \
-  -DCMAKE_SKIP_INSTALL_RPATH=ON \
   -DBUILD_TESTING=OFF \
   --base-paths . \
   --install-base %{buildroot}/%{_libdir}/ros2/ \
@@ -133,6 +131,10 @@ colcon \
 find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
 
 rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
+
+# remove __pycache__
+find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
+find . -name '*.pyc' -delete
 
 touch files.list
 find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
@@ -152,7 +154,7 @@ find . -maxdepth 1 -type f -iname "*license*" | sed "s:^:%%license :" >> files.l
 
 
 find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --remove-rpath  {} \;
-find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --add-rpath "%{_libdir}/ros2/lib" {} \;
+# find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --force-rpath --add-rpath "%{_libdir}/ros2/lib" {} \;
 
 # replace cmake python macro in shebang
 for file in $(grep -rIl '^#!.*@PYTHON_EXECUTABLE@.*$' %{buildroot}) ; do

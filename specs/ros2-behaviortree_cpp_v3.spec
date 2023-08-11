@@ -1,12 +1,12 @@
 Name:           ros2-behaviortree_cpp_v3
-Version:        humble.3.8.3
+Version:        humble.3.8.4
 Release:        1%{?dist}
 Summary:        ROS package behaviortree_cpp_v3
 
 License:        MIT
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/BehaviorTree/behaviortree_cpp_v3-release/archive/release/humble/behaviortree_cpp_v3/3.8.3-2.tar.gz#/ros2-humble-behaviortree_cpp_v3-3.8.3-source0.tar.gz
+Source0:        https://github.com/BehaviorTree/behaviortree_cpp_v3-release/archive/release/humble/behaviortree_cpp_v3/3.8.4-1.tar.gz#/ros2-humble-behaviortree_cpp_v3-3.8.4-source0.tar.gz
 
 
 
@@ -50,8 +50,8 @@ BuildRequires:  ros2-humble-ros_environment-devel
 Requires:       ros2-humble-ament_index_cpp
 Requires:       ros2-humble-rclcpp
 
-Provides:  ros2-humble-behaviortree_cpp_v3 = 3.8.3-1
-Obsoletes: ros2-humble-behaviortree_cpp_v3 < 3.8.3-1
+Provides:  ros2-humble-behaviortree_cpp_v3 = 3.8.4-1
+Obsoletes: ros2-humble-behaviortree_cpp_v3 < 3.8.4-1
 
 
 
@@ -71,8 +71,8 @@ Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-rclcpp-devel
 Requires:       ros2-humble-ros_environment-devel
 
-Provides: ros2-humble-behaviortree_cpp_v3-devel = 3.8.3-1
-Obsoletes: ros2-humble-behaviortree_cpp_v3-devel < 3.8.3-1
+Provides: ros2-humble-behaviortree_cpp_v3-devel = 3.8.4-1
+Obsoletes: ros2-humble-behaviortree_cpp_v3-devel < 3.8.4-1
 
 
 %description devel
@@ -129,6 +129,10 @@ find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \
 
 rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
 
+# remove __pycache__
+find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
+find . -name '*.pyc' -delete
+
 touch files.list
 find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
@@ -177,5 +181,7 @@ done
 
 
 %changelog
+* Fri Jun 30 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.8.4-1
+- update to latest upstream release
 * Mon Apr 10 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.8.3-1
 - update to latest upsteam

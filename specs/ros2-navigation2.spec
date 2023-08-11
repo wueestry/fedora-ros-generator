@@ -1,12 +1,12 @@
 Name:           ros2-navigation2
-Version:        humble.1.1.6
+Version:        humble.1.1.9
 Release:        1%{?dist}
 Summary:        ROS package navigation2
 
 License:        Apache-2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/SteveMacenski/navigation2-release/archive/release/humble/navigation2/1.1.6-1.tar.gz#/ros2-humble-navigation2-1.1.6-source0.tar.gz
+Source0:        https://github.com/SteveMacenski/navigation2-release/archive/release/humble/navigation2/1.1.9-1.tar.gz#/ros2-humble-navigation2-1.1.9-source0.tar.gz
 
 
 BuildArch: noarch
@@ -53,6 +53,7 @@ Requires:       ros2-humble-nav2_costmap_2d
 Requires:       ros2-humble-nav2_dwb_controller
 Requires:       ros2-humble-nav2_lifecycle_manager
 Requires:       ros2-humble-nav2_map_server
+Requires:       ros2-humble-nav2_mppi_controller
 Requires:       ros2-humble-nav2_msgs
 Requires:       ros2-humble-nav2_navfn_planner
 Requires:       ros2-humble-nav2_planner
@@ -68,8 +69,8 @@ Requires:       ros2-humble-nav2_velocity_smoother
 Requires:       ros2-humble-nav2_voxel_grid
 Requires:       ros2-humble-nav2_waypoint_follower
 
-Provides:  ros2-humble-navigation2 = 1.1.6-1
-Obsoletes: ros2-humble-navigation2 < 1.1.6-1
+Provides:  ros2-humble-navigation2 = 1.1.9-1
+Obsoletes: ros2-humble-navigation2 < 1.1.9-1
 
 
 
@@ -93,6 +94,7 @@ Requires:       ros2-humble-nav2_costmap_2d-devel
 Requires:       ros2-humble-nav2_dwb_controller-devel
 Requires:       ros2-humble-nav2_lifecycle_manager-devel
 Requires:       ros2-humble-nav2_map_server-devel
+Requires:       ros2-humble-nav2_mppi_controller-devel
 Requires:       ros2-humble-nav2_msgs-devel
 Requires:       ros2-humble-nav2_navfn_planner-devel
 Requires:       ros2-humble-nav2_planner-devel
@@ -108,8 +110,8 @@ Requires:       ros2-humble-nav2_velocity_smoother-devel
 Requires:       ros2-humble-nav2_voxel_grid-devel
 Requires:       ros2-humble-nav2_waypoint_follower-devel
 
-Provides: ros2-humble-navigation2-devel = 1.1.6-1
-Obsoletes: ros2-humble-navigation2-devel < 1.1.6-1
+Provides: ros2-humble-navigation2-devel = 1.1.9-1
+Obsoletes: ros2-humble-navigation2-devel < 1.1.9-1
 
 
 %description devel
@@ -166,6 +168,10 @@ find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \
 
 rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
 
+# remove __pycache__
+find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
+find . -name '*.pyc' -delete
+
 touch files.list
 find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
@@ -214,5 +220,9 @@ done
 
 
 %changelog
+* Wed Aug 09 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.9-1
+- update to latest upstream
+* Fri Jun 30 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.8-1
+- update to latest upstream release
 * Mon Apr 10 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.6-1
 - update to latest upsteam

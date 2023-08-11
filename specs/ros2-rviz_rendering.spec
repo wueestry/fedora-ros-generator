@@ -1,12 +1,12 @@
 Name:           ros2-rviz_rendering
-Version:        humble.11.2.5
+Version:        humble.11.2.7
 Release:        1%{?dist}
 Summary:        ROS package rviz_rendering
 
 License:        BSD
 URL:            https://github.com/ros2/rviz/blob/ros2/README.md
 
-Source0:        https://github.com/ros2-gbp/rviz-release/archive/release/humble/rviz_rendering/11.2.5-1.tar.gz#/ros2-humble-rviz_rendering-11.2.5-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rviz-release/archive/release/humble/rviz_rendering/11.2.7-1.tar.gz#/ros2-humble-rviz_rendering-11.2.7-source0.tar.gz
 
 Patch0: ros-rviz_rendering.remove-assimp-vendor.patch
 
@@ -63,8 +63,8 @@ Requires:       ros2-humble-ament_index_cpp
 Requires:       ros2-humble-resource_retriever
 Requires:       ros2-humble-rviz_ogre_vendor
 
-Provides:  ros2-humble-rviz_rendering = 11.2.5-1
-Obsoletes: ros2-humble-rviz_rendering < 11.2.5-1
+Provides:  ros2-humble-rviz_rendering = 11.2.7-1
+Obsoletes: ros2-humble-rviz_rendering < 11.2.7-1
 
 
 
@@ -92,8 +92,8 @@ Requires:       ros2-humble-ament_lint_auto-devel
 Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-resource_retriever-devel
 
-Provides: ros2-humble-rviz_rendering-devel = 11.2.5-1
-Obsoletes: ros2-humble-rviz_rendering-devel < 11.2.5-1
+Provides: ros2-humble-rviz_rendering-devel = 11.2.7-1
+Obsoletes: ros2-humble-rviz_rendering-devel < 11.2.7-1
 
 
 %description devel
@@ -106,7 +106,7 @@ applications that use %{name}.
 
 %setup -c -T
 tar --strip-components=1 -xf %{SOURCE0}
-%patch0 -p1
+%patch 0 -p1
 
 %build
 # nothing to do here
@@ -150,6 +150,10 @@ colcon \
 find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
 
 rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
+
+# remove __pycache__
+find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
+find . -name '*.pyc' -delete
 
 touch files.list
 find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
@@ -199,5 +203,9 @@ done
 
 
 %changelog
+* Tue Aug 08 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.7-1
+- update to latest upstream
+* Thu Jul 20 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.6-1
+- update to latest release
 * Mon Mar 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.5-1
 - Initial humble build

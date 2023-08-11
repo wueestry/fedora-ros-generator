@@ -1,12 +1,12 @@
 Name:           ros2-nav2_theta_star_planner
-Version:        humble.1.1.6
+Version:        humble.1.1.9
 Release:        1%{?dist}
 Summary:        ROS package nav2_theta_star_planner
 
 License:        Apache-2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/SteveMacenski/navigation2-release/archive/release/humble/nav2_theta_star_planner/1.1.6-1.tar.gz#/ros2-humble-nav2_theta_star_planner-1.1.6-source0.tar.gz
+Source0:        https://github.com/SteveMacenski/navigation2-release/archive/release/humble/nav2_theta_star_planner/1.1.9-1.tar.gz#/ros2-humble-nav2_theta_star_planner-1.1.9-source0.tar.gz
 
 
 
@@ -66,8 +66,8 @@ Requires:       ros2-humble-rclcpp_action
 Requires:       ros2-humble-rclcpp_lifecycle
 Requires:       ros2-humble-tf2_ros
 
-Provides:  ros2-humble-nav2_theta_star_planner = 1.1.6-1
-Obsoletes: ros2-humble-nav2_theta_star_planner < 1.1.6-1
+Provides:  ros2-humble-nav2_theta_star_planner = 1.1.9-1
+Obsoletes: ros2-humble-nav2_theta_star_planner < 1.1.9-1
 
 
 
@@ -94,8 +94,8 @@ Requires:       ros2-humble-rclcpp_action-devel
 Requires:       ros2-humble-rclcpp_lifecycle-devel
 Requires:       ros2-humble-tf2_ros-devel
 
-Provides: ros2-humble-nav2_theta_star_planner-devel = 1.1.6-1
-Obsoletes: ros2-humble-nav2_theta_star_planner-devel < 1.1.6-1
+Provides: ros2-humble-nav2_theta_star_planner-devel = 1.1.9-1
+Obsoletes: ros2-humble-nav2_theta_star_planner-devel < 1.1.9-1
 
 
 %description devel
@@ -152,6 +152,10 @@ find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \
 
 rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
 
+# remove __pycache__
+find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
+find . -name '*.pyc' -delete
+
 touch files.list
 find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
@@ -200,5 +204,9 @@ done
 
 
 %changelog
+* Wed Aug 09 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.9-1
+- update to latest upstream
+* Fri Jun 30 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.8-1
+- update to latest upstream release
 * Mon Apr 10 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.6-1
 - update to latest upsteam

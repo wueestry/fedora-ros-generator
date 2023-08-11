@@ -1,12 +1,12 @@
 Name:           ros2-rviz_ogre_vendor
-Version:        humble.11.2.5
+Version:        humble.11.2.7
 Release:        1%{?dist}
 Summary:        ROS package rviz_ogre_vendor
 
 License:        Apache License 2.0
 URL:            https://www.ogre3d.org/
 
-Source0:        https://github.com/ros2-gbp/rviz-release/archive/release/humble/rviz_ogre_vendor/11.2.5-1.tar.gz#/ros2-humble-rviz_ogre_vendor-11.2.5-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rviz-release/archive/release/humble/rviz_ogre_vendor/11.2.7-1.tar.gz#/ros2-humble-rviz_ogre_vendor-11.2.7-source0.tar.gz
 
 
 
@@ -50,8 +50,8 @@ BuildRequires:  ros2-humble-ament_lint_auto-devel
 BuildRequires:  ros2-humble-ament_package-devel
 
 
-Provides:  ros2-humble-rviz_ogre_vendor = 11.2.5-1
-Obsoletes: ros2-humble-rviz_ogre_vendor < 11.2.5-1
+Provides:  ros2-humble-rviz_ogre_vendor = 11.2.7-1
+Obsoletes: ros2-humble-rviz_ogre_vendor < 11.2.7-1
 
 
 
@@ -74,8 +74,8 @@ Requires:       ros2-humble-ament_cmake_xmllint-devel
 Requires:       ros2-humble-ament_lint_auto-devel
 Requires:       ros2-humble-ament_package-devel
 
-Provides: ros2-humble-rviz_ogre_vendor-devel = 11.2.5-1
-Obsoletes: ros2-humble-rviz_ogre_vendor-devel < 11.2.5-1
+Provides: ros2-humble-rviz_ogre_vendor-devel = 11.2.7-1
+Obsoletes: ros2-humble-rviz_ogre_vendor-devel < 11.2.7-1
 
 
 %description devel
@@ -180,5 +180,9 @@ done
 
 
 %changelog
+* Tue Aug 08 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.7-1
+- update to latest upstream
+* Thu Jul 20 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.6-1
+- update to latest release
 * Mon Mar 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.5-1
 - Initial humble build

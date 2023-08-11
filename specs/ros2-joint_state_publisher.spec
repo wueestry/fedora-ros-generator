@@ -1,12 +1,12 @@
 Name:           ros2-joint_state_publisher
-Version:        noetic.1.15.1
+Version:        humble.2.4.0
 Release:        1%{?dist}
 Summary:        ROS package joint_state_publisher
 
 License:        BSD
 URL:            http://www.ros.org/wiki/joint_state_publisher
 
-Source0:        https://github.com/ros-gbp/joint_state_publisher-release/archive/release/noetic/joint_state_publisher/1.15.1-1.tar.gz#/ros2-noetic-joint_state_publisher-1.15.1-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/joint_state_publisher-release/archive/release/humble/joint_state_publisher/2.4.0-1.tar.gz#/ros2-humble-joint_state_publisher-2.4.0-source0.tar.gz
 
 
 BuildArch: noarch
@@ -20,7 +20,6 @@ BuildRequires: make
 BuildRequires: patch
 BuildRequires: python3-devel
 BuildRequires: python-unversioned-command
-BuildRequires: ros2-ament_package
 BuildRequires: python3-colcon-common-extensions
 BuildRequires: python3-pip
 BuildRequires: python3-pydocstyle
@@ -39,15 +38,20 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python3-colcon-common-extensions
 # BuildRequires:  python-unversioned-command
 
-BuildRequires:  ros2-noetic-ament_package-devel
-BuildRequires:  ros2-noetic-catkin-devel
-BuildRequires:  ros2-noetic-rostest-devel
+BuildRequires:  python3-pytest
+BuildRequires:  ros2-humble-ament_copyright-devel
+BuildRequires:  ros2-humble-ament_package-devel
+BuildRequires:  ros2-humble-ament_xmllint-devel
+BuildRequires:  ros2-humble-launch_testing-devel
+BuildRequires:  ros2-humble-launch_testing_ros-devel
+BuildRequires:  ros2-humble-ros2topic-devel
 
-Requires:       ros2-noetic-rospy
-Requires:       ros2-noetic-sensor_msgs
+Requires:       ros2-humble-rclpy
+Requires:       ros2-humble-sensor_msgs
+Requires:       ros2-humble-std_msgs
 
-Provides:  ros2-noetic-joint_state_publisher = 1.15.1-1
-Obsoletes: ros2-noetic-joint_state_publisher < 1.15.1-1
+Provides:  ros2-humble-joint_state_publisher = 2.4.0-1
+Obsoletes: ros2-humble-joint_state_publisher < 2.4.0-1
 
 
 
@@ -58,14 +62,19 @@ values for a given URDF.
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
-Requires:       ros2-noetic-catkin-devel
-Requires:       ros2-noetic-ament_package-devel
-Requires:       ros2-noetic-rostest-devel
-Requires:       ros2-noetic-rospy-devel
-Requires:       ros2-noetic-sensor_msgs-devel
+Requires:       python3-pytest
+Requires:       ros2-humble-ament_copyright-devel
+Requires:       ros2-humble-ament_package-devel
+Requires:       ros2-humble-ament_xmllint-devel
+Requires:       ros2-humble-launch_testing-devel
+Requires:       ros2-humble-launch_testing_ros-devel
+Requires:       ros2-humble-ros2topic-devel
+Requires:       ros2-humble-rclpy-devel
+Requires:       ros2-humble-sensor_msgs-devel
+Requires:       ros2-humble-std_msgs-devel
 
-Provides: ros2-noetic-joint_state_publisher-devel = 1.15.1-1
-Obsoletes: ros2-noetic-joint_state_publisher-devel < 1.15.1-1
+Provides: ros2-humble-joint_state_publisher-devel = 2.4.0-1
+Obsoletes: ros2-humble-joint_state_publisher-devel < 2.4.0-1
 
 
 %description devel
@@ -110,7 +119,6 @@ colcon \
   -DCMAKE_CXX_FLAGS="$CXXFLAGS" \
   -DCMAKE_C_FLAGS="$CFLAGS" \
   -DCMAKE_LD_FLAGS="$LDFLAGS" \
-  -DCMAKE_SKIP_INSTALL_RPATH=ON \
   -DBUILD_TESTING=OFF \
   --base-paths . \
   --install-base %{buildroot}/%{_libdir}/ros2/ \
@@ -122,6 +130,10 @@ colcon \
 find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
 
 rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
+
+# remove __pycache__
+find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
+find . -name '*.pyc' -delete
 
 touch files.list
 find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
@@ -141,7 +153,7 @@ find . -maxdepth 1 -type f -iname "*license*" | sed "s:^:%%license :" >> files.l
 
 
 find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --remove-rpath  {} \;
-find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --add-rpath "%{_libdir}/ros2/lib" {} \;
+# find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --force-rpath --add-rpath "%{_libdir}/ros2/lib" {} \;
 
 # replace cmake python macro in shebang
 for file in $(grep -rIl '^#!.*@PYTHON_EXECUTABLE@.*$' %{buildroot}) ; do
@@ -171,6 +183,8 @@ done
 
 
 %changelog
+* Fri Aug 11 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.4.0-1
+- update to latest upstream
 * Mon Mar 20 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - noetic.1.15.1-1
 - update to latest release
 * Thu Mar 09 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.3.0-1

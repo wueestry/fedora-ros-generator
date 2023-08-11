@@ -1,13 +1,14 @@
 Name:           ros2-rcpputils
-Version:        humble.2.4.0
+Version:        humble.2.4.1
 Release:        1%{?dist}
 Summary:        ROS package rcpputils
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rcpputils-release/archive/release/humble/rcpputils/2.4.0-2.tar.gz#/ros2-humble-rcpputils-2.4.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rcpputils-release/archive/release/humble/rcpputils/2.4.1-1.tar.gz#/ros2-humble-rcpputils-2.4.1-source0.tar.gz
 
+Patch0: ros2-rcpputils.include-stdint.patch
 
 
 # common BRs
@@ -47,8 +48,8 @@ BuildRequires:  ros2-humble-rcutils-devel
 
 Requires:       ros2-humble-rcutils
 
-Provides:  ros2-humble-rcpputils = 2.4.0-1
-Obsoletes: ros2-humble-rcpputils < 2.4.0-1
+Provides:  ros2-humble-rcpputils = 2.4.1-1
+Obsoletes: ros2-humble-rcpputils < 2.4.1-1
 
 
 
@@ -66,8 +67,8 @@ Requires:       ros2-humble-ament_lint_common-devel
 Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-rcutils-devel
 
-Provides: ros2-humble-rcpputils-devel = 2.4.0-1
-Obsoletes: ros2-humble-rcpputils-devel < 2.4.0-1
+Provides: ros2-humble-rcpputils-devel = 2.4.1-1
+Obsoletes: ros2-humble-rcpputils-devel < 2.4.1-1
 
 
 %description devel
@@ -80,6 +81,7 @@ applications that use %{name}.
 
 %setup -c -T
 tar --strip-components=1 -xf %{SOURCE0}
+%patch 0 -p1
 
 %build
 # nothing to do here
@@ -123,6 +125,10 @@ colcon \
 find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
 
 rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
+
+# remove __pycache__
+find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
+find . -name '*.pyc' -delete
 
 touch files.list
 find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
@@ -172,5 +178,7 @@ done
 
 
 %changelog
+* Mon Jun 19 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.4.1-1
+- update to latest release
 * Mon Mar 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.4.0-1
 - Initial humble build

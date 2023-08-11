@@ -1,12 +1,12 @@
 Name:           ros2-ament_xmllint
-Version:        humble.0.12.5
+Version:        humble.0.12.7
 Release:        1%{?dist}
 Summary:        ROS package ament_xmllint
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ament_lint-release/archive/release/humble/ament_xmllint/0.12.5-1.tar.gz#/ros2-humble-ament_xmllint-0.12.5-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ament_lint-release/archive/release/humble/ament_xmllint/0.12.7-2.tar.gz#/ros2-humble-ament_xmllint-0.12.7-source0.tar.gz
 
 
 BuildArch: noarch
@@ -47,8 +47,8 @@ BuildRequires:  ros2-humble-ament_pep257-devel
 Requires:       libxml2
 Requires:       ros2-humble-ament_lint
 
-Provides:  ros2-humble-ament_xmllint = 0.12.5-1
-Obsoletes: ros2-humble-ament_xmllint < 0.12.5-1
+Provides:  ros2-humble-ament_xmllint = 0.12.7-1
+Obsoletes: ros2-humble-ament_xmllint < 0.12.7-1
 
 
 
@@ -66,8 +66,8 @@ Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-ament_pep257-devel
 Requires:       ros2-humble-ament_lint-devel
 
-Provides: ros2-humble-ament_xmllint-devel = 0.12.5-1
-Obsoletes: ros2-humble-ament_xmllint-devel < 0.12.5-1
+Provides: ros2-humble-ament_xmllint-devel = 0.12.7-1
+Obsoletes: ros2-humble-ament_xmllint-devel < 0.12.7-1
 
 
 %description devel
@@ -124,6 +124,10 @@ find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \
 
 rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
 
+# remove __pycache__
+find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
+find . -name '*.pyc' -delete
+
 touch files.list
 find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
@@ -172,5 +176,9 @@ done
 
 
 %changelog
+* Thu Jul 20 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.12.7-1
+- update to latest release
+* Mon Jun 19 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.12.6-1
+- update to latest release
 * Mon Mar 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.12.5-1
 - Initial humble build

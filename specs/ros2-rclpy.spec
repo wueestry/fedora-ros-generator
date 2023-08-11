@@ -1,12 +1,12 @@
 Name:           ros2-rclpy
-Version:        humble.3.3.7
+Version:        humble.3.3.9
 Release:        1%{?dist}
 Summary:        ROS package rclpy
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rclpy-release/archive/release/humble/rclpy/3.3.7-1.tar.gz#/ros2-humble-rclpy-3.3.7-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rclpy-release/archive/release/humble/rclpy/3.3.9-1.tar.gz#/ros2-humble-rclpy-3.3.9-source0.tar.gz
 
 
 
@@ -76,8 +76,8 @@ Requires:       ros2-humble-rosidl_runtime_c
 Requires:       ros2-humble-rpyutils
 Requires:       ros2-humble-unique_identifier_msgs
 
-Provides:  ros2-humble-rclpy = 3.3.7-1
-Obsoletes: ros2-humble-rclpy < 3.3.7-1
+Provides:  ros2-humble-rclpy = 3.3.9-1
+Obsoletes: ros2-humble-rclpy < 3.3.9-1
 
 
 
@@ -116,8 +116,8 @@ Requires:       ros2-humble-rcl_interfaces-devel
 Requires:       ros2-humble-rosgraph_msgs-devel
 Requires:       ros2-humble-rpyutils-devel
 
-Provides: ros2-humble-rclpy-devel = 3.3.7-1
-Obsoletes: ros2-humble-rclpy-devel < 3.3.7-1
+Provides: ros2-humble-rclpy-devel = 3.3.9-1
+Obsoletes: ros2-humble-rclpy-devel < 3.3.9-1
 
 
 %description devel
@@ -174,6 +174,10 @@ find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \
 
 rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
 
+# remove __pycache__
+find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
+find . -name '*.pyc' -delete
+
 touch files.list
 find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
@@ -222,5 +226,9 @@ done
 
 
 %changelog
+* Thu Jul 20 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.3.9-1
+- update to latest release
+* Mon Jun 19 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.3.8-1
+- update to latest release
 * Mon Mar 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.3.7-1
 - Initial humble build

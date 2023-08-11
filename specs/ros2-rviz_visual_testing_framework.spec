@@ -1,12 +1,12 @@
 Name:           ros2-rviz_visual_testing_framework
-Version:        humble.11.2.5
+Version:        humble.11.2.7
 Release:        1%{?dist}
 Summary:        ROS package rviz_visual_testing_framework
 
 License:        BSD
 URL:            http://ros.org/wiki/rviz2
 
-Source0:        https://github.com/ros2-gbp/rviz-release/archive/release/humble/rviz_visual_testing_framework/11.2.5-1.tar.gz#/ros2-humble-rviz_visual_testing_framework-11.2.5-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rviz-release/archive/release/humble/rviz_visual_testing_framework/11.2.7-1.tar.gz#/ros2-humble-rviz_visual_testing_framework-11.2.7-source0.tar.gz
 
 
 BuildArch: noarch
@@ -56,8 +56,8 @@ Requires:       ros2-humble-ament_cmake_gtest
 Requires:       ros2-humble-rcutils
 Requires:       ros2-humble-rviz_common
 
-Provides:  ros2-humble-rviz_visual_testing_framework = 11.2.5-1
-Obsoletes: ros2-humble-rviz_visual_testing_framework < 11.2.5-1
+Provides:  ros2-humble-rviz_visual_testing_framework = 11.2.7-1
+Obsoletes: ros2-humble-rviz_visual_testing_framework < 11.2.7-1
 
 
 
@@ -81,8 +81,8 @@ Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-rcutils-devel
 Requires:       ros2-humble-rviz_common-devel
 
-Provides: ros2-humble-rviz_visual_testing_framework-devel = 11.2.5-1
-Obsoletes: ros2-humble-rviz_visual_testing_framework-devel < 11.2.5-1
+Provides: ros2-humble-rviz_visual_testing_framework-devel = 11.2.7-1
+Obsoletes: ros2-humble-rviz_visual_testing_framework-devel < 11.2.7-1
 
 
 %description devel
@@ -139,6 +139,10 @@ find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \
 
 rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
 
+# remove __pycache__
+find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
+find . -name '*.pyc' -delete
+
 touch files.list
 find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
@@ -187,5 +191,9 @@ done
 
 
 %changelog
+* Tue Aug 08 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.7-1
+- update to latest upstream
+* Thu Jul 20 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.6-1
+- update to latest release
 * Mon Mar 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.5-1
 - Initial humble build

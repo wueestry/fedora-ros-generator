@@ -1,12 +1,12 @@
 Name:           ros2-rqt_gui
-Version:        humble.1.1.4
+Version:        humble.1.1.5
 Release:        1%{?dist}
 Summary:        ROS package rqt_gui
 
 License:        BSD
 URL:            http://ros.org/wiki/rqt_gui
 
-Source0:        https://github.com/ros2-gbp/rqt-release/archive/release/humble/rqt_gui/1.1.4-1.tar.gz#/ros2-humble-rqt_gui-1.1.4-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rqt-release/archive/release/humble/rqt_gui/1.1.5-2.tar.gz#/ros2-humble-rqt_gui-1.1.5-source0.tar.gz
 
 
 BuildArch: noarch
@@ -49,8 +49,8 @@ Requires:       ros2-humble-python_qt_binding
 Requires:       ros2-humble-qt_gui
 Requires:       ros2-humble-rclpy
 
-Provides:  ros2-humble-rqt_gui = 1.1.4-1
-Obsoletes: ros2-humble-rqt_gui < 1.1.4-1
+Provides:  ros2-humble-rqt_gui = 1.1.5-1
+Obsoletes: ros2-humble-rqt_gui < 1.1.5-1
 
 
 
@@ -69,8 +69,8 @@ Requires:       ros2-humble-ament_index_python-devel
 Requires:       ros2-humble-python_qt_binding-devel
 Requires:       ros2-humble-rclpy-devel
 
-Provides: ros2-humble-rqt_gui-devel = 1.1.4-1
-Obsoletes: ros2-humble-rqt_gui-devel < 1.1.4-1
+Provides: ros2-humble-rqt_gui-devel = 1.1.5-1
+Obsoletes: ros2-humble-rqt_gui-devel < 1.1.5-1
 
 
 %description devel
@@ -127,6 +127,10 @@ find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \
 
 rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
 
+# remove __pycache__
+find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
+find . -name '*.pyc' -delete
+
 touch files.list
 find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
@@ -175,6 +179,8 @@ done
 
 
 %changelog
+* Thu Jun 29 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.5-1
+- update to latest upstream release
 * Mon Mar 20 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.4-1
 - update to latest release
 * Mon Mar 20 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - noetic.0.5.3-1

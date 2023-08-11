@@ -1,12 +1,12 @@
 Name:           ros2-rqt_tf_tree
-Version:        noetic.0.6.3
+Version:        humble.1.0.4
 Release:        1%{?dist}
 Summary:        ROS package rqt_tf_tree
 
 License:        BSD
 URL:            http://wiki.ros.org/rqt_tf_tree
 
-Source0:        https://github.com/ros-gbp/rqt_tf_tree-release/archive/release/noetic/rqt_tf_tree/0.6.3-1.tar.gz#/ros2-noetic-rqt_tf_tree-0.6.3-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rqt_tf_tree-release/archive/release/humble/rqt_tf_tree/1.0.4-1.tar.gz#/ros2-humble-rqt_tf_tree-1.0.4-source0.tar.gz
 
 
 BuildArch: noarch
@@ -20,7 +20,6 @@ BuildRequires: make
 BuildRequires: patch
 BuildRequires: python3-devel
 BuildRequires: python-unversioned-command
-BuildRequires: ros2-ament_package
 BuildRequires: python3-colcon-common-extensions
 BuildRequires: python3-pip
 BuildRequires: python3-pydocstyle
@@ -40,21 +39,19 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python-unversioned-command
 
 BuildRequires:  python3-mock
-BuildRequires:  ros2-noetic-ament_package-devel
-BuildRequires:  ros2-noetic-catkin-devel
+BuildRequires:  ros2-humble-ament_package-devel
 
-Requires:       python3-rospkg
-Requires:       ros2-noetic-python_qt_binding
-Requires:       ros2-noetic-qt_dotgraph
-Requires:       ros2-noetic-rospy
-Requires:       ros2-noetic-rqt_graph
-Requires:       ros2-noetic-rqt_gui
-Requires:       ros2-noetic-rqt_gui_py
-Requires:       ros2-noetic-tf2_msgs
-Requires:       ros2-noetic-tf2_ros
+Requires:       ros2-humble-python_qt_binding
+Requires:       ros2-humble-qt_dotgraph
+Requires:       ros2-humble-rclpy
+Requires:       ros2-humble-rqt_graph
+Requires:       ros2-humble-rqt_gui
+Requires:       ros2-humble-rqt_gui_py
+Requires:       ros2-humble-tf2_msgs
+Requires:       ros2-humble-tf2_ros
 
-Provides:  ros2-noetic-rqt_tf_tree = 0.6.3-1
-Obsoletes: ros2-noetic-rqt_tf_tree < 0.6.3-1
+Provides:  ros2-humble-rqt_tf_tree = 1.0.4-1
+Obsoletes: ros2-humble-rqt_tf_tree < 1.0.4-1
 
 
 
@@ -65,20 +62,19 @@ tree.
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
-Requires:       ros2-noetic-catkin-devel
 Requires:       python3-mock
-Requires:       ros2-noetic-ament_package-devel
-Requires:       ros2-noetic-python_qt_binding-devel
-Requires:       ros2-noetic-qt_dotgraph-devel
-Requires:       ros2-noetic-rospy-devel
-Requires:       ros2-noetic-rqt_graph-devel
-Requires:       ros2-noetic-rqt_gui-devel
-Requires:       ros2-noetic-rqt_gui_py-devel
-Requires:       ros2-noetic-tf2_msgs-devel
-Requires:       ros2-noetic-tf2_ros-devel
+Requires:       ros2-humble-ament_package-devel
+Requires:       ros2-humble-python_qt_binding-devel
+Requires:       ros2-humble-qt_dotgraph-devel
+Requires:       ros2-humble-rclpy-devel
+Requires:       ros2-humble-rqt_graph-devel
+Requires:       ros2-humble-rqt_gui-devel
+Requires:       ros2-humble-rqt_gui_py-devel
+Requires:       ros2-humble-tf2_msgs-devel
+Requires:       ros2-humble-tf2_ros-devel
 
-Provides: ros2-noetic-rqt_tf_tree-devel = 0.6.3-1
-Obsoletes: ros2-noetic-rqt_tf_tree-devel < 0.6.3-1
+Provides: ros2-humble-rqt_tf_tree-devel = 1.0.4-1
+Obsoletes: ros2-humble-rqt_tf_tree-devel < 1.0.4-1
 
 
 %description devel
@@ -123,7 +119,6 @@ colcon \
   -DCMAKE_CXX_FLAGS="$CXXFLAGS" \
   -DCMAKE_C_FLAGS="$CFLAGS" \
   -DCMAKE_LD_FLAGS="$LDFLAGS" \
-  -DCMAKE_SKIP_INSTALL_RPATH=ON \
   -DBUILD_TESTING=OFF \
   --base-paths . \
   --install-base %{buildroot}/%{_libdir}/ros2/ \
@@ -154,7 +149,7 @@ find . -maxdepth 1 -type f -iname "*license*" | sed "s:^:%%license :" >> files.l
 
 
 find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --remove-rpath  {} \;
-find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --add-rpath "%{_libdir}/ros2/lib" {} \;
+# find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --force-rpath --add-rpath "%{_libdir}/ros2/lib" {} \;
 
 # replace cmake python macro in shebang
 for file in $(grep -rIl '^#!.*@PYTHON_EXECUTABLE@.*$' %{buildroot}) ; do
@@ -184,5 +179,7 @@ done
 
 
 %changelog
+* Wed Jul 05 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.0.4-1
+- update to latest upstream release
 * Mon Mar 20 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - noetic.0.6.3-1
 - update to latest release

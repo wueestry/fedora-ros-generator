@@ -1,12 +1,12 @@
 Name:           ros2-teleop_twist_joy
-Version:        humble.2.4.3
+Version:        humble.2.4.5
 Release:        1%{?dist}
 Summary:        ROS package teleop_twist_joy
 
 License:        BSD
 URL:            http://wiki.ros.org/teleop_twist_joy
 
-Source0:        https://github.com/ros2-gbp/teleop_twist_joy-release/archive/release/humble/teleop_twist_joy/2.4.3-4.tar.gz#/ros2-humble-teleop_twist_joy-2.4.3-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/teleop_twist_joy-release/archive/release/humble/teleop_twist_joy/2.4.5-1.tar.gz#/ros2-humble-teleop_twist_joy-2.4.5-source0.tar.gz
 
 
 
@@ -55,8 +55,8 @@ Requires:       ros2-humble-rclcpp
 Requires:       ros2-humble-rclcpp_components
 Requires:       ros2-humble-sensor_msgs
 
-Provides:  ros2-humble-teleop_twist_joy = 2.4.3-1
-Obsoletes: ros2-humble-teleop_twist_joy < 2.4.3-1
+Provides:  ros2-humble-teleop_twist_joy = 2.4.5-1
+Obsoletes: ros2-humble-teleop_twist_joy < 2.4.5-1
 
 
 
@@ -79,8 +79,8 @@ Requires:       ros2-humble-rclcpp_components-devel
 Requires:       ros2-humble-sensor_msgs-devel
 Requires:       ros2-humble-joy-devel
 
-Provides: ros2-humble-teleop_twist_joy-devel = 2.4.3-1
-Obsoletes: ros2-humble-teleop_twist_joy-devel < 2.4.3-1
+Provides: ros2-humble-teleop_twist_joy-devel = 2.4.5-1
+Obsoletes: ros2-humble-teleop_twist_joy-devel < 2.4.5-1
 
 
 %description devel
@@ -137,6 +137,10 @@ find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \
 
 rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
 
+# remove __pycache__
+find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
+find . -name '*.pyc' -delete
+
 touch files.list
 find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
@@ -185,5 +189,7 @@ done
 
 
 %changelog
+* Thu Jun 29 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.4.5-1
+- update to latest upstream release
 * Mon Mar 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.4.3-1
 - Initial humble build

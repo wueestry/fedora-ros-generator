@@ -1,14 +1,13 @@
 Name:           ros2-slam_toolbox
-Version:        humble.2.6.4
+Version:        humble.2.6.5
 Release:        1%{?dist}
 Summary:        ROS package slam_toolbox
 
 License:        LGPL
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/SteveMacenski/slam_toolbox-release/archive/release/humble/slam_toolbox/2.6.4-1.tar.gz#/ros2-humble-slam_toolbox-2.6.4-source0.tar.gz
+Source0:        https://github.com/SteveMacenski/slam_toolbox-release/archive/release/humble/slam_toolbox/2.6.5-1.tar.gz#/ros2-humble-slam_toolbox-2.6.5-source0.tar.gz
 
-Patch0: ros-slam_toolbox.include-mutex.patch
 
 
 # common BRs
@@ -98,8 +97,8 @@ Requires:       ros2-humble-tf2_ros
 Requires:       ros2-humble-tf2_sensor_msgs
 Requires:       ros2-humble-visualization_msgs
 
-Provides:  ros2-humble-slam_toolbox = 2.6.4-1
-Obsoletes: ros2-humble-slam_toolbox < 2.6.4-1
+Provides:  ros2-humble-slam_toolbox = 2.6.5-1
+Obsoletes: ros2-humble-slam_toolbox < 2.6.5-1
 
 
 
@@ -148,8 +147,8 @@ Requires:       ros2-humble-tf2_sensor_msgs-devel
 Requires:       ros2-humble-visualization_msgs-devel
 Requires:       ros2-humble-nav2_map_server-devel
 
-Provides: ros2-humble-slam_toolbox-devel = 2.6.4-1
-Obsoletes: ros2-humble-slam_toolbox-devel < 2.6.4-1
+Provides: ros2-humble-slam_toolbox-devel = 2.6.5-1
+Obsoletes: ros2-humble-slam_toolbox-devel < 2.6.5-1
 
 
 %description devel
@@ -162,7 +161,6 @@ applications that use %{name}.
 
 %setup -c -T
 tar --strip-components=1 -xf %{SOURCE0}
-%patch0 -p1
 
 %build
 # nothing to do here
@@ -206,6 +204,10 @@ colcon \
 find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
 
 rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
+
+# remove __pycache__
+find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
+find . -name '*.pyc' -delete
 
 touch files.list
 find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
@@ -255,5 +257,7 @@ done
 
 
 %changelog
+* Thu Aug 10 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.6.5-1
+- update to latest upstream
 * Sat Apr 15 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.6.4-1
 - update to latest release

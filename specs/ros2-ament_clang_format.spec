@@ -1,12 +1,12 @@
 Name:           ros2-ament_clang_format
-Version:        humble.0.12.5
+Version:        humble.0.12.7
 Release:        1%{?dist}
 Summary:        ROS package ament_clang_format
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ament_lint-release/archive/release/humble/ament_clang_format/0.12.5-1.tar.gz#/ros2-humble-ament_clang_format-0.12.5-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ament_lint-release/archive/release/humble/ament_clang_format/0.12.7-2.tar.gz#/ros2-humble-ament_clang_format-0.12.7-source0.tar.gz
 
 
 BuildArch: noarch
@@ -20,7 +20,6 @@ BuildRequires: make
 BuildRequires: patch
 BuildRequires: python3-devel
 BuildRequires: python-unversioned-command
-BuildRequires: ros2-ament_package
 BuildRequires: python3-colcon-common-extensions
 BuildRequires: python3-pip
 BuildRequires: python3-pydocstyle
@@ -48,8 +47,8 @@ BuildRequires:  ros2-humble-ament_pep257-devel
 Requires:       clang
 Requires:       python3-pyyaml
 
-Provides:  ros2-humble-ament_clang_format = 0.12.5-1
-Obsoletes: ros2-humble-ament_clang_format < 0.12.5-1
+Provides:  ros2-humble-ament_clang_format = 0.12.7-1
+Obsoletes: ros2-humble-ament_clang_format < 0.12.7-1
 
 
 
@@ -66,8 +65,8 @@ Requires:       ros2-humble-ament_flake8-devel
 Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-ament_pep257-devel
 
-Provides: ros2-humble-ament_clang_format-devel = 0.12.5-1
-Obsoletes: ros2-humble-ament_clang_format-devel < 0.12.5-1
+Provides: ros2-humble-ament_clang_format-devel = 0.12.7-1
+Obsoletes: ros2-humble-ament_clang_format-devel < 0.12.7-1
 
 
 %description devel
@@ -112,7 +111,6 @@ colcon \
   -DCMAKE_CXX_FLAGS="$CXXFLAGS" \
   -DCMAKE_C_FLAGS="$CFLAGS" \
   -DCMAKE_LD_FLAGS="$LDFLAGS" \
-  -DCMAKE_SKIP_INSTALL_RPATH=ON \
   -DBUILD_TESTING=OFF \
   --base-paths . \
   --install-base %{buildroot}/%{_libdir}/ros2/ \
@@ -124,6 +122,10 @@ colcon \
 find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
 
 rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
+
+# remove __pycache__
+find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
+find . -name '*.pyc' -delete
 
 touch files.list
 find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
@@ -143,7 +145,7 @@ find . -maxdepth 1 -type f -iname "*license*" | sed "s:^:%%license :" >> files.l
 
 
 find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --remove-rpath  {} \;
-find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --add-rpath "%{_libdir}/ros2/lib" {} \;
+# find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --force-rpath --add-rpath "%{_libdir}/ros2/lib" {} \;
 
 # replace cmake python macro in shebang
 for file in $(grep -rIl '^#!.*@PYTHON_EXECUTABLE@.*$' %{buildroot}) ; do
@@ -173,5 +175,7 @@ done
 
 
 %changelog
+* Fri Aug 11 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.12.7-1
+- update to latest upstream
 * Thu Mar 09 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.12.5-1
 - Initial humble build

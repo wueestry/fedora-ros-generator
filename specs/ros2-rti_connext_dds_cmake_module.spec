@@ -1,12 +1,12 @@
 Name:           ros2-rti_connext_dds_cmake_module
-Version:        humble.0.11.1
+Version:        humble.0.11.2
 Release:        1%{?dist}
 Summary:        ROS package rti_connext_dds_cmake_module
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rmw_connextdds-release/archive/release/humble/rti_connext_dds_cmake_module/0.11.1-2.tar.gz#/ros2-humble-rti_connext_dds_cmake_module-0.11.1-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rmw_connextdds-release/archive/release/humble/rti_connext_dds_cmake_module/0.11.2-1.tar.gz#/ros2-humble-rti_connext_dds_cmake_module-0.11.2-source0.tar.gz
 
 
 BuildArch: noarch
@@ -45,8 +45,8 @@ BuildRequires:  ros2-humble-ament_lint_common-devel
 BuildRequires:  ros2-humble-ament_package-devel
 
 
-Provides:  ros2-humble-rti_connext_dds_cmake_module = 0.11.1-1
-Obsoletes: ros2-humble-rti_connext_dds_cmake_module < 0.11.1-1
+Provides:  ros2-humble-rti_connext_dds_cmake_module = 0.11.2-1
+Obsoletes: ros2-humble-rti_connext_dds_cmake_module < 0.11.2-1
 
 
 
@@ -63,8 +63,8 @@ Requires:       ros2-humble-ament_lint_auto-devel
 Requires:       ros2-humble-ament_lint_common-devel
 Requires:       ros2-humble-ament_package-devel
 
-Provides: ros2-humble-rti_connext_dds_cmake_module-devel = 0.11.1-1
-Obsoletes: ros2-humble-rti_connext_dds_cmake_module-devel < 0.11.1-1
+Provides: ros2-humble-rti_connext_dds_cmake_module-devel = 0.11.2-1
+Obsoletes: ros2-humble-rti_connext_dds_cmake_module-devel < 0.11.2-1
 
 
 %description devel
@@ -121,6 +121,10 @@ find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \
 
 rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
 
+# remove __pycache__
+find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
+find . -name '*.pyc' -delete
+
 touch files.list
 find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
@@ -169,5 +173,7 @@ done
 
 
 %changelog
+* Tue Aug 08 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.11.2-1
+- update to latest upstream
 * Mon Mar 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.11.1-1
 - Initial humble build

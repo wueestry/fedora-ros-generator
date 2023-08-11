@@ -1,14 +1,13 @@
 Name:           ros2-rosbag2_storage_default_plugins
-Version:        humble.0.15.4
+Version:        humble.0.15.7
 Release:        1%{?dist}
 Summary:        ROS package rosbag2_storage_default_plugins
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rosbag2-release/archive/release/humble/rosbag2_storage_default_plugins/0.15.4-2.tar.gz#/ros2-humble-rosbag2_storage_default_plugins-0.15.4-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rosbag2-release/archive/release/humble/rosbag2_storage_default_plugins/0.15.7-1.tar.gz#/ros2-humble-rosbag2_storage_default_plugins-0.15.7-source0.tar.gz
 
-Patch0: ros-rosbag2_storage_default_plugins.remove_vendor_pkgs.patch
 
 
 # common BRs
@@ -38,8 +37,6 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python3-colcon-common-extensions
 # BuildRequires:  python-unversioned-command
 
-BuildRequires:  libsqlite3x-devel
-BuildRequires:  yaml-cpp-devel
 BuildRequires:  ros2-humble-ament_cmake-devel
 BuildRequires:  ros2-humble-ament_cmake_gmock-devel
 BuildRequires:  ros2-humble-ament_lint_auto-devel
@@ -50,16 +47,18 @@ BuildRequires:  ros2-humble-rcpputils-devel
 BuildRequires:  ros2-humble-rcutils-devel
 BuildRequires:  ros2-humble-rosbag2_storage-devel
 BuildRequires:  ros2-humble-rosbag2_test_common-devel
+BuildRequires:  ros2-humble-sqlite3_vendor-devel
+BuildRequires:  ros2-humble-yaml_cpp_vendor-devel
 
-Requires:       libsqlite3x-devel
-Requires:       yaml-cpp-devel
 Requires:       ros2-humble-pluginlib
 Requires:       ros2-humble-rcpputils
 Requires:       ros2-humble-rcutils
 Requires:       ros2-humble-rosbag2_storage
+Requires:       ros2-humble-sqlite3_vendor
+Requires:       ros2-humble-yaml_cpp_vendor
 
-Provides:  ros2-humble-rosbag2_storage_default_plugins = 0.15.4-1
-Obsoletes: ros2-humble-rosbag2_storage_default_plugins < 0.15.4-1
+Provides:  ros2-humble-rosbag2_storage_default_plugins = 0.15.7-1
+Obsoletes: ros2-humble-rosbag2_storage_default_plugins < 0.15.7-1
 
 
 
@@ -70,8 +69,6 @@ ROSBag2 SQLite3 storage plugin
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       ros2-humble-ament_cmake-devel
-Requires:       libsqlite3x-devel
-Requires:       yaml-cpp-devel
 Requires:       ros2-humble-ament_cmake_gmock-devel
 Requires:       ros2-humble-ament_lint_auto-devel
 Requires:       ros2-humble-ament_lint_common-devel
@@ -81,9 +78,11 @@ Requires:       ros2-humble-rcpputils-devel
 Requires:       ros2-humble-rcutils-devel
 Requires:       ros2-humble-rosbag2_storage-devel
 Requires:       ros2-humble-rosbag2_test_common-devel
+Requires:       ros2-humble-sqlite3_vendor-devel
+Requires:       ros2-humble-yaml_cpp_vendor-devel
 
-Provides: ros2-humble-rosbag2_storage_default_plugins-devel = 0.15.4-1
-Obsoletes: ros2-humble-rosbag2_storage_default_plugins-devel < 0.15.4-1
+Provides: ros2-humble-rosbag2_storage_default_plugins-devel = 0.15.7-1
+Obsoletes: ros2-humble-rosbag2_storage_default_plugins-devel < 0.15.7-1
 
 
 %description devel
@@ -96,7 +95,6 @@ applications that use %{name}.
 
 %setup -c -T
 tar --strip-components=1 -xf %{SOURCE0}
-%patch0 -p1
 
 %build
 # nothing to do here
@@ -140,6 +138,10 @@ colcon \
 find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
 
 rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
+
+# remove __pycache__
+find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
+find . -name '*.pyc' -delete
 
 touch files.list
 find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
@@ -189,5 +191,9 @@ done
 
 
 %changelog
+* Tue Aug 08 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.15.7-1
+- update to latest upstream
+* Thu Jun 29 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.15.6-1
+- update to latest upstream release
 * Mon Mar 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.15.4-1
 - Initial humble build

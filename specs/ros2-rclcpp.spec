@@ -1,13 +1,14 @@
 Name:           ros2-rclcpp
-Version:        humble.16.0.3
+Version:        humble.16.0.5
 Release:        1%{?dist}
 Summary:        ROS package rclcpp
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rclcpp-release/archive/release/humble/rclcpp/16.0.3-1.tar.gz#/ros2-humble-rclcpp-16.0.3-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rclcpp-release/archive/release/humble/rclcpp/16.0.5-2.tar.gz#/ros2-humble-rclcpp-16.0.5-source0.tar.gz
 
+Patch0: ros2-rclcpp.stdexcept.patch
 
 
 # common BRs
@@ -76,8 +77,8 @@ Requires:       ros2-humble-rmw
 Requires:       ros2-humble-statistics_msgs
 Requires:       ros2-humble-tracetools
 
-Provides:  ros2-humble-rclcpp = 16.0.3-1
-Obsoletes: ros2-humble-rclcpp < 16.0.3-1
+Provides:  ros2-humble-rclcpp = 16.0.5-1
+Obsoletes: ros2-humble-rclcpp < 16.0.5-1
 
 
 
@@ -117,8 +118,8 @@ Requires:       ros2-humble-statistics_msgs-devel
 Requires:       ros2-humble-test_msgs-devel
 Requires:       ros2-humble-tracetools-devel
 
-Provides: ros2-humble-rclcpp-devel = 16.0.3-1
-Obsoletes: ros2-humble-rclcpp-devel < 16.0.3-1
+Provides: ros2-humble-rclcpp-devel = 16.0.5-1
+Obsoletes: ros2-humble-rclcpp-devel < 16.0.5-1
 
 
 %description devel
@@ -131,6 +132,7 @@ applications that use %{name}.
 
 %setup -c -T
 tar --strip-components=1 -xf %{SOURCE0}
+%patch 0 -p1
 
 %build
 # nothing to do here
@@ -174,6 +176,10 @@ colcon \
 find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
 
 rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
+
+# remove __pycache__
+find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
+find . -name '*.pyc' -delete
 
 touch files.list
 find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
@@ -223,5 +229,9 @@ done
 
 
 %changelog
+* Thu Jul 20 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.16.0.5-1
+- update to latest release
+* Mon Jun 19 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.16.0.4-1
+- update to latest release
 * Mon Mar 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.16.0.3-1
 - Initial humble build

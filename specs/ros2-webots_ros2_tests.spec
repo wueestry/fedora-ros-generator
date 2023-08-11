@@ -1,12 +1,12 @@
 Name:           ros2-webots_ros2_tests
-Version:        humble.2023.0.3
+Version:        humble.2023.1.1
 Release:        1%{?dist}
 Summary:        ROS package webots_ros2_tests
 
 License:        Apache License 2.0
 URL:            http://wiki.ros.org/webots_ros2
 
-Source0:        https://github.com/ros2-gbp/webots_ros2-release/archive/release/humble/webots_ros2_tests/2023.0.3-1.tar.gz#/ros2-humble-webots_ros2_tests-2023.0.3-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/webots_ros2-release/archive/release/humble/webots_ros2_tests/2023.1.1-2.tar.gz#/ros2-humble-webots_ros2_tests-2023.1.1-source0.tar.gz
 
 
 BuildArch: noarch
@@ -62,8 +62,8 @@ BuildRequires:  ros2-humble-webots_ros2_turtlebot-devel
 BuildRequires:  ros2-humble-webots_ros2_universal_robot-devel
 
 
-Provides:  ros2-humble-webots_ros2_tests = 2023.0.3-1
-Obsoletes: ros2-humble-webots_ros2_tests < 2023.0.3-1
+Provides:  ros2-humble-webots_ros2_tests = 2023.1.1-1
+Obsoletes: ros2-humble-webots_ros2_tests < 2023.1.1-1
 
 
 
@@ -96,8 +96,8 @@ Requires:       ros2-humble-webots_ros2_tiago-devel
 Requires:       ros2-humble-webots_ros2_turtlebot-devel
 Requires:       ros2-humble-webots_ros2_universal_robot-devel
 
-Provides: ros2-humble-webots_ros2_tests-devel = 2023.0.3-1
-Obsoletes: ros2-humble-webots_ros2_tests-devel < 2023.0.3-1
+Provides: ros2-humble-webots_ros2_tests-devel = 2023.1.1-1
+Obsoletes: ros2-humble-webots_ros2_tests-devel < 2023.1.1-1
 
 
 %description devel
@@ -154,6 +154,10 @@ find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \
 
 rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
 
+# remove __pycache__
+find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
+find . -name '*.pyc' -delete
+
 touch files.list
 find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
@@ -202,5 +206,9 @@ done
 
 
 %changelog
+* Fri Aug 11 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2023.1.1-1
+- update to latest upstream
+* Sat Jul 01 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2023.1.0-1
+- update to latest upstream release
 * Sat Apr 15 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2023.0.3-1
 - update to latest release

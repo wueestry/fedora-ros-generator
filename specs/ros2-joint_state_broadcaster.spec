@@ -1,12 +1,12 @@
 Name:           ros2-joint_state_broadcaster
-Version:        humble.2.17.3
+Version:        humble.2.24.0
 Release:        1%{?dist}
 Summary:        ROS package joint_state_broadcaster
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ros2_controllers-release/archive/release/humble/joint_state_broadcaster/2.17.3-1.tar.gz#/ros2-humble-joint_state_broadcaster-2.17.3-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ros2_controllers-release/archive/release/humble/joint_state_broadcaster/2.24.0-1.tar.gz#/ros2-humble-joint_state_broadcaster-2.24.0-source0.tar.gz
 
 
 
@@ -41,6 +41,7 @@ BuildRequires:  ros2-humble-ament_cmake-devel
 BuildRequires:  ros2-humble-ament_cmake_gmock-devel
 BuildRequires:  ros2-humble-ament_package-devel
 BuildRequires:  ros2-humble-backward_ros-devel
+BuildRequires:  ros2-humble-builtin_interfaces-devel
 BuildRequires:  ros2-humble-control_msgs-devel
 BuildRequires:  ros2-humble-controller_interface-devel
 BuildRequires:  ros2-humble-controller_manager-devel
@@ -55,18 +56,18 @@ BuildRequires:  ros2-humble-ros2_control_test_assets-devel
 BuildRequires:  ros2-humble-sensor_msgs-devel
 
 Requires:       ros2-humble-backward_ros
+Requires:       ros2-humble-builtin_interfaces
 Requires:       ros2-humble-control_msgs
 Requires:       ros2-humble-controller_interface
 Requires:       ros2-humble-generate_parameter_library
-Requires:       ros2-humble-hardware_interface
 Requires:       ros2-humble-pluginlib
 Requires:       ros2-humble-rclcpp_lifecycle
 Requires:       ros2-humble-rcutils
 Requires:       ros2-humble-realtime_tools
 Requires:       ros2-humble-sensor_msgs
 
-Provides:  ros2-humble-joint_state_broadcaster = 2.17.3-1
-Obsoletes: ros2-humble-joint_state_broadcaster < 2.17.3-1
+Provides:  ros2-humble-joint_state_broadcaster = 2.24.0-1
+Obsoletes: ros2-humble-joint_state_broadcaster < 2.24.0-1
 
 
 
@@ -80,6 +81,7 @@ Requires:       ros2-humble-ament_cmake-devel
 Requires:       ros2-humble-ament_cmake_gmock-devel
 Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-backward_ros-devel
+Requires:       ros2-humble-builtin_interfaces-devel
 Requires:       ros2-humble-control_msgs-devel
 Requires:       ros2-humble-controller_interface-devel
 Requires:       ros2-humble-controller_manager-devel
@@ -93,8 +95,8 @@ Requires:       ros2-humble-realtime_tools-devel
 Requires:       ros2-humble-ros2_control_test_assets-devel
 Requires:       ros2-humble-sensor_msgs-devel
 
-Provides: ros2-humble-joint_state_broadcaster-devel = 2.17.3-1
-Obsoletes: ros2-humble-joint_state_broadcaster-devel < 2.17.3-1
+Provides: ros2-humble-joint_state_broadcaster-devel = 2.24.0-1
+Obsoletes: ros2-humble-joint_state_broadcaster-devel < 2.24.0-1
 
 
 %description devel
@@ -151,6 +153,10 @@ find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \
 
 rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
 
+# remove __pycache__
+find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
+find . -name '*.pyc' -delete
+
 touch files.list
 find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
@@ -199,5 +205,9 @@ done
 
 
 %changelog
+* Fri Aug 11 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.24.0-1
+- update to latest upstream
+* Sat Jul 01 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.23.0-1
+- update to latest upstream release
 * Sat Apr 15 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.17.3-1
 - update to latest release

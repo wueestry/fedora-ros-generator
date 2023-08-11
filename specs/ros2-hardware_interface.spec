@@ -1,12 +1,12 @@
 Name:           ros2-hardware_interface
-Version:        humble.2.25.1
+Version:        humble.2.29.0
 Release:        1%{?dist}
 Summary:        ROS package hardware_interface
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ros2_control-release/archive/release/humble/hardware_interface/2.25.1-1.tar.gz#/ros2-humble-hardware_interface-2.25.1-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ros2_control-release/archive/release/humble/hardware_interface/2.29.0-1.tar.gz#/ros2-humble-hardware_interface-2.29.0-source0.tar.gz
 
 
 
@@ -57,8 +57,8 @@ Requires:       ros2-humble-rcpputils
 Requires:       ros2-humble-rcutils
 Requires:       ros2-humble-tinyxml2_vendor
 
-Provides:  ros2-humble-hardware_interface = 2.25.1-1
-Obsoletes: ros2-humble-hardware_interface < 2.25.1-1
+Provides:  ros2-humble-hardware_interface = 2.29.0-1
+Obsoletes: ros2-humble-hardware_interface < 2.29.0-1
 
 
 
@@ -80,8 +80,8 @@ Requires:       ros2-humble-rcutils-devel
 Requires:       ros2-humble-ros2_control_test_assets-devel
 Requires:       ros2-humble-tinyxml2_vendor-devel
 
-Provides: ros2-humble-hardware_interface-devel = 2.25.1-1
-Obsoletes: ros2-humble-hardware_interface-devel < 2.25.1-1
+Provides: ros2-humble-hardware_interface-devel = 2.29.0-1
+Obsoletes: ros2-humble-hardware_interface-devel < 2.29.0-1
 
 
 %description devel
@@ -138,6 +138,10 @@ find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \
 
 rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
 
+# remove __pycache__
+find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
+find . -name '*.pyc' -delete
+
 touch files.list
 find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
@@ -186,5 +190,9 @@ done
 
 
 %changelog
+* Fri Aug 11 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.29.0-1
+- update to latest upstream
+* Sat Jul 01 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.28.0-1
+- update to latest upstream release
 * Sat Apr 15 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.25.1-1
 - update to latest release

@@ -1,12 +1,12 @@
 Name:           ros2-generate_parameter_library
-Version:        humble.0.3.3
+Version:        humble.0.3.6
 Release:        1%{?dist}
 Summary:        ROS package generate_parameter_library
 
 License:        BSD-3-Clause
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/generate_parameter_library-release/archive/release/humble/generate_parameter_library/0.3.3-1.tar.gz#/ros2-humble-generate_parameter_library-0.3.3-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/generate_parameter_library-release/archive/release/humble/generate_parameter_library/0.3.6-1.tar.gz#/ros2-humble-generate_parameter_library-0.3.6-source0.tar.gz
 
 
 BuildArch: noarch
@@ -40,6 +40,7 @@ BuildRequires: python3-vcstool
 
 BuildRequires:  fmt-devel
 BuildRequires:  ros2-humble-ament_cmake-devel
+BuildRequires:  ros2-humble-ament_cmake_python-devel
 BuildRequires:  ros2-humble-ament_lint_auto-devel
 BuildRequires:  ros2-humble-ament_lint_common-devel
 BuildRequires:  ros2-humble-ament_package-devel
@@ -47,6 +48,7 @@ BuildRequires:  ros2-humble-generate_parameter_library_py-devel
 BuildRequires:  ros2-humble-parameter_traits-devel
 BuildRequires:  ros2-humble-rclcpp-devel
 BuildRequires:  ros2-humble-rclcpp_lifecycle-devel
+BuildRequires:  ros2-humble-rclpy-devel
 BuildRequires:  ros2-humble-rsl-devel
 BuildRequires:  ros2-humble-tcb_span-devel
 BuildRequires:  ros2-humble-tl_expected-devel
@@ -54,12 +56,13 @@ BuildRequires:  ros2-humble-tl_expected-devel
 Requires:       ros2-humble-parameter_traits
 Requires:       ros2-humble-rclcpp
 Requires:       ros2-humble-rclcpp_lifecycle
+Requires:       ros2-humble-rclpy
 Requires:       ros2-humble-rsl
 Requires:       ros2-humble-tcb_span
 Requires:       ros2-humble-tl_expected
 
-Provides:  ros2-humble-generate_parameter_library = 0.3.3-1
-Obsoletes: ros2-humble-generate_parameter_library < 0.3.3-1
+Provides:  ros2-humble-generate_parameter_library = 0.3.6-1
+Obsoletes: ros2-humble-generate_parameter_library < 0.3.6-1
 
 
 
@@ -70,6 +73,7 @@ CMake to generate ROS parameter library.
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
 Requires:       ros2-humble-ament_cmake-devel
+Requires:       ros2-humble-ament_cmake_python-devel
 Requires:       ros2-humble-generate_parameter_library_py-devel
 Requires:       fmt-devel
 Requires:       ros2-humble-ament_lint_auto-devel
@@ -78,12 +82,13 @@ Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-parameter_traits-devel
 Requires:       ros2-humble-rclcpp-devel
 Requires:       ros2-humble-rclcpp_lifecycle-devel
+Requires:       ros2-humble-rclpy-devel
 Requires:       ros2-humble-rsl-devel
 Requires:       ros2-humble-tcb_span-devel
 Requires:       ros2-humble-tl_expected-devel
 
-Provides: ros2-humble-generate_parameter_library-devel = 0.3.3-1
-Obsoletes: ros2-humble-generate_parameter_library-devel < 0.3.3-1
+Provides: ros2-humble-generate_parameter_library-devel = 0.3.6-1
+Obsoletes: ros2-humble-generate_parameter_library-devel < 0.3.6-1
 
 
 %description devel
@@ -140,6 +145,10 @@ find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \
 
 rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
 
+# remove __pycache__
+find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
+find . -name '*.pyc' -delete
+
 touch files.list
 find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
@@ -188,5 +197,7 @@ done
 
 
 %changelog
+* Fri Aug 11 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.3.6-1
+- update to latest upstream
 * Sat Apr 15 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.3.3-1
 - update to latest release

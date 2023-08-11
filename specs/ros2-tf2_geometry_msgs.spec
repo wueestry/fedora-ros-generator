@@ -1,12 +1,12 @@
 Name:           ros2-tf2_geometry_msgs
-Version:        humble.0.25.2
+Version:        humble.0.25.3
 Release:        1%{?dist}
 Summary:        ROS package tf2_geometry_msgs
 
 License:        BSD
 URL:            http://www.ros.org/wiki/tf2_ros
 
-Source0:        https://github.com/ros2-gbp/geometry2-release/archive/release/humble/tf2_geometry_msgs/0.25.2-1.tar.gz#/ros2-humble-tf2_geometry_msgs-0.25.2-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/geometry2-release/archive/release/humble/tf2_geometry_msgs/0.25.3-1.tar.gz#/ros2-humble-tf2_geometry_msgs-0.25.3-source0.tar.gz
 
 Patch0: ros-tf2_geometry_msgs.remove-orocos-kdl-vendor.patch
 
@@ -59,8 +59,8 @@ Requires:       ros2-humble-tf2
 Requires:       ros2-humble-tf2_ros
 Requires:       ros2-humble-tf2_ros_py
 
-Provides:  ros2-humble-tf2_geometry_msgs = 0.25.2-1
-Obsoletes: ros2-humble-tf2_geometry_msgs < 0.25.2-1
+Provides:  ros2-humble-tf2_geometry_msgs = 0.25.3-1
+Obsoletes: ros2-humble-tf2_geometry_msgs < 0.25.3-1
 
 
 
@@ -85,8 +85,8 @@ Requires:       ros2-humble-tf2_ros-devel
 Requires:       ros2-humble-orocos_kdl_vendor-devel
 Requires:       ros2-humble-tf2_ros_py-devel
 
-Provides: ros2-humble-tf2_geometry_msgs-devel = 0.25.2-1
-Obsoletes: ros2-humble-tf2_geometry_msgs-devel < 0.25.2-1
+Provides: ros2-humble-tf2_geometry_msgs-devel = 0.25.3-1
+Obsoletes: ros2-humble-tf2_geometry_msgs-devel < 0.25.3-1
 
 
 %description devel
@@ -99,7 +99,7 @@ applications that use %{name}.
 
 %setup -c -T
 tar --strip-components=1 -xf %{SOURCE0}
-%patch0 -p1
+%patch 0 -p1
 
 %build
 # nothing to do here
@@ -143,6 +143,10 @@ colcon \
 find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
 
 rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
+
+# remove __pycache__
+find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
+find . -name '*.pyc' -delete
 
 touch files.list
 find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
@@ -192,6 +196,8 @@ done
 
 
 %changelog
+* Thu Jul 20 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.25.3-1
+- update to latest release
 * Mon Mar 20 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.25.2-1
 - update to latest release
 * Mon Mar 20 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - noetic.0.7.6-1

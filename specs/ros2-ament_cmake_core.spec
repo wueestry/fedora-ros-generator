@@ -1,12 +1,12 @@
 Name:           ros2-ament_cmake_core
-Version:        humble.1.3.3
+Version:        humble.1.3.5
 Release:        1%{?dist}
 Summary:        ROS package ament_cmake_core
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ament_cmake-release/archive/release/humble/ament_cmake_core/1.3.3-1.tar.gz#/ros2-humble-ament_cmake_core-1.3.3-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ament_cmake-release/archive/release/humble/ament_cmake_core/1.3.5-1.tar.gz#/ros2-humble-ament_cmake_core-1.3.5-source0.tar.gz
 
 
 BuildArch: noarch
@@ -43,8 +43,8 @@ BuildRequires:  python3-catkin_pkg
 BuildRequires:  ros2-humble-ament_package-devel
 
 
-Provides:  ros2-humble-ament_cmake_core = 1.3.3-1
-Obsoletes: ros2-humble-ament_cmake_core < 1.3.3-1
+Provides:  ros2-humble-ament_cmake_core = 1.3.5-1
+Obsoletes: ros2-humble-ament_cmake_core < 1.3.5-1
 
 
 
@@ -64,8 +64,8 @@ Requires:       cmake
 Requires:       python3-catkin_pkg
 Requires:       ros2-humble-ament_package-devel
 
-Provides: ros2-humble-ament_cmake_core-devel = 1.3.3-1
-Obsoletes: ros2-humble-ament_cmake_core-devel < 1.3.3-1
+Provides: ros2-humble-ament_cmake_core-devel = 1.3.5-1
+Obsoletes: ros2-humble-ament_cmake_core-devel < 1.3.5-1
 
 
 %description devel
@@ -122,6 +122,10 @@ find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \
 
 rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
 
+# remove __pycache__
+find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
+find . -name '*.pyc' -delete
+
 touch files.list
 find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
@@ -170,5 +174,9 @@ done
 
 
 %changelog
+* Thu Jun 29 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.3.5-1
+- update to latest upstream release
+* Mon Jun 19 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.3.4-1
+- update to latest release
 * Mon Mar 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.3.3-1
 - Initial humble build
