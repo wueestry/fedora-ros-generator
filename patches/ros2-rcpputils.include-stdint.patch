@@ -1,0 +1,13 @@
+diff -ur rcpputils-release-release-humble-rcpputils-2.4.1-1/include/rcpputils/filesystem_helper.hpp rcpputils-release-release-humble-rcpputils-2.4.1-1_new/include/rcpputils/filesystem_helper.hpp
+--- rcpputils-release-release-humble-rcpputils-2.4.1-1/include/rcpputils/filesystem_helper.hpp	2023-04-25 23:20:42.000000000 +0200
++++ rcpputils-release-release-humble-rcpputils-2.4.1-1_new/include/rcpputils/filesystem_helper.hpp	2023-07-20 16:07:27.882832008 +0200
+@@ -42,6 +42,9 @@
+ #include <string>
+ #include <vector>
+ 
++#include <cstdint>
++using std::uint64_t;
++
+ #include "rcpputils/visibility_control.hpp"
+ 
+ namespace rcpputils

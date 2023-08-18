@@ -1,0 +1,33 @@
+diff -ur rosbag2-release-release-humble-rosbag2_storage_default_plugins-0.15.6-1/CMakeLists.txt rosbag2-release-release-humble-rosbag2_storage_default_plugins-0.15.6-1_new/CMakeLists.txt
+--- rosbag2-release-release-humble-rosbag2_storage_default_plugins-0.15.6-1/CMakeLists.txt	2023-06-06 17:01:06.000000000 +0200
++++ rosbag2-release-release-humble-rosbag2_storage_default_plugins-0.15.6-1_new/CMakeLists.txt	2023-06-29 21:21:09.298708902 +0200
+@@ -27,7 +27,7 @@
+ find_package(rosbag2_storage REQUIRED)
+ find_package(sqlite3_vendor REQUIRED)
+ find_package(SQLite3 REQUIRED)  # provided by sqlite3_vendor
+-find_package(yaml_cpp_vendor REQUIRED)
++find_package(yaml-cpp REQUIRED)
+ 
+ add_library(${PROJECT_NAME} SHARED
+   src/rosbag2_storage_default_plugins/sqlite/sqlite_wrapper.cpp
+@@ -40,7 +40,7 @@
+   rcpputils
+   rcutils
+   SQLite3
+-  yaml_cpp_vendor)
++  yaml-cpp)
+ 
+ target_include_directories(${PROJECT_NAME}
+   PUBLIC
+diff -ur rosbag2-release-release-humble-rosbag2_storage_default_plugins-0.15.6-1/package.xml rosbag2-release-release-humble-rosbag2_storage_default_plugins-0.15.6-1_new/package.xml
+--- rosbag2-release-release-humble-rosbag2_storage_default_plugins-0.15.6-1/package.xml	2023-06-06 17:01:06.000000000 +0200
++++ rosbag2-release-release-humble-rosbag2_storage_default_plugins-0.15.6-1_new/package.xml	2023-06-29 21:21:50.697912487 +0200
+@@ -17,7 +17,7 @@
+   <depend>rcutils</depend>
+   <depend>rosbag2_storage</depend>
+   <depend>sqlite3_vendor</depend>
+-  <depend>yaml_cpp_vendor</depend>
++  <depend>yaml-cpp</depend>
+ 
+   <test_depend>ament_lint_auto</test_depend>
+   <test_depend>ament_lint_common</test_depend>

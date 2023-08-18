@@ -1,0 +1,21 @@
+diff -ur navigation2-release-release-humble-nav2_behaviors-1.1.9-1/CMakeLists.txt navigation2-release-release-humble-nav2_behaviors-1.1.9-1-new/CMakeLists.txt
+--- navigation2-release-release-humble-nav2_behaviors-1.1.9-1/CMakeLists.txt	2023-08-04 22:26:26.000000000 +0200
++++ navigation2-release-release-humble-nav2_behaviors-1.1.9-1-new/CMakeLists.txt	2023-08-10 10:27:25.859573532 +0200
+@@ -51,6 +51,8 @@
+   plugins/spin.cpp
+ )
+ 
++target_compile_options(nav2_spin_behavior PRIVATE -Wno-all)
++
+ ament_target_dependencies(nav2_spin_behavior
+   ${dependencies}
+ )
+@@ -59,6 +61,8 @@
+ plugins/wait.cpp
+ )
+ 
++target_compile_options(nav2_wait_behavior PRIVATE -Wno-all)
++
+ ament_target_dependencies(nav2_wait_behavior
+ ${dependencies}
+ )

@@ -1,0 +1,12 @@
+diff -u -r ddynamic_reconfigure-release-noetic-ddynamic_reconfigure-0.3.2-1/CMakeLists.txt ddynamic_reconfigure-release-noetic-ddynamic_reconfigure-0.3.2-1-new/CMakeLists.txt
+--- ddynamic_reconfigure-release-noetic-ddynamic_reconfigure-0.3.2-1/CMakeLists.txt	2020-10-28 09:21:29.000000000 +0100
++++ ddynamic_reconfigure-release-noetic-ddynamic_reconfigure-0.3.2-1-new/CMakeLists.txt	2023-04-12 16:12:38.987553353 +0200
+@@ -6,7 +6,7 @@
+   roscpp
+ )
+ 
+-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++0x")
++set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -std=c++17")
+ set(CMAKE_WINDOWS_EXPORT_ALL_SYMBOLS ON)
+ 
+ catkin_package(

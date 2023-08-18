@@ -1,0 +1,15 @@
+diff -ur perception_pcl-release-release-noetic-pcl_ros-1.7.4-1/CMakeLists.txt perception_pcl-release-release-noetic-pcl_ros-1.7.4-1_new/CMakeLists.txt
+--- perception_pcl-release-release-noetic-pcl_ros-1.7.4-1/CMakeLists.txt	2022-02-09 02:01:56.000000000 +0100
++++ perception_pcl-release-release-noetic-pcl_ros-1.7.4-1_new/CMakeLists.txt	2022-12-25 18:22:53.987845434 +0100
+@@ -65,6 +65,11 @@
+ 
+ ## Add include directories
+ include_directories(include)
++set_target_properties(VTK::Java PROPERTIES
++  INTERFACE_INCLUDE_DIRECTORIES ""
++)
++
++# Create imported ta
+ 
+ include_directories(
+   SYSTEM
