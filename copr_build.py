@@ -205,7 +205,7 @@ class CoprBuilder:
             if chroot not in build.chroots:
                 continue
             build_version = re.fullmatch(
-                '(.+?)(?:\.(?:fc|rhel|epel|el)\d+)?',
+                '(.+?)(?:\.(?:fc|rhel|f38|epel|el)\d+)?',
                 build['source_package']['version']).group(1)
             if build_version == pkg_version:
                 return True

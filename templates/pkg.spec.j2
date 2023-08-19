@@ -1,6 +1,6 @@
 {% block info %}
-Name:           ros2-{{ pkg_name }}
-Version:        {{ distro }}.{{ pkg_version }}
+Name:           ros2-{{ distro }}-{{ pkg_name }}
+Version:        {{ pkg_version }}
 Release:        {{ pkg_release }}%{?dist}
 Summary:        ROS package {{ pkg_name }}
 
@@ -166,7 +166,7 @@ FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 {% endblock %}
 
 {% block pre_install %}
-source %{_libdir}/ros2/setup.bash
+source %{_libdir}/ros2-{{ distro }}/setup.bash
 {% endblock %}
 
 # substitute shebang before install block because we run the local catkin script
@@ -189,7 +189,7 @@ colcon \
 {% block cmake_flags %}
 {% endblock %}
   --base-paths . \
-  --install-base %{buildroot}/%{_libdir}/ros2/ \
+  --install-base %{buildroot}/%{_libdir}/ros2-{{ distro }}/ \
 {% if build_flags %}
   --packages-select {{ pkg_name }} \
   {{ build_flags }}
@@ -202,25 +202,25 @@ colcon \
 
 {% block install_files %}
 # remove wrong buildroot prefixes
-find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
+find %{buildroot}/%{_libdir}/ros2-{{ distro }}/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
 
-rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
+rm -rf %{buildroot}/%{_libdir}/ros2-{{ distro }}/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
 
 # remove __pycache__
 find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
+find %{buildroot}/%{_libdir}/ros2-{{ distro }}/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
-find %{buildroot}/%{_libdir}/ros2/lib*/ -mindepth 1 -maxdepth 1 \
+find %{buildroot}/%{_libdir}/ros2-{{ distro}}/lib*/ -mindepth 1 -maxdepth 1 \
   ! -name pkgconfig ! -name "python*" \
   | sed "s:%{buildroot}/::" >> files.list
 
 {% if has_devel %}
 touch files_devel.list
 # TODO: is cmake/ necessary? it stems from the yaml vendor
-find %{buildroot}/%{_libdir}/ros2/{lib*/pkgconfig,include/,cmake/,{{ pkg_name }}/include/,share/{{ pkg_name }}/cmake} \
+find %{buildroot}/%{_libdir}/ros2-{{ distro }}/{lib*/pkgconfig,include/,cmake/,{{ pkg_name }}/include/,share/{{ pkg_name }}/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 {% endif %}
 
@@ -231,8 +231,8 @@ find . -maxdepth 1 -type f -iname "*license*" | sed "s:^:%%license :" >> files.l
 
 
 {% block patchelf %}
-find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --remove-rpath  {} \;
-# find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --force-rpath --add-rpath "%{_libdir}/ros2/lib" {} \;
+find %{buildroot}/%{_libdir}/ros2-{{ distro }}/ -name *__rosidl_generator_py.so -type f -exec patchelf --remove-rpath  {} \;
+# find %{buildroot}/%{_libdir}/ros2-{{ distro }}/ -name *__rosidl_generator_py.so -type f -exec patchelf --force-rpath --add-rpath "%{_libdir}/ros2/lib" {} \;
 {% endblock %}
 {% block post_install %}
 

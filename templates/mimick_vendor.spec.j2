@@ -14,7 +14,7 @@ colcon \
   -DTHIRDPARTY_Asio=ON \
   -DBUILD_TESTING=OFF \
   --base-paths . \
-  --install-base %{buildroot}/%{_libdir}/ros2/ \
+  --install-base %{buildroot}/%{_libdir}/ros2-{{ distro }}/ \
   --packages-select mimick_vendor
 
 {% endblock %}

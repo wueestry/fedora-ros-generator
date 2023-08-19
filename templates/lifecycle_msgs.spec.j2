@@ -5,7 +5,7 @@ BuildRequires: patchelf
 
 {% block post_install %}
 # fix broken runpath
-find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --shrink-rpath --allowed-rpath-prefixes "%{_libdir}/ros2/lib" {} \;
+find %{buildroot}/%{_libdir}/ros2-{{ distro }}/ -name *__rosidl_generator_py.so -type f -exec patchelf --shrink-rpath --allowed-rpath-prefixes "%{_libdir}/ros2/lib" {} \;
 
 # replace cmake python macro in shebang
 for file in $(grep -rIl '^#!.*@PYTHON_EXECUTABLE@.*$' %{buildroot}) ; do

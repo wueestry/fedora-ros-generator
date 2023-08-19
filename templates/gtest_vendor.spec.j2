@@ -15,7 +15,7 @@ colcon \
 {% block cmake_flags %}
 {% endblock %}
   --base-paths . \
-  --install-base %{buildroot}/%{_libdir}/ros2/ \
+  --install-base %{buildroot}/%{_libdir}/ros2-{{ distro }}/ \
 {% if build_flags %}
   --packages-select {{ pkg_name }} \
   {{ build_flags }}

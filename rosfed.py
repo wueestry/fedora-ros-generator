@@ -83,6 +83,7 @@ class RosPkg:
         self.rosdistro = distro
         self.name = name
         self.spec = ''
+        self.distro = distro
         self.distro_info = generator.get_wet_distro(distro)
         try:
           xml_string = self.distro_info.get_release_package_xml(name)
@@ -121,7 +122,7 @@ class RosPkg:
 
     def get_full_name(self):
         """ Get the full name of the package, e.g., ros-catkin. """
-        return 'ros2-{}'.format(self.name)
+        return 'ros2-{}-{}'.format(self.distro,self.name)
 
     def compute_dependencies(self):
         for child in self.xml:
@@ -285,8 +286,8 @@ class RosPkg:
         self.release = release
 
     def get_version_release(self):
-        return '{}.{}-{}'.format(self.rosdistro, self.get_version(),
-                                 self.get_release())
+        return '{}-{}'.format(self.get_version(),
+                              self.get_release())
 
     def is_noarch(self):
         return self.pkg_config.get('noarch', False)
@@ -455,7 +456,7 @@ def main():
                         default=False,
                         help='Also generate Spec files for dependencies')
     parser.add_argument('--distro',
-                        default='humble',
+                        default='iron',
                         help='The ROS distro (default: %(default)s)')
     parser.add_argument('-t',
                         '--template',

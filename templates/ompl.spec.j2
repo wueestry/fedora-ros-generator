@@ -1,14 +1,14 @@
 {% extends "pkg.spec.j2" %}
 {% block cmake_flags %}
-  -DCMAKE_INSTALL_LIBDIR=%{buildroot}/%{_libdir}/ros2/lib \
+  -DCMAKE_INSTALL_LIBDIR=%{buildroot}/%{_libdir}/ros2-{{ distro }}/lib \
   -DOMPL_REGISTRATION=OFF \
 {% endblock %}
 {% block patchelf %}
 # For some reason the libraries in buildroot are completely broken,
 # the ones in the builddir are fine ...
-cp %{_builddir}/%{name}-%{version}/build/ompl/lib/* %{buildroot}/%{_libdir}/ros2/lib/
+cp %{_builddir}/%{name}-%{version}/build/ompl/lib/* %{buildroot}/%{_libdir}/ros2-{{ distro }}/lib/
 
 # ... but still has a screwed up rpath
-find %{buildroot}/%{_libdir}/ros2/lib -type f -exec patchelf --remove-rpath  {} \;
-find %{buildroot}/%{_libdir}/ros2/lib -type f -exec patchelf --force-rpath --add-rpath "%{_libdir}/ros2/lib" {} \;
+find %{buildroot}/%{_libdir}/ros2-{{ distro }}/lib -type f -exec patchelf --remove-rpath  {} \;
+find %{buildroot}/%{_libdir}/ros2-{{ distro }}/lib -type f -exec patchelf --force-rpath --add-rpath "%{_libdir}/ros2/lib" {} \;
 {% endblock %}
