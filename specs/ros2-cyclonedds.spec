@@ -1,12 +1,12 @@
-Name:           ros2-cyclonedds
-Version:        humble.0.9.1
+Name:           ros2-humble-cyclonedds
+Version:        0.10.3
 Release:        1%{?dist}
 Summary:        ROS package cyclonedds
 
 License:        Eclipse Public License 2.0
 URL:            https://projects.eclipse.org/projects/iot.cyclonedds
 
-Source0:        https://github.com/ros2-gbp/cyclonedds-release/archive/release/humble/cyclonedds/0.9.1-1.tar.gz#/ros2-humble-cyclonedds-0.9.1-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/cyclonedds-release/archive/release/humble/cyclonedds/0.10.3-1.tar.gz#/ros2-humble-cyclonedds-0.10.3-source0.tar.gz
 
 
 
@@ -50,8 +50,8 @@ Requires:       ros2-humble-iceoryx_binding_c
 Requires:       ros2-humble-iceoryx_hoofs
 Requires:       ros2-humble-iceoryx_posh
 
-Provides:  ros2-humble-cyclonedds = 0.9.1-1
-Obsoletes: ros2-humble-cyclonedds < 0.9.1-1
+Provides:  ros2-humble-cyclonedds = 0.10.3-1
+Obsoletes: ros2-humble-cyclonedds < 0.10.3-1
 
 
 
@@ -71,8 +71,8 @@ Requires:       ros2-humble-iceoryx_binding_c-devel
 Requires:       ros2-humble-iceoryx_hoofs-devel
 Requires:       ros2-humble-iceoryx_posh-devel
 
-Provides: ros2-humble-cyclonedds-devel = 0.9.1-1
-Obsoletes: ros2-humble-cyclonedds-devel < 0.9.1-1
+Provides: ros2-humble-cyclonedds-devel = 0.10.3-1
+Obsoletes: ros2-humble-cyclonedds-devel < 0.10.3-1
 
 
 %description devel
@@ -100,7 +100,7 @@ FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
-source %{_libdir}/ros2/setup.bash
+source %{_libdir}/ros2-humble/setup.bash
 
 # substitute shebang before install block because we run the local catkin script
 %py3_shebang_fix .
@@ -119,30 +119,30 @@ colcon \
   -DCMAKE_LD_FLAGS="$LDFLAGS" \
   -DBUILD_TESTING=OFF \
   --base-paths . \
-  --install-base %{buildroot}/%{_libdir}/ros2/ \
+  --install-base %{buildroot}/%{_libdir}/ros2-humble/ \
   --packages-select cyclonedds
 
 
 
 # remove wrong buildroot prefixes
-find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
+find %{buildroot}/%{_libdir}/ros2-humble/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
 
-rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
+rm -rf %{buildroot}/%{_libdir}/ros2-humble/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
 
 # remove __pycache__
 find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
+find %{buildroot}/%{_libdir}/ros2-humble/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
-find %{buildroot}/%{_libdir}/ros2/lib*/ -mindepth 1 -maxdepth 1 \
+find %{buildroot}/%{_libdir}/ros2-humble/lib*/ -mindepth 1 -maxdepth 1 \
   ! -name pkgconfig ! -name "python*" \
   | sed "s:%{buildroot}/::" >> files.list
 
 touch files_devel.list
 # TODO: is cmake/ necessary? it stems from the yaml vendor
-find %{buildroot}/%{_libdir}/ros2/{lib*/pkgconfig,include/,cmake/,cyclonedds/include/,share/cyclonedds/cmake} \
+find %{buildroot}/%{_libdir}/ros2-humble/{lib*/pkgconfig,include/,cmake/,cyclonedds/include/,share/cyclonedds/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 
 find . -maxdepth 1 -type f -iname "*readme*" | sed "s:^:%%doc :" >> files.list
@@ -150,8 +150,8 @@ find . -maxdepth 1 -type f -iname "*license*" | sed "s:^:%%license :" >> files.l
 
 
 
-find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --remove-rpath  {} \;
-# find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --force-rpath --add-rpath "%{_libdir}/ros2/lib" {} \;
+find %{buildroot}/%{_libdir}/ros2-humble/ -name *__rosidl_generator_py.so -type f -exec patchelf --remove-rpath  {} \;
+# find %{buildroot}/%{_libdir}/ros2-humble/ -name *__rosidl_generator_py.so -type f -exec patchelf --force-rpath --add-rpath "%{_libdir}/ros2/lib" {} \;
 
 # replace cmake python macro in shebang
 for file in $(grep -rIl '^#!.*@PYTHON_EXECUTABLE@.*$' %{buildroot}) ; do
@@ -181,5 +181,11 @@ done
 
 
 %changelog
+* Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.10.3-1
+- update to latest upstream release
+* Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.10.3-1
+- update to latest upstream release
+* Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.10.3-1
+- update to latest upstream release
 * Mon Mar 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.9.1-1
 - Initial humble build

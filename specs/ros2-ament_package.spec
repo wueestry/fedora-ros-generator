@@ -1,5 +1,5 @@
-Name:           ros2-ament_package
-Version:        humble.0.14.0
+Name:           ros2-humble-ament_package
+Version:        0.14.0
 Release:        1%{?dist}
 Summary:        ROS package ament_package
 
@@ -109,27 +109,27 @@ colcon \
   -DCMAKE_LD_FLAGS="$LDFLAGS" \
   -DBUILD_TESTING=OFF \
   --base-paths . \
-  --install-base %{buildroot}/%{_libdir}/ros2/ \
+  --install-base %{buildroot}/%{_libdir}/ros2-humble/ \
   --packages-select ament_package
 
 
 
 # remove wrong buildroot and builddir prefixes
-find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i 's:COLCON_CURRENT_PREFIX="%{buildroot}:COLCON_CURRENT_PREFIX=":g' {} \;
-find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i 's:COLCON_CURRENT_PREFIX=%{buildroot}:COLCON_CURRENT_PREFIX=:g' {} \;
+find %{buildroot}/%{_libdir}/ros2-humble/ -type f -exec sed -i 's:COLCON_CURRENT_PREFIX="%{buildroot}:COLCON_CURRENT_PREFIX=":g' {} \;
+find %{buildroot}/%{_libdir}/ros2-humble/ -type f -exec sed -i 's:COLCON_CURRENT_PREFIX=%{buildroot}:COLCON_CURRENT_PREFIX=:g' {} \;
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2/{bin,etc,lib64/python*,lib/python*/site-packages,share} \
+find %{buildroot}/%{_libdir}/ros2-humble/{bin,etc,lib64/python*,lib/python*/site-packages,share} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
-find %{buildroot}/%{_libdir}/ros2/lib*/ -mindepth 1 -maxdepth 1 \
+find %{buildroot}/%{_libdir}/ros2-humble/lib*/ -mindepth 1 -maxdepth 1 \
   ! -name pkgconfig ! -name "python*" \
   | sed "s:%{buildroot}/::" >> files.list
 
 touch files_devel.list
-find %{buildroot}/%{_libdir}/ros2/{lib*/pkgconfig,ament_package/include,share/ament_package/cmake} \
+find %{buildroot}/%{_libdir}/ros2-humble/{lib*/pkgconfig,ament_package/include,share/ament_package/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 
-find %{buildroot}/%{_libdir}/ros2 -maxdepth 1 \
+find %{buildroot}/%{_libdir}/ros2-humble -maxdepth 1 \
   -name .colcon_install_layout -o -name COLCON_IGNORE -o -name .rosinstall \
   -o -name "_setup*" -o -name "setup.*" -o -name "local_setup.*" -o -name _local_setup* \
   | sed -e "s:%{buildroot}/::" -e "s:.py$:.py{,o,c}:" >> files.list
@@ -139,8 +139,8 @@ find . -maxdepth 1 -type f -iname "*license*" | sed "s:^:%%license :" >> files.l
 
 
 
-find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --remove-rpath  {} \;
-# find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --force-rpath --add-rpath "%{_libdir}/ros2/lib" {} \;
+find %{buildroot}/%{_libdir}/ros2-humble/ -name *__rosidl_generator_py.so -type f -exec patchelf --remove-rpath  {} \;
+# find %{buildroot}/%{_libdir}/ros2-humble/ -name *__rosidl_generator_py.so -type f -exec patchelf --force-rpath --add-rpath "%{_libdir}/ros2/lib" {} \;
 
 # replace cmake python macro in shebang
 for file in $(grep -rIl '^#!.*@PYTHON_EXECUTABLE@.*$' %{buildroot}) ; do
@@ -170,5 +170,9 @@ done
 
 
 %changelog
+* Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.14.0-1
+- update to latest upstream release
+* Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.14.0-1
+- update to latest upstream release
 * Mon Mar 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.14.0-1
 - Initial humble build
