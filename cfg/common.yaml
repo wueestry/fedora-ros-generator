@@ -9,13 +9,6 @@ common:
           to:
             type: system
             pkg: orocos-kdl-devel
-        - sdl2:
-          from:
-            type: ros
-            pkg: sdl2_vendor
-          to:
-            type: system
-            pkg: SDL2-devel
         - zstd:
           from:
             type: ros
@@ -109,13 +102,6 @@ common:
             pkg: python3-sip-devel
     run:
       translate:
-        - sdl2:
-          from:
-            type: ros
-            pkg: sdl2_vendor
-          to:
-            type: system
-            pkg: SDL2-devel
         - zstd:
           from:
             type: ros
