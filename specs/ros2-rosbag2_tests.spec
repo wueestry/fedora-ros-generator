@@ -1,12 +1,12 @@
 Name:           ros2-humble-rosbag2_tests
-Version:        0.15.7
+Version:        0.15.8
 Release:        1%{?dist}
 Summary:        ROS package rosbag2_tests
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rosbag2-release/archive/release/humble/rosbag2_tests/0.15.7-1.tar.gz#/ros2-humble-rosbag2_tests-0.15.7-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rosbag2-release/archive/release/humble/rosbag2_tests/0.15.8-1.tar.gz#/ros2-humble-rosbag2_tests-0.15.8-source0.tar.gz
 
 
 BuildArch: noarch
@@ -22,7 +22,6 @@ BuildRequires: python3-devel
 BuildRequires: python-unversioned-command
 BuildRequires: python3-colcon-common-extensions
 BuildRequires: python3-pip
-BuildRequires: python3-pydocstyle
 BuildRequires: python3-pytest
 BuildRequires: python3-pytest-repeat
 BuildRequires: python3-pytest-rerunfailures
@@ -58,8 +57,8 @@ BuildRequires:  ros2-humble-test_msgs-devel
 
 Requires:       ros2-humble-ament_index_cpp
 
-Provides:  ros2-humble-rosbag2_tests = 0.15.7-1
-Obsoletes: ros2-humble-rosbag2_tests < 0.15.7-1
+Provides:  ros2-humble-rosbag2_tests = 0.15.8-1
+Obsoletes: ros2-humble-rosbag2_tests < 0.15.8-1
 
 
 
@@ -87,8 +86,8 @@ Requires:       ros2-humble-rosbag2_test_common-devel
 Requires:       ros2-humble-std_msgs-devel
 Requires:       ros2-humble-test_msgs-devel
 
-Provides: ros2-humble-rosbag2_tests-devel = 0.15.7-1
-Obsoletes: ros2-humble-rosbag2_tests-devel < 0.15.7-1
+Provides: ros2-humble-rosbag2_tests-devel = 0.15.8-1
+Obsoletes: ros2-humble-rosbag2_tests-devel < 0.15.8-1
 
 
 %description devel
@@ -197,6 +196,8 @@ done
 
 
 %changelog
+* Sat Oct 21 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.15.8-1
+- update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.15.7-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.15.7-1

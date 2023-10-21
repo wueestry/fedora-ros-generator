@@ -1,12 +1,12 @@
 Name:           ros2-humble-rclcpp_lifecycle
-Version:        16.0.5
+Version:        16.0.6
 Release:        1%{?dist}
 Summary:        ROS package rclcpp_lifecycle
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rclcpp-release/archive/release/humble/rclcpp_lifecycle/16.0.5-2.tar.gz#/ros2-humble-rclcpp_lifecycle-16.0.5-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rclcpp-release/archive/release/humble/rclcpp_lifecycle/16.0.6-1.tar.gz#/ros2-humble-rclcpp_lifecycle-16.0.6-source0.tar.gz
 
 
 
@@ -21,7 +21,6 @@ BuildRequires: python3-devel
 BuildRequires: python-unversioned-command
 BuildRequires: python3-colcon-common-extensions
 BuildRequires: python3-pip
-BuildRequires: python3-pydocstyle
 BuildRequires: python3-pytest
 BuildRequires: python3-pytest-repeat
 BuildRequires: python3-pytest-rerunfailures
@@ -59,8 +58,8 @@ Requires:       ros2-humble-rclcpp
 Requires:       ros2-humble-rmw
 Requires:       ros2-humble-rosidl_typesupport_cpp
 
-Provides:  ros2-humble-rclcpp_lifecycle = 16.0.5-1
-Obsoletes: ros2-humble-rclcpp_lifecycle < 16.0.5-1
+Provides:  ros2-humble-rclcpp_lifecycle = 16.0.6-1
+Obsoletes: ros2-humble-rclcpp_lifecycle < 16.0.6-1
 
 
 
@@ -86,8 +85,8 @@ Requires:       ros2-humble-rmw-devel
 Requires:       ros2-humble-rosidl_typesupport_cpp-devel
 Requires:       ros2-humble-test_msgs-devel
 
-Provides: ros2-humble-rclcpp_lifecycle-devel = 16.0.5-1
-Obsoletes: ros2-humble-rclcpp_lifecycle-devel < 16.0.5-1
+Provides: ros2-humble-rclcpp_lifecycle-devel = 16.0.6-1
+Obsoletes: ros2-humble-rclcpp_lifecycle-devel < 16.0.6-1
 
 
 %description devel
@@ -196,6 +195,8 @@ done
 
 
 %changelog
+* Wed Sep 27 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.16.0.6-1
+- update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.16.0.5-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.16.0.5-1

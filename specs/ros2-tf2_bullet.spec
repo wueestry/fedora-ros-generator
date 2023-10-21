@@ -1,12 +1,12 @@
 Name:           ros2-humble-tf2_bullet
-Version:        0.25.3
+Version:        0.25.4
 Release:        1%{?dist}
 Summary:        ROS package tf2_bullet
 
 License:        BSD
 URL:            http://www.ros.org/wiki/tf2_bullet
 
-Source0:        https://github.com/ros2-gbp/geometry2-release/archive/release/humble/tf2_bullet/0.25.3-1.tar.gz#/ros2-humble-tf2_bullet-0.25.3-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/geometry2-release/archive/release/humble/tf2_bullet/0.25.4-1.tar.gz#/ros2-humble-tf2_bullet-0.25.4-source0.tar.gz
 
 
 BuildArch: noarch
@@ -22,7 +22,6 @@ BuildRequires: python3-devel
 BuildRequires: python-unversioned-command
 BuildRequires: python3-colcon-common-extensions
 BuildRequires: python3-pip
-BuildRequires: python3-pydocstyle
 BuildRequires: python3-pytest
 BuildRequires: python3-pytest-repeat
 BuildRequires: python3-pytest-rerunfailures
@@ -52,8 +51,8 @@ Requires:       ros2-humble-geometry_msgs
 Requires:       ros2-humble-tf2
 Requires:       ros2-humble-tf2_ros
 
-Provides:  ros2-humble-tf2_bullet = 0.25.3-1
-Obsoletes: ros2-humble-tf2_bullet < 0.25.3-1
+Provides:  ros2-humble-tf2_bullet = 0.25.4-1
+Obsoletes: ros2-humble-tf2_bullet < 0.25.4-1
 
 
 
@@ -73,8 +72,8 @@ Requires:       ros2-humble-geometry_msgs-devel
 Requires:       ros2-humble-tf2-devel
 Requires:       ros2-humble-tf2_ros-devel
 
-Provides: ros2-humble-tf2_bullet-devel = 0.25.3-1
-Obsoletes: ros2-humble-tf2_bullet-devel < 0.25.3-1
+Provides: ros2-humble-tf2_bullet-devel = 0.25.4-1
+Obsoletes: ros2-humble-tf2_bullet-devel < 0.25.4-1
 
 
 %description devel
@@ -183,6 +182,8 @@ done
 
 
 %changelog
+* Sat Oct 21 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.25.4-1
+- update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.25.3-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.25.3-1

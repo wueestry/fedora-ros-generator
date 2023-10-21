@@ -1,12 +1,12 @@
 Name:           ros2-humble-hardware_interface
-Version:        2.30.0
+Version:        2.33.0
 Release:        1%{?dist}
 Summary:        ROS package hardware_interface
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ros2_control-release/archive/release/humble/hardware_interface/2.30.0-1.tar.gz#/ros2-humble-hardware_interface-2.30.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ros2_control-release/archive/release/humble/hardware_interface/2.33.0-1.tar.gz#/ros2-humble-hardware_interface-2.33.0-source0.tar.gz
 
 
 
@@ -21,7 +21,6 @@ BuildRequires: python3-devel
 BuildRequires: python-unversioned-command
 BuildRequires: python3-colcon-common-extensions
 BuildRequires: python3-pip
-BuildRequires: python3-pydocstyle
 BuildRequires: python3-pytest
 BuildRequires: python3-pytest-repeat
 BuildRequires: python3-pytest-rerunfailures
@@ -57,8 +56,8 @@ Requires:       ros2-humble-rcpputils
 Requires:       ros2-humble-rcutils
 Requires:       ros2-humble-tinyxml2_vendor
 
-Provides:  ros2-humble-hardware_interface = 2.30.0-1
-Obsoletes: ros2-humble-hardware_interface < 2.30.0-1
+Provides:  ros2-humble-hardware_interface = 2.33.0-1
+Obsoletes: ros2-humble-hardware_interface < 2.33.0-1
 
 
 
@@ -80,8 +79,8 @@ Requires:       ros2-humble-rcutils-devel
 Requires:       ros2-humble-ros2_control_test_assets-devel
 Requires:       ros2-humble-tinyxml2_vendor-devel
 
-Provides: ros2-humble-hardware_interface-devel = 2.30.0-1
-Obsoletes: ros2-humble-hardware_interface-devel < 2.30.0-1
+Provides: ros2-humble-hardware_interface-devel = 2.33.0-1
+Obsoletes: ros2-humble-hardware_interface-devel < 2.33.0-1
 
 
 %description devel
@@ -190,6 +189,8 @@ done
 
 
 %changelog
+* Sat Oct 21 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.33.0-1
+- update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.30.0-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.30.0-1

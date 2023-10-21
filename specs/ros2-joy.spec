@@ -1,14 +1,13 @@
 Name:           ros2-humble-joy
-Version:        3.1.0
+Version:        3.2.0
 Release:        1%{?dist}
 Summary:        ROS package joy
 
 License:        BSD
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/joystick_drivers-release/archive/release/humble/joy/3.1.0-3.tar.gz#/ros2-humble-joy-3.1.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/joystick_drivers-release/archive/release/humble/joy/3.2.0-1.tar.gz#/ros2-humble-joy-3.2.0-source0.tar.gz
 
-Patch0: ros-joy.system-sdl2.patch
 
 
 # common BRs
@@ -22,7 +21,6 @@ BuildRequires: python3-devel
 BuildRequires: python-unversioned-command
 BuildRequires: python3-colcon-common-extensions
 BuildRequires: python3-pip
-BuildRequires: python3-pydocstyle
 BuildRequires: python3-pytest
 BuildRequires: python3-pytest-repeat
 BuildRequires: python3-pytest-rerunfailures
@@ -38,22 +36,22 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python3-colcon-common-extensions
 # BuildRequires:  python-unversioned-command
 
-BuildRequires:  SDL2-devel
 BuildRequires:  ros2-humble-ament_cmake_ros-devel
 BuildRequires:  ros2-humble-ament_lint_auto-devel
 BuildRequires:  ros2-humble-ament_lint_common-devel
 BuildRequires:  ros2-humble-ament_package-devel
 BuildRequires:  ros2-humble-rclcpp-devel
 BuildRequires:  ros2-humble-rclcpp_components-devel
+BuildRequires:  ros2-humble-sdl2_vendor-devel
 BuildRequires:  ros2-humble-sensor_msgs-devel
 
-Requires:       SDL2-devel
 Requires:       ros2-humble-rclcpp
 Requires:       ros2-humble-rclcpp_components
+Requires:       ros2-humble-sdl2_vendor
 Requires:       ros2-humble-sensor_msgs
 
-Provides:  ros2-humble-joy = 3.1.0-1
-Obsoletes: ros2-humble-joy < 3.1.0-1
+Provides:  ros2-humble-joy = 3.2.0-1
+Obsoletes: ros2-humble-joy < 3.2.0-1
 
 
 
@@ -66,16 +64,16 @@ the current state of each one of the joystick's buttons and axes.
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       ros2-humble-ament_cmake_ros-devel
-Requires:       SDL2-devel
 Requires:       ros2-humble-ament_lint_auto-devel
 Requires:       ros2-humble-ament_lint_common-devel
 Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-rclcpp-devel
 Requires:       ros2-humble-rclcpp_components-devel
+Requires:       ros2-humble-sdl2_vendor-devel
 Requires:       ros2-humble-sensor_msgs-devel
 
-Provides: ros2-humble-joy-devel = 3.1.0-1
-Obsoletes: ros2-humble-joy-devel < 3.1.0-1
+Provides: ros2-humble-joy-devel = 3.2.0-1
+Obsoletes: ros2-humble-joy-devel < 3.2.0-1
 
 
 %description devel
@@ -88,7 +86,6 @@ applications that use %{name}.
 
 %setup -c -T
 tar --strip-components=1 -xf %{SOURCE0}
-%patch 0 -p1
 
 %build
 # nothing to do here
@@ -185,6 +182,8 @@ done
 
 
 %changelog
+* Sat Oct 21 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.2.0-1
+- update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.1.0-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.1.0-1

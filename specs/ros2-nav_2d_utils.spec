@@ -1,12 +1,12 @@
 Name:           ros2-humble-nav_2d_utils
-Version:        1.1.9
+Version:        1.1.12
 Release:        1%{?dist}
 Summary:        ROS package nav_2d_utils
 
 License:        BSD-3-Clause
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/SteveMacenski/navigation2-release/archive/release/humble/nav_2d_utils/1.1.9-1.tar.gz#/ros2-humble-nav_2d_utils-1.1.9-source0.tar.gz
+Source0:        https://github.com/SteveMacenski/navigation2-release/archive/release/humble/nav_2d_utils/1.1.12-1.tar.gz#/ros2-humble-nav_2d_utils-1.1.12-source0.tar.gz
 
 Patch0: ros-nav2_dwb_controller.init_variables.patch
 
@@ -22,7 +22,6 @@ BuildRequires: python3-devel
 BuildRequires: python-unversioned-command
 BuildRequires: python3-colcon-common-extensions
 BuildRequires: python3-pip
-BuildRequires: python3-pydocstyle
 BuildRequires: python3-pytest
 BuildRequires: python3-pytest-repeat
 BuildRequires: python3-pytest-rerunfailures
@@ -62,8 +61,8 @@ Requires:       ros2-humble-std_msgs
 Requires:       ros2-humble-tf2
 Requires:       ros2-humble-tf2_geometry_msgs
 
-Provides:  ros2-humble-nav_2d_utils = 1.1.9-1
-Obsoletes: ros2-humble-nav_2d_utils < 1.1.9-1
+Provides:  ros2-humble-nav_2d_utils = 1.1.12-1
+Obsoletes: ros2-humble-nav_2d_utils < 1.1.12-1
 
 
 
@@ -88,8 +87,8 @@ Requires:       ros2-humble-std_msgs-devel
 Requires:       ros2-humble-tf2-devel
 Requires:       ros2-humble-tf2_geometry_msgs-devel
 
-Provides: ros2-humble-nav_2d_utils-devel = 1.1.9-1
-Obsoletes: ros2-humble-nav_2d_utils-devel < 1.1.9-1
+Provides: ros2-humble-nav_2d_utils-devel = 1.1.12-1
+Obsoletes: ros2-humble-nav_2d_utils-devel < 1.1.12-1
 
 
 %description devel
@@ -199,6 +198,8 @@ done
 
 
 %changelog
+* Sat Oct 21 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.12-1
+- update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.9-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.9-1

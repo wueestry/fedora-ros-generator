@@ -1,12 +1,12 @@
 Name:           ros2-humble-nav2_waypoint_follower
-Version:        1.1.9
+Version:        1.1.12
 Release:        1%{?dist}
 Summary:        ROS package nav2_waypoint_follower
 
 License:        Apache-2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/SteveMacenski/navigation2-release/archive/release/humble/nav2_waypoint_follower/1.1.9-1.tar.gz#/ros2-humble-nav2_waypoint_follower-1.1.9-source0.tar.gz
+Source0:        https://github.com/SteveMacenski/navigation2-release/archive/release/humble/nav2_waypoint_follower/1.1.12-1.tar.gz#/ros2-humble-nav2_waypoint_follower-1.1.12-source0.tar.gz
 
 Patch0: ros-nav2_waypoint_follower.init_variables.patch
 
@@ -22,7 +22,6 @@ BuildRequires: python3-devel
 BuildRequires: python-unversioned-command
 BuildRequires: python3-colcon-common-extensions
 BuildRequires: python3-pip
-BuildRequires: python3-pydocstyle
 BuildRequires: python3-pytest
 BuildRequires: python3-pytest-repeat
 BuildRequires: python3-pytest-rerunfailures
@@ -70,8 +69,8 @@ Requires:       ros2-humble-rclcpp_action
 Requires:       ros2-humble-rclcpp_lifecycle
 Requires:       ros2-humble-tf2_ros
 
-Provides:  ros2-humble-nav2_waypoint_follower = 1.1.9-1
-Obsoletes: ros2-humble-nav2_waypoint_follower < 1.1.9-1
+Provides:  ros2-humble-nav2_waypoint_follower = 1.1.12-1
+Obsoletes: ros2-humble-nav2_waypoint_follower < 1.1.12-1
 
 
 
@@ -100,8 +99,8 @@ Requires:       ros2-humble-rclcpp_action-devel
 Requires:       ros2-humble-rclcpp_lifecycle-devel
 Requires:       ros2-humble-tf2_ros-devel
 
-Provides: ros2-humble-nav2_waypoint_follower-devel = 1.1.9-1
-Obsoletes: ros2-humble-nav2_waypoint_follower-devel < 1.1.9-1
+Provides: ros2-humble-nav2_waypoint_follower-devel = 1.1.12-1
+Obsoletes: ros2-humble-nav2_waypoint_follower-devel < 1.1.12-1
 
 
 %description devel
@@ -211,6 +210,8 @@ done
 
 
 %changelog
+* Sat Oct 21 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.12-1
+- update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.9-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.9-1

@@ -1,12 +1,12 @@
 Name:           ros2-humble-rviz_rendering
-Version:        11.2.7
+Version:        11.2.8
 Release:        1%{?dist}
 Summary:        ROS package rviz_rendering
 
 License:        BSD
 URL:            https://github.com/ros2/rviz/blob/ros2/README.md
 
-Source0:        https://github.com/ros2-gbp/rviz-release/archive/release/humble/rviz_rendering/11.2.7-1.tar.gz#/ros2-humble-rviz_rendering-11.2.7-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rviz-release/archive/release/humble/rviz_rendering/11.2.8-1.tar.gz#/ros2-humble-rviz_rendering-11.2.8-source0.tar.gz
 
 Patch0: ros-rviz_rendering.remove-assimp-vendor.patch
 
@@ -22,7 +22,6 @@ BuildRequires: python3-devel
 BuildRequires: python-unversioned-command
 BuildRequires: python3-colcon-common-extensions
 BuildRequires: python3-pip
-BuildRequires: python3-pydocstyle
 BuildRequires: python3-pytest
 BuildRequires: python3-pytest-repeat
 BuildRequires: python3-pytest-rerunfailures
@@ -63,8 +62,8 @@ Requires:       ros2-humble-ament_index_cpp
 Requires:       ros2-humble-resource_retriever
 Requires:       ros2-humble-rviz_ogre_vendor
 
-Provides:  ros2-humble-rviz_rendering = 11.2.7-1
-Obsoletes: ros2-humble-rviz_rendering < 11.2.7-1
+Provides:  ros2-humble-rviz_rendering = 11.2.8-1
+Obsoletes: ros2-humble-rviz_rendering < 11.2.8-1
 
 
 
@@ -92,8 +91,8 @@ Requires:       ros2-humble-ament_lint_auto-devel
 Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-resource_retriever-devel
 
-Provides: ros2-humble-rviz_rendering-devel = 11.2.7-1
-Obsoletes: ros2-humble-rviz_rendering-devel < 11.2.7-1
+Provides: ros2-humble-rviz_rendering-devel = 11.2.8-1
+Obsoletes: ros2-humble-rviz_rendering-devel < 11.2.8-1
 
 
 %description devel
@@ -203,6 +202,8 @@ done
 
 
 %changelog
+* Wed Sep 27 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.8-1
+- update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.7-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.7-1
