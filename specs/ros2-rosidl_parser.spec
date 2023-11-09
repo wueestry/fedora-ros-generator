@@ -22,6 +22,7 @@ BuildRequires: python3-devel
 BuildRequires: python-unversioned-command
 BuildRequires: python3-colcon-common-extensions
 BuildRequires: python3-pip
+BuildRequires: python3-pydocstyle
 BuildRequires: python3-pytest
 BuildRequires: python3-pytest-repeat
 BuildRequires: python3-pytest-rerunfailures
