@@ -1,0 +1,16 @@
+dependencies:
+  devel:
+    ros:
+      - dynamic_reconfigure
+  build:
+    system:
+      - libuuid-devel
+      - tinyxml-devel
+      - tinyxml2-devel
+      - poco-devel
+      - lz4-devel
+      - libXext-devel
+      - java-17-openjdk-devel
+patches:
+  - noetic/pcl_ros.dynamic_reconfigure.patch
+  - noetic/pcl_ros.build-with-cpp17.patch

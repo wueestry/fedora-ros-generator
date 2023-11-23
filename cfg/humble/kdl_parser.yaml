@@ -1,0 +1,10 @@
+dependencies:
+  build:
+    system:
+      - tinyxml-devel
+      - urdfdom-headers-devel
+      - urdfdom-devel
+      - eigen3-devel
+patches:
+  - ros-kdl_parser.system-orocos-kdl.patch
+  - ros-kdl_parser.link-eigen3.patch

@@ -1,0 +1,6 @@
+dependencies:
+  build:
+    system:
+      - console-bridge-devel
+patches:
+  - noetic/rosconsole.log4cxx-v013.patch

@@ -28,14 +28,21 @@ class RosPkg:
 
         try:
             common_file = "common.yaml" if self.rosdistro in ros else "ros2_common.yaml"
-            common_config = cast(dict, yaml.load(open(f"cfg/{common_file}"), Loader=yaml.FullLoader))
+            common_config = cast(
+                dict,
+                yaml.load(open(f"cfg/{distro}/{common_file}"), Loader=yaml.FullLoader),
+            )
         except FileNotFoundError:
             common_config = {}
 
         try:
             name_versioned = self.name if self.rosdistro in ros else f"ros2_{self.name}"
             pkg_specific_config = cast(
-                dict, yaml.load(open(f"cfg/{name_versioned}.yaml", "r"), Loader=yaml.FullLoader)
+                dict,
+                yaml.load(
+                    open(f"cfg/{distro}/{name_versioned}.yaml", "r"),
+                    Loader=yaml.FullLoader,
+                ),
             )
         except FileNotFoundError:
             pkg_specific_config = {}
@@ -66,7 +73,9 @@ class RosPkg:
                             dep_list["ros"].add(pkg)
                     except KeyError:
                         try:
-                            dep = self.pkg_config["common"]["dependencies"]["distro_names"][pkg]
+                            dep = self.pkg_config["common"]["dependencies"][
+                                "distro_names"
+                            ][pkg]
                             for dep_list in dep_lists:
                                 dep_list["system"].add(dep)
                         except KeyError:
@@ -77,7 +86,9 @@ class RosPkg:
                                 for dep_list in dep_lists:
                                     dep_list["system"].add(system_pkg)
                             except AssertionError:
-                                print(f"Couldn't find the system package {pkg}. Skipping")
+                                print(
+                                    f"Couldn't find the system package {pkg}. Skipping"
+                                )
                             except KeyError:
                                 print(f"Key {pkg} not found in list. Skipping")
 
@@ -90,12 +101,16 @@ class RosPkg:
             deps[key] = set(val)
         return deps
 
-    def translate_dependencies(self, dep_type: str, dependencies: str) -> Dict[str, set]:
+    def translate_dependencies(
+        self, dep_type: str, dependencies: str
+    ) -> Dict[str, set]:
         """Translate a dependency from ROS' package.xml into a user-defined dep.
         This allows to use system replacements, e.g., by translating the ROS
         package opencv3 to the system package opencv."""
         try:
-            translations = self.pkg_config["common"]["dependencies"][dep_type]["translate"]
+            translations = self.pkg_config["common"]["dependencies"][dep_type][
+                "translate"
+            ]
         except KeyError:
             translations = []
         new_dependencies: Dict[str, set] = {"ros": set(), "system": set()}
@@ -107,12 +122,16 @@ class RosPkg:
                         translation["from"]["type"] == from_type
                         and translation["from"]["pkg"] == from_pkg
                     ):
-                        new_dependencies[translation["to"]["type"]].add(translation["to"]["pkg"])
+                        new_dependencies[translation["to"]["type"]].add(
+                            translation["to"]["pkg"]
+                        )
                         translated = True
                         break
                 if not translated:
                     new_dependencies[from_type].add(from_pkg)
-        new_dependencies["system"] = self.translate_python_dependencies(new_dependencies["system"])
+        new_dependencies["system"] = self.translate_python_dependencies(
+            new_dependencies["system"]
+        )
         return new_dependencies
 
     def translate_python_dependencies(self, dependencies: list) -> set:
@@ -126,8 +145,12 @@ class RosPkg:
     def get_build_dependencies(self) -> Dict[str, set]:
         build_deps = {}
         for key, val in self.build_deps.items():
-            build_deps[key] = val | self.get_dependencies_from_cfg("build").get(key, set())
-            build_deps[key] -= self.get_dependencies_from_cfg("exclude_build").get(key, set())
+            build_deps[key] = val | self.get_dependencies_from_cfg("build").get(
+                key, set()
+            )
+            build_deps[key] -= self.get_dependencies_from_cfg("exclude_build").get(
+                key, set()
+            )
         build_deps = self.translate_dependencies("build", build_deps)
         if self.rosdistro in ros and self.name != "catkin":
             build_deps["ros"].add("catkin")
@@ -141,9 +164,13 @@ class RosPkg:
             # merge with additional dependencies from the config
             run_deps[key] = val | self.get_dependencies_from_cfg("run").get(key, set())
             # remove dependencies excluded in the config
-            run_deps[key] -= self.get_dependencies_from_cfg("exclude_run").get(key, set())
+            run_deps[key] -= self.get_dependencies_from_cfg("exclude_run").get(
+                key, set()
+            )
             # remove all devel packages
-            run_deps[key] -= set([dep for dep in run_deps[key] if re.match(".*-devel", dep)])
+            run_deps[key] -= set(
+                [dep for dep in run_deps[key] if re.match(".*-devel", dep)]
+            )
         run_deps = self.translate_dependencies("run", run_deps)
         return run_deps
 
@@ -151,9 +178,13 @@ class RosPkg:
         devel_deps = {}
         for key, val in self.devel_deps.items():
             # merge with additional dependencies from the config
-            devel_deps[key] = val | self.get_dependencies_from_cfg("devel").get(key, set())
+            devel_deps[key] = val | self.get_dependencies_from_cfg("devel").get(
+                key, set()
+            )
             # remove dependencies excluded in the config
-            devel_deps[key] -= self.get_dependencies_from_cfg("exclude_devel").get(key, set())
+            devel_deps[key] -= self.get_dependencies_from_cfg("exclude_devel").get(
+                key, set()
+            )
         devel_deps = self.translate_dependencies("devel", devel_deps)
         return devel_deps
 
@@ -173,7 +204,9 @@ class RosPkg:
         ros_pkg = generator.generate_rosinstall(
             self.rosdistro, [self.name], deps=False, wet_only=True, tar=True
         )
-        return re.match("[\w-]*-([0-9-_.]*)(-[0-9-]*)", ros_pkg[0]["tar"]["version"]).group(1)
+        return re.match(
+            "[\w-]*-([0-9-_.]*)(-[0-9-]*)", ros_pkg[0]["tar"]["version"]
+        ).group(1)
 
     def get_version_release(self) -> None:
         return f"{self.rosdistro}.{self.get_version()}-{self.get_release()}"
@@ -199,7 +232,8 @@ class RosPkg:
 
     def get_description(self) -> str:
         return textwrap.fill(
-            self.xml.find("description").text or f"ROS {self.rosdistro} package {self.name}."
+            self.xml.find("description").text
+            or f"ROS {self.rosdistro} package {self.name}."
         )
 
     def is_noarch(self) -> bool:

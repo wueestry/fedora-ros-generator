@@ -1,0 +1,10 @@
+dependencies:
+  build:
+    ros:
+      - trajectory_msgs
+    system: 
+      - gazebo-devel
+      - bullet-devel
+      - libuuid-devel
+patches:
+  - noetic/gazebo_ros.build-with-cpp17.patch

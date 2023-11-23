@@ -1,0 +1,4 @@
+noarch: true
+
+patches:
+  - noetic/python_qt_binding.lflags-fix.patch

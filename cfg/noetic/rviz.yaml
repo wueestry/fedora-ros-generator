@@ -1,0 +1,13 @@
+dependencies:
+  build:
+    system:
+      - sip-devel
+      - python-qt5-devel
+      - poco-devel
+      - tinyxml2-devel
+      - lz4-devel
+      - urdfdom-devel
+      - libXext-devel
+patches:
+  - noetic/rviz.no-rpath.patch
+  - noetic/rviz.assimp-decompose-quaternion.patch
