@@ -8,7 +8,7 @@ URL:            http://www.ros.org/
 
 Source0:        https://github.com/ros-gbp/robot_state_publisher-release/archive/release/noetic/robot_state_publisher/1.15.2-1.tar.gz#/ros-noetic-robot_state_publisher-1.15.2-source0.tar.gz
 
-Patch0: ros-robot_state_publisher.build-with-cpp17.patch
+Patch0: noetic/robot_state_publisher.build-with-cpp17.patch
 
 
 # common BRs

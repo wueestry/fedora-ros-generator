@@ -1,12 +1,12 @@
 Name:           ros-noetic-srdfdom
-Version:        noetic.0.6.3
+Version:        noetic.0.6.4
 Release:        1%{?dist}
 Summary:        ROS package srdfdom
 
 License:        BSD
 URL:            http://ros.org/wiki/srdfdom
 
-Source0:        https://github.com/ros-gbp/srdfdom-release/archive/release/noetic/srdfdom/0.6.3-1.tar.gz#/ros-noetic-srdfdom-0.6.3-source0.tar.gz
+Source0:        https://github.com/ros-gbp/srdfdom-release/archive/release/noetic/srdfdom/0.6.4-1.tar.gz#/ros-noetic-srdfdom-0.6.4-source0.tar.gz
 
 
 
@@ -30,9 +30,9 @@ BuildRequires:  ros-noetic-urdf-devel
 Requires:       ros-noetic-urdf
 Requires:       ros-noetic-urdfdom_py
 
-Provides:  ros-noetic-srdfdom = 0.6.3-1
-Obsoletes: ros-noetic-srdfdom < 0.6.3-1
-Obsoletes: ros-kinetic-srdfdom < 0.6.3-1
+Provides:  ros-noetic-srdfdom = 0.6.4-1
+Obsoletes: ros-noetic-srdfdom < 0.6.4-1
+Obsoletes: ros-kinetic-srdfdom < 0.6.4-1
 
 
 
@@ -52,9 +52,9 @@ Requires:       ros-noetic-rostest-devel
 Requires:       ros-noetic-urdf-devel
 Requires:       ros-noetic-urdfdom_py-devel
 
-Provides: ros-noetic-srdfdom-devel = 0.6.3-1
-Obsoletes: ros-noetic-srdfdom-devel < 0.6.3-1
-Obsoletes: ros-kinetic-srdfdom-devel < 0.6.3-1
+Provides: ros-noetic-srdfdom-devel = 0.6.4-1
+Obsoletes: ros-noetic-srdfdom-devel < 0.6.4-1
+Obsoletes: ros-kinetic-srdfdom-devel < 0.6.4-1
 
 
 %description devel
@@ -149,5 +149,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.0.6.4-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.0.6.3-1
 - Generate moveit packages

@@ -1,12 +1,12 @@
 Name:           ros-noetic-smach
-Version:        noetic.2.5.1
+Version:        noetic.2.5.2
 Release:        1%{?dist}
 Summary:        ROS package smach
 
 License:        BSD
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros-gbp/executive_smach-release/archive/release/noetic/smach/2.5.1-1.tar.gz#/ros-noetic-smach-2.5.1-source0.tar.gz
+Source0:        https://github.com/ros-gbp/executive_smach-release/archive/release/noetic/smach/2.5.2-1.tar.gz#/ros-noetic-smach-2.5.2-source0.tar.gz
 
 
 BuildArch: noarch
@@ -22,9 +22,9 @@ BuildRequires:  python-unversioned-command
 BuildRequires:  ros-noetic-catkin-devel
 
 
-Provides:  ros-noetic-smach = 2.5.1-1
-Obsoletes: ros-noetic-smach < 2.5.1-1
-Obsoletes: ros-kinetic-smach < 2.5.1-1
+Provides:  ros-noetic-smach = 2.5.2-1
+Obsoletes: ros-noetic-smach < 2.5.2-1
+Obsoletes: ros-kinetic-smach < 2.5.2-1
 
 
 
@@ -40,9 +40,9 @@ Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
 Requires:       ros-noetic-catkin-devel
 
-Provides: ros-noetic-smach-devel = 2.5.1-1
-Obsoletes: ros-noetic-smach-devel < 2.5.1-1
-Obsoletes: ros-kinetic-smach-devel < 2.5.1-1
+Provides: ros-noetic-smach-devel = 2.5.2-1
+Obsoletes: ros-noetic-smach-devel < 2.5.2-1
+Obsoletes: ros-kinetic-smach-devel < 2.5.2-1
 
 
 %description devel
@@ -137,5 +137,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.2.5.2-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.2.5.1-1
 - Initial desktop generation

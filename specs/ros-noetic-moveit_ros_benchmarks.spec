@@ -1,12 +1,12 @@
 Name:           ros-noetic-moveit_ros_benchmarks
-Version:        noetic.1.1.11
+Version:        noetic.1.1.13
 Release:        1%{?dist}
 Summary:        ROS package moveit_ros_benchmarks
 
 License:        BSD
 URL:            http://moveit.ros.org
 
-Source0:        https://github.com/ros-gbp/moveit-release/archive/release/noetic/moveit_ros_benchmarks/1.1.11-1.tar.gz#/ros-noetic-moveit_ros_benchmarks-1.1.11-source0.tar.gz
+Source0:        https://github.com/ros-gbp/moveit-release/archive/release/noetic/moveit_ros_benchmarks/1.1.13-2.tar.gz#/ros-noetic-moveit_ros_benchmarks-1.1.13-source0.tar.gz
 
 
 
@@ -37,9 +37,9 @@ Requires:       ros-noetic-pluginlib
 Requires:       ros-noetic-roscpp
 Requires:       ros-noetic-tf2_eigen
 
-Provides:  ros-noetic-moveit_ros_benchmarks = 1.1.11-1
-Obsoletes: ros-noetic-moveit_ros_benchmarks < 1.1.11-1
-Obsoletes: ros-kinetic-moveit_ros_benchmarks < 1.1.11-1
+Provides:  ros-noetic-moveit_ros_benchmarks = 1.1.13-1
+Obsoletes: ros-noetic-moveit_ros_benchmarks < 1.1.13-1
+Obsoletes: ros-kinetic-moveit_ros_benchmarks < 1.1.13-1
 
 
 
@@ -62,9 +62,9 @@ Requires:       ros-noetic-pluginlib-devel
 Requires:       ros-noetic-roscpp-devel
 Requires:       ros-noetic-tf2_eigen-devel
 
-Provides: ros-noetic-moveit_ros_benchmarks-devel = 1.1.11-1
-Obsoletes: ros-noetic-moveit_ros_benchmarks-devel < 1.1.11-1
-Obsoletes: ros-kinetic-moveit_ros_benchmarks-devel < 1.1.11-1
+Provides: ros-noetic-moveit_ros_benchmarks-devel = 1.1.13-1
+Obsoletes: ros-noetic-moveit_ros_benchmarks-devel < 1.1.13-1
+Obsoletes: ros-kinetic-moveit_ros_benchmarks-devel < 1.1.13-1
 
 
 %description devel
@@ -159,5 +159,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.1.1.13-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.1.1.11-1
 - Generate moveit packages

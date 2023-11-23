@@ -1,12 +1,12 @@
 Name:           ros-noetic-cpp_common
-Version:        noetic.0.7.2
+Version:        noetic.0.7.3
 Release:        1%{?dist}
 Summary:        ROS package cpp_common
 
 License:        BSD
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros-gbp/roscpp_core-release/archive/release/noetic/cpp_common/0.7.2-1.tar.gz#/ros-noetic-cpp_common-0.7.2-source0.tar.gz
+Source0:        https://github.com/ros-gbp/roscpp_core-release/archive/release/noetic/cpp_common/0.7.3-1.tar.gz#/ros-noetic-cpp_common-0.7.3-source0.tar.gz
 
 
 
@@ -23,9 +23,9 @@ BuildRequires:  console-bridge-devel
 BuildRequires:  ros-noetic-catkin-devel
 
 
-Provides:  ros-noetic-cpp_common = 0.7.2-1
-Obsoletes: ros-noetic-cpp_common < 0.7.2-1
-Obsoletes: ros-kinetic-cpp_common < 0.7.2-1
+Provides:  ros-noetic-cpp_common = 0.7.3-1
+Obsoletes: ros-noetic-cpp_common < 0.7.3-1
+Obsoletes: ros-kinetic-cpp_common < 0.7.3-1
 
 
 
@@ -42,9 +42,9 @@ Requires:       ros-noetic-catkin-devel
 Requires:       boost-devel
 Requires:       console-bridge-devel
 
-Provides: ros-noetic-cpp_common-devel = 0.7.2-1
-Obsoletes: ros-noetic-cpp_common-devel < 0.7.2-1
-Obsoletes: ros-kinetic-cpp_common-devel < 0.7.2-1
+Provides: ros-noetic-cpp_common-devel = 0.7.3-1
+Obsoletes: ros-noetic-cpp_common-devel < 0.7.3-1
+Obsoletes: ros-kinetic-cpp_common-devel < 0.7.3-1
 
 
 %description devel
@@ -139,5 +139,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.0.7.3-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.0.7.2-1
 - Initial desktop generation

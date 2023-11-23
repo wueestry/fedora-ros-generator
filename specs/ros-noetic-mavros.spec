@@ -1,14 +1,14 @@
 Name:           ros-noetic-mavros
-Version:        noetic.1.15.0
+Version:        noetic.1.17.0
 Release:        1%{?dist}
 Summary:        ROS package mavros
 
 License:        GPLv3
 URL:            http://wiki.ros.org/mavros
 
-Source0:        https://github.com/mavlink/mavros-release/archive/release/noetic/mavros/1.15.0-1.tar.gz#/ros-noetic-mavros-1.15.0-source0.tar.gz
+Source0:        https://github.com/mavlink/mavros-release/archive/release/noetic/mavros/1.17.0-1.tar.gz#/ros-noetic-mavros-1.17.0-source0.tar.gz
 
-Patch0: ros-mavros.build-with-cpp17.patch
+Patch0: noetic/mavros.build-with-cpp17.patch
 
 
 # common BRs
@@ -69,9 +69,9 @@ Requires:       ros-noetic-tf2_eigen
 Requires:       ros-noetic-tf2_ros
 Requires:       ros-noetic-trajectory_msgs
 
-Provides:  ros-noetic-mavros = 1.15.0-1
-Obsoletes: ros-noetic-mavros < 1.15.0-1
-Obsoletes: ros-kinetic-mavros < 1.15.0-1
+Provides:  ros-noetic-mavros = 1.17.0-1
+Obsoletes: ros-noetic-mavros < 1.17.0-1
+Obsoletes: ros-kinetic-mavros < 1.17.0-1
 
 
 
@@ -114,9 +114,9 @@ Requires:       ros-noetic-trajectory_msgs-devel
 Requires:       ros-noetic-message_runtime-devel
 Requires:       ros-noetic-rospy-devel
 
-Provides: ros-noetic-mavros-devel = 1.15.0-1
-Obsoletes: ros-noetic-mavros-devel < 1.15.0-1
-Obsoletes: ros-kinetic-mavros-devel < 1.15.0-1
+Provides: ros-noetic-mavros-devel = 1.17.0-1
+Obsoletes: ros-noetic-mavros-devel < 1.17.0-1
+Obsoletes: ros-kinetic-mavros-devel < 1.17.0-1
 
 
 %description devel
@@ -212,5 +212,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.1.17.0-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.1.15.0-1
 - Generate mavlink and mavros

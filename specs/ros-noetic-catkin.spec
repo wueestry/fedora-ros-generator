@@ -8,8 +8,8 @@ URL:            http://wiki.ros.org/catkin
 
 Source0:        https://github.com/ros-gbp/catkin-release/archive/release/noetic/catkin/0.8.10-1.tar.gz#/ros-noetic-catkin-0.8.10-source0.tar.gz
 
-Patch0: ros-kinetic-catkin.python-path-in-templates.patch
-Patch1: ros-catkin.python3.patch
+Patch0: noetic/catkin.python-path-in-templates.patch
+Patch1: noetic/catkin.python3.patch
 
 BuildArch: noarch
 

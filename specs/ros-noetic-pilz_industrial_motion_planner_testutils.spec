@@ -1,12 +1,12 @@
 Name:           ros-noetic-pilz_industrial_motion_planner_testutils
-Version:        noetic.1.1.11
+Version:        noetic.1.1.13
 Release:        1%{?dist}
 Summary:        ROS package pilz_industrial_motion_planner_testutils
 
 License:        BSD
 URL:            http://moveit.ros.org
 
-Source0:        https://github.com/ros-gbp/moveit-release/archive/release/noetic/pilz_industrial_motion_planner_testutils/1.1.11-1.tar.gz#/ros-noetic-pilz_industrial_motion_planner_testutils-1.1.11-source0.tar.gz
+Source0:        https://github.com/ros-gbp/moveit-release/archive/release/noetic/pilz_industrial_motion_planner_testutils/1.1.13-2.tar.gz#/ros-noetic-pilz_industrial_motion_planner_testutils-1.1.13-source0.tar.gz
 
 
 
@@ -27,9 +27,9 @@ Requires:       ros-noetic-moveit_commander
 Requires:       ros-noetic-moveit_core
 Requires:       ros-noetic-moveit_msgs
 
-Provides:  ros-noetic-pilz_industrial_motion_planner_testutils = 1.1.11-1
-Obsoletes: ros-noetic-pilz_industrial_motion_planner_testutils < 1.1.11-1
-Obsoletes: ros-kinetic-pilz_industrial_motion_planner_testutils < 1.1.11-1
+Provides:  ros-noetic-pilz_industrial_motion_planner_testutils = 1.1.13-1
+Obsoletes: ros-noetic-pilz_industrial_motion_planner_testutils < 1.1.13-1
+Obsoletes: ros-kinetic-pilz_industrial_motion_planner_testutils < 1.1.13-1
 
 
 
@@ -45,9 +45,9 @@ Requires:       ros-noetic-moveit_msgs-devel
 Requires:       ros-noetic-tf2_eigen-devel
 Requires:       ros-noetic-moveit_commander-devel
 
-Provides: ros-noetic-pilz_industrial_motion_planner_testutils-devel = 1.1.11-1
-Obsoletes: ros-noetic-pilz_industrial_motion_planner_testutils-devel < 1.1.11-1
-Obsoletes: ros-kinetic-pilz_industrial_motion_planner_testutils-devel < 1.1.11-1
+Provides: ros-noetic-pilz_industrial_motion_planner_testutils-devel = 1.1.13-1
+Obsoletes: ros-noetic-pilz_industrial_motion_planner_testutils-devel < 1.1.13-1
+Obsoletes: ros-kinetic-pilz_industrial_motion_planner_testutils-devel < 1.1.13-1
 
 
 %description devel
@@ -142,5 +142,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.1.1.13-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.1.1.11-1
 - Generate moveit packages

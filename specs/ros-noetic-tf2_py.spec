@@ -1,12 +1,12 @@
 Name:           ros-noetic-tf2_py
-Version:        noetic.0.7.6
+Version:        noetic.0.7.7
 Release:        1%{?dist}
 Summary:        ROS package tf2_py
 
 License:        BSD
 URL:            http://ros.org/wiki/tf2_py
 
-Source0:        https://github.com/ros-gbp/geometry2-release/archive/release/noetic/tf2_py/0.7.6-1.tar.gz#/ros-noetic-tf2_py-0.7.6-source0.tar.gz
+Source0:        https://github.com/ros-gbp/geometry2-release/archive/release/noetic/tf2_py/0.7.7-1.tar.gz#/ros-noetic-tf2_py-0.7.7-source0.tar.gz
 
 
 
@@ -25,9 +25,9 @@ BuildRequires:  ros-noetic-tf2-devel
 Requires:       ros-noetic-rospy
 Requires:       ros-noetic-tf2
 
-Provides:  ros-noetic-tf2_py = 0.7.6-1
-Obsoletes: ros-noetic-tf2_py < 0.7.6-1
-Obsoletes: ros-kinetic-tf2_py < 0.7.6-1
+Provides:  ros-noetic-tf2_py = 0.7.7-1
+Obsoletes: ros-noetic-tf2_py < 0.7.7-1
+Obsoletes: ros-kinetic-tf2_py < 0.7.7-1
 
 
 
@@ -41,9 +41,9 @@ Requires:       ros-noetic-catkin-devel
 Requires:       ros-noetic-rospy-devel
 Requires:       ros-noetic-tf2-devel
 
-Provides: ros-noetic-tf2_py-devel = 0.7.6-1
-Obsoletes: ros-noetic-tf2_py-devel < 0.7.6-1
-Obsoletes: ros-kinetic-tf2_py-devel < 0.7.6-1
+Provides: ros-noetic-tf2_py-devel = 0.7.7-1
+Obsoletes: ros-noetic-tf2_py-devel < 0.7.7-1
+Obsoletes: ros-kinetic-tf2_py-devel < 0.7.7-1
 
 
 %description devel
@@ -139,5 +139,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.0.7.7-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.0.7.6-1
 - Initial desktop generation

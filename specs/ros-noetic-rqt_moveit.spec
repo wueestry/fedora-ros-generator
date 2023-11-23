@@ -1,12 +1,12 @@
 Name:           ros-noetic-rqt_moveit
-Version:        noetic.0.5.10
+Version:        noetic.0.5.11
 Release:        1%{?dist}
 Summary:        ROS package rqt_moveit
 
 License:        BSD
 URL:            http://wiki.ros.org/rqt_moveit
 
-Source0:        https://github.com/ros-gbp/rqt_moveit-release/archive/release/noetic/rqt_moveit/0.5.10-1.tar.gz#/ros-noetic-rqt_moveit-0.5.10-source0.tar.gz
+Source0:        https://github.com/ros-gbp/rqt_moveit-release/archive/release/noetic/rqt_moveit/0.5.11-1.tar.gz#/ros-noetic-rqt_moveit-0.5.11-source0.tar.gz
 
 
 BuildArch: noarch
@@ -32,9 +32,9 @@ Requires:       ros-noetic-rqt_py_common
 Requires:       ros-noetic-rqt_topic
 Requires:       ros-noetic-sensor_msgs
 
-Provides:  ros-noetic-rqt_moveit = 0.5.10-1
-Obsoletes: ros-noetic-rqt_moveit < 0.5.10-1
-Obsoletes: ros-kinetic-rqt_moveit < 0.5.10-1
+Provides:  ros-noetic-rqt_moveit = 0.5.11-1
+Obsoletes: ros-noetic-rqt_moveit < 0.5.11-1
+Obsoletes: ros-kinetic-rqt_moveit < 0.5.11-1
 
 
 
@@ -56,9 +56,9 @@ Requires:       ros-noetic-rqt_py_common-devel
 Requires:       ros-noetic-rqt_topic-devel
 Requires:       ros-noetic-sensor_msgs-devel
 
-Provides: ros-noetic-rqt_moveit-devel = 0.5.10-1
-Obsoletes: ros-noetic-rqt_moveit-devel < 0.5.10-1
-Obsoletes: ros-kinetic-rqt_moveit-devel < 0.5.10-1
+Provides: ros-noetic-rqt_moveit-devel = 0.5.11-1
+Obsoletes: ros-noetic-rqt_moveit-devel < 0.5.11-1
+Obsoletes: ros-kinetic-rqt_moveit-devel < 0.5.11-1
 
 
 %description devel
@@ -153,5 +153,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.0.5.11-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.0.5.10-1
 - Initial desktop generation

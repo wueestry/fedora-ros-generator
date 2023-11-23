@@ -1,12 +1,12 @@
 Name:           ros-noetic-libmavconn
-Version:        noetic.1.15.0
+Version:        noetic.1.17.0
 Release:        1%{?dist}
 Summary:        ROS package libmavconn
 
 License:        GPLv3
 URL:            http://wiki.ros.org/mavros
 
-Source0:        https://github.com/mavlink/mavros-release/archive/release/noetic/libmavconn/1.15.0-1.tar.gz#/ros-noetic-libmavconn-1.15.0-source0.tar.gz
+Source0:        https://github.com/mavlink/mavros-release/archive/release/noetic/libmavconn/1.17.0-1.tar.gz#/ros-noetic-libmavconn-1.17.0-source0.tar.gz
 
 
 
@@ -27,9 +27,9 @@ BuildRequires:  ros-noetic-rosunit-devel
 
 Requires:       ros-noetic-mavlink
 
-Provides:  ros-noetic-libmavconn = 1.15.0-1
-Obsoletes: ros-noetic-libmavconn < 1.15.0-1
-Obsoletes: ros-kinetic-libmavconn < 1.15.0-1
+Provides:  ros-noetic-libmavconn = 1.17.0-1
+Obsoletes: ros-noetic-libmavconn < 1.17.0-1
+Obsoletes: ros-kinetic-libmavconn < 1.17.0-1
 
 
 
@@ -48,9 +48,9 @@ Requires:       gtest-devel
 Requires:       ros-noetic-mavlink-devel
 Requires:       ros-noetic-rosunit-devel
 
-Provides: ros-noetic-libmavconn-devel = 1.15.0-1
-Obsoletes: ros-noetic-libmavconn-devel < 1.15.0-1
-Obsoletes: ros-kinetic-libmavconn-devel < 1.15.0-1
+Provides: ros-noetic-libmavconn-devel = 1.17.0-1
+Obsoletes: ros-noetic-libmavconn-devel < 1.17.0-1
+Obsoletes: ros-kinetic-libmavconn-devel < 1.17.0-1
 
 
 %description devel
@@ -145,5 +145,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.1.17.0-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.1.15.0-1
 - Generate mavlink and mavros

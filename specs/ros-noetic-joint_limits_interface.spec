@@ -1,12 +1,12 @@
 Name:           ros-noetic-joint_limits_interface
-Version:        noetic.0.19.6
+Version:        noetic.0.20.0
 Release:        1%{?dist}
 Summary:        ROS package joint_limits_interface
 
 License:        BSD
 URL:            https://github.com/ros-controls/ros_control/wiki
 
-Source0:        https://github.com/ros-gbp/ros_control-release/archive/release/noetic/joint_limits_interface/0.19.6-1.tar.gz#/ros-noetic-joint_limits_interface-0.19.6-source0.tar.gz
+Source0:        https://github.com/ros-gbp/ros_control-release/archive/release/noetic/joint_limits_interface/0.20.0-1.tar.gz#/ros-noetic-joint_limits_interface-0.20.0-source0.tar.gz
 
 
 BuildArch: noarch
@@ -28,9 +28,9 @@ BuildRequires:  ros-noetic-urdf-devel
 Requires:       ros-noetic-roscpp
 Requires:       ros-noetic-urdf
 
-Provides:  ros-noetic-joint_limits_interface = 0.19.6-1
-Obsoletes: ros-noetic-joint_limits_interface < 0.19.6-1
-Obsoletes: ros-kinetic-joint_limits_interface < 0.19.6-1
+Provides:  ros-noetic-joint_limits_interface = 0.20.0-1
+Obsoletes: ros-noetic-joint_limits_interface < 0.20.0-1
+Obsoletes: ros-kinetic-joint_limits_interface < 0.20.0-1
 
 
 
@@ -46,9 +46,9 @@ Requires:       ros-noetic-roscpp-devel
 Requires:       ros-noetic-rostest-devel
 Requires:       ros-noetic-urdf-devel
 
-Provides: ros-noetic-joint_limits_interface-devel = 0.19.6-1
-Obsoletes: ros-noetic-joint_limits_interface-devel < 0.19.6-1
-Obsoletes: ros-kinetic-joint_limits_interface-devel < 0.19.6-1
+Provides: ros-noetic-joint_limits_interface-devel = 0.20.0-1
+Obsoletes: ros-noetic-joint_limits_interface-devel < 0.20.0-1
+Obsoletes: ros-kinetic-joint_limits_interface-devel < 0.20.0-1
 
 
 %description devel
@@ -143,5 +143,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.0.20.0-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.0.19.6-1
 - Generate desktop-full

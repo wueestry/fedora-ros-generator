@@ -1,12 +1,12 @@
 Name:           ros-noetic-forward_command_controller
-Version:        noetic.0.21.1
+Version:        noetic.0.21.2
 Release:        1%{?dist}
 Summary:        ROS package forward_command_controller
 
 License:        BSD
 URL:            https://github.com/ros-controls/ros_controllers/wiki
 
-Source0:        https://github.com/ros-gbp/ros_controllers-release/archive/release/noetic/forward_command_controller/0.21.1-1.tar.gz#/ros-noetic-forward_command_controller-0.21.1-source0.tar.gz
+Source0:        https://github.com/ros-gbp/ros_controllers-release/archive/release/noetic/forward_command_controller/0.21.2-1.tar.gz#/ros-noetic-forward_command_controller-0.21.2-source0.tar.gz
 
 
 BuildArch: noarch
@@ -27,9 +27,9 @@ BuildRequires:  ros-noetic-roscpp-devel
 BuildRequires:  ros-noetic-std_msgs-devel
 
 
-Provides:  ros-noetic-forward_command_controller = 0.21.1-1
-Obsoletes: ros-noetic-forward_command_controller < 0.21.1-1
-Obsoletes: ros-kinetic-forward_command_controller < 0.21.1-1
+Provides:  ros-noetic-forward_command_controller = 0.21.2-1
+Obsoletes: ros-noetic-forward_command_controller < 0.21.2-1
+Obsoletes: ros-kinetic-forward_command_controller < 0.21.2-1
 
 
 
@@ -46,9 +46,9 @@ Requires:       ros-noetic-realtime_tools-devel
 Requires:       ros-noetic-roscpp-devel
 Requires:       ros-noetic-std_msgs-devel
 
-Provides: ros-noetic-forward_command_controller-devel = 0.21.1-1
-Obsoletes: ros-noetic-forward_command_controller-devel < 0.21.1-1
-Obsoletes: ros-kinetic-forward_command_controller-devel < 0.21.1-1
+Provides: ros-noetic-forward_command_controller-devel = 0.21.2-1
+Obsoletes: ros-noetic-forward_command_controller-devel < 0.21.2-1
+Obsoletes: ros-kinetic-forward_command_controller-devel < 0.21.2-1
 
 
 %description devel
@@ -143,5 +143,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.0.21.2-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.0.21.1-1
 - Generate desktop-full

@@ -8,7 +8,7 @@ URL:            http://wiki.ros.org/rosgraph
 
 Source0:        https://github.com/ros-gbp/ros_comm-release/archive/release/noetic/rosgraph/1.16.0-1.tar.gz#/ros-noetic-rosgraph-1.16.0-source0.tar.gz
 
-Patch0: ros-rosgraph.roslogging-loop-fix.patch
+Patch0: noetic/rosgraph.roslogging-loop-fix.patch
 
 BuildArch: noarch
 

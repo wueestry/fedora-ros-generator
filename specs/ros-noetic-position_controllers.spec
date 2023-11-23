@@ -1,12 +1,12 @@
 Name:           ros-noetic-position_controllers
-Version:        noetic.0.21.1
+Version:        noetic.0.21.2
 Release:        1%{?dist}
 Summary:        ROS package position_controllers
 
 License:        BSD
 URL:            https://github.com/ros-controls/ros_controllers/wiki
 
-Source0:        https://github.com/ros-gbp/ros_controllers-release/archive/release/noetic/position_controllers/0.21.1-1.tar.gz#/ros-noetic-position_controllers-0.21.1-source0.tar.gz
+Source0:        https://github.com/ros-gbp/ros_controllers-release/archive/release/noetic/position_controllers/0.21.2-1.tar.gz#/ros-noetic-position_controllers-0.21.2-source0.tar.gz
 
 
 
@@ -27,9 +27,9 @@ BuildRequires:  ros-noetic-roscpp-devel
 Requires:       ros-noetic-controller_interface
 Requires:       ros-noetic-roscpp
 
-Provides:  ros-noetic-position_controllers = 0.21.1-1
-Obsoletes: ros-noetic-position_controllers < 0.21.1-1
-Obsoletes: ros-kinetic-position_controllers < 0.21.1-1
+Provides:  ros-noetic-position_controllers = 0.21.2-1
+Obsoletes: ros-noetic-position_controllers < 0.21.2-1
+Obsoletes: ros-kinetic-position_controllers < 0.21.2-1
 
 
 
@@ -46,9 +46,9 @@ Requires:       ros-noetic-pluginlib-devel
 Requires:       ros-noetic-roscpp-devel
 Requires:       ros-noetic-controller_interface-devel
 
-Provides: ros-noetic-position_controllers-devel = 0.21.1-1
-Obsoletes: ros-noetic-position_controllers-devel < 0.21.1-1
-Obsoletes: ros-kinetic-position_controllers-devel < 0.21.1-1
+Provides: ros-noetic-position_controllers-devel = 0.21.2-1
+Obsoletes: ros-noetic-position_controllers-devel < 0.21.2-1
+Obsoletes: ros-kinetic-position_controllers-devel < 0.21.2-1
 
 
 %description devel
@@ -143,5 +143,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.0.21.2-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.0.21.1-1
 - Generate desktop-full

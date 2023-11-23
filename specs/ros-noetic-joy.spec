@@ -8,7 +8,6 @@ URL:            http://www.ros.org/wiki/joy
 
 Source0:        https://github.com/ros-gbp/joystick_drivers-release/archive/release/noetic/joy/1.15.1-1.tar.gz#/ros-noetic-joy-1.15.1-source0.tar.gz
 
-Patch0: ros-joy.build-with-cpp17.patch
 
 
 # common BRs
@@ -70,7 +69,6 @@ applications that use %{name}.
 
 %setup -c -T
 tar --strip-components=1 -xf %{SOURCE0}
-%patch0 -p1
 
 %build
 # nothing to do here

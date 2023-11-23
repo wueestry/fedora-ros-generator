@@ -1,12 +1,12 @@
 Name:           ros-noetic-tf2_kdl
-Version:        noetic.0.7.6
+Version:        noetic.0.7.7
 Release:        1%{?dist}
 Summary:        ROS package tf2_kdl
 
 License:        BSD
 URL:            http://ros.org/wiki/tf2
 
-Source0:        https://github.com/ros-gbp/geometry2-release/archive/release/noetic/tf2_kdl/0.7.6-1.tar.gz#/ros-noetic-tf2_kdl-0.7.6-source0.tar.gz
+Source0:        https://github.com/ros-gbp/geometry2-release/archive/release/noetic/tf2_kdl/0.7.7-1.tar.gz#/ros-noetic-tf2_kdl-0.7.7-source0.tar.gz
 
 
 BuildArch: noarch
@@ -31,9 +31,9 @@ BuildRequires:  ros-noetic-tf2_ros-devel
 Requires:       ros-noetic-tf2
 Requires:       ros-noetic-tf2_ros
 
-Provides:  ros-noetic-tf2_kdl = 0.7.6-1
-Obsoletes: ros-noetic-tf2_kdl < 0.7.6-1
-Obsoletes: ros-kinetic-tf2_kdl < 0.7.6-1
+Provides:  ros-noetic-tf2_kdl = 0.7.7-1
+Obsoletes: ros-noetic-tf2_kdl < 0.7.7-1
+Obsoletes: ros-kinetic-tf2_kdl < 0.7.7-1
 
 
 
@@ -52,9 +52,9 @@ Requires:       ros-noetic-rostest-devel
 Requires:       ros-noetic-tf2-devel
 Requires:       ros-noetic-tf2_ros-devel
 
-Provides: ros-noetic-tf2_kdl-devel = 0.7.6-1
-Obsoletes: ros-noetic-tf2_kdl-devel < 0.7.6-1
-Obsoletes: ros-kinetic-tf2_kdl-devel < 0.7.6-1
+Provides: ros-noetic-tf2_kdl-devel = 0.7.7-1
+Obsoletes: ros-noetic-tf2_kdl-devel < 0.7.7-1
+Obsoletes: ros-kinetic-tf2_kdl-devel < 0.7.7-1
 
 
 %description devel
@@ -149,5 +149,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.0.7.7-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.0.7.6-1
 - Initial desktop generation

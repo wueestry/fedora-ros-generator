@@ -1,12 +1,12 @@
 Name:           ros-noetic-moveit_resources_prbt_support
-Version:        noetic.0.8.2
+Version:        noetic.0.8.3
 Release:        1%{?dist}
 Summary:        ROS package moveit_resources_prbt_support
 
 License:        Apache 2.0
 URL:            http://moveit.ros.org
 
-Source0:        https://github.com/ros-gbp/moveit_resources-release/archive/release/noetic/moveit_resources_prbt_support/0.8.2-1.tar.gz#/ros-noetic-moveit_resources_prbt_support-0.8.2-source0.tar.gz
+Source0:        https://github.com/ros-gbp/moveit_resources-release/archive/release/noetic/moveit_resources_prbt_support/0.8.3-1.tar.gz#/ros-noetic-moveit_resources_prbt_support-0.8.3-source0.tar.gz
 
 
 BuildArch: noarch
@@ -23,9 +23,9 @@ BuildRequires:  ros-noetic-catkin-devel
 
 Requires:       ros-noetic-xacro
 
-Provides:  ros-noetic-moveit_resources_prbt_support = 0.8.2-1
-Obsoletes: ros-noetic-moveit_resources_prbt_support < 0.8.2-1
-Obsoletes: ros-kinetic-moveit_resources_prbt_support < 0.8.2-1
+Provides:  ros-noetic-moveit_resources_prbt_support = 0.8.3-1
+Obsoletes: ros-noetic-moveit_resources_prbt_support < 0.8.3-1
+Obsoletes: ros-kinetic-moveit_resources_prbt_support < 0.8.3-1
 
 
 
@@ -39,9 +39,9 @@ Requires:       %{name} = %{version}-%{release}
 Requires:       ros-noetic-catkin-devel
 Requires:       ros-noetic-xacro-devel
 
-Provides: ros-noetic-moveit_resources_prbt_support-devel = 0.8.2-1
-Obsoletes: ros-noetic-moveit_resources_prbt_support-devel < 0.8.2-1
-Obsoletes: ros-kinetic-moveit_resources_prbt_support-devel < 0.8.2-1
+Provides: ros-noetic-moveit_resources_prbt_support-devel = 0.8.3-1
+Obsoletes: ros-noetic-moveit_resources_prbt_support-devel < 0.8.3-1
+Obsoletes: ros-kinetic-moveit_resources_prbt_support-devel < 0.8.3-1
 
 
 %description devel
@@ -136,5 +136,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.0.8.3-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.0.8.2-1
 - Generate moveit packages

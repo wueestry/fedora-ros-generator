@@ -1,12 +1,12 @@
 Name:           ros-noetic-tf2_eigen
-Version:        noetic.0.7.6
+Version:        noetic.0.7.7
 Release:        1%{?dist}
 Summary:        ROS package tf2_eigen
 
 License:        BSD
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros-gbp/geometry2-release/archive/release/noetic/tf2_eigen/0.7.6-1.tar.gz#/ros-noetic-tf2_eigen-0.7.6-source0.tar.gz
+Source0:        https://github.com/ros-gbp/geometry2-release/archive/release/noetic/tf2_eigen/0.7.7-1.tar.gz#/ros-noetic-tf2_eigen-0.7.7-source0.tar.gz
 
 
 BuildArch: noarch
@@ -28,9 +28,9 @@ BuildRequires:  ros-noetic-tf2-devel
 Requires:       ros-noetic-geometry_msgs
 Requires:       ros-noetic-tf2
 
-Provides:  ros-noetic-tf2_eigen = 0.7.6-1
-Obsoletes: ros-noetic-tf2_eigen < 0.7.6-1
-Obsoletes: ros-kinetic-tf2_eigen < 0.7.6-1
+Provides:  ros-noetic-tf2_eigen = 0.7.7-1
+Obsoletes: ros-noetic-tf2_eigen < 0.7.7-1
+Obsoletes: ros-kinetic-tf2_eigen < 0.7.7-1
 
 
 
@@ -46,9 +46,9 @@ Requires:       ros-noetic-cmake_modules-devel
 Requires:       ros-noetic-geometry_msgs-devel
 Requires:       ros-noetic-tf2-devel
 
-Provides: ros-noetic-tf2_eigen-devel = 0.7.6-1
-Obsoletes: ros-noetic-tf2_eigen-devel < 0.7.6-1
-Obsoletes: ros-kinetic-tf2_eigen-devel < 0.7.6-1
+Provides: ros-noetic-tf2_eigen-devel = 0.7.7-1
+Obsoletes: ros-noetic-tf2_eigen-devel < 0.7.7-1
+Obsoletes: ros-kinetic-tf2_eigen-devel < 0.7.7-1
 
 
 %description devel
@@ -143,5 +143,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.0.7.7-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.0.7.6-1
 - Generate desktop-full

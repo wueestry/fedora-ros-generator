@@ -1,12 +1,12 @@
 Name:           ros-noetic-mavlink
-Version:        noetic.2022.12.30
+Version:        noetic.2023.9.9
 Release:        1%{?dist}
 Summary:        ROS package mavlink
 
 License:        LGPLv3
 URL:            https://mavlink.io/en/
 
-Source0:        https://github.com/mavlink/mavlink-gbp-release/archive/release/noetic/mavlink/2022.12.30-1.tar.gz#/ros-noetic-mavlink-2022.12.30-source0.tar.gz
+Source0:        https://github.com/mavlink/mavlink-gbp-release/archive/release/noetic/mavlink/2023.9.9-1.tar.gz#/ros-noetic-mavlink-2023.9.9-source0.tar.gz
 
 
 BuildArch: noarch
@@ -28,9 +28,9 @@ BuildRequires:  ros-noetic-ros_environment-devel
 
 Requires:       ros-noetic-catkin
 
-Provides:  ros-noetic-mavlink = 2022.12.30-1
-Obsoletes: ros-noetic-mavlink < 2022.12.30-1
-Obsoletes: ros-kinetic-mavlink < 2022.12.30-1
+Provides:  ros-noetic-mavlink = 2023.9.9-1
+Obsoletes: ros-noetic-mavlink < 2023.9.9-1
+Obsoletes: ros-kinetic-mavlink < 2023.9.9-1
 
 
 
@@ -49,9 +49,9 @@ Requires:       python3-future
 Requires:       python3-lxml
 Requires:       ros-noetic-catkin-devel
 
-Provides: ros-noetic-mavlink-devel = 2022.12.30-1
-Obsoletes: ros-noetic-mavlink-devel < 2022.12.30-1
-Obsoletes: ros-kinetic-mavlink-devel < 2022.12.30-1
+Provides: ros-noetic-mavlink-devel = 2023.9.9-1
+Obsoletes: ros-noetic-mavlink-devel < 2023.9.9-1
+Obsoletes: ros-kinetic-mavlink-devel < 2023.9.9-1
 
 
 %description devel
@@ -146,5 +146,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.2023.9.9-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.2022.12.30-1
 - Generate mavlink and mavros

@@ -1,12 +1,12 @@
 Name:           ros-noetic-tf2_msgs
-Version:        noetic.0.7.6
+Version:        noetic.0.7.7
 Release:        1%{?dist}
 Summary:        ROS package tf2_msgs
 
 License:        BSD
 URL:            http://www.ros.org/wiki/tf2_msgs
 
-Source0:        https://github.com/ros-gbp/geometry2-release/archive/release/noetic/tf2_msgs/0.7.6-1.tar.gz#/ros-noetic-tf2_msgs-0.7.6-source0.tar.gz
+Source0:        https://github.com/ros-gbp/geometry2-release/archive/release/noetic/tf2_msgs/0.7.7-1.tar.gz#/ros-noetic-tf2_msgs-0.7.7-source0.tar.gz
 
 
 BuildArch: noarch
@@ -29,9 +29,9 @@ Requires:       ros-noetic-actionlib_msgs
 Requires:       ros-noetic-geometry_msgs
 Requires:       ros-noetic-message_generation
 
-Provides:  ros-noetic-tf2_msgs = 0.7.6-1
-Obsoletes: ros-noetic-tf2_msgs < 0.7.6-1
-Obsoletes: ros-kinetic-tf2_msgs < 0.7.6-1
+Provides:  ros-noetic-tf2_msgs = 0.7.7-1
+Obsoletes: ros-noetic-tf2_msgs < 0.7.7-1
+Obsoletes: ros-kinetic-tf2_msgs < 0.7.7-1
 
 
 
@@ -47,9 +47,9 @@ Requires:       ros-noetic-actionlib_msgs-devel
 Requires:       ros-noetic-geometry_msgs-devel
 Requires:       ros-noetic-message_generation-devel
 
-Provides: ros-noetic-tf2_msgs-devel = 0.7.6-1
-Obsoletes: ros-noetic-tf2_msgs-devel < 0.7.6-1
-Obsoletes: ros-kinetic-tf2_msgs-devel < 0.7.6-1
+Provides: ros-noetic-tf2_msgs-devel = 0.7.7-1
+Obsoletes: ros-noetic-tf2_msgs-devel < 0.7.7-1
+Obsoletes: ros-kinetic-tf2_msgs-devel < 0.7.7-1
 
 
 %description devel
@@ -144,5 +144,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.0.7.7-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.0.7.6-1
 - Initial desktop generation

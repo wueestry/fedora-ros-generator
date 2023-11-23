@@ -8,7 +8,7 @@ URL:            http://wiki.ros.org/rqt_image_view
 
 Source0:        https://github.com/ros-gbp/rqt_image_view-release/archive/release/noetic/rqt_image_view/0.4.17-1.tar.gz#/ros-noetic-rqt_image_view-0.4.17-source0.tar.gz
 
-Patch0: ros-rqt_image_view.build-with-cpp17.patch
+Patch0: noetic/rqt_image_view.build-with-cpp17.patch
 
 
 # common BRs

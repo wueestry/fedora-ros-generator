@@ -8,8 +8,8 @@ URL:            http://ros.org/wiki/perception_pcl
 
 Source0:        https://github.com/ros-gbp/perception_pcl-release/archive/release/noetic/pcl_ros/1.7.4-1.tar.gz#/ros-noetic-pcl_ros-1.7.4-source0.tar.gz
 
-Patch0: ros-pcl_ros.dynamic_reconfigure.patch
-Patch1: ros-pcl_ros.build-with-cpp17.patch
+Patch0: noetic/pcl_ros.dynamic_reconfigure.patch
+Patch1: noetic/pcl_ros.build-with-cpp17.patch
 
 
 # common BRs

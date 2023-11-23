@@ -9,7 +9,6 @@ URL:            http://ros.org/wiki/ackermann_msgs
 Source0:        https://github.com/ros-drivers-gbp/ackermann_msgs-release/archive/release/noetic/ackermann_msgs/1.0.2-1.tar.gz#/ros-noetic-ackermann_msgs-1.0.2-source0.tar.gz
 
 
-BuildArch: noarch
 
 # common BRs
 BuildRequires:  boost-devel
@@ -37,7 +36,7 @@ ROS messages for robots using Ackermann steering.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       ros-noetic-catkin-devel
 Requires:       ros-noetic-message_generation-devel
 Requires:       ros-noetic-std_msgs-devel

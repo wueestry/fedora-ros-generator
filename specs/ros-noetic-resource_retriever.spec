@@ -8,7 +8,7 @@ URL:            http://ros.org/wiki/resource_retriever
 
 Source0:        https://github.com/ros-gbp/resource_retriever-release/archive/release/noetic/resource_retriever/1.12.7-1.tar.gz#/ros-noetic-resource_retriever-1.12.7-source0.tar.gz
 
-Patch0: ros-resource_retriever.build-with-cpp17.patch
+Patch0: noetic/resource_retriever.build-with-cpp17.patch
 
 
 # common BRs

@@ -1,12 +1,12 @@
 Name:           ros-noetic-controller_manager_msgs
-Version:        noetic.0.19.6
+Version:        noetic.0.20.0
 Release:        1%{?dist}
 Summary:        ROS package controller_manager_msgs
 
 License:        BSD
 URL:            https://github.com/ros-controls/ros_control/wiki
 
-Source0:        https://github.com/ros-gbp/ros_control-release/archive/release/noetic/controller_manager_msgs/0.19.6-1.tar.gz#/ros-noetic-controller_manager_msgs-0.19.6-source0.tar.gz
+Source0:        https://github.com/ros-gbp/ros_control-release/archive/release/noetic/controller_manager_msgs/0.20.0-1.tar.gz#/ros-noetic-controller_manager_msgs-0.20.0-source0.tar.gz
 
 
 BuildArch: noarch
@@ -29,9 +29,9 @@ Requires:       ros-noetic-rospy
 Requires:       ros-noetic-rosservice
 Requires:       ros-noetic-std_msgs
 
-Provides:  ros-noetic-controller_manager_msgs = 0.19.6-1
-Obsoletes: ros-noetic-controller_manager_msgs < 0.19.6-1
-Obsoletes: ros-kinetic-controller_manager_msgs < 0.19.6-1
+Provides:  ros-noetic-controller_manager_msgs = 0.20.0-1
+Obsoletes: ros-noetic-controller_manager_msgs < 0.20.0-1
+Obsoletes: ros-kinetic-controller_manager_msgs < 0.20.0-1
 
 
 
@@ -49,9 +49,9 @@ Requires:       ros-noetic-message_runtime-devel
 Requires:       ros-noetic-rospy-devel
 Requires:       ros-noetic-rosservice-devel
 
-Provides: ros-noetic-controller_manager_msgs-devel = 0.19.6-1
-Obsoletes: ros-noetic-controller_manager_msgs-devel < 0.19.6-1
-Obsoletes: ros-kinetic-controller_manager_msgs-devel < 0.19.6-1
+Provides: ros-noetic-controller_manager_msgs-devel = 0.20.0-1
+Obsoletes: ros-noetic-controller_manager_msgs-devel < 0.20.0-1
+Obsoletes: ros-kinetic-controller_manager_msgs-devel < 0.20.0-1
 
 
 %description devel
@@ -146,5 +146,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.0.20.0-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.0.19.6-1
 - Generate desktop-full

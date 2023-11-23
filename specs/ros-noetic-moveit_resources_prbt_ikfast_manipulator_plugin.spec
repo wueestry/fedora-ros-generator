@@ -1,14 +1,14 @@
 Name:           ros-noetic-moveit_resources_prbt_ikfast_manipulator_plugin
-Version:        noetic.0.8.2
+Version:        noetic.0.8.3
 Release:        1%{?dist}
 Summary:        ROS package moveit_resources_prbt_ikfast_manipulator_plugin
 
 License:        Apache 2.0
 URL:            http://moveit.ros.org
 
-Source0:        https://github.com/ros-gbp/moveit_resources-release/archive/release/noetic/moveit_resources_prbt_ikfast_manipulator_plugin/0.8.2-1.tar.gz#/ros-noetic-moveit_resources_prbt_ikfast_manipulator_plugin-0.8.2-source0.tar.gz
+Source0:        https://github.com/ros-gbp/moveit_resources-release/archive/release/noetic/moveit_resources_prbt_ikfast_manipulator_plugin/0.8.3-1.tar.gz#/ros-noetic-moveit_resources_prbt_ikfast_manipulator_plugin-0.8.3-source0.tar.gz
 
-Patch0: ros-moveit_resources_prbt_ikfast_manipulator_plugin.build-with-cpp17.patch
+Patch0: noetic/moveit_resources_prbt_ikfast_manipulator_plugin.build-with-cpp17.patch
 
 
 # common BRs
@@ -33,9 +33,9 @@ Requires:       ros-noetic-pluginlib
 Requires:       ros-noetic-roscpp
 Requires:       ros-noetic-tf2_kdl
 
-Provides:  ros-noetic-moveit_resources_prbt_ikfast_manipulator_plugin = 0.8.2-1
-Obsoletes: ros-noetic-moveit_resources_prbt_ikfast_manipulator_plugin < 0.8.2-1
-Obsoletes: ros-kinetic-moveit_resources_prbt_ikfast_manipulator_plugin < 0.8.2-1
+Provides:  ros-noetic-moveit_resources_prbt_ikfast_manipulator_plugin = 0.8.3-1
+Obsoletes: ros-noetic-moveit_resources_prbt_ikfast_manipulator_plugin < 0.8.3-1
+Obsoletes: ros-kinetic-moveit_resources_prbt_ikfast_manipulator_plugin < 0.8.3-1
 
 
 
@@ -53,9 +53,9 @@ Requires:       ros-noetic-roscpp-devel
 Requires:       ros-noetic-tf2_eigen-devel
 Requires:       ros-noetic-tf2_kdl-devel
 
-Provides: ros-noetic-moveit_resources_prbt_ikfast_manipulator_plugin-devel = 0.8.2-1
-Obsoletes: ros-noetic-moveit_resources_prbt_ikfast_manipulator_plugin-devel < 0.8.2-1
-Obsoletes: ros-kinetic-moveit_resources_prbt_ikfast_manipulator_plugin-devel < 0.8.2-1
+Provides: ros-noetic-moveit_resources_prbt_ikfast_manipulator_plugin-devel = 0.8.3-1
+Obsoletes: ros-noetic-moveit_resources_prbt_ikfast_manipulator_plugin-devel < 0.8.3-1
+Obsoletes: ros-kinetic-moveit_resources_prbt_ikfast_manipulator_plugin-devel < 0.8.3-1
 
 
 %description devel
@@ -151,5 +151,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.0.8.3-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.0.8.2-1
 - Generate moveit packages

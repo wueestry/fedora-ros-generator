@@ -8,7 +8,7 @@ URL:            http://www.ros.org/wiki/cv_bridge
 
 Source0:        https://github.com/ros-gbp/vision_opencv-release/archive/release/noetic/cv_bridge/1.16.2-1.tar.gz#/ros-noetic-cv_bridge-1.16.2-source0.tar.gz
 
-Patch0: ros-cv_bridge.boost-python3.patch
+Patch0: noetic/cv_bridge.boost-python3.patch
 
 
 # common BRs

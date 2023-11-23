@@ -1,12 +1,12 @@
 Name:           ros-noetic-xacro
-Version:        noetic.1.14.15
+Version:        noetic.1.14.16
 Release:        1%{?dist}
 Summary:        ROS package xacro
 
 License:        BSD
 URL:            http://ros.org/wiki/xacro
 
-Source0:        https://github.com/ros-gbp/xacro-release/archive/release/noetic/xacro/1.14.15-1.tar.gz#/ros-noetic-xacro-1.14.15-source0.tar.gz
+Source0:        https://github.com/ros-gbp/xacro-release/archive/release/noetic/xacro/1.14.16-1.tar.gz#/ros-noetic-xacro-1.14.16-source0.tar.gz
 
 
 BuildArch: noarch
@@ -25,9 +25,9 @@ BuildRequires:  ros-noetic-rostest-devel
 
 Requires:       ros-noetic-roslaunch
 
-Provides:  ros-noetic-xacro = 1.14.15-1
-Obsoletes: ros-noetic-xacro < 1.14.15-1
-Obsoletes: ros-kinetic-xacro < 1.14.15-1
+Provides:  ros-noetic-xacro = 1.14.16-1
+Obsoletes: ros-noetic-xacro < 1.14.16-1
+Obsoletes: ros-kinetic-xacro < 1.14.16-1
 
 
 
@@ -44,9 +44,9 @@ Requires:       ros-noetic-roslint-devel
 Requires:       ros-noetic-rostest-devel
 Requires:       ros-noetic-roslaunch-devel
 
-Provides: ros-noetic-xacro-devel = 1.14.15-1
-Obsoletes: ros-noetic-xacro-devel < 1.14.15-1
-Obsoletes: ros-kinetic-xacro-devel < 1.14.15-1
+Provides: ros-noetic-xacro-devel = 1.14.16-1
+Obsoletes: ros-noetic-xacro-devel < 1.14.16-1
+Obsoletes: ros-kinetic-xacro-devel < 1.14.16-1
 
 
 %description devel
@@ -141,5 +141,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.1.14.16-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.1.14.15-1
 - Initial desktop generation

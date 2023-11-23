@@ -1,12 +1,12 @@
 Name:           ros-noetic-chomp_motion_planner
-Version:        noetic.1.1.11
+Version:        noetic.1.1.13
 Release:        1%{?dist}
 Summary:        ROS package chomp_motion_planner
 
 License:        BSD
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros-gbp/moveit-release/archive/release/noetic/chomp_motion_planner/1.1.11-1.tar.gz#/ros-noetic-chomp_motion_planner-1.1.11-source0.tar.gz
+Source0:        https://github.com/ros-gbp/moveit-release/archive/release/noetic/chomp_motion_planner/1.1.13-2.tar.gz#/ros-noetic-chomp_motion_planner-1.1.13-source0.tar.gz
 
 
 
@@ -23,9 +23,9 @@ BuildRequires:  ros-noetic-moveit_core-devel
 BuildRequires:  ros-noetic-roscpp-devel
 
 
-Provides:  ros-noetic-chomp_motion_planner = 1.1.11-1
-Obsoletes: ros-noetic-chomp_motion_planner < 1.1.11-1
-Obsoletes: ros-kinetic-chomp_motion_planner < 1.1.11-1
+Provides:  ros-noetic-chomp_motion_planner = 1.1.13-1
+Obsoletes: ros-noetic-chomp_motion_planner < 1.1.13-1
+Obsoletes: ros-kinetic-chomp_motion_planner < 1.1.13-1
 
 
 
@@ -39,9 +39,9 @@ Requires:       ros-noetic-catkin-devel
 Requires:       ros-noetic-moveit_core-devel
 Requires:       ros-noetic-roscpp-devel
 
-Provides: ros-noetic-chomp_motion_planner-devel = 1.1.11-1
-Obsoletes: ros-noetic-chomp_motion_planner-devel < 1.1.11-1
-Obsoletes: ros-kinetic-chomp_motion_planner-devel < 1.1.11-1
+Provides: ros-noetic-chomp_motion_planner-devel = 1.1.13-1
+Obsoletes: ros-noetic-chomp_motion_planner-devel < 1.1.13-1
+Obsoletes: ros-kinetic-chomp_motion_planner-devel < 1.1.13-1
 
 
 %description devel
@@ -136,5 +136,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.1.1.13-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.1.1.11-1
 - Generate moveit packages

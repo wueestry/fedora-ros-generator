@@ -1,12 +1,12 @@
 Name:           ros-noetic-rqt_tf_tree
-Version:        noetic.0.6.3
+Version:        noetic.0.6.4
 Release:        1%{?dist}
 Summary:        ROS package rqt_tf_tree
 
 License:        BSD
 URL:            http://wiki.ros.org/rqt_tf_tree
 
-Source0:        https://github.com/ros-gbp/rqt_tf_tree-release/archive/release/noetic/rqt_tf_tree/0.6.3-1.tar.gz#/ros-noetic-rqt_tf_tree-0.6.3-source0.tar.gz
+Source0:        https://github.com/ros-gbp/rqt_tf_tree-release/archive/release/noetic/rqt_tf_tree/0.6.4-1.tar.gz#/ros-noetic-rqt_tf_tree-0.6.4-source0.tar.gz
 
 
 BuildArch: noarch
@@ -20,6 +20,7 @@ BuildRequires:  python3-devel
 BuildRequires:  python-unversioned-command
 
 BuildRequires:  python3-mock
+BuildRequires:  python3-setuptools
 BuildRequires:  ros-noetic-catkin-devel
 
 Requires:       python3-rospkg
@@ -32,9 +33,9 @@ Requires:       ros-noetic-rqt_gui_py
 Requires:       ros-noetic-tf2_msgs
 Requires:       ros-noetic-tf2_ros
 
-Provides:  ros-noetic-rqt_tf_tree = 0.6.3-1
-Obsoletes: ros-noetic-rqt_tf_tree < 0.6.3-1
-Obsoletes: ros-kinetic-rqt_tf_tree < 0.6.3-1
+Provides:  ros-noetic-rqt_tf_tree = 0.6.4-1
+Obsoletes: ros-noetic-rqt_tf_tree < 0.6.4-1
+Obsoletes: ros-kinetic-rqt_tf_tree < 0.6.4-1
 
 
 
@@ -45,6 +46,7 @@ tree.
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
+Requires:       python3-setuptools
 Requires:       ros-noetic-catkin-devel
 Requires:       python3-mock
 Requires:       ros-noetic-python_qt_binding-devel
@@ -56,9 +58,9 @@ Requires:       ros-noetic-rqt_gui_py-devel
 Requires:       ros-noetic-tf2_msgs-devel
 Requires:       ros-noetic-tf2_ros-devel
 
-Provides: ros-noetic-rqt_tf_tree-devel = 0.6.3-1
-Obsoletes: ros-noetic-rqt_tf_tree-devel < 0.6.3-1
-Obsoletes: ros-kinetic-rqt_tf_tree-devel < 0.6.3-1
+Provides: ros-noetic-rqt_tf_tree-devel = 0.6.4-1
+Obsoletes: ros-noetic-rqt_tf_tree-devel < 0.6.4-1
+Obsoletes: ros-kinetic-rqt_tf_tree-devel < 0.6.4-1
 
 
 %description devel
@@ -153,5 +155,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.0.6.4-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.0.6.3-1
 - Initial desktop generation

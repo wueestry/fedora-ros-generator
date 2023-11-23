@@ -8,7 +8,7 @@ URL:            http://www.ros.org/
 
 Source0:        https://github.com/ros-gbp/rosconsole-release/archive/release/noetic/rosconsole/1.14.3-1.tar.gz#/ros-noetic-rosconsole-1.14.3-source0.tar.gz
 
-Patch0: ros-rosconsole.log4cxx-v013.patch
+Patch0: noetic/rosconsole.log4cxx-v013.patch
 
 
 # common BRs

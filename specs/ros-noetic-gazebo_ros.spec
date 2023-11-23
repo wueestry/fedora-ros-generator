@@ -8,7 +8,7 @@ URL:            http://gazebosim.org/tutorials?cat=connect_ros
 
 Source0:        https://github.com/ros-gbp/gazebo_ros_pkgs-release/archive/release/noetic/gazebo_ros/2.9.2-1.tar.gz#/ros-noetic-gazebo_ros-2.9.2-source0.tar.gz
 
-Patch0: ros-gazebo_ros.build-with-cpp17.patch
+Patch0: noetic/gazebo_ros.build-with-cpp17.patch
 
 
 # common BRs

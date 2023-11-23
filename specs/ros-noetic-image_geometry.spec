@@ -8,7 +8,7 @@ URL:            http://www.ros.org/
 
 Source0:        https://github.com/ros-gbp/vision_opencv-release/archive/release/noetic/image_geometry/1.16.2-1.tar.gz#/ros-noetic-image_geometry-1.16.2-source0.tar.gz
 
-Patch0: ros-kinetic-image_geometry.catkin-fix-order.patch
+Patch0: noetic/image_geometry.catkin-fix-order.patch
 
 
 # common BRs

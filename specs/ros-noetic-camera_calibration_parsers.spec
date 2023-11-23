@@ -8,7 +8,7 @@ URL:            http://ros.org/wiki/camera_calibration_parsers
 
 Source0:        https://github.com/ros-gbp/image_common-release/archive/release/noetic/camera_calibration_parsers/1.12.0-1.tar.gz#/ros-noetic-camera_calibration_parsers-1.12.0-source0.tar.gz
 
-Patch0: ros-camera_calibration_parsers.boost-python3.patch
+Patch0: noetic/camera_calibration_parsers.boost-python3.patch
 
 
 # common BRs

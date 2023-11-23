@@ -8,7 +8,7 @@ URL:            http://www.ros.org/
 
 Source0:        https://github.com/ros-gbp/laser_filters-release/archive/release/noetic/laser_filters/1.9.0-1.tar.gz#/ros-noetic-laser_filters-1.9.0-source0.tar.gz
 
-Patch0: ros-laser_filters.build-with-cpp17.patch
+Patch0: noetic/laser_filters.build-with-cpp17.patch
 
 
 # common BRs

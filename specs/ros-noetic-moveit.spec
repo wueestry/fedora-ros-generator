@@ -1,12 +1,12 @@
 Name:           ros-noetic-moveit
-Version:        noetic.1.1.11
+Version:        noetic.1.1.13
 Release:        1%{?dist}
 Summary:        ROS package moveit
 
 License:        BSD
 URL:            http://moveit.ros.org
 
-Source0:        https://github.com/ros-gbp/moveit-release/archive/release/noetic/moveit/1.1.11-1.tar.gz#/ros-noetic-moveit-1.1.11-source0.tar.gz
+Source0:        https://github.com/ros-gbp/moveit-release/archive/release/noetic/moveit/1.1.13-2.tar.gz#/ros-noetic-moveit-1.1.13-source0.tar.gz
 
 
 BuildArch: noarch
@@ -28,9 +28,9 @@ Requires:       ros-noetic-moveit_plugins
 Requires:       ros-noetic-moveit_ros
 Requires:       ros-noetic-moveit_setup_assistant
 
-Provides:  ros-noetic-moveit = 1.1.11-1
-Obsoletes: ros-noetic-moveit < 1.1.11-1
-Obsoletes: ros-kinetic-moveit < 1.1.11-1
+Provides:  ros-noetic-moveit = 1.1.13-1
+Obsoletes: ros-noetic-moveit < 1.1.13-1
+Obsoletes: ros-kinetic-moveit < 1.1.13-1
 
 
 
@@ -51,9 +51,9 @@ Requires:       ros-noetic-moveit_plugins-devel
 Requires:       ros-noetic-moveit_ros-devel
 Requires:       ros-noetic-moveit_setup_assistant-devel
 
-Provides: ros-noetic-moveit-devel = 1.1.11-1
-Obsoletes: ros-noetic-moveit-devel < 1.1.11-1
-Obsoletes: ros-kinetic-moveit-devel < 1.1.11-1
+Provides: ros-noetic-moveit-devel = 1.1.13-1
+Obsoletes: ros-noetic-moveit-devel < 1.1.13-1
+Obsoletes: ros-kinetic-moveit-devel < 1.1.13-1
 
 
 %description devel
@@ -148,5 +148,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.1.1.13-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.1.1.11-1
 - Generate moveit packages

@@ -1,12 +1,12 @@
 Name:           ros-noetic-smach_ros
-Version:        noetic.2.5.1
+Version:        noetic.2.5.2
 Release:        1%{?dist}
 Summary:        ROS package smach_ros
 
 License:        BSD
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros-gbp/executive_smach-release/archive/release/noetic/smach_ros/2.5.1-1.tar.gz#/ros-noetic-smach_ros-2.5.1-source0.tar.gz
+Source0:        https://github.com/ros-gbp/executive_smach-release/archive/release/noetic/smach_ros/2.5.2-1.tar.gz#/ros-noetic-smach_ros-2.5.2-source0.tar.gz
 
 
 BuildArch: noarch
@@ -31,9 +31,9 @@ Requires:       ros-noetic-smach_msgs
 Requires:       ros-noetic-std_msgs
 Requires:       ros-noetic-std_srvs
 
-Provides:  ros-noetic-smach_ros = 2.5.1-1
-Obsoletes: ros-noetic-smach_ros < 2.5.1-1
-Obsoletes: ros-kinetic-smach_ros < 2.5.1-1
+Provides:  ros-noetic-smach_ros = 2.5.2-1
+Obsoletes: ros-noetic-smach_ros < 2.5.2-1
+Obsoletes: ros-kinetic-smach_ros < 2.5.2-1
 
 
 
@@ -56,9 +56,9 @@ Requires:       ros-noetic-smach_msgs-devel
 Requires:       ros-noetic-std_msgs-devel
 Requires:       ros-noetic-std_srvs-devel
 
-Provides: ros-noetic-smach_ros-devel = 2.5.1-1
-Obsoletes: ros-noetic-smach_ros-devel < 2.5.1-1
-Obsoletes: ros-kinetic-smach_ros-devel < 2.5.1-1
+Provides: ros-noetic-smach_ros-devel = 2.5.2-1
+Obsoletes: ros-noetic-smach_ros-devel < 2.5.2-1
+Obsoletes: ros-kinetic-smach_ros-devel < 2.5.2-1
 
 
 %description devel
@@ -153,5 +153,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.2.5.2-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.2.5.1-1
 - Initial desktop generation

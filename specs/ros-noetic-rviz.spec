@@ -8,9 +8,8 @@ URL:            http://wiki.ros.org/rviz
 
 Source0:        https://github.com/ros-gbp/rviz-release/archive/release/noetic/rviz/1.14.20-1.tar.gz#/ros-noetic-rviz-1.14.20-source0.tar.gz
 
-Patch0: ros-rviz.no-rpath.patch
-Patch1: ros-rviz.assimp-decompose-quaternion.patch
-Patch2: ros-rviz.ogre-plugin-dir.patch
+Patch0: noetic/rviz.no-rpath.patch
+Patch1: noetic/rviz.assimp-decompose-quaternion.patch
 
 
 # common BRs
@@ -162,7 +161,6 @@ applications that use %{name}.
 tar --strip-components=1 -xf %{SOURCE0}
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %build
 # nothing to do here

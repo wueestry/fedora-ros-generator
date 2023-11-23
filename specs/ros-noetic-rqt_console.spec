@@ -1,12 +1,12 @@
 Name:           ros-noetic-rqt_console
-Version:        noetic.0.4.11
+Version:        noetic.0.4.12
 Release:        1%{?dist}
 Summary:        ROS package rqt_console
 
 License:        BSD
 URL:            http://wiki.ros.org/rqt_console
 
-Source0:        https://github.com/ros-gbp/rqt_console-release/archive/release/noetic/rqt_console/0.4.11-1.tar.gz#/ros-noetic-rqt_console-0.4.11-source0.tar.gz
+Source0:        https://github.com/ros-gbp/rqt_console-release/archive/release/noetic/rqt_console/0.4.12-1.tar.gz#/ros-noetic-rqt_console-0.4.12-source0.tar.gz
 
 
 BuildArch: noarch
@@ -19,6 +19,7 @@ BuildRequires:  log4cxx-devel
 BuildRequires:  python3-devel
 BuildRequires:  python-unversioned-command
 
+BuildRequires:  python3-setuptools
 BuildRequires:  ros-noetic-catkin-devel
 
 Requires:       python3-rospkg
@@ -30,9 +31,9 @@ Requires:       ros-noetic-rqt_gui_py
 Requires:       ros-noetic-rqt_logger_level
 Requires:       ros-noetic-rqt_py_common
 
-Provides:  ros-noetic-rqt_console = 0.4.11-1
-Obsoletes: ros-noetic-rqt_console < 0.4.11-1
-Obsoletes: ros-kinetic-rqt_console < 0.4.11-1
+Provides:  ros-noetic-rqt_console = 0.4.12-1
+Obsoletes: ros-noetic-rqt_console < 0.4.12-1
+Obsoletes: ros-kinetic-rqt_console < 0.4.12-1
 
 
 
@@ -43,6 +44,7 @@ messages.
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
+Requires:       python3-setuptools
 Requires:       ros-noetic-catkin-devel
 Requires:       ros-noetic-python_qt_binding-devel
 Requires:       ros-noetic-roslib-devel
@@ -52,9 +54,9 @@ Requires:       ros-noetic-rqt_gui_py-devel
 Requires:       ros-noetic-rqt_logger_level-devel
 Requires:       ros-noetic-rqt_py_common-devel
 
-Provides: ros-noetic-rqt_console-devel = 0.4.11-1
-Obsoletes: ros-noetic-rqt_console-devel < 0.4.11-1
-Obsoletes: ros-kinetic-rqt_console-devel < 0.4.11-1
+Provides: ros-noetic-rqt_console-devel = 0.4.12-1
+Obsoletes: ros-noetic-rqt_console-devel < 0.4.12-1
+Obsoletes: ros-kinetic-rqt_console-devel < 0.4.12-1
 
 
 %description devel
@@ -149,5 +151,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.0.4.12-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.0.4.11-1
 - Initial desktop generation

@@ -8,7 +8,7 @@ URL:            http://ros.org/wiki/kdl_parser
 
 Source0:        https://github.com/ros-gbp/kdl_parser-release/archive/release/noetic/kdl_parser/1.14.2-1.tar.gz#/ros-noetic-kdl_parser-1.14.2-source0.tar.gz
 
-Patch0: ros-kdl_parser.build-with-cpp17.patch
+Patch0: noetic/kdl_parser.build-with-cpp17.patch
 
 
 # common BRs

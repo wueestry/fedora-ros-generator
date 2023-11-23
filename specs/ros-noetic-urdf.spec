@@ -8,7 +8,7 @@ URL:            http://ros.org/wiki/urdf
 
 Source0:        https://github.com/ros-gbp/urdf-release/archive/release/noetic/urdf/1.13.2-1.tar.gz#/ros-noetic-urdf-1.13.2-source0.tar.gz
 
-Patch0: ros-urdf.build-with-cpp17.patch
+Patch0: noetic/urdf.build-with-cpp17.patch
 
 
 # common BRs

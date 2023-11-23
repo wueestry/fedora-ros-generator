@@ -1,12 +1,12 @@
 Name:           ros-noetic-diff_drive_controller
-Version:        noetic.0.21.1
+Version:        noetic.0.21.2
 Release:        1%{?dist}
 Summary:        ROS package diff_drive_controller
 
 License:        BSD
 URL:            https://github.com/ros-controls/ros_controllers/wiki
 
-Source0:        https://github.com/ros-gbp/ros_controllers-release/archive/release/noetic/diff_drive_controller/0.21.1-1.tar.gz#/ros-noetic-diff_drive_controller-0.21.1-source0.tar.gz
+Source0:        https://github.com/ros-gbp/ros_controllers-release/archive/release/noetic/diff_drive_controller/0.21.2-1.tar.gz#/ros-noetic-diff_drive_controller-0.21.2-source0.tar.gz
 
 
 
@@ -48,9 +48,9 @@ Requires:       ros-noetic-realtime_tools
 Requires:       ros-noetic-tf
 Requires:       ros-noetic-urdf
 
-Provides:  ros-noetic-diff_drive_controller = 0.21.1-1
-Obsoletes: ros-noetic-diff_drive_controller < 0.21.1-1
-Obsoletes: ros-kinetic-diff_drive_controller < 0.21.1-1
+Provides:  ros-noetic-diff_drive_controller = 0.21.2-1
+Obsoletes: ros-noetic-diff_drive_controller < 0.21.2-1
+Obsoletes: ros-kinetic-diff_drive_controller < 0.21.2-1
 
 
 
@@ -79,9 +79,9 @@ Requires:       ros-noetic-tf-devel
 Requires:       ros-noetic-urdf-devel
 Requires:       ros-noetic-xacro-devel
 
-Provides: ros-noetic-diff_drive_controller-devel = 0.21.1-1
-Obsoletes: ros-noetic-diff_drive_controller-devel < 0.21.1-1
-Obsoletes: ros-kinetic-diff_drive_controller-devel < 0.21.1-1
+Provides: ros-noetic-diff_drive_controller-devel = 0.21.2-1
+Obsoletes: ros-noetic-diff_drive_controller-devel < 0.21.2-1
+Obsoletes: ros-kinetic-diff_drive_controller-devel < 0.21.2-1
 
 
 %description devel
@@ -176,5 +176,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.0.21.2-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.0.21.1-1
 - Generate desktop-full

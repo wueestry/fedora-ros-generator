@@ -84,6 +84,8 @@ catkin_make_isolated \
   -DCATKIN_ENABLE_TESTING=OFF \
   -DPYTHON_VERSION=%{python3_version} \
   -DPYTHON_VERSION_NODOTS=%{python3_version_nodots} \
+  -DCMAKE_C_FLAGS=-Wno-error=stringop-overread \
+  -DCMAKE_CXX_FLAGS=-Wno-error=stringop-overread \
   --source . \
   --install \
   --install-space %{_libdir}/ros/ \

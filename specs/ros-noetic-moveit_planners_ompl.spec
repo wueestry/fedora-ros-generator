@@ -1,12 +1,12 @@
 Name:           ros-noetic-moveit_planners_ompl
-Version:        noetic.1.1.11
+Version:        noetic.1.1.13
 Release:        1%{?dist}
 Summary:        ROS package moveit_planners_ompl
 
 License:        BSD
 URL:            http://moveit.ros.org
 
-Source0:        https://github.com/ros-gbp/moveit-release/archive/release/noetic/moveit_planners_ompl/1.1.11-1.tar.gz#/ros-noetic-moveit_planners_ompl-1.1.11-source0.tar.gz
+Source0:        https://github.com/ros-gbp/moveit-release/archive/release/noetic/moveit_planners_ompl/1.1.13-2.tar.gz#/ros-noetic-moveit_planners_ompl-1.1.13-source0.tar.gz
 
 
 
@@ -49,9 +49,9 @@ Requires:       ros-noetic-rosconsole
 Requires:       ros-noetic-roscpp
 Requires:       ros-noetic-tf2
 
-Provides:  ros-noetic-moveit_planners_ompl = 1.1.11-1
-Obsoletes: ros-noetic-moveit_planners_ompl < 1.1.11-1
-Obsoletes: ros-kinetic-moveit_planners_ompl < 1.1.11-1
+Provides:  ros-noetic-moveit_planners_ompl = 1.1.13-1
+Obsoletes: ros-noetic-moveit_planners_ompl < 1.1.13-1
+Obsoletes: ros-kinetic-moveit_planners_ompl < 1.1.13-1
 
 
 
@@ -83,9 +83,9 @@ Requires:       ros-noetic-rosunit-devel
 Requires:       ros-noetic-tf2-devel
 Requires:       ros-noetic-tf2_eigen-devel
 
-Provides: ros-noetic-moveit_planners_ompl-devel = 1.1.11-1
-Obsoletes: ros-noetic-moveit_planners_ompl-devel < 1.1.11-1
-Obsoletes: ros-kinetic-moveit_planners_ompl-devel < 1.1.11-1
+Provides: ros-noetic-moveit_planners_ompl-devel = 1.1.13-1
+Obsoletes: ros-noetic-moveit_planners_ompl-devel < 1.1.13-1
+Obsoletes: ros-kinetic-moveit_planners_ompl-devel < 1.1.13-1
 
 
 %description devel
@@ -180,5 +180,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.1.1.13-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.1.1.11-1
 - Generate moveit packages

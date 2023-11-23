@@ -8,8 +8,8 @@ URL:            http://www.ros.org/
 
 Source0:        https://github.com/ros-gbp/laser_geometry-release/archive/release/noetic/laser_geometry/1.6.7-1.tar.gz#/ros-noetic-laser_geometry-1.6.7-source0.tar.gz
 
-Patch0: patches/ros-laser_geometry.add-eigen-export_depend.patch
-Patch1: ros-laser_geometry.build-with-cpp17.patch
+Patch0: patches/noetic/laser_geometry.add-eigen-export_depend.patch
+Patch1: noetic/laser_geometry.build-with-cpp17.patch
 
 
 # common BRs

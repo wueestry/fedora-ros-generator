@@ -1,12 +1,12 @@
 Name:           ros-noetic-rqt_robot_monitor
-Version:        noetic.0.5.14
+Version:        noetic.0.5.15
 Release:        1%{?dist}
 Summary:        ROS package rqt_robot_monitor
 
 License:        BSD
 URL:            http://wiki.ros.org/rqt_robot_monitor
 
-Source0:        https://github.com/ros-gbp/rqt_robot_monitor-release/archive/release/noetic/rqt_robot_monitor/0.5.14-1.tar.gz#/ros-noetic-rqt_robot_monitor-0.5.14-source0.tar.gz
+Source0:        https://github.com/ros-gbp/rqt_robot_monitor-release/archive/release/noetic/rqt_robot_monitor/0.5.15-1.tar.gz#/ros-noetic-rqt_robot_monitor-0.5.15-source0.tar.gz
 
 
 BuildArch: noarch
@@ -33,9 +33,9 @@ Requires:       ros-noetic-rqt_gui
 Requires:       ros-noetic-rqt_gui_py
 Requires:       ros-noetic-rqt_py_common
 
-Provides:  ros-noetic-rqt_robot_monitor = 0.5.14-1
-Obsoletes: ros-noetic-rqt_robot_monitor < 0.5.14-1
-Obsoletes: ros-kinetic-rqt_robot_monitor < 0.5.14-1
+Provides:  ros-noetic-rqt_robot_monitor = 0.5.15-1
+Obsoletes: ros-noetic-rqt_robot_monitor < 0.5.15-1
+Obsoletes: ros-kinetic-rqt_robot_monitor < 0.5.15-1
 
 
 
@@ -58,9 +58,9 @@ Requires:       ros-noetic-rqt_gui-devel
 Requires:       ros-noetic-rqt_gui_py-devel
 Requires:       ros-noetic-rqt_py_common-devel
 
-Provides: ros-noetic-rqt_robot_monitor-devel = 0.5.14-1
-Obsoletes: ros-noetic-rqt_robot_monitor-devel < 0.5.14-1
-Obsoletes: ros-kinetic-rqt_robot_monitor-devel < 0.5.14-1
+Provides: ros-noetic-rqt_robot_monitor-devel = 0.5.15-1
+Obsoletes: ros-noetic-rqt_robot_monitor-devel < 0.5.15-1
+Obsoletes: ros-kinetic-rqt_robot_monitor-devel < 0.5.15-1
 
 
 %description devel
@@ -155,5 +155,7 @@ done
 
 
 %changelog
+* 2023-11-23 Ryan - noetic.0.5.15-1
+- Update all packages
 * 2023-04-17 Ryan Wüest <ryan.wueest@protonmail.com> - noetic.0.5.14-1
 - Initial desktop generation
