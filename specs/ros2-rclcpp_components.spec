@@ -1,12 +1,12 @@
 Name:           ros2-humble-rclcpp_components
-Version:        16.0.6
+Version:        16.0.7
 Release:        1%{?dist}
 Summary:        ROS package rclcpp_components
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rclcpp-release/archive/release/humble/rclcpp_components/16.0.6-1.tar.gz#/ros2-humble-rclcpp_components-16.0.6-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rclcpp-release/archive/release/humble/rclcpp_components/16.0.7-1.tar.gz#/ros2-humble-rclcpp_components-16.0.7-source0.tar.gz
 
 
 
@@ -56,8 +56,8 @@ Requires:       ros2-humble-class_loader
 Requires:       ros2-humble-composition_interfaces
 Requires:       ros2-humble-rclcpp
 
-Provides:  ros2-humble-rclcpp_components = 16.0.6-1
-Obsoletes: ros2-humble-rclcpp_components < 16.0.6-1
+Provides:  ros2-humble-rclcpp_components = 16.0.7-1
+Obsoletes: ros2-humble-rclcpp_components < 16.0.7-1
 
 
 
@@ -81,8 +81,8 @@ Requires:       ros2-humble-rclcpp-devel
 Requires:       ros2-humble-rcpputils-devel
 Requires:       ros2-humble-std_msgs-devel
 
-Provides: ros2-humble-rclcpp_components-devel = 16.0.6-1
-Obsoletes: ros2-humble-rclcpp_components-devel < 16.0.6-1
+Provides: ros2-humble-rclcpp_components-devel = 16.0.7-1
+Obsoletes: ros2-humble-rclcpp_components-devel < 16.0.7-1
 
 
 %description devel
@@ -191,6 +191,8 @@ done
 
 
 %changelog
+* Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.16.0.7-1
+- update to latest upstream
 * Wed Sep 27 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.16.0.6-1
 - update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.16.0.5-1

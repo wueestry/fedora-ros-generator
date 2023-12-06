@@ -1,12 +1,12 @@
 Name:           ros2-humble-rqt_reconfigure
-Version:        1.1.1
+Version:        1.1.2
 Release:        1%{?dist}
 Summary:        ROS package rqt_reconfigure
 
 License:        BSD
 URL:            http://wiki.ros.org/rqt_reconfigure
 
-Source0:        https://github.com/ros2-gbp/rqt_reconfigure-release/archive/release/humble/rqt_reconfigure/1.1.1-1.tar.gz#/ros2-humble-rqt_reconfigure-1.1.1-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rqt_reconfigure-release/archive/release/humble/rqt_reconfigure/1.1.2-1.tar.gz#/ros2-humble-rqt_reconfigure-1.1.2-source0.tar.gz
 
 
 BuildArch: noarch
@@ -53,8 +53,8 @@ Requires:       ros2-humble-rqt_gui
 Requires:       ros2-humble-rqt_gui_py
 Requires:       ros2-humble-rqt_py_common
 
-Provides:  ros2-humble-rqt_reconfigure = 1.1.1-1
-Obsoletes: ros2-humble-rqt_reconfigure < 1.1.1-1
+Provides:  ros2-humble-rqt_reconfigure = 1.1.2-1
+Obsoletes: ros2-humble-rqt_reconfigure < 1.1.2-1
 
 
 
@@ -77,8 +77,8 @@ Requires:       ros2-humble-rqt_gui-devel
 Requires:       ros2-humble-rqt_gui_py-devel
 Requires:       ros2-humble-rqt_py_common-devel
 
-Provides: ros2-humble-rqt_reconfigure-devel = 1.1.1-1
-Obsoletes: ros2-humble-rqt_reconfigure-devel < 1.1.1-1
+Provides: ros2-humble-rqt_reconfigure-devel = 1.1.2-1
+Obsoletes: ros2-humble-rqt_reconfigure-devel < 1.1.2-1
 
 
 %description devel
@@ -187,6 +187,8 @@ done
 
 
 %changelog
+* Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.2-1
+- update to latest upstream
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.1-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.1-1

@@ -1,12 +1,12 @@
 Name:           ros2-humble-kinematics_interface
-Version:        0.1.0
+Version:        0.2.0
 Release:        1%{?dist}
 Summary:        ROS package kinematics_interface
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/kinematics_interface-release/archive/release/humble/kinematics_interface/0.1.0-1.tar.gz#/ros2-humble-kinematics_interface-0.1.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/kinematics_interface-release/archive/release/humble/kinematics_interface/0.2.0-1.tar.gz#/ros2-humble-kinematics_interface-0.2.0-source0.tar.gz
 
 
 BuildArch: noarch
@@ -45,8 +45,8 @@ BuildRequires:  ros2-humble-rclcpp_lifecycle-devel
 
 Requires:       ros2-humble-rclcpp_lifecycle
 
-Provides:  ros2-humble-kinematics_interface = 0.1.0-1
-Obsoletes: ros2-humble-kinematics_interface < 0.1.0-1
+Provides:  ros2-humble-kinematics_interface = 0.2.0-1
+Obsoletes: ros2-humble-kinematics_interface < 0.2.0-1
 
 
 
@@ -61,8 +61,8 @@ Requires:       eigen3-devel
 Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-rclcpp_lifecycle-devel
 
-Provides: ros2-humble-kinematics_interface-devel = 0.1.0-1
-Obsoletes: ros2-humble-kinematics_interface-devel < 0.1.0-1
+Provides: ros2-humble-kinematics_interface-devel = 0.2.0-1
+Obsoletes: ros2-humble-kinematics_interface-devel < 0.2.0-1
 
 
 %description devel
@@ -171,5 +171,7 @@ done
 
 
 %changelog
+* Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.2.0-1
+- update to latest upstream
 * Sat Oct 21 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.1.0-1
 - update to latest release

@@ -1,12 +1,12 @@
 Name:           ros2-humble-tinyxml2_vendor
-Version:        0.7.5
+Version:        0.7.6
 Release:        1%{?dist}
 Summary:        ROS package tinyxml2_vendor
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/tinyxml2_vendor-release/archive/release/humble/tinyxml2_vendor/0.7.5-2.tar.gz#/ros2-humble-tinyxml2_vendor-0.7.5-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/tinyxml2_vendor-release/archive/release/humble/tinyxml2_vendor/0.7.6-1.tar.gz#/ros2-humble-tinyxml2_vendor-0.7.6-source0.tar.gz
 
 
 BuildArch: noarch
@@ -43,8 +43,8 @@ BuildRequires:  ros2-humble-ament_cmake-devel
 BuildRequires:  ros2-humble-ament_package-devel
 
 
-Provides:  ros2-humble-tinyxml2_vendor = 0.7.5-1
-Obsoletes: ros2-humble-tinyxml2_vendor < 0.7.5-1
+Provides:  ros2-humble-tinyxml2_vendor = 0.7.6-1
+Obsoletes: ros2-humble-tinyxml2_vendor < 0.7.6-1
 
 
 
@@ -60,8 +60,8 @@ Requires:       ros2-humble-ament_cmake-devel
 Requires:       tinyxml2-devel
 Requires:       ros2-humble-ament_package-devel
 
-Provides: ros2-humble-tinyxml2_vendor-devel = 0.7.5-1
-Obsoletes: ros2-humble-tinyxml2_vendor-devel < 0.7.5-1
+Provides: ros2-humble-tinyxml2_vendor-devel = 0.7.6-1
+Obsoletes: ros2-humble-tinyxml2_vendor-devel < 0.7.6-1
 
 
 %description devel
@@ -170,6 +170,8 @@ done
 
 
 %changelog
+* Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.7.6-1
+- update to latest upstream
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.7.5-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.7.5-1

@@ -1,12 +1,12 @@
 Name:           ros2-humble-rsl
-Version:        0.2.2
+Version:        1.0.0
 Release:        1%{?dist}
 Summary:        ROS package rsl
 
 License:        BSD-3-Clause
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/RSL-release/archive/release/humble/rsl/0.2.2-1.tar.gz#/ros2-humble-rsl-0.2.2-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/RSL-release/archive/release/humble/rsl/1.0.0-1.tar.gz#/ros2-humble-rsl-1.0.0-source0.tar.gz
 
 
 
@@ -43,7 +43,6 @@ BuildRequires:  eigen3-devel
 BuildRequires:  fmt-devel
 BuildRequires:  git
 BuildRequires:  range-v3-devel
-BuildRequires:  ros2-humble-ament_cmake_ros-devel
 BuildRequires:  ros2-humble-ament_package-devel
 BuildRequires:  ros2-humble-rclcpp-devel
 BuildRequires:  ros2-humble-tcb_span-devel
@@ -53,8 +52,8 @@ Requires:       ros2-humble-rclcpp
 Requires:       ros2-humble-tcb_span
 Requires:       ros2-humble-tl_expected
 
-Provides:  ros2-humble-rsl = 0.2.2-1
-Obsoletes: ros2-humble-rsl < 0.2.2-1
+Provides:  ros2-humble-rsl = 1.0.0-1
+Obsoletes: ros2-humble-rsl < 1.0.0-1
 
 
 
@@ -65,19 +64,18 @@ ROS Support Library
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       doxygen
-Requires:       git
-Requires:       ros2-humble-ament_cmake_ros-devel
 Requires:       clang-tools-extra
 Requires:       eigen3-devel
 Requires:       fmt-devel
+Requires:       git
 Requires:       range-v3-devel
 Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-rclcpp-devel
 Requires:       ros2-humble-tcb_span-devel
 Requires:       ros2-humble-tl_expected-devel
 
-Provides: ros2-humble-rsl-devel = 0.2.2-1
-Obsoletes: ros2-humble-rsl-devel < 0.2.2-1
+Provides: ros2-humble-rsl-devel = 1.0.0-1
+Obsoletes: ros2-humble-rsl-devel < 1.0.0-1
 
 
 %description devel
@@ -186,6 +184,8 @@ done
 
 
 %changelog
+* Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.0.0-1
+- update to latest upstream
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.2.2-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.2.2-1

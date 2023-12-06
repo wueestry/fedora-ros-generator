@@ -1,12 +1,12 @@
 Name:           ros2-humble-rcl_yaml_param_parser
-Version:        5.3.5
+Version:        5.3.6
 Release:        1%{?dist}
 Summary:        ROS package rcl_yaml_param_parser
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rcl-release/archive/release/humble/rcl_yaml_param_parser/5.3.5-1.tar.gz#/ros2-humble-rcl_yaml_param_parser-5.3.5-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rcl-release/archive/release/humble/rcl_yaml_param_parser/5.3.6-1.tar.gz#/ros2-humble-rcl_yaml_param_parser-5.3.6-source0.tar.gz
 
 
 
@@ -55,8 +55,8 @@ Requires:       libyaml
 Requires:       ros2-humble-libyaml_vendor
 Requires:       ros2-humble-rmw
 
-Provides:  ros2-humble-rcl_yaml_param_parser = 5.3.5-1
-Obsoletes: ros2-humble-rcl_yaml_param_parser < 5.3.5-1
+Provides:  ros2-humble-rcl_yaml_param_parser = 5.3.6-1
+Obsoletes: ros2-humble-rcl_yaml_param_parser < 5.3.6-1
 
 
 
@@ -80,8 +80,8 @@ Requires:       ros2-humble-rcpputils-devel
 Requires:       ros2-humble-rcutils-devel
 Requires:       ros2-humble-rmw-devel
 
-Provides: ros2-humble-rcl_yaml_param_parser-devel = 5.3.5-1
-Obsoletes: ros2-humble-rcl_yaml_param_parser-devel < 5.3.5-1
+Provides: ros2-humble-rcl_yaml_param_parser-devel = 5.3.6-1
+Obsoletes: ros2-humble-rcl_yaml_param_parser-devel < 5.3.6-1
 
 
 %description devel
@@ -190,6 +190,8 @@ done
 
 
 %changelog
+* Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.5.3.6-1
+- update to latest upstream
 * Wed Sep 27 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.5.3.5-1
 - update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.5.3.4-1

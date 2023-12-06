@@ -1,12 +1,12 @@
 Name:           ros2-humble-rmw_fastrtps_cpp
-Version:        6.2.4
+Version:        6.2.5
 Release:        1%{?dist}
 Summary:        ROS package rmw_fastrtps_cpp
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rmw_fastrtps-release/archive/release/humble/rmw_fastrtps_cpp/6.2.4-1.tar.gz#/ros2-humble-rmw_fastrtps_cpp-6.2.4-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rmw_fastrtps-release/archive/release/humble/rmw_fastrtps_cpp/6.2.5-1.tar.gz#/ros2-humble-rmw_fastrtps_cpp-6.2.5-source0.tar.gz
 
 
 
@@ -66,8 +66,8 @@ Requires:       ros2-humble-rmw
 Requires:       ros2-humble-rmw_fastrtps_shared_cpp
 Requires:       ros2-humble-tracetools
 
-Provides:  ros2-humble-rmw_fastrtps_cpp = 6.2.4-1
-Obsoletes: ros2-humble-rmw_fastrtps_cpp < 6.2.4-1
+Provides:  ros2-humble-rmw_fastrtps_cpp = 6.2.5-1
+Obsoletes: ros2-humble-rmw_fastrtps_cpp < 6.2.5-1
 
 
 
@@ -101,8 +101,8 @@ Requires:       ros2-humble-osrf_testing_tools_cpp-devel
 Requires:       ros2-humble-rcpputils-devel
 Requires:       ros2-humble-test_msgs-devel
 
-Provides: ros2-humble-rmw_fastrtps_cpp-devel = 6.2.4-1
-Obsoletes: ros2-humble-rmw_fastrtps_cpp-devel < 6.2.4-1
+Provides: ros2-humble-rmw_fastrtps_cpp-devel = 6.2.5-1
+Obsoletes: ros2-humble-rmw_fastrtps_cpp-devel < 6.2.5-1
 
 
 %description devel
@@ -211,6 +211,8 @@ done
 
 
 %changelog
+* Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.6.2.5-1
+- update to latest upstream
 * Wed Sep 27 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.6.2.4-1
 - update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.6.2.3-1

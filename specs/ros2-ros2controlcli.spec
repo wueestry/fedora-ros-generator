@@ -1,12 +1,12 @@
 Name:           ros2-humble-ros2controlcli
-Version:        2.33.0
+Version:        2.35.1
 Release:        1%{?dist}
 Summary:        ROS package ros2controlcli
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ros2_control-release/archive/release/humble/ros2controlcli/2.33.0-1.tar.gz#/ros2-humble-ros2controlcli-2.33.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ros2_control-release/archive/release/humble/ros2controlcli/2.35.1-1.tar.gz#/ros2-humble-ros2controlcli-2.35.1-source0.tar.gz
 
 
 BuildArch: noarch
@@ -61,8 +61,8 @@ Requires:       ros2-humble-ros2node
 Requires:       ros2-humble-ros2param
 Requires:       ros2-humble-rosidl_runtime_py
 
-Provides:  ros2-humble-ros2controlcli = 2.33.0-1
-Obsoletes: ros2-humble-ros2controlcli < 2.33.0-1
+Provides:  ros2-humble-ros2controlcli = 2.35.1-1
+Obsoletes: ros2-humble-ros2controlcli < 2.35.1-1
 
 
 
@@ -86,8 +86,8 @@ Requires:       ros2-humble-ros2node-devel
 Requires:       ros2-humble-ros2param-devel
 Requires:       ros2-humble-rosidl_runtime_py-devel
 
-Provides: ros2-humble-ros2controlcli-devel = 2.33.0-1
-Obsoletes: ros2-humble-ros2controlcli-devel < 2.33.0-1
+Provides: ros2-humble-ros2controlcli-devel = 2.35.1-1
+Obsoletes: ros2-humble-ros2controlcli-devel < 2.35.1-1
 
 
 %description devel
@@ -196,6 +196,8 @@ done
 
 
 %changelog
+* Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.35.1-1
+- update to latest upstream
 * Sat Oct 21 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.33.0-1
 - update to latest release
 * Mon Apr 17 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.25.1-1

@@ -1,12 +1,12 @@
 Name:           ros2-humble-effort_controllers
-Version:        2.26.0
+Version:        2.28.0
 Release:        1%{?dist}
 Summary:        ROS package effort_controllers
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ros2_controllers-release/archive/release/humble/effort_controllers/2.26.0-1.tar.gz#/ros2-humble-effort_controllers-2.26.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ros2_controllers-release/archive/release/humble/effort_controllers/2.28.0-1.tar.gz#/ros2-humble-effort_controllers-2.28.0-source0.tar.gz
 
 
 
@@ -56,8 +56,8 @@ Requires:       ros2-humble-forward_command_controller
 Requires:       ros2-humble-pluginlib
 Requires:       ros2-humble-rclcpp
 
-Provides:  ros2-humble-effort_controllers = 2.26.0-1
-Obsoletes: ros2-humble-effort_controllers < 2.26.0-1
+Provides:  ros2-humble-effort_controllers = 2.28.0-1
+Obsoletes: ros2-humble-effort_controllers < 2.28.0-1
 
 
 
@@ -81,8 +81,8 @@ Requires:       ros2-humble-pluginlib-devel
 Requires:       ros2-humble-rclcpp-devel
 Requires:       ros2-humble-ros2_control_test_assets-devel
 
-Provides: ros2-humble-effort_controllers-devel = 2.26.0-1
-Obsoletes: ros2-humble-effort_controllers-devel < 2.26.0-1
+Provides: ros2-humble-effort_controllers-devel = 2.28.0-1
+Obsoletes: ros2-humble-effort_controllers-devel < 2.28.0-1
 
 
 %description devel
@@ -191,5 +191,7 @@ done
 
 
 %changelog
+* Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.28.0-1
+- update to latest upstream
 * Sat Oct 21 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.26.0-1
 - update to latest release

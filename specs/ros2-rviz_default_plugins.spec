@@ -1,12 +1,12 @@
 Name:           ros2-humble-rviz_default_plugins
-Version:        11.2.8
+Version:        11.2.9
 Release:        1%{?dist}
 Summary:        ROS package rviz_default_plugins
 
 License:        BSD
 URL:            https://github.com/ros2/rviz/blob/ros2/README.md
 
-Source0:        https://github.com/ros2-gbp/rviz-release/archive/release/humble/rviz_default_plugins/11.2.8-1.tar.gz#/ros2-humble-rviz_default_plugins-11.2.8-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rviz-release/archive/release/humble/rviz_default_plugins/11.2.9-1.tar.gz#/ros2-humble-rviz_default_plugins-11.2.9-source0.tar.gz
 
 
 
@@ -91,8 +91,8 @@ Requires:       ros2-humble-tf2_ros
 Requires:       ros2-humble-urdf
 Requires:       ros2-humble-visualization_msgs
 
-Provides:  ros2-humble-rviz_default_plugins = 11.2.8-1
-Obsoletes: ros2-humble-rviz_default_plugins < 11.2.8-1
+Provides:  ros2-humble-rviz_default_plugins = 11.2.9-1
+Obsoletes: ros2-humble-rviz_default_plugins < 11.2.9-1
 
 
 
@@ -135,8 +135,8 @@ Requires:       ros2-humble-tf2_ros-devel
 Requires:       ros2-humble-urdf-devel
 Requires:       ros2-humble-visualization_msgs-devel
 
-Provides: ros2-humble-rviz_default_plugins-devel = 11.2.8-1
-Obsoletes: ros2-humble-rviz_default_plugins-devel < 11.2.8-1
+Provides: ros2-humble-rviz_default_plugins-devel = 11.2.9-1
+Obsoletes: ros2-humble-rviz_default_plugins-devel < 11.2.9-1
 
 
 %description devel
@@ -245,6 +245,8 @@ done
 
 
 %changelog
+* Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.9-1
+- update to latest upstream
 * Wed Sep 27 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.8-1
 - update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.7-1

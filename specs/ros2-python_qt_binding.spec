@@ -1,12 +1,12 @@
 Name:           ros2-humble-python_qt_binding
-Version:        1.1.1
+Version:        1.1.2
 Release:        1%{?dist}
 Summary:        ROS package python_qt_binding
 
 License:        BSD
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/python_qt_binding-release/archive/release/humble/python_qt_binding/1.1.1-3.tar.gz#/ros2-humble-python_qt_binding-1.1.1-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/python_qt_binding-release/archive/release/humble/python_qt_binding/1.1.2-1.tar.gz#/ros2-humble-python_qt_binding-1.1.2-source0.tar.gz
 
 Patch0: ros-python_qt_binding.lflags-fix.patch
 
@@ -39,7 +39,7 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python3-colcon-common-extensions
 # BuildRequires:  python-unversioned-command
 
-BuildRequires:  python3-pyside2
+BuildRequires:  python3-qt5
 BuildRequires:  qt5-qtbase-devel
 BuildRequires:  ros2-humble-ament_cmake-devel
 BuildRequires:  ros2-humble-ament_cmake_pytest-devel
@@ -47,10 +47,10 @@ BuildRequires:  ros2-humble-ament_lint_auto-devel
 BuildRequires:  ros2-humble-ament_lint_common-devel
 BuildRequires:  ros2-humble-ament_package-devel
 
-Requires:       python3-pyside2
+Requires:       python3-qt5
 
-Provides:  ros2-humble-python_qt_binding = 1.1.1-1
-Obsoletes: ros2-humble-python_qt_binding < 1.1.1-1
+Provides:  ros2-humble-python_qt_binding = 1.1.2-1
+Obsoletes: ros2-humble-python_qt_binding < 1.1.2-1
 
 
 
@@ -68,15 +68,15 @@ very easy to switch between these.
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
 Requires:       ros2-humble-ament_cmake-devel
-Requires:       python3-pyside2
+Requires:       python3-qt5
 Requires:       qt5-qtbase-devel
 Requires:       ros2-humble-ament_cmake_pytest-devel
 Requires:       ros2-humble-ament_lint_auto-devel
 Requires:       ros2-humble-ament_lint_common-devel
 Requires:       ros2-humble-ament_package-devel
 
-Provides: ros2-humble-python_qt_binding-devel = 1.1.1-1
-Obsoletes: ros2-humble-python_qt_binding-devel < 1.1.1-1
+Provides: ros2-humble-python_qt_binding-devel = 1.1.2-1
+Obsoletes: ros2-humble-python_qt_binding-devel < 1.1.2-1
 
 
 %description devel
@@ -186,6 +186,8 @@ done
 
 
 %changelog
+* Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.2-1
+- Change from pyside2 to PyQt
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.1-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.1-1

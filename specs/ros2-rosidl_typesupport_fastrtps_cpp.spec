@@ -1,12 +1,12 @@
 Name:           ros2-humble-rosidl_typesupport_fastrtps_cpp
-Version:        2.2.1
+Version:        2.2.2
 Release:        1%{?dist}
 Summary:        ROS package rosidl_typesupport_fastrtps_cpp
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rosidl_typesupport_fastrtps-release/archive/release/humble/rosidl_typesupport_fastrtps_cpp/2.2.1-1.tar.gz#/ros2-humble-rosidl_typesupport_fastrtps_cpp-2.2.1-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rosidl_typesupport_fastrtps-release/archive/release/humble/rosidl_typesupport_fastrtps_cpp/2.2.2-2.tar.gz#/ros2-humble-rosidl_typesupport_fastrtps_cpp-2.2.2-source0.tar.gz
 
 
 
@@ -66,8 +66,8 @@ Requires:       ros2-humble-rosidl_cli
 Requires:       ros2-humble-rosidl_cmake
 Requires:       ros2-humble-rosidl_runtime_c
 
-Provides:  ros2-humble-rosidl_typesupport_fastrtps_cpp = 2.2.1-1
-Obsoletes: ros2-humble-rosidl_typesupport_fastrtps_cpp < 2.2.1-1
+Provides:  ros2-humble-rosidl_typesupport_fastrtps_cpp = 2.2.2-1
+Obsoletes: ros2-humble-rosidl_typesupport_fastrtps_cpp < 2.2.2-1
 
 
 
@@ -99,8 +99,8 @@ Requires:       ros2-humble-rosidl_cli-devel
 Requires:       ros2-humble-rosidl_cmake-devel
 Requires:       ros2-humble-rosidl_runtime_c-devel
 
-Provides: ros2-humble-rosidl_typesupport_fastrtps_cpp-devel = 2.2.1-1
-Obsoletes: ros2-humble-rosidl_typesupport_fastrtps_cpp-devel < 2.2.1-1
+Provides: ros2-humble-rosidl_typesupport_fastrtps_cpp-devel = 2.2.2-1
+Obsoletes: ros2-humble-rosidl_typesupport_fastrtps_cpp-devel < 2.2.2-1
 
 
 %description devel
@@ -209,6 +209,8 @@ done
 
 
 %changelog
+* Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.2.2-1
+- update to latest upstream
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.2.1-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.2.1-1

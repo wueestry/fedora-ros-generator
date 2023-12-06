@@ -1,12 +1,12 @@
 Name:           ros2-humble-iceoryx_posh
-Version:        2.0.3
+Version:        2.0.5
 Release:        1%{?dist}
 Summary:        ROS package iceoryx_posh
 
 License:        Apache 2.0
 URL:            https://iceoryx.io
 
-Source0:        https://github.com/ros2-gbp/iceoryx-release/archive/release/humble/iceoryx_posh/2.0.3-1.tar.gz#/ros2-humble-iceoryx_posh-2.0.3-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/iceoryx-release/archive/release/humble/iceoryx_posh/2.0.5-1.tar.gz#/ros2-humble-iceoryx_posh-2.0.5-source0.tar.gz
 
 
 
@@ -44,8 +44,8 @@ BuildRequires:  ros2-humble-iceoryx_hoofs-devel
 
 Requires:       ros2-humble-iceoryx_hoofs
 
-Provides:  ros2-humble-iceoryx_posh = 2.0.3-1
-Obsoletes: ros2-humble-iceoryx_posh < 2.0.3-1
+Provides:  ros2-humble-iceoryx_posh = 2.0.5-1
+Obsoletes: ros2-humble-iceoryx_posh < 2.0.5-1
 
 
 
@@ -61,8 +61,8 @@ Requires:       git
 Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-iceoryx_hoofs-devel
 
-Provides: ros2-humble-iceoryx_posh-devel = 2.0.3-1
-Obsoletes: ros2-humble-iceoryx_posh-devel < 2.0.3-1
+Provides: ros2-humble-iceoryx_posh-devel = 2.0.5-1
+Obsoletes: ros2-humble-iceoryx_posh-devel < 2.0.5-1
 
 
 %description devel
@@ -171,6 +171,8 @@ done
 
 
 %changelog
+* Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.0.5-1
+- update to latest upstream
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.0.3-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.0.3-1

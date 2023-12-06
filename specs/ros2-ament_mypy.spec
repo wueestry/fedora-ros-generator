@@ -1,12 +1,12 @@
 Name:           ros2-humble-ament_mypy
-Version:        0.12.8
+Version:        0.12.9
 Release:        1%{?dist}
 Summary:        ROS package ament_mypy
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ament_lint-release/archive/release/humble/ament_mypy/0.12.8-1.tar.gz#/ros2-humble-ament_mypy-0.12.8-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ament_lint-release/archive/release/humble/ament_mypy/0.12.9-1.tar.gz#/ros2-humble-ament_mypy-0.12.9-source0.tar.gz
 
 
 BuildArch: noarch
@@ -45,8 +45,8 @@ BuildRequires:  ros2-humble-ament_package-devel
 
 Requires:       python3-mypy
 
-Provides:  ros2-humble-ament_mypy = 0.12.8-1
-Obsoletes: ros2-humble-ament_mypy < 0.12.8-1
+Provides:  ros2-humble-ament_mypy = 0.12.9-1
+Obsoletes: ros2-humble-ament_mypy < 0.12.9-1
 
 
 
@@ -61,8 +61,8 @@ Requires:       python3-pytest-mock
 Requires:       ros2-humble-ament_flake8-devel
 Requires:       ros2-humble-ament_package-devel
 
-Provides: ros2-humble-ament_mypy-devel = 0.12.8-1
-Obsoletes: ros2-humble-ament_mypy-devel < 0.12.8-1
+Provides: ros2-humble-ament_mypy-devel = 0.12.9-1
+Obsoletes: ros2-humble-ament_mypy-devel < 0.12.9-1
 
 
 %description devel
@@ -171,6 +171,8 @@ done
 
 
 %changelog
+* Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.12.9-1
+- update to latest upstream
 * Sat Oct 21 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.12.8-1
 - update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.12.7-1

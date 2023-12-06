@@ -1,12 +1,12 @@
 Name:           ros2-humble-tf2_geometry_msgs
-Version:        0.25.4
+Version:        0.25.5
 Release:        1%{?dist}
 Summary:        ROS package tf2_geometry_msgs
 
 License:        BSD
 URL:            http://www.ros.org/wiki/tf2_ros
 
-Source0:        https://github.com/ros2-gbp/geometry2-release/archive/release/humble/tf2_geometry_msgs/0.25.4-1.tar.gz#/ros2-humble-tf2_geometry_msgs-0.25.4-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/geometry2-release/archive/release/humble/tf2_geometry_msgs/0.25.5-1.tar.gz#/ros2-humble-tf2_geometry_msgs-0.25.5-source0.tar.gz
 
 Patch0: ros-tf2_geometry_msgs.remove-orocos-kdl-vendor.patch
 
@@ -59,8 +59,8 @@ Requires:       ros2-humble-tf2
 Requires:       ros2-humble-tf2_ros
 Requires:       ros2-humble-tf2_ros_py
 
-Provides:  ros2-humble-tf2_geometry_msgs = 0.25.4-1
-Obsoletes: ros2-humble-tf2_geometry_msgs < 0.25.4-1
+Provides:  ros2-humble-tf2_geometry_msgs = 0.25.5-1
+Obsoletes: ros2-humble-tf2_geometry_msgs < 0.25.5-1
 
 
 
@@ -85,8 +85,8 @@ Requires:       ros2-humble-tf2_ros-devel
 Requires:       ros2-humble-orocos_kdl_vendor-devel
 Requires:       ros2-humble-tf2_ros_py-devel
 
-Provides: ros2-humble-tf2_geometry_msgs-devel = 0.25.4-1
-Obsoletes: ros2-humble-tf2_geometry_msgs-devel < 0.25.4-1
+Provides: ros2-humble-tf2_geometry_msgs-devel = 0.25.5-1
+Obsoletes: ros2-humble-tf2_geometry_msgs-devel < 0.25.5-1
 
 
 %description devel
@@ -196,6 +196,8 @@ done
 
 
 %changelog
+* Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.25.5-1
+- update to latest upstream
 * Wed Sep 27 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.25.4-1
 - update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.25.3-1

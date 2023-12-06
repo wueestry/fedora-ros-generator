@@ -1,12 +1,12 @@
 Name:           ros2-humble-ament_cmake_gtest
-Version:        1.3.5
+Version:        1.3.6
 Release:        1%{?dist}
 Summary:        ROS package ament_cmake_gtest
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ament_cmake-release/archive/release/humble/ament_cmake_gtest/1.3.5-1.tar.gz#/ros2-humble-ament_cmake_gtest-1.3.5-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ament_cmake-release/archive/release/humble/ament_cmake_gtest/1.3.6-1.tar.gz#/ros2-humble-ament_cmake_gtest-1.3.6-source0.tar.gz
 
 
 BuildArch: noarch
@@ -45,8 +45,8 @@ BuildRequires:  ros2-humble-ament_package-devel
 BuildRequires:  ros2-humble-gtest_vendor-devel
 
 
-Provides:  ros2-humble-ament_cmake_gtest = 1.3.5-1
-Obsoletes: ros2-humble-ament_cmake_gtest < 1.3.5-1
+Provides:  ros2-humble-ament_cmake_gtest = 1.3.6-1
+Obsoletes: ros2-humble-ament_cmake_gtest < 1.3.6-1
 
 
 
@@ -63,8 +63,8 @@ Requires:       ros2-humble-ament_cmake_test-devel
 Requires:       ros2-humble-gtest_vendor-devel
 Requires:       ros2-humble-ament_package-devel
 
-Provides: ros2-humble-ament_cmake_gtest-devel = 1.3.5-1
-Obsoletes: ros2-humble-ament_cmake_gtest-devel < 1.3.5-1
+Provides: ros2-humble-ament_cmake_gtest-devel = 1.3.6-1
+Obsoletes: ros2-humble-ament_cmake_gtest-devel < 1.3.6-1
 
 
 %description devel
@@ -173,6 +173,8 @@ done
 
 
 %changelog
+* Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.3.6-1
+- update to latest upstream
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.3.5-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.3.5-1

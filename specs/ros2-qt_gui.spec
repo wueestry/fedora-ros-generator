@@ -38,7 +38,7 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python3-colcon-common-extensions
 # BuildRequires:  python-unversioned-command
 
-BuildRequires:  python3-pyside2
+BuildRequires:  python3-qt5
 BuildRequires:  qt5-qtbase-devel
 BuildRequires:  ros2-humble-ament_cmake-devel
 BuildRequires:  ros2-humble-ament_lint_auto-devel
@@ -65,7 +65,7 @@ arbitrary widgets. It requires either PyQt or PySide bindings.
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
 Requires:       ros2-humble-ament_cmake-devel
-Requires:       python3-pyside2
+Requires:       python3-qt5
 Requires:       qt5-qtbase-devel
 Requires:       ros2-humble-ament_lint_auto-devel
 Requires:       ros2-humble-ament_lint_common-devel
