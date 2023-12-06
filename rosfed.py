@@ -494,9 +494,11 @@ def main():
     build_args.add_argument(
         '--copr-owner',
         type=str,
+        default="tavie",
         help='The owner of the COPR project to use for builds')
     build_args.add_argument('--copr-project',
                             type=str,
+                            default="ros2",
                             help='The COPR project to use for builds')
     build_args.add_argument('--chroot',
                             action='append',
