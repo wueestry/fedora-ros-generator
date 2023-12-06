@@ -9,6 +9,13 @@ common:
           to:
             type: system
             pkg: orocos-kdl-devel
+        - qt_bindings:
+          from:
+            type: system
+            pkg: python3-pyside2
+          to:
+            type: system
+            pkg: python3-qt5
         - zstd:
           from:
             type: ros
@@ -109,6 +116,13 @@ common:
           to:
             type: system
             pkg: libzstd-devel
+        - qt_bindings:
+          from:
+            type: system
+            pkg: python3-pyside2
+          to:
+            type: system
+            pkg: python3-qt5
               #- yamlcpp:
               #  from:
               #    type: ros
