@@ -1,12 +1,12 @@
 Name:           ros2-humble-rviz_common
-Version:        11.2.9
+Version:        11.2.12
 Release:        1%{?dist}
 Summary:        ROS package rviz_common
 
 License:        BSD
 URL:            https://github.com/ros2/rviz/blob/ros2/README.md
 
-Source0:        https://github.com/ros2-gbp/rviz-release/archive/release/humble/rviz_common/11.2.9-1.tar.gz#/ros2-humble-rviz_common-11.2.9-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rviz-release/archive/release/humble/rviz_common/11.2.12-1.tar.gz#/ros2-humble-rviz_common-11.2.12-source0.tar.gz
 
 
 
@@ -53,6 +53,7 @@ BuildRequires:  ros2-humble-geometry_msgs-devel
 BuildRequires:  ros2-humble-message_filters-devel
 BuildRequires:  ros2-humble-pluginlib-devel
 BuildRequires:  ros2-humble-rclcpp-devel
+BuildRequires:  ros2-humble-rcpputils-devel
 BuildRequires:  ros2-humble-resource_retriever-devel
 BuildRequires:  ros2-humble-rviz_ogre_vendor-devel
 BuildRequires:  ros2-humble-rviz_rendering-devel
@@ -72,6 +73,7 @@ Requires:       ros2-humble-geometry_msgs
 Requires:       ros2-humble-message_filters
 Requires:       ros2-humble-pluginlib
 Requires:       ros2-humble-rclcpp
+Requires:       ros2-humble-rcpputils
 Requires:       ros2-humble-resource_retriever
 Requires:       ros2-humble-rviz_ogre_vendor
 Requires:       ros2-humble-rviz_rendering
@@ -84,8 +86,8 @@ Requires:       ros2-humble-tinyxml2_vendor
 Requires:       ros2-humble-urdf
 Requires:       ros2-humble-yaml_cpp_vendor
 
-Provides:  ros2-humble-rviz_common = 11.2.9-1
-Obsoletes: ros2-humble-rviz_common < 11.2.9-1
+Provides:  ros2-humble-rviz_common = 11.2.12-1
+Obsoletes: ros2-humble-rviz_common < 11.2.12-1
 
 
 
@@ -111,6 +113,7 @@ Requires:       ros2-humble-geometry_msgs-devel
 Requires:       ros2-humble-message_filters-devel
 Requires:       ros2-humble-pluginlib-devel
 Requires:       ros2-humble-rclcpp-devel
+Requires:       ros2-humble-rcpputils-devel
 Requires:       ros2-humble-resource_retriever-devel
 Requires:       ros2-humble-rviz_ogre_vendor-devel
 Requires:       ros2-humble-rviz_rendering-devel
@@ -123,8 +126,8 @@ Requires:       ros2-humble-tinyxml2_vendor-devel
 Requires:       ros2-humble-urdf-devel
 Requires:       ros2-humble-yaml_cpp_vendor-devel
 
-Provides: ros2-humble-rviz_common-devel = 11.2.9-1
-Obsoletes: ros2-humble-rviz_common-devel < 11.2.9-1
+Provides: ros2-humble-rviz_common-devel = 11.2.12-1
+Obsoletes: ros2-humble-rviz_common-devel < 11.2.12-1
 
 
 %description devel
@@ -146,9 +149,9 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
@@ -233,6 +236,10 @@ done
 
 
 %changelog
+* Wed Mar 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.12-1
+- update to latest release
+* Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.11-1
+- Update to latest release
 * Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.9-1
 - update to latest upstream
 * Wed Sep 27 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.8-1

@@ -1,12 +1,12 @@
 Name:           ros2-humble-moveit_resources_fanuc_description
-Version:        2.0.6
+Version:        2.0.7
 Release:        1%{?dist}
 Summary:        ROS package moveit_resources_fanuc_description
 
 License:        BSD
 URL:            http://moveit.ros.org
 
-Source0:        https://github.com/ros2-gbp/moveit_resources-release/archive/release/humble/moveit_resources_fanuc_description/2.0.6-1.tar.gz#/ros2-humble-moveit_resources_fanuc_description-2.0.6-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/moveit_resources-release/archive/release/humble/moveit_resources_fanuc_description/2.0.7-1.tar.gz#/ros2-humble-moveit_resources_fanuc_description-2.0.7-source0.tar.gz
 
 
 BuildArch: noarch
@@ -42,8 +42,8 @@ BuildRequires:  ros2-humble-ament_cmake-devel
 BuildRequires:  ros2-humble-ament_package-devel
 
 
-Provides:  ros2-humble-moveit_resources_fanuc_description = 2.0.6-1
-Obsoletes: ros2-humble-moveit_resources_fanuc_description < 2.0.6-1
+Provides:  ros2-humble-moveit_resources_fanuc_description = 2.0.7-1
+Obsoletes: ros2-humble-moveit_resources_fanuc_description < 2.0.7-1
 
 
 
@@ -56,8 +56,8 @@ Requires:       %{name} = %{version}-%{release}
 Requires:       ros2-humble-ament_cmake-devel
 Requires:       ros2-humble-ament_package-devel
 
-Provides: ros2-humble-moveit_resources_fanuc_description-devel = 2.0.6-1
-Obsoletes: ros2-humble-moveit_resources_fanuc_description-devel < 2.0.6-1
+Provides: ros2-humble-moveit_resources_fanuc_description-devel = 2.0.7-1
+Obsoletes: ros2-humble-moveit_resources_fanuc_description-devel < 2.0.7-1
 
 
 %description devel
@@ -79,9 +79,9 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
@@ -166,6 +166,8 @@ done
 
 
 %changelog
+* Thu Apr 25 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.0.7-1
+- Update to latest release
 * Wed Sep 27 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.0.6-1
 - update to latest release
 * Thu Mar 09 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.0.6-1

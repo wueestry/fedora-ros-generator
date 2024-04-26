@@ -1,12 +1,12 @@
 Name:           ros2-humble-tf2_geometry_msgs
-Version:        0.25.5
+Version:        0.25.6
 Release:        1%{?dist}
 Summary:        ROS package tf2_geometry_msgs
 
 License:        BSD
 URL:            http://www.ros.org/wiki/tf2_ros
 
-Source0:        https://github.com/ros2-gbp/geometry2-release/archive/release/humble/tf2_geometry_msgs/0.25.5-1.tar.gz#/ros2-humble-tf2_geometry_msgs-0.25.5-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/geometry2-release/archive/release/humble/tf2_geometry_msgs/0.25.6-1.tar.gz#/ros2-humble-tf2_geometry_msgs-0.25.6-source0.tar.gz
 
 Patch0: ros-tf2_geometry_msgs.remove-orocos-kdl-vendor.patch
 
@@ -52,15 +52,15 @@ BuildRequires:  ros2-humble-rclcpp-devel
 BuildRequires:  ros2-humble-tf2-devel
 BuildRequires:  ros2-humble-tf2_ros-devel
 
+Requires:       orocos-kdl-devel
 Requires:       python3-numpy
 Requires:       ros2-humble-geometry_msgs
-Requires:       ros2-humble-orocos_kdl_vendor
 Requires:       ros2-humble-tf2
 Requires:       ros2-humble-tf2_ros
 Requires:       ros2-humble-tf2_ros_py
 
-Provides:  ros2-humble-tf2_geometry_msgs = 0.25.5-1
-Obsoletes: ros2-humble-tf2_geometry_msgs < 0.25.5-1
+Provides:  ros2-humble-tf2_geometry_msgs = 0.25.6-1
+Obsoletes: ros2-humble-tf2_geometry_msgs < 0.25.6-1
 
 
 
@@ -82,11 +82,10 @@ Requires:       ros2-humble-geometry_msgs-devel
 Requires:       ros2-humble-rclcpp-devel
 Requires:       ros2-humble-tf2-devel
 Requires:       ros2-humble-tf2_ros-devel
-Requires:       ros2-humble-orocos_kdl_vendor-devel
 Requires:       ros2-humble-tf2_ros_py-devel
 
-Provides: ros2-humble-tf2_geometry_msgs-devel = 0.25.5-1
-Obsoletes: ros2-humble-tf2_geometry_msgs-devel < 0.25.5-1
+Provides: ros2-humble-tf2_geometry_msgs-devel = 0.25.6-1
+Obsoletes: ros2-humble-tf2_geometry_msgs-devel < 0.25.6-1
 
 
 %description devel
@@ -109,9 +108,9 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
@@ -196,6 +195,8 @@ done
 
 
 %changelog
+* Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.25.6-1
+- Update to latest release
 * Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.25.5-1
 - update to latest upstream
 * Wed Sep 27 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.25.4-1

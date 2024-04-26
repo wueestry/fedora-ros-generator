@@ -1,13 +1,14 @@
 Name:           ros2-humble-behaviortree_cpp_v3
-Version:        3.8.5
+Version:        3.8.6
 Release:        1%{?dist}
 Summary:        ROS package behaviortree_cpp_v3
 
 License:        MIT
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/BehaviorTree/behaviortree_cpp_v3-release/archive/release/humble/behaviortree_cpp_v3/3.8.5-1.tar.gz#/ros2-humble-behaviortree_cpp_v3-3.8.5-source0.tar.gz
+Source0:        https://github.com/BehaviorTree/behaviortree_cpp_v3-release/archive/release/humble/behaviortree_cpp_v3/3.8.6-1.tar.gz#/ros2-humble-behaviortree_cpp_v3-3.8.6-source0.tar.gz
 
+Patch0: ros.behaviortree_cpp_v3.rm-const.patch
 
 
 # common BRs
@@ -50,8 +51,8 @@ BuildRequires:  ros2-humble-ros_environment-devel
 Requires:       ros2-humble-ament_index_cpp
 Requires:       ros2-humble-rclcpp
 
-Provides:  ros2-humble-behaviortree_cpp_v3 = 3.8.5-1
-Obsoletes: ros2-humble-behaviortree_cpp_v3 < 3.8.5-1
+Provides:  ros2-humble-behaviortree_cpp_v3 = 3.8.6-1
+Obsoletes: ros2-humble-behaviortree_cpp_v3 < 3.8.6-1
 
 
 
@@ -71,8 +72,8 @@ Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-rclcpp-devel
 Requires:       ros2-humble-ros_environment-devel
 
-Provides: ros2-humble-behaviortree_cpp_v3-devel = 3.8.5-1
-Obsoletes: ros2-humble-behaviortree_cpp_v3-devel < 3.8.5-1
+Provides: ros2-humble-behaviortree_cpp_v3-devel = 3.8.6-1
+Obsoletes: ros2-humble-behaviortree_cpp_v3-devel < 3.8.6-1
 
 
 %description devel
@@ -85,6 +86,7 @@ applications that use %{name}.
 
 %setup -c -T
 tar --strip-components=1 -xf %{SOURCE0}
+%patch 0 -p1
 
 %build
 # nothing to do here
@@ -94,9 +96,9 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
@@ -181,6 +183,8 @@ done
 
 
 %changelog
+* Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.8.6-1
+- Update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.8.5-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.8.5-1

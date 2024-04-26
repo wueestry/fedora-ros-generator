@@ -1,0 +1,12 @@
+diff --color -ur librealsense2-release-release-humble-librealsense2-2.54.1-1/third-party/rsutils/include/rsutils/version.h librealsense2-release-release-humble-librealsense2-2.54.1-1-new/third-party/rsutils/include/rsutils/version.h
+--- librealsense2-release-release-humble-librealsense2-2.54.1-1/third-party/rsutils/include/rsutils/version.h	2023-06-21 14:03:51.000000000 +0200
++++ librealsense2-release-release-humble-librealsense2-2.54.1-1-new/third-party/rsutils/include/rsutils/version.h	2024-03-11 13:06:29.061691526 +0100
+@@ -5,7 +5,7 @@
+ 
+ #include <string>
+ #include <iosfwd>
+-
++#include <cstdint>
+ 
+ struct tm;
+ 

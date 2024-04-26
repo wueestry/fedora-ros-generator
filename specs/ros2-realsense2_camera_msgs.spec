@@ -1,12 +1,12 @@
-Name:           ros2-realsense2_camera_msgs
-Version:        humble.4.51.1
-Release:        2%{?dist}
+Name:           ros2-humble-realsense2_camera_msgs
+Version:        4.54.1
+Release:        1%{?dist}
 Summary:        ROS package realsense2_camera_msgs
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/wiki/RealSense
 
-Source0:        https://github.com/IntelRealSense/realsense-ros-release/archive/release/humble/realsense2_camera_msgs/4.51.1-1.tar.gz#/ros2-humble-realsense2_camera_msgs-4.51.1-source0.tar.gz
+Source0:        https://github.com/IntelRealSense/realsense-ros-release/archive/release/humble/realsense2_camera_msgs/4.54.1-1.tar.gz#/ros2-humble-realsense2_camera_msgs-4.54.1-source0.tar.gz
 
 
 
@@ -48,8 +48,8 @@ Requires:       ros2-humble-builtin_interfaces
 Requires:       ros2-humble-rosidl_default_runtime
 Requires:       ros2-humble-std_msgs
 
-Provides:  ros2-humble-realsense2_camera_msgs = 4.51.1-2
-Obsoletes: ros2-humble-realsense2_camera_msgs < 4.51.1-2
+Provides:  ros2-humble-realsense2_camera_msgs = 4.54.1-1
+Obsoletes: ros2-humble-realsense2_camera_msgs < 4.54.1-1
 
 
 
@@ -68,8 +68,8 @@ Requires:       ros2-humble-builtin_interfaces-devel
 Requires:       ros2-humble-std_msgs-devel
 Requires:       ros2-humble-rosidl_default_runtime-devel
 
-Provides: ros2-humble-realsense2_camera_msgs-devel = 4.51.1-2
-Obsoletes: ros2-humble-realsense2_camera_msgs-devel < 4.51.1-2
+Provides: ros2-humble-realsense2_camera_msgs-devel = 4.54.1-1
+Obsoletes: ros2-humble-realsense2_camera_msgs-devel < 4.54.1-1
 
 
 %description devel
@@ -91,13 +91,13 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
-source %{_libdir}/ros2/setup.bash
+source %{_libdir}/ros2-humble/setup.bash
 
 # substitute shebang before install block because we run the local catkin script
 %py3_shebang_fix .
@@ -116,26 +116,30 @@ colcon \
   -DCMAKE_LD_FLAGS="$LDFLAGS" \
   -DBUILD_TESTING=OFF \
   --base-paths . \
-  --install-base %{buildroot}/%{_libdir}/ros2/ \
+  --install-base %{buildroot}/%{_libdir}/ros2-humble/ \
   --packages-select realsense2_camera_msgs
 
 
 
 # remove wrong buildroot prefixes
-find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
+find %{buildroot}/%{_libdir}/ros2-humble/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
 
-rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
+rm -rf %{buildroot}/%{_libdir}/ros2-humble/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
+
+# remove __pycache__
+find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
+find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
+find %{buildroot}/%{_libdir}/ros2-humble/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
-find %{buildroot}/%{_libdir}/ros2/lib*/ -mindepth 1 -maxdepth 1 \
+find %{buildroot}/%{_libdir}/ros2-humble/lib*/ -mindepth 1 -maxdepth 1 \
   ! -name pkgconfig ! -name "python*" \
   | sed "s:%{buildroot}/::" >> files.list
 
 touch files_devel.list
 # TODO: is cmake/ necessary? it stems from the yaml vendor
-find %{buildroot}/%{_libdir}/ros2/{lib*/pkgconfig,include/,cmake/,realsense2_camera_msgs/include/,share/realsense2_camera_msgs/cmake} \
+find %{buildroot}/%{_libdir}/ros2-humble/{lib*/pkgconfig,include/,cmake/,realsense2_camera_msgs/include/,share/realsense2_camera_msgs/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 
 find . -maxdepth 1 -type f -iname "*readme*" | sed "s:^:%%doc :" >> files.list
@@ -143,8 +147,8 @@ find . -maxdepth 1 -type f -iname "*license*" | sed "s:^:%%license :" >> files.l
 
 
 
-find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --remove-rpath  {} \;
-# find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --force-rpath --add-rpath "%{_libdir}/ros2/lib" {} \;
+find %{buildroot}/%{_libdir}/ros2-humble/ -name *__rosidl_generator_py.so -type f -exec patchelf --remove-rpath  {} \;
+# find %{buildroot}/%{_libdir}/ros2-humble/ -name *__rosidl_generator_py.so -type f -exec patchelf --force-rpath --add-rpath "%{_libdir}/ros2/lib" {} \;
 
 # replace cmake python macro in shebang
 for file in $(grep -rIl '^#!.*@PYTHON_EXECUTABLE@.*$' %{buildroot}) ; do
@@ -174,6 +178,8 @@ done
 
 
 %changelog
+* Thu Feb 22 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.4.54.1-1
+- update to latest release
 * Thu May 04 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.4.51.1-2
 - use librealsense ysystem dependency
 * Tue Apr 25 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.4.51.1-1

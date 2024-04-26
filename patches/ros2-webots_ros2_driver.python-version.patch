@@ -1,12 +1,18 @@
-diff -ur webots_ros2-release-release-humble-webots_ros2_driver-2023.1.1-2/CMakeLists.txt webots_ros2-release-release-humble-webots_ros2_driver-2023.1.1-2-new/CMakeLists.txt
---- webots_ros2-release-release-humble-webots_ros2_driver-2023.1.1-2/CMakeLists.txt	2023-08-11 09:37:22.655589465 +0200
-+++ webots_ros2-release-release-humble-webots_ros2_driver-2023.1.1-2-new/CMakeLists.txt	2023-08-11 09:49:06.475371667 +0200
-@@ -29,7 +29,7 @@
- find_package(tinyxml2_vendor REQUIRED)
- find_package(TinyXML2 REQUIRED)
+diff --color -ur webots_ros2-release-release-humble-webots_ros2_driver-2023.1.2-1/CMakeLists.txt webots_ros2-release-release-humble-webots_ros2_driver-2023.1.2-1-new/CMakeLists.txt
+--- webots_ros2-release-release-humble-webots_ros2_driver-2023.1.2-1/CMakeLists.txt	2024-04-08 17:37:02.000000000 +0200
++++ webots_ros2-release-release-humble-webots_ros2_driver-2023.1.2-1-new/CMakeLists.txt	2024-04-09 16:55:40.585971296 +0200
+@@ -31,11 +31,11 @@
  find_package(yaml-cpp REQUIRED)
--find_package(PythonLibs 3.10 EXACT REQUIRED)
-+find_package(PythonLibs REQUIRED)
+ 
+ if($ENV{ROS_DISTRO} MATCHES "humble")
+-  find_package(Python 3.10 EXACT REQUIRED COMPONENTS Development)
++  find_package(Python REQUIRED COMPONENTS Development)
+ elseif($ENV{ROS_DISTRO} MATCHES "iron")
+-  find_package(Python 3.10 EXACT REQUIRED COMPONENTS Development)
++  find_package(Python REQUIRED COMPONENTS Development)
+ elseif($ENV{ROS_DISTRO} MATCHES "rolling")
+-  find_package(Python 3.12 EXACT REQUIRED COMPONENTS Development)
++  find_package(Python REQUIRED COMPONENTS Development)
+ endif()
  
  add_custom_target(compile-lib-controller ALL
-   COMMAND ${CMAKE_COMMAND} -E env "WEBOTS_HOME=${CMAKE_CURRENT_SOURCE_DIR}/webots" make release -f Makefile > /dev/null 2>&1

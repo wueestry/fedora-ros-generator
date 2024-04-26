@@ -51,12 +51,22 @@ class SrpmBuilder:
             stderr=subprocess.STDOUT,
             check=True,
         )
+        chroot_dist_mapping = {
+            'fedora-38-x86_64': '.f38',
+            'fedora-39-x86_64': '.f39',
+            'fedora-40-x86_64': '.f40',
+            'fedora-41-x86_64': '.f41',
+            'fedora-42-x86_64': '.f42',
+            'fedora-43-x86_64': '.f43',
+            'fedora-44-x86_64': '.f44',
+        }
+        dist_value = chroot_dist_mapping.get(chroot, '')
         assert res.returncode == 0, 'Failed to fetch sources for ' + spec
-        res = subprocess.run(['rpmbuild', '-bs', spec],
+        res = subprocess.run(['rpmbuild', '--define', f"dist {dist_value}", '-bs', spec],
                              universal_newlines=True,
                              stdout=subprocess.PIPE)
         assert res.returncode == 0, 'Failed to build SRPM for ' + spec
-        match = re.search('Wrote: (\S+)', res.stdout)
+        match = re.search(r'Wrote: (\S+)', res.stdout)
         assert match, 'Unexpected output from rpmbuild: "%s"'.format(
             res.stdout)
         srpm = match.group(1)
@@ -205,10 +215,13 @@ class CoprBuilder:
             if chroot not in build.chroots:
                 continue
             build_version = re.fullmatch(
-                '(.+?)(?:\.(?:fc|rhel|f38|epel|el)\d+)?',
+                r'(.+?)(?:\.(?:fc|rhel|f\d+|epel|el)\d+)?',
                 build['source_package']['version']).group(1)
-            if build_version == pkg_version:
+            if build_version == (pkg_version):
                 return True
+            print(build_version)
+            print(pkg_version)
+            print("version mismatch")
         return False
 
     def wait_for_completion(self, builds):

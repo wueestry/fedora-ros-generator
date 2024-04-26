@@ -1,12 +1,12 @@
 Name:           ros2-humble-qt_gui_cpp
-Version:        2.2.2
+Version:        2.2.3
 Release:        1%{?dist}
 Summary:        ROS package qt_gui_cpp
 
 License:        BSD
 URL:            http://ros.org/wiki/qt_gui_cpp
 
-Source0:        https://github.com/ros2-gbp/qt_gui_core-release/archive/release/humble/qt_gui_cpp/2.2.2-1.tar.gz#/ros2-humble-qt_gui_cpp-2.2.2-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/qt_gui_core-release/archive/release/humble/qt_gui_cpp/2.2.3-2.tar.gz#/ros2-humble-qt_gui_cpp-2.2.3-source0.tar.gz
 
 
 
@@ -60,8 +60,8 @@ Requires:       ros2-humble-qt_gui
 Requires:       ros2-humble-rcpputils
 Requires:       ros2-humble-tinyxml2_vendor
 
-Provides:  ros2-humble-qt_gui_cpp = 2.2.2-1
-Obsoletes: ros2-humble-qt_gui_cpp < 2.2.2-1
+Provides:  ros2-humble-qt_gui_cpp = 2.2.3-1
+Obsoletes: ros2-humble-qt_gui_cpp < 2.2.3-1
 
 
 
@@ -92,8 +92,8 @@ Requires:       ros2-humble-rcpputils-devel
 Requires:       ros2-humble-tinyxml2_vendor-devel
 Requires:       ros2-humble-qt_gui-devel
 
-Provides: ros2-humble-qt_gui_cpp-devel = 2.2.2-1
-Obsoletes: ros2-humble-qt_gui_cpp-devel < 2.2.2-1
+Provides: ros2-humble-qt_gui_cpp-devel = 2.2.3-1
+Obsoletes: ros2-humble-qt_gui_cpp-devel < 2.2.3-1
 
 
 %description devel
@@ -115,9 +115,9 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
@@ -203,6 +203,8 @@ done
 
 
 %changelog
+* Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.2.3-1
+- Update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.2.2-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.2.2-1

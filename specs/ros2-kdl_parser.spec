@@ -52,7 +52,7 @@ BuildRequires:  ros2-humble-rcutils-devel
 BuildRequires:  ros2-humble-urdf-devel
 BuildRequires:  ros2-humble-urdfdom_headers-devel
 
-Requires:       ros2-humble-orocos_kdl_vendor
+Requires:       orocos-kdl-devel
 Requires:       ros2-humble-rcutils
 Requires:       ros2-humble-urdf
 
@@ -80,7 +80,6 @@ Requires:       ros2-humble-ament_lint_common-devel
 Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-rcutils-devel
 Requires:       ros2-humble-urdf-devel
-Requires:       ros2-humble-orocos_kdl_vendor-devel
 
 Provides: ros2-humble-kdl_parser-devel = 2.6.4-1
 Obsoletes: ros2-humble-kdl_parser-devel < 2.6.4-1
@@ -107,9 +106,9 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 

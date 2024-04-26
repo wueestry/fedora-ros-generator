@@ -1,12 +1,12 @@
 Name:           ros2-humble-rcl_lifecycle
-Version:        5.3.6
+Version:        5.3.7
 Release:        1%{?dist}
 Summary:        ROS package rcl_lifecycle
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rcl-release/archive/release/humble/rcl_lifecycle/5.3.6-1.tar.gz#/ros2-humble-rcl_lifecycle-5.3.6-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rcl-release/archive/release/humble/rcl_lifecycle/5.3.7-1.tar.gz#/ros2-humble-rcl_lifecycle-5.3.7-source0.tar.gz
 
 
 
@@ -57,8 +57,8 @@ Requires:       ros2-humble-rmw
 Requires:       ros2-humble-rosidl_runtime_c
 Requires:       ros2-humble-tracetools
 
-Provides:  ros2-humble-rcl_lifecycle = 5.3.6-1
-Obsoletes: ros2-humble-rcl_lifecycle < 5.3.6-1
+Provides:  ros2-humble-rcl_lifecycle = 5.3.7-1
+Obsoletes: ros2-humble-rcl_lifecycle < 5.3.7-1
 
 
 
@@ -81,8 +81,8 @@ Requires:       ros2-humble-rmw-devel
 Requires:       ros2-humble-rosidl_runtime_c-devel
 Requires:       ros2-humble-tracetools-devel
 
-Provides: ros2-humble-rcl_lifecycle-devel = 5.3.6-1
-Obsoletes: ros2-humble-rcl_lifecycle-devel < 5.3.6-1
+Provides: ros2-humble-rcl_lifecycle-devel = 5.3.7-1
+Obsoletes: ros2-humble-rcl_lifecycle-devel < 5.3.7-1
 
 
 %description devel
@@ -104,9 +104,9 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
@@ -191,6 +191,8 @@ done
 
 
 %changelog
+* Mon Feb 12 2024 Tarik Viehmann - humble.5.3.7-1
+- update to latest release
 * Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.5.3.6-1
 - update to latest upstream
 * Wed Sep 27 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.5.3.5-1

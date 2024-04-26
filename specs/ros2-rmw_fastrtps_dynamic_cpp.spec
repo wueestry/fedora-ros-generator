@@ -1,12 +1,12 @@
 Name:           ros2-humble-rmw_fastrtps_dynamic_cpp
-Version:        6.2.5
+Version:        6.2.6
 Release:        1%{?dist}
 Summary:        ROS package rmw_fastrtps_dynamic_cpp
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rmw_fastrtps-release/archive/release/humble/rmw_fastrtps_dynamic_cpp/6.2.5-1.tar.gz#/ros2-humble-rmw_fastrtps_dynamic_cpp-6.2.5-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rmw_fastrtps-release/archive/release/humble/rmw_fastrtps_dynamic_cpp/6.2.6-1.tar.gz#/ros2-humble-rmw_fastrtps_dynamic_cpp-6.2.6-source0.tar.gz
 
 
 
@@ -60,8 +60,8 @@ BuildRequires:  ros2-humble-rosidl_typesupport_introspection_cpp-devel
 BuildRequires:  ros2-humble-test_msgs-devel
 
 
-Provides:  ros2-humble-rmw_fastrtps_dynamic_cpp = 6.2.5-1
-Obsoletes: ros2-humble-rmw_fastrtps_dynamic_cpp < 6.2.5-1
+Provides:  ros2-humble-rmw_fastrtps_dynamic_cpp = 6.2.6-1
+Obsoletes: ros2-humble-rmw_fastrtps_dynamic_cpp < 6.2.6-1
 
 
 
@@ -94,8 +94,8 @@ Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-osrf_testing_tools_cpp-devel
 Requires:       ros2-humble-test_msgs-devel
 
-Provides: ros2-humble-rmw_fastrtps_dynamic_cpp-devel = 6.2.5-1
-Obsoletes: ros2-humble-rmw_fastrtps_dynamic_cpp-devel < 6.2.5-1
+Provides: ros2-humble-rmw_fastrtps_dynamic_cpp-devel = 6.2.6-1
+Obsoletes: ros2-humble-rmw_fastrtps_dynamic_cpp-devel < 6.2.6-1
 
 
 %description devel
@@ -117,9 +117,9 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
@@ -204,6 +204,8 @@ done
 
 
 %changelog
+* Mon Feb 12 2024 Tarik Viehmann - humble.6.2.6-1
+- update to latest release
 * Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.6.2.5-1
 - update to latest upstream
 * Wed Sep 27 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.6.2.4-1

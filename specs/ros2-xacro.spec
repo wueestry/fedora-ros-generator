@@ -1,6 +1,6 @@
 Name:           ros2-humble-xacro
 Version:        2.0.8
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        ROS package xacro
 
 License:        BSD
@@ -8,6 +8,7 @@ URL:            http://ros.org/wiki/xacro
 
 Source0:        https://github.com/ros2-gbp/xacro-release/archive/release/humble/xacro/2.0.8-1.tar.gz#/ros2-humble-xacro-2.0.8-source0.tar.gz
 
+Patch0: ros2.xacro.regex_fix.patch
 
 BuildArch: noarch
 
@@ -49,8 +50,8 @@ BuildRequires:  ros2-humble-ament_package-devel
 Requires:       python3-pyyaml
 Requires:       ros2-humble-ament_index_python
 
-Provides:  ros2-humble-xacro = 2.0.8-1
-Obsoletes: ros2-humble-xacro < 2.0.8-1
+Provides:  ros2-humble-xacro = 2.0.8-2
+Obsoletes: ros2-humble-xacro < 2.0.8-2
 
 
 
@@ -70,8 +71,8 @@ Requires:       ros2-humble-ament_index_python-devel
 Requires:       ros2-humble-ament_lint_auto-devel
 Requires:       ros2-humble-ament_package-devel
 
-Provides: ros2-humble-xacro-devel = 2.0.8-1
-Obsoletes: ros2-humble-xacro-devel < 2.0.8-1
+Provides: ros2-humble-xacro-devel = 2.0.8-2
+Obsoletes: ros2-humble-xacro-devel < 2.0.8-2
 
 
 %description devel
@@ -84,6 +85,7 @@ applications that use %{name}.
 
 %setup -c -T
 tar --strip-components=1 -xf %{SOURCE0}
+%patch 0 -p1
 
 %build
 # nothing to do here
@@ -93,9 +95,9 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
@@ -180,6 +182,8 @@ done
 
 
 %changelog
+* Thu Mar 21 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.0.8-2
+- fix regex warning
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.0.8-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.0.8-1

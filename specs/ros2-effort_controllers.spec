@@ -1,12 +1,12 @@
 Name:           ros2-humble-effort_controllers
-Version:        2.28.0
+Version:        2.34.0
 Release:        1%{?dist}
 Summary:        ROS package effort_controllers
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ros2_controllers-release/archive/release/humble/effort_controllers/2.28.0-1.tar.gz#/ros2-humble-effort_controllers-2.28.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ros2_controllers-release/archive/release/humble/effort_controllers/2.34.0-1.tar.gz#/ros2-humble-effort_controllers-2.34.0-source0.tar.gz
 
 
 
@@ -47,6 +47,8 @@ BuildRequires:  ros2-humble-ament_package-devel
 BuildRequires:  ros2-humble-backward_ros-devel
 BuildRequires:  ros2-humble-controller_manager-devel
 BuildRequires:  ros2-humble-forward_command_controller-devel
+BuildRequires:  ros2-humble-hardware_interface-devel
+BuildRequires:  ros2-humble-hardware_interface_testing-devel
 BuildRequires:  ros2-humble-pluginlib-devel
 BuildRequires:  ros2-humble-rclcpp-devel
 BuildRequires:  ros2-humble-ros2_control_test_assets-devel
@@ -56,8 +58,8 @@ Requires:       ros2-humble-forward_command_controller
 Requires:       ros2-humble-pluginlib
 Requires:       ros2-humble-rclcpp
 
-Provides:  ros2-humble-effort_controllers = 2.28.0-1
-Obsoletes: ros2-humble-effort_controllers < 2.28.0-1
+Provides:  ros2-humble-effort_controllers = 2.34.0-1
+Obsoletes: ros2-humble-effort_controllers < 2.34.0-1
 
 
 
@@ -77,12 +79,14 @@ Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-backward_ros-devel
 Requires:       ros2-humble-controller_manager-devel
 Requires:       ros2-humble-forward_command_controller-devel
+Requires:       ros2-humble-hardware_interface-devel
+Requires:       ros2-humble-hardware_interface_testing-devel
 Requires:       ros2-humble-pluginlib-devel
 Requires:       ros2-humble-rclcpp-devel
 Requires:       ros2-humble-ros2_control_test_assets-devel
 
-Provides: ros2-humble-effort_controllers-devel = 2.28.0-1
-Obsoletes: ros2-humble-effort_controllers-devel < 2.28.0-1
+Provides: ros2-humble-effort_controllers-devel = 2.34.0-1
+Obsoletes: ros2-humble-effort_controllers-devel < 2.34.0-1
 
 
 %description devel
@@ -104,9 +108,9 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
@@ -191,6 +195,12 @@ done
 
 
 %changelog
+* Tue Apr 09 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.34.0-1
+- Update to latest release
+* Wed Mar 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.33.0-1
+- Update to latest release
+* Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.32.0-1
+- Update to latest release
 * Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.28.0-1
 - update to latest upstream
 * Sat Oct 21 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.26.0-1

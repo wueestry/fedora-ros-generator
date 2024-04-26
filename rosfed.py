@@ -262,7 +262,7 @@ class RosPkg:
                                                 deps=False,
                                                 wet_only=True,
                                                 tar=True)
-        return re.match('[\w-]*-([0-9-_.]*)(-[0-9-]*)',
+        return re.match(r'[\w-]*-([0-9-_.]*)(-[0-9-]*)',
                         ros_pkg[0]['tar']['version']).group(1)
 
     def get_license(self):
@@ -383,8 +383,7 @@ class SpecFileGenerator:
                 # Release is not specified and Spec file exists, use new version
                 # or bump release if it is the same version.
                 version_info = spec_utils.get_version_from_spec(outfile)
-                if version_info['version'] == '{}.{}'.format(
-                        self.distro, version):
+                if version_info['version'] == '{}'.format(version):
                     pkg_release_version = int(version_info['release'])
                     if self.bump_release:
                         assert pkg_changelog_entry, \

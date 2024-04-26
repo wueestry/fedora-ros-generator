@@ -65,12 +65,12 @@ BuildRequires:  ros2-humble-ros_testing-devel
 BuildRequires:  ros2-humble-tf2-devel
 BuildRequires:  ros2-humble-tf2_kdl-devel
 
+Requires:       orocos-kdl-devel
 Requires:       python3-lxml
 Requires:       ros2-humble-class_loader
 Requires:       ros2-humble-moveit_common
 Requires:       ros2-humble-moveit_core
 Requires:       ros2-humble-moveit_msgs
-Requires:       ros2-humble-orocos_kdl_vendor
 Requires:       ros2-humble-pluginlib
 Requires:       ros2-humble-tf2
 Requires:       ros2-humble-tf2_kdl
@@ -114,7 +114,6 @@ Requires:       ros2-humble-pluginlib-devel
 Requires:       ros2-humble-ros_testing-devel
 Requires:       ros2-humble-tf2-devel
 Requires:       ros2-humble-tf2_kdl-devel
-Requires:       ros2-humble-orocos_kdl_vendor-devel
 Requires:       ros2-humble-urdfdom-devel
 
 Provides: ros2-humble-moveit_kinematics-devel = 2.5.5-1
@@ -140,9 +139,9 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 

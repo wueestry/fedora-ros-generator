@@ -1,12 +1,12 @@
 Name:           ros2-humble-nav2_simple_commander
-Version:        1.1.12
+Version:        1.1.14
 Release:        1%{?dist}
 Summary:        ROS package nav2_simple_commander
 
 License:        Apache-2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/SteveMacenski/navigation2-release/archive/release/humble/nav2_simple_commander/1.1.12-1.tar.gz#/ros2-humble-nav2_simple_commander-1.1.12-source0.tar.gz
+Source0:        https://github.com/SteveMacenski/navigation2-release/archive/release/humble/nav2_simple_commander/1.1.14-1.tar.gz#/ros2-humble-nav2_simple_commander-1.1.14-source0.tar.gz
 
 
 BuildArch: noarch
@@ -50,8 +50,8 @@ Requires:       ros2-humble-lifecycle_msgs
 Requires:       ros2-humble-nav2_msgs
 Requires:       ros2-humble-rclpy
 
-Provides:  ros2-humble-nav2_simple_commander = 1.1.12-1
-Obsoletes: ros2-humble-nav2_simple_commander < 1.1.12-1
+Provides:  ros2-humble-nav2_simple_commander = 1.1.14-1
+Obsoletes: ros2-humble-nav2_simple_commander < 1.1.14-1
 
 
 
@@ -72,8 +72,8 @@ Requires:       ros2-humble-lifecycle_msgs-devel
 Requires:       ros2-humble-nav2_msgs-devel
 Requires:       ros2-humble-rclpy-devel
 
-Provides: ros2-humble-nav2_simple_commander-devel = 1.1.12-1
-Obsoletes: ros2-humble-nav2_simple_commander-devel < 1.1.12-1
+Provides: ros2-humble-nav2_simple_commander-devel = 1.1.14-1
+Obsoletes: ros2-humble-nav2_simple_commander-devel < 1.1.14-1
 
 
 %description devel
@@ -95,9 +95,9 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
@@ -182,6 +182,10 @@ done
 
 
 %changelog
+* Tue Apr 09 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.14-1
+- Update to latest release
+* Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.13-1
+- Update to latest release
 * Sat Oct 21 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.12-1
 - update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.9-1

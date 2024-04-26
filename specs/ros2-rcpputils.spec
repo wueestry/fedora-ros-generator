@@ -1,12 +1,12 @@
 Name:           ros2-humble-rcpputils
-Version:        2.4.1
+Version:        2.4.2
 Release:        1%{?dist}
 Summary:        ROS package rcpputils
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rcpputils-release/archive/release/humble/rcpputils/2.4.1-1.tar.gz#/ros2-humble-rcpputils-2.4.1-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rcpputils-release/archive/release/humble/rcpputils/2.4.2-1.tar.gz#/ros2-humble-rcpputils-2.4.2-source0.tar.gz
 
 Patch0: ros2-rcpputils.include-stdint.patch
 
@@ -39,17 +39,23 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python-unversioned-command
 
 BuildRequires:  ros2-humble-ament_cmake-devel
+BuildRequires:  ros2-humble-ament_cmake_copyright-devel
+BuildRequires:  ros2-humble-ament_cmake_cppcheck-devel
+BuildRequires:  ros2-humble-ament_cmake_cpplint-devel
+BuildRequires:  ros2-humble-ament_cmake_flake8-devel
 BuildRequires:  ros2-humble-ament_cmake_gtest-devel
+BuildRequires:  ros2-humble-ament_cmake_lint_cmake-devel
+BuildRequires:  ros2-humble-ament_cmake_pep257-devel
 BuildRequires:  ros2-humble-ament_cmake_ros-devel
-BuildRequires:  ros2-humble-ament_lint_auto-devel
-BuildRequires:  ros2-humble-ament_lint_common-devel
+BuildRequires:  ros2-humble-ament_cmake_uncrustify-devel
+BuildRequires:  ros2-humble-ament_cmake_xmllint-devel
 BuildRequires:  ros2-humble-ament_package-devel
 BuildRequires:  ros2-humble-rcutils-devel
 
 Requires:       ros2-humble-rcutils
 
-Provides:  ros2-humble-rcpputils = 2.4.1-1
-Obsoletes: ros2-humble-rcpputils < 2.4.1-1
+Provides:  ros2-humble-rcpputils = 2.4.2-1
+Obsoletes: ros2-humble-rcpputils < 2.4.2-1
 
 
 
@@ -61,14 +67,20 @@ Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       ros2-humble-ament_cmake-devel
 Requires:       ros2-humble-ament_cmake_ros-devel
+Requires:       ros2-humble-ament_cmake_copyright-devel
+Requires:       ros2-humble-ament_cmake_cppcheck-devel
+Requires:       ros2-humble-ament_cmake_cpplint-devel
+Requires:       ros2-humble-ament_cmake_flake8-devel
 Requires:       ros2-humble-ament_cmake_gtest-devel
-Requires:       ros2-humble-ament_lint_auto-devel
-Requires:       ros2-humble-ament_lint_common-devel
+Requires:       ros2-humble-ament_cmake_lint_cmake-devel
+Requires:       ros2-humble-ament_cmake_pep257-devel
+Requires:       ros2-humble-ament_cmake_uncrustify-devel
+Requires:       ros2-humble-ament_cmake_xmllint-devel
 Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-rcutils-devel
 
-Provides: ros2-humble-rcpputils-devel = 2.4.1-1
-Obsoletes: ros2-humble-rcpputils-devel < 2.4.1-1
+Provides: ros2-humble-rcpputils-devel = 2.4.2-1
+Obsoletes: ros2-humble-rcpputils-devel < 2.4.2-1
 
 
 %description devel
@@ -91,9 +103,9 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
@@ -178,6 +190,8 @@ done
 
 
 %changelog
+* Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.4.2-1
+- Update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.4.1-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.4.1-1

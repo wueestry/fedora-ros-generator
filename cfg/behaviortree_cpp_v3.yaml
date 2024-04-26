@@ -1,0 +1,2 @@
+patches:
+ - ros.behaviortree_cpp_v3.rm-const.patch

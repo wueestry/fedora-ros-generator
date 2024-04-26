@@ -1,12 +1,12 @@
 Name:           ros2-humble-control_toolbox
-Version:        3.1.0
+Version:        3.2.0
 Release:        1%{?dist}
 Summary:        ROS package control_toolbox
 
 License:        BSD-3-Clause
 URL:            http://ros.org/wiki/control_toolbox
 
-Source0:        https://github.com/ros2-gbp/control_toolbox-release/archive/release/humble/control_toolbox/3.1.0-1.tar.gz#/ros2-humble-control_toolbox-3.1.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/control_toolbox-release/archive/release/humble/control_toolbox/3.2.0-1.tar.gz#/ros2-humble-control_toolbox-3.2.0-source0.tar.gz
 
 
 
@@ -42,18 +42,26 @@ BuildRequires:  ros2-humble-ament_cmake_gmock-devel
 BuildRequires:  ros2-humble-ament_cmake_gtest-devel
 BuildRequires:  ros2-humble-ament_package-devel
 BuildRequires:  ros2-humble-control_msgs-devel
+BuildRequires:  ros2-humble-filters-devel
+BuildRequires:  ros2-humble-generate_parameter_library-devel
+BuildRequires:  ros2-humble-geometry_msgs-devel
+BuildRequires:  ros2-humble-pluginlib-devel
 BuildRequires:  ros2-humble-rclcpp-devel
 BuildRequires:  ros2-humble-rclcpp_lifecycle-devel
 BuildRequires:  ros2-humble-rcutils-devel
 BuildRequires:  ros2-humble-realtime_tools-devel
 
 Requires:       ros2-humble-control_msgs
+Requires:       ros2-humble-filters
+Requires:       ros2-humble-generate_parameter_library
+Requires:       ros2-humble-geometry_msgs
+Requires:       ros2-humble-pluginlib
 Requires:       ros2-humble-rclcpp
 Requires:       ros2-humble-rcutils
 Requires:       ros2-humble-realtime_tools
 
-Provides:  ros2-humble-control_toolbox = 3.1.0-1
-Obsoletes: ros2-humble-control_toolbox < 3.1.0-1
+Provides:  ros2-humble-control_toolbox = 3.2.0-1
+Obsoletes: ros2-humble-control_toolbox < 3.2.0-1
 
 
 
@@ -69,13 +77,17 @@ Requires:       ros2-humble-ament_cmake_gmock-devel
 Requires:       ros2-humble-ament_cmake_gtest-devel
 Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-control_msgs-devel
+Requires:       ros2-humble-filters-devel
+Requires:       ros2-humble-generate_parameter_library-devel
+Requires:       ros2-humble-geometry_msgs-devel
+Requires:       ros2-humble-pluginlib-devel
 Requires:       ros2-humble-rclcpp-devel
 Requires:       ros2-humble-rclcpp_lifecycle-devel
 Requires:       ros2-humble-rcutils-devel
 Requires:       ros2-humble-realtime_tools-devel
 
-Provides: ros2-humble-control_toolbox-devel = 3.1.0-1
-Obsoletes: ros2-humble-control_toolbox-devel < 3.1.0-1
+Provides: ros2-humble-control_toolbox-devel = 3.2.0-1
+Obsoletes: ros2-humble-control_toolbox-devel < 3.2.0-1
 
 
 %description devel
@@ -97,9 +109,9 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
@@ -184,6 +196,8 @@ done
 
 
 %changelog
+* Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.2.0-1
+- Update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.1.0-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.1.0-1

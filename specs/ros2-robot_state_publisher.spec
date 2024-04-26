@@ -1,12 +1,12 @@
 Name:           ros2-humble-robot_state_publisher
-Version:        3.0.2
+Version:        3.0.3
 Release:        1%{?dist}
 Summary:        ROS package robot_state_publisher
 
 License:        BSD
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/robot_state_publisher-release/archive/release/humble/robot_state_publisher/3.0.2-2.tar.gz#/ros2-humble-robot_state_publisher-3.0.2-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/robot_state_publisher-release/archive/release/humble/robot_state_publisher/3.0.3-2.tar.gz#/ros2-humble-robot_state_publisher-3.0.3-source0.tar.gz
 
 
 
@@ -58,10 +58,10 @@ BuildRequires:  ros2-humble-std_msgs-devel
 BuildRequires:  ros2-humble-tf2_ros-devel
 BuildRequires:  ros2-humble-urdf-devel
 
+Requires:       orocos-kdl-devel
 Requires:       ros2-humble-builtin_interfaces
 Requires:       ros2-humble-geometry_msgs
 Requires:       ros2-humble-kdl_parser
-Requires:       ros2-humble-orocos_kdl_vendor
 Requires:       ros2-humble-rcl_interfaces
 Requires:       ros2-humble-rclcpp
 Requires:       ros2-humble-rclcpp_components
@@ -70,8 +70,8 @@ Requires:       ros2-humble-std_msgs
 Requires:       ros2-humble-tf2_ros
 Requires:       ros2-humble-urdf
 
-Provides:  ros2-humble-robot_state_publisher = 3.0.2-1
-Obsoletes: ros2-humble-robot_state_publisher < 3.0.2-1
+Provides:  ros2-humble-robot_state_publisher = 3.0.3-1
+Obsoletes: ros2-humble-robot_state_publisher < 3.0.3-1
 
 
 
@@ -103,10 +103,9 @@ Requires:       ros2-humble-sensor_msgs-devel
 Requires:       ros2-humble-std_msgs-devel
 Requires:       ros2-humble-tf2_ros-devel
 Requires:       ros2-humble-urdf-devel
-Requires:       ros2-humble-orocos_kdl_vendor-devel
 
-Provides: ros2-humble-robot_state_publisher-devel = 3.0.2-1
-Obsoletes: ros2-humble-robot_state_publisher-devel < 3.0.2-1
+Provides: ros2-humble-robot_state_publisher-devel = 3.0.3-1
+Obsoletes: ros2-humble-robot_state_publisher-devel < 3.0.3-1
 
 
 %description devel
@@ -128,9 +127,9 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
@@ -215,6 +214,8 @@ done
 
 
 %changelog
+* Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.0.3-1
+- Update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.0.2-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.0.2-1

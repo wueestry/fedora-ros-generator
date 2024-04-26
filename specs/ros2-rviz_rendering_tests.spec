@@ -1,12 +1,12 @@
 Name:           ros2-humble-rviz_rendering_tests
-Version:        11.2.9
+Version:        11.2.12
 Release:        1%{?dist}
 Summary:        ROS package rviz_rendering_tests
 
 License:        BSD
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rviz-release/archive/release/humble/rviz_rendering_tests/11.2.9-1.tar.gz#/ros2-humble-rviz_rendering_tests-11.2.9-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rviz-release/archive/release/humble/rviz_rendering_tests/11.2.12-1.tar.gz#/ros2-humble-rviz_rendering_tests-11.2.12-source0.tar.gz
 
 
 BuildArch: noarch
@@ -56,8 +56,8 @@ BuildRequires:  ros2-humble-rviz_rendering-devel
 Requires:       ros2-humble-resource_retriever
 Requires:       ros2-humble-rviz_rendering
 
-Provides:  ros2-humble-rviz_rendering_tests = 11.2.9-1
-Obsoletes: ros2-humble-rviz_rendering_tests < 11.2.9-1
+Provides:  ros2-humble-rviz_rendering_tests = 11.2.12-1
+Obsoletes: ros2-humble-rviz_rendering_tests < 11.2.12-1
 
 
 
@@ -82,8 +82,8 @@ Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-resource_retriever-devel
 Requires:       ros2-humble-rviz_rendering-devel
 
-Provides: ros2-humble-rviz_rendering_tests-devel = 11.2.9-1
-Obsoletes: ros2-humble-rviz_rendering_tests-devel < 11.2.9-1
+Provides: ros2-humble-rviz_rendering_tests-devel = 11.2.12-1
+Obsoletes: ros2-humble-rviz_rendering_tests-devel < 11.2.12-1
 
 
 %description devel
@@ -105,9 +105,9 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
@@ -192,6 +192,10 @@ done
 
 
 %changelog
+* Wed Mar 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.12-1
+- update to latest release
+* Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.11-1
+- Update to latest release
 * Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.9-1
 - update to latest upstream
 * Wed Sep 27 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.8-1

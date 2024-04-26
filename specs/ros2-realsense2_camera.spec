@@ -1,14 +1,13 @@
-Name:           ros2-realsense2_camera
-Version:        humble.4.51.1
-Release:        2%{?dist}
+Name:           ros2-humble-realsense2_camera
+Version:        4.54.1
+Release:        3%{?dist}
 Summary:        ROS package realsense2_camera
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/wiki/RealSense
 
-Source0:        https://github.com/IntelRealSense/realsense-ros-release/archive/release/humble/realsense2_camera/4.51.1-1.tar.gz#/ros2-humble-realsense2_camera-4.51.1-source0.tar.gz
+Source0:        https://github.com/IntelRealSense/realsense-ros-release/archive/release/humble/realsense2_camera/4.54.1-1.tar.gz#/ros2-humble-realsense2_camera-4.54.1-source0.tar.gz
 
-Patch0: ros-realsense2_camera.remove_librealsense_version.patch
 
 
 # common BRs
@@ -39,7 +38,7 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python-unversioned-command
 
 BuildRequires:  eigen3-devel
-BuildRequires:  librealsense-devel
+BuildRequires:  librealsense2-devel
 BuildRequires:  ros2-humble-ament_cmake-devel
 BuildRequires:  ros2-humble-ament_package-devel
 BuildRequires:  ros2-humble-builtin_interfaces-devel
@@ -57,7 +56,7 @@ BuildRequires:  ros2-humble-std_msgs-devel
 BuildRequires:  ros2-humble-tf2-devel
 BuildRequires:  ros2-humble-tf2_ros-devel
 
-Requires:       librealsense-devel
+Requires:       librealsense2-devel
 Requires:       ros2-humble-builtin_interfaces
 Requires:       ros2-humble-cv_bridge
 Requires:       ros2-humble-diagnostic_updater
@@ -73,21 +72,21 @@ Requires:       ros2-humble-std_msgs
 Requires:       ros2-humble-tf2
 Requires:       ros2-humble-tf2_ros
 
-Provides:  ros2-humble-realsense2_camera = 4.51.1-2
-Obsoletes: ros2-humble-realsense2_camera < 4.51.1-2
+Provides:  ros2-humble-realsense2_camera = 4.54.1-3
+Obsoletes: ros2-humble-realsense2_camera < 4.54.1-3
 
 
 
 %description
-RealSense camera package allowing access to Intel T265 Tracking module
-and SR300 and D400 3D cameras
+RealSense camera package allowing access to Intel SR300 and D400 3D
+cameras
 
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       ros2-humble-ament_cmake-devel
 Requires:       eigen3-devel
-Requires:       librealsense-devel
+Requires:       librealsense2-devel
 Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-builtin_interfaces-devel
 Requires:       ros2-humble-cv_bridge-devel
@@ -105,8 +104,8 @@ Requires:       ros2-humble-tf2-devel
 Requires:       ros2-humble-tf2_ros-devel
 Requires:       ros2-humble-launch_ros-devel
 
-Provides: ros2-humble-realsense2_camera-devel = 4.51.1-2
-Obsoletes: ros2-humble-realsense2_camera-devel < 4.51.1-2
+Provides: ros2-humble-realsense2_camera-devel = 4.54.1-3
+Obsoletes: ros2-humble-realsense2_camera-devel < 4.54.1-3
 
 
 %description devel
@@ -119,7 +118,6 @@ applications that use %{name}.
 
 %setup -c -T
 tar --strip-components=1 -xf %{SOURCE0}
-%patch0 -p1
 
 %build
 # nothing to do here
@@ -135,7 +133,7 @@ FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
-source %{_libdir}/ros2/setup.bash
+source %{_libdir}/ros2-humble/setup.bash
 
 # substitute shebang before install block because we run the local catkin script
 %py3_shebang_fix .
@@ -154,26 +152,30 @@ colcon \
   -DCMAKE_LD_FLAGS="$LDFLAGS" \
   -DBUILD_TESTING=OFF \
   --base-paths . \
-  --install-base %{buildroot}/%{_libdir}/ros2/ \
+  --install-base %{buildroot}/%{_libdir}/ros2-humble/ \
   --packages-select realsense2_camera
 
 
 
 # remove wrong buildroot prefixes
-find %{buildroot}/%{_libdir}/ros2/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
+find %{buildroot}/%{_libdir}/ros2-humble/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
 
-rm -rf %{buildroot}/%{_libdir}/ros2/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
+rm -rf %{buildroot}/%{_libdir}/ros2-humble/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
+
+# remove __pycache__
+find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
+find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
+find %{buildroot}/%{_libdir}/ros2-humble/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
-find %{buildroot}/%{_libdir}/ros2/lib*/ -mindepth 1 -maxdepth 1 \
+find %{buildroot}/%{_libdir}/ros2-humble/lib*/ -mindepth 1 -maxdepth 1 \
   ! -name pkgconfig ! -name "python*" \
   | sed "s:%{buildroot}/::" >> files.list
 
 touch files_devel.list
 # TODO: is cmake/ necessary? it stems from the yaml vendor
-find %{buildroot}/%{_libdir}/ros2/{lib*/pkgconfig,include/,cmake/,realsense2_camera/include/,share/realsense2_camera/cmake} \
+find %{buildroot}/%{_libdir}/ros2-humble/{lib*/pkgconfig,include/,cmake/,realsense2_camera/include/,share/realsense2_camera/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 
 find . -maxdepth 1 -type f -iname "*readme*" | sed "s:^:%%doc :" >> files.list
@@ -181,8 +183,8 @@ find . -maxdepth 1 -type f -iname "*license*" | sed "s:^:%%license :" >> files.l
 
 
 
-find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --remove-rpath  {} \;
-# find %{buildroot}/%{_libdir}/ros2/ -name *__rosidl_generator_py.so -type f -exec patchelf --force-rpath --add-rpath "%{_libdir}/ros2/lib" {} \;
+find %{buildroot}/%{_libdir}/ros2-humble/ -name *__rosidl_generator_py.so -type f -exec patchelf --remove-rpath  {} \;
+# find %{buildroot}/%{_libdir}/ros2-humble/ -name *__rosidl_generator_py.so -type f -exec patchelf --force-rpath --add-rpath "%{_libdir}/ros2/lib" {} \;
 
 # replace cmake python macro in shebang
 for file in $(grep -rIl '^#!.*@PYTHON_EXECUTABLE@.*$' %{buildroot}) ; do
@@ -212,6 +214,12 @@ done
 
 
 %changelog
+* Tue Mar 12 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.4.54.1-3
+- use system library
+* Tue Mar 12 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.4.54.1-2
+- use system library
+* Mon Mar 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.4.54.1-1
+- update to latest release
 * Thu May 04 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.4.51.1-2
 - use librealsense ysystem dependency
 * Tue Apr 25 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.4.51.1-1

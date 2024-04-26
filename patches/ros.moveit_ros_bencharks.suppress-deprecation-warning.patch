@@ -1,0 +1,16 @@
+diff --color -ur moveit2-release-release-humble-moveit_ros_benchmarks-2.5.5-1/src/BenchmarkExecutor.cpp moveit2-release-release-humble-moveit_ros_benchmarks-2.5.5-1-new/src/BenchmarkExecutor.cpp
+--- moveit2-release-release-humble-moveit_ros_benchmarks-2.5.5-1/src/BenchmarkExecutor.cpp	2023-09-10 22:41:28.000000000 +0200
++++ moveit2-release-release-humble-moveit_ros_benchmarks-2.5.5-1-new/src/BenchmarkExecutor.cpp	2024-04-26 11:10:19.015738994 +0200
+@@ -42,10 +42,10 @@
+ // TODO(henningkayser): Switch to boost/timer/progress_display.hpp with Boost 1.72
+ // boost/progress.hpp is deprecated and will be replaced by boost/timer/progress_display.hpp in Boost 1.72.
+ // Until then we need to suppress the deprecation warning.
+-#define BOOST_ALLOW_DEPRECATED_HEADERS
++#define BOOST_TIMER_ENABLE_DEPRECATED
+ #include <boost/regex.hpp>
+ #include <boost/progress.hpp>
+-#undef BOOST_ALLOW_DEPRECATED_HEADERS
++#undef BOOST_TIMER_ENABLE_DEPRECATED
+ #include <boost/date_time/posix_time/posix_time.hpp>
+ #include <math.h>
+ #include <limits>

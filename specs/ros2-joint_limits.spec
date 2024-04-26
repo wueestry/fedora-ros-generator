@@ -1,12 +1,12 @@
 Name:           ros2-humble-joint_limits
-Version:        2.35.1
+Version:        2.40.0
 Release:        1%{?dist}
 Summary:        ROS package joint_limits
 
 License:        Apache License 2.0
 URL:            https://github.com/ros-controls/ros2_control/wiki
 
-Source0:        https://github.com/ros2-gbp/ros2_control-release/archive/release/humble/joint_limits/2.35.1-1.tar.gz#/ros2-humble-joint_limits-2.35.1-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ros2_control-release/archive/release/humble/joint_limits/2.40.0-1.tar.gz#/ros2-humble-joint_limits-2.40.0-source0.tar.gz
 
 
 BuildArch: noarch
@@ -48,8 +48,8 @@ BuildRequires:  ros2-humble-rclcpp_lifecycle-devel
 Requires:       ros2-humble-rclcpp
 Requires:       ros2-humble-rclcpp_lifecycle
 
-Provides:  ros2-humble-joint_limits = 2.35.1-1
-Obsoletes: ros2-humble-joint_limits < 2.35.1-1
+Provides:  ros2-humble-joint_limits = 2.40.0-1
+Obsoletes: ros2-humble-joint_limits < 2.40.0-1
 
 
 
@@ -66,8 +66,8 @@ Requires:       ros2-humble-launch_testing_ament_cmake-devel
 Requires:       ros2-humble-rclcpp-devel
 Requires:       ros2-humble-rclcpp_lifecycle-devel
 
-Provides: ros2-humble-joint_limits-devel = 2.35.1-1
-Obsoletes: ros2-humble-joint_limits-devel < 2.35.1-1
+Provides: ros2-humble-joint_limits-devel = 2.40.0-1
+Obsoletes: ros2-humble-joint_limits-devel < 2.40.0-1
 
 
 %description devel
@@ -89,9 +89,9 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
@@ -176,6 +176,10 @@ done
 
 
 %changelog
+* Wed Mar 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.40.0-1
+- Update to latest release
+* Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.39.1-1
+- Update to latest release
 * Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.35.1-1
 - update to latest upstream
 * Sat Oct 21 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.33.0-1

@@ -1,0 +1,2 @@
+patches:
+ - ros-librealsense2.include-cstdint.patch

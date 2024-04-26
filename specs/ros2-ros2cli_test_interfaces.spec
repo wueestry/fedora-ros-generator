@@ -1,12 +1,12 @@
 Name:           ros2-humble-ros2cli_test_interfaces
-Version:        0.18.7
+Version:        0.18.9
 Release:        1%{?dist}
 Summary:        ROS package ros2cli_test_interfaces
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ros2cli-release/archive/release/humble/ros2cli_test_interfaces/0.18.7-1.tar.gz#/ros2-humble-ros2cli_test_interfaces-0.18.7-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ros2cli-release/archive/release/humble/ros2cli_test_interfaces/0.18.9-1.tar.gz#/ros2-humble-ros2cli_test_interfaces-0.18.9-source0.tar.gz
 
 
 
@@ -46,8 +46,8 @@ BuildRequires:  ros2-humble-rosidl_default_generators-devel
 Requires:       ros2-humble-action_msgs
 Requires:       ros2-humble-rosidl_default_runtime
 
-Provides:  ros2-humble-ros2cli_test_interfaces = 0.18.7-1
-Obsoletes: ros2-humble-ros2cli_test_interfaces < 0.18.7-1
+Provides:  ros2-humble-ros2cli_test_interfaces = 0.18.9-1
+Obsoletes: ros2-humble-ros2cli_test_interfaces < 0.18.9-1
 
 
 
@@ -64,8 +64,8 @@ Requires:       ros2-humble-ament_lint_common-devel
 Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-rosidl_default_runtime-devel
 
-Provides: ros2-humble-ros2cli_test_interfaces-devel = 0.18.7-1
-Obsoletes: ros2-humble-ros2cli_test_interfaces-devel < 0.18.7-1
+Provides: ros2-humble-ros2cli_test_interfaces-devel = 0.18.9-1
+Obsoletes: ros2-humble-ros2cli_test_interfaces-devel < 0.18.9-1
 
 
 %description devel
@@ -87,9 +87,9 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
@@ -174,6 +174,8 @@ done
 
 
 %changelog
+* Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.18.9-1
+- Update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.18.7-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.18.7-1

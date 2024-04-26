@@ -1,0 +1,11 @@
+diff --color -ur rviz-release-release-humble-rviz_ogre_vendor-11.2.9-1/CMakeLists.txt rviz-release-release-humble-rviz_ogre_vendor-11.2.9-1-new/CMakeLists.txt
+--- rviz-release-release-humble-rviz_ogre_vendor-11.2.9-1/CMakeLists.txt	2023-11-13 23:04:43.000000000 +0100
++++ rviz-release-release-humble-rviz_ogre_vendor-11.2.9-1-new/CMakeLists.txt	2024-02-10 14:10:13.644422754 +0100
+@@ -132,6 +132,7 @@
+     set(OGRE_CXX_FLAGS "${OGRE_CXX_FLAGS} -std=c++14 -w -Wno-everything")
+   endif()
+   list(APPEND extra_cmake_args "-DOGRE_BUILD_RENDERSYSTEM_GL:BOOL=TRUE")
++  list(APPEND extra_cmake_args "-DOGRE_GLSUPPORT_USE_EGL=1")
+   list(APPEND extra_cmake_args "-DOGRE_BUILD_RENDERSYSTEM_D3D11:BOOL=OFF")
+   list(APPEND extra_cmake_args "-DOGRE_BUILD_RENDERSYSTEM_D3D9:BOOL=OFF")
+   list(APPEND extra_cmake_args "-DCMAKE_C_FLAGS=${OGRE_C_FLAGS}")

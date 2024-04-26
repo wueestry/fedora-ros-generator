@@ -1,0 +1,15 @@
+diff --color -ur xacro-release-release-humble-xacro-2.0.8-1/xacro/__init__.py xacro-release-release-humble-xacro-2.0.8-1-new/xacro/__init__.py
+--- xacro-release-release-humble-xacro-2.0.8-1/xacro/__init__.py	2022-10-23 01:15:48.000000000 +0200
++++ xacro-release-release-humble-xacro-2.0.8-1-new/xacro/__init__.py	2024-03-21 09:59:44.802489662 +0100
+@@ -554,9 +554,8 @@
+ 
+     return False
+ 
+-
+-default_value = '''\$\{.*?\}|\$\(.*?\)|(?:'.*?'|\".*?\"|[^\s'\"]+)+|'''
+-re_macro_arg = re.compile(r'^\s*([^\s:=]+?)\s*:?=\s*(\^\|?)?(' + default_value + ')(?:\s+|$)(.*)')
++default_value = r'''\$\{.*?\}|\$\([^)]*?\)|(?:'.*?'|".*?"|\S+)+|'''
++re_macro_arg = re.compile(r'^\s*([^\s:=]+?)\s*:?=\s*(\^\|?)?(' + default_value + r')(?:\s+|$)(.*)')
+ #                          space(   param )(   :=  )(  ^|  )(        default      )( space )(rest)
+ 
+ 

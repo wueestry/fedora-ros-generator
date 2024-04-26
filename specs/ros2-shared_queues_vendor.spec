@@ -1,12 +1,12 @@
 Name:           ros2-humble-shared_queues_vendor
-Version:        0.15.8
+Version:        0.15.9
 Release:        1%{?dist}
 Summary:        ROS package shared_queues_vendor
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rosbag2-release/archive/release/humble/shared_queues_vendor/0.15.8-1.tar.gz#/ros2-humble-shared_queues_vendor-0.15.8-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rosbag2-release/archive/release/humble/shared_queues_vendor/0.15.9-1.tar.gz#/ros2-humble-shared_queues_vendor-0.15.9-source0.tar.gz
 
 
 BuildArch: noarch
@@ -42,8 +42,8 @@ BuildRequires:  ros2-humble-ament_cmake-devel
 BuildRequires:  ros2-humble-ament_package-devel
 
 
-Provides:  ros2-humble-shared_queues_vendor = 0.15.8-1
-Obsoletes: ros2-humble-shared_queues_vendor < 0.15.8-1
+Provides:  ros2-humble-shared_queues_vendor = 0.15.9-1
+Obsoletes: ros2-humble-shared_queues_vendor < 0.15.9-1
 
 
 
@@ -56,8 +56,8 @@ Requires:       %{name} = %{version}-%{release}
 Requires:       ros2-humble-ament_cmake-devel
 Requires:       ros2-humble-ament_package-devel
 
-Provides: ros2-humble-shared_queues_vendor-devel = 0.15.8-1
-Obsoletes: ros2-humble-shared_queues_vendor-devel < 0.15.8-1
+Provides: ros2-humble-shared_queues_vendor-devel = 0.15.9-1
+Obsoletes: ros2-humble-shared_queues_vendor-devel < 0.15.9-1
 
 
 %description devel
@@ -79,9 +79,9 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
@@ -166,6 +166,8 @@ done
 
 
 %changelog
+* Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.15.9-1
+- Update to latest release
 * Sat Oct 21 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.15.8-1
 - update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.15.7-1

@@ -70,6 +70,7 @@ BuildRequires:  ros2-humble-tf2_geometry_msgs-devel
 BuildRequires:  ros2-humble-tf2_kdl-devel
 BuildRequires:  ros2-humble-tf2_ros-devel
 
+Requires:       orocos-kdl-devel
 Requires:       ros2-humble-geometry_msgs
 Requires:       ros2-humble-moveit_common
 Requires:       ros2-humble-moveit_core
@@ -77,7 +78,6 @@ Requires:       ros2-humble-moveit_msgs
 Requires:       ros2-humble-moveit_ros_move_group
 Requires:       ros2-humble-moveit_ros_planning
 Requires:       ros2-humble-moveit_ros_planning_interface
-Requires:       ros2-humble-orocos_kdl_vendor
 Requires:       ros2-humble-pluginlib
 Requires:       ros2-humble-rclcpp
 Requires:       ros2-humble-tf2
@@ -131,7 +131,6 @@ Requires:       ros2-humble-tf2_eigen_kdl-devel
 Requires:       ros2-humble-tf2_geometry_msgs-devel
 Requires:       ros2-humble-tf2_kdl-devel
 Requires:       ros2-humble-tf2_ros-devel
-Requires:       ros2-humble-orocos_kdl_vendor-devel
 
 Provides: ros2-humble-pilz_industrial_motion_planner-devel = 2.5.5-1
 Obsoletes: ros2-humble-pilz_industrial_motion_planner-devel < 2.5.5-1
@@ -156,9 +155,9 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 

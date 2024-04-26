@@ -1,12 +1,12 @@
 Name:           ros2-humble-fastrtps
-Version:        2.6.6
+Version:        2.6.7
 Release:        1%{?dist}
 Summary:        ROS package fastrtps
 
 License:        Apache 2.0
 URL:            https://www.eprosima.com/
 
-Source0:        https://github.com/ros2-gbp/fastrtps-release/archive/release/humble/fastrtps/2.6.6-1.tar.gz#/ros2-humble-fastrtps-2.6.6-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/fastrtps-release/archive/release/humble/fastrtps/2.6.7-1.tar.gz#/ros2-humble-fastrtps-2.6.7-source0.tar.gz
 
 
 
@@ -49,8 +49,8 @@ BuildRequires:  ros2-humble-foonathan_memory_vendor-devel
 Requires:       ros2-humble-fastcdr
 Requires:       ros2-humble-foonathan_memory_vendor
 
-Provides:  ros2-humble-fastrtps = 2.6.6-1
-Obsoletes: ros2-humble-fastrtps < 2.6.6-1
+Provides:  ros2-humble-fastrtps = 2.6.7-1
+Obsoletes: ros2-humble-fastrtps < 2.6.7-1
 
 
 
@@ -78,8 +78,8 @@ Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-fastcdr-devel
 Requires:       ros2-humble-foonathan_memory_vendor-devel
 
-Provides: ros2-humble-fastrtps-devel = 2.6.6-1
-Obsoletes: ros2-humble-fastrtps-devel < 2.6.6-1
+Provides: ros2-humble-fastrtps-devel = 2.6.7-1
+Obsoletes: ros2-humble-fastrtps-devel < 2.6.7-1
 
 
 %description devel
@@ -101,9 +101,9 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
@@ -188,6 +188,8 @@ done
 
 
 %changelog
+* Mon Feb 12 2024 Tarik Viehmann - humble.2.6.7-1
+- update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.6.6-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.6.6-1

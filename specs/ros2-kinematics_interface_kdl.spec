@@ -1,12 +1,12 @@
 Name:           ros2-humble-kinematics_interface_kdl
-Version:        0.2.0
+Version:        0.3.0
 Release:        1%{?dist}
 Summary:        ROS package kinematics_interface_kdl
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/kinematics_interface-release/archive/release/humble/kinematics_interface_kdl/0.2.0-1.tar.gz#/ros2-humble-kinematics_interface_kdl-0.2.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/kinematics_interface-release/archive/release/humble/kinematics_interface_kdl/0.3.0-1.tar.gz#/ros2-humble-kinematics_interface_kdl-0.3.0-source0.tar.gz
 
 
 
@@ -53,8 +53,8 @@ Requires:       ros2-humble-kinematics_interface
 Requires:       ros2-humble-pluginlib
 Requires:       ros2-humble-tf2_eigen_kdl
 
-Provides:  ros2-humble-kinematics_interface_kdl = 0.2.0-1
-Obsoletes: ros2-humble-kinematics_interface_kdl < 0.2.0-1
+Provides:  ros2-humble-kinematics_interface_kdl = 0.3.0-1
+Obsoletes: ros2-humble-kinematics_interface_kdl < 0.3.0-1
 
 
 
@@ -75,8 +75,8 @@ Requires:       ros2-humble-pluginlib-devel
 Requires:       ros2-humble-ros2_control_test_assets-devel
 Requires:       ros2-humble-tf2_eigen_kdl-devel
 
-Provides: ros2-humble-kinematics_interface_kdl-devel = 0.2.0-1
-Obsoletes: ros2-humble-kinematics_interface_kdl-devel < 0.2.0-1
+Provides: ros2-humble-kinematics_interface_kdl-devel = 0.3.0-1
+Obsoletes: ros2-humble-kinematics_interface_kdl-devel < 0.3.0-1
 
 
 %description devel
@@ -98,9 +98,9 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
@@ -185,6 +185,8 @@ done
 
 
 %changelog
+* Wed Mar 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.3.0-1
+- Update to latest release
 * Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.2.0-1
 - update to latest upstream
 * Sat Oct 21 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.1.0-1

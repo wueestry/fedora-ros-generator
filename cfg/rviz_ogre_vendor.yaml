@@ -1,0 +1,2 @@
+patches:
+  - ros-rviz_ogre_vendor.build_with_egl.patch

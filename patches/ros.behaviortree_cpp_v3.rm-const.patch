@@ -1,0 +1,12 @@
+diff --color -ur behaviortree_cpp_v3-release-release-humble-behaviortree_cpp_v3-3.8.6-1/include/behaviortree_cpp_v3/flatbuffers/stl_emulation.h behaviortree_cpp_v3-release-release-humble-behaviortree_cpp_v3-3.8.6-1-new/include/behaviortree_cpp_v3/flatbuffers/stl_emulation.h
+--- behaviortree_cpp_v3-release-release-humble-behaviortree_cpp_v3-3.8.6-1/include/behaviortree_cpp_v3/flatbuffers/stl_emulation.h	2023-12-19 09:24:53.000000000 +0100
++++ behaviortree_cpp_v3-release-release-humble-behaviortree_cpp_v3-3.8.6-1-new/include/behaviortree_cpp_v3/flatbuffers/stl_emulation.h	2024-04-25 14:52:49.384650203 +0200
+@@ -625,7 +625,7 @@
+  private:
+   // This is a naive implementation with 'count_' member even if (Extent != dynamic_extent).
+   pointer const data_;
+-  const size_type count_;
++  size_type count_;
+ };
+ 
+  #if !defined(FLATBUFFERS_SPAN_MINIMAL)

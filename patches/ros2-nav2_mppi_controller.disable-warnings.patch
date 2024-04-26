@@ -1,15 +1,15 @@
-diff -ur navigation2-release-release-humble-nav2_mppi_controller-1.1.9-1/CMakeLists.txt navigation2-release-release-humble-nav2_mppi_controller-1.1.9-1-new/CMakeLists.txt
---- navigation2-release-release-humble-nav2_mppi_controller-1.1.9-1/CMakeLists.txt	2023-08-04 22:26:14.000000000 +0200
-+++ navigation2-release-release-humble-nav2_mppi_controller-1.1.9-1-new/CMakeLists.txt	2023-08-10 10:04:03.603651413 +0200
-@@ -77,6 +77,11 @@
-   target_include_directories(${lib} PUBLIC include ${xsimd_INCLUDE_DIRS} ${OpenMP_INCLUDE_DIRS})
+diff --color -ur navigation2-release-release-humble-nav2_mppi_controller-1.1.13-1/CMakeLists.txt navigation2-release-release-humble-nav2_mppi_controller-1.1.13-1-new/CMakeLists.txt
+--- navigation2-release-release-humble-nav2_mppi_controller-1.1.13-1/CMakeLists.txt	2024-01-24 03:17:50.000000000 +0100
++++ navigation2-release-release-humble-nav2_mppi_controller-1.1.13-1-new/CMakeLists.txt	2024-02-20 09:13:07.893568934 +0100
+@@ -97,6 +97,11 @@
+   target_include_directories(${lib} PUBLIC ${xsimd_INCLUDE_DIRS})  #  ${OpenMP_INCLUDE_DIRS}
    target_link_libraries(${lib} xtensor xtensor::optimize xtensor::use_xsimd)
    ament_target_dependencies(${lib} ${dependencies_pkgs})
-+	target_compile_options(${lib} PRIVATE
++  target_compile_options(${lib} PRIVATE
 +    -Wno-array-bounds
 +    -Wno-maybe-uninitialized
 +    -Wno-stringop-overflow
-+)
++  )
  endforeach()
  
  install(TARGETS mppi_controller mppi_critics

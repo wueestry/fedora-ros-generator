@@ -1,12 +1,12 @@
 Name:           ros2-humble-ament_cmake_target_dependencies
-Version:        1.3.6
+Version:        1.3.8
 Release:        1%{?dist}
 Summary:        ROS package ament_cmake_target_dependencies
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ament_cmake-release/archive/release/humble/ament_cmake_target_dependencies/1.3.6-1.tar.gz#/ros2-humble-ament_cmake_target_dependencies-1.3.6-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ament_cmake-release/archive/release/humble/ament_cmake_target_dependencies/1.3.8-1.tar.gz#/ros2-humble-ament_cmake_target_dependencies-1.3.8-source0.tar.gz
 
 
 BuildArch: noarch
@@ -44,8 +44,8 @@ BuildRequires:  ros2-humble-ament_cmake_libraries-devel
 BuildRequires:  ros2-humble-ament_package-devel
 
 
-Provides:  ros2-humble-ament_cmake_target_dependencies = 1.3.6-1
-Obsoletes: ros2-humble-ament_cmake_target_dependencies < 1.3.6-1
+Provides:  ros2-humble-ament_cmake_target_dependencies = 1.3.8-1
+Obsoletes: ros2-humble-ament_cmake_target_dependencies < 1.3.8-1
 
 
 
@@ -61,8 +61,8 @@ Requires:       ros2-humble-ament_cmake_include_directories-devel
 Requires:       ros2-humble-ament_cmake_libraries-devel
 Requires:       ros2-humble-ament_package-devel
 
-Provides: ros2-humble-ament_cmake_target_dependencies-devel = 1.3.6-1
-Obsoletes: ros2-humble-ament_cmake_target_dependencies-devel < 1.3.6-1
+Provides: ros2-humble-ament_cmake_target_dependencies-devel = 1.3.8-1
+Obsoletes: ros2-humble-ament_cmake_target_dependencies-devel < 1.3.8-1
 
 
 %description devel
@@ -84,9 +84,9 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
@@ -171,6 +171,10 @@ done
 
 
 %changelog
+* Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.3.8-1
+- Update to latest release
+* Mon Feb 12 2024 Tarik Viehmann - humble.1.3.7-1
+- update to latest release
 * Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.3.6-1
 - update to latest upstream
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.3.5-1

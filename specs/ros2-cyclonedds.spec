@@ -1,12 +1,12 @@
 Name:           ros2-humble-cyclonedds
-Version:        0.10.3
+Version:        0.10.4
 Release:        1%{?dist}
 Summary:        ROS package cyclonedds
 
 License:        Eclipse Public License 2.0
 URL:            https://projects.eclipse.org/projects/iot.cyclonedds
 
-Source0:        https://github.com/ros2-gbp/cyclonedds-release/archive/release/humble/cyclonedds/0.10.3-1.tar.gz#/ros2-humble-cyclonedds-0.10.3-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/cyclonedds-release/archive/release/humble/cyclonedds/0.10.4-1.tar.gz#/ros2-humble-cyclonedds-0.10.4-source0.tar.gz
 
 
 
@@ -38,7 +38,6 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python-unversioned-command
 
 BuildRequires:  cmake
-BuildRequires:  CUnit-devel
 BuildRequires:  openssl-devel
 BuildRequires:  ros2-humble-ament_package-devel
 BuildRequires:  ros2-humble-iceoryx_binding_c-devel
@@ -50,8 +49,8 @@ Requires:       ros2-humble-iceoryx_binding_c
 Requires:       ros2-humble-iceoryx_hoofs
 Requires:       ros2-humble-iceoryx_posh
 
-Provides:  ros2-humble-cyclonedds = 0.10.3-1
-Obsoletes: ros2-humble-cyclonedds < 0.10.3-1
+Provides:  ros2-humble-cyclonedds = 0.10.4-1
+Obsoletes: ros2-humble-cyclonedds < 0.10.4-1
 
 
 
@@ -64,15 +63,14 @@ Eclipse IoT project.
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake
-Requires:       CUnit-devel
 Requires:       openssl-devel
 Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-iceoryx_binding_c-devel
 Requires:       ros2-humble-iceoryx_hoofs-devel
 Requires:       ros2-humble-iceoryx_posh-devel
 
-Provides: ros2-humble-cyclonedds-devel = 0.10.3-1
-Obsoletes: ros2-humble-cyclonedds-devel < 0.10.3-1
+Provides: ros2-humble-cyclonedds-devel = 0.10.4-1
+Obsoletes: ros2-humble-cyclonedds-devel < 0.10.4-1
 
 
 %description devel
@@ -94,9 +92,9 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS="${CFLAGS:-%optflags}" ; export CFLAGS ; \
-CXXFLAGS="${CXXFLAGS:-%optflags}" ; export CXXFLAGS ; \
-FFLAGS="${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
 FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
@@ -181,6 +179,8 @@ done
 
 
 %changelog
+* Mon Feb 12 2024 Tarik Viehmann - humble.0.10.4-1
+- update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.10.3-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.10.3-1

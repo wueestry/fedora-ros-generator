@@ -1,0 +1,14 @@
+{% extends "pkg.spec.j2" %}
+{% block dependencies %}
+{% for dep in build_dependencies.system|sort %}
+BuildRequires:  {{ dep }}
+{% endfor %}
+BuildRequires: python3-sphinx
+{% for dep in build_dependencies.ros|sort %}
+BuildRequires:  ros2-{{ distro }}-{{ dep }}-devel
+{% endfor %}
+{% endblock %}
+
+{% block cmake_flags %}
+-DBUILD_PYTHON_BINDINGS:bool=true  \
+{% endblock %}
