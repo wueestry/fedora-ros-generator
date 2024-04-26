@@ -1,4 +1,28 @@
 {% extends "pkg.spec.j2" %}
+
+{% block sources %}
+{% for url in source_urls -%}
+Source{{ loop.index0 }}:        {{ url }}#/ros2-{{ distro }}-{{ pkg_name }}-{{ pkg_version }}-source{{ loop.index0 }}.tar.gz
+{% endfor %}
+Source1:  ogre_diff.patch
+{% endblock %}
+
+{% block prep %}
+
+%setup -c -T
+{% for url in source_urls %}
+tar --strip-components=1 -xf %{SOURCE{{ loop.index0 }}}
+{% endfor %}
+{% for patch in patches %}
+%patch {{ loop.index0 }} -p1
+{% endfor %}
+
+
+# Move source1 into the directory created by unpacking source0
+mv %{SOURCE1} .
+
+{% endblock %}
+
 {% block install_files %}
 # remove wrong buildroot prefixes
 find %{buildroot}/%{_libdir}/ros2-{{ distro }}/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
