@@ -523,7 +523,8 @@ def main():
     )
     parser.add_argument('ros_pkg', nargs='+', help='ROS package name')
     args = parser.parse_args()
-    os.makedirs(args.destination, exist_ok=True)
+    specs_dir = args.destination + "/" + args.distro + "/"
+    os.makedirs(specs_dir, exist_ok=True)
     if not args.user_string:
         user_string = subprocess.run(["rpmdev-packager"],
                                      stderr=subprocess.DEVNULL,
@@ -539,7 +540,7 @@ def main():
                                             args.user_string, args.changelog,
                                             args.recursive, args.only_new,
                                             args.obsolete_distro_pkg,
-                                            args.destination)
+                                            specs_dir)
     packages = spec_file_generator.generate(args.ros_pkg)
     if args.build_order_file:
         order = get_build_order(packages)
