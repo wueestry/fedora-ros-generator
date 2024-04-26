@@ -37,7 +37,6 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python3-colcon-common-extensions
 # BuildRequires:  python-unversioned-command
 
-BuildRequires:  orocos-kdl-devel
 BuildRequires:  tinyxml-devel
 BuildRequires:  urdfdom-devel
 BuildRequires:  ros2-humble-ament_cmake-devel
@@ -50,6 +49,7 @@ BuildRequires:  ros2-humble-geometry_msgs-devel
 BuildRequires:  ros2-humble-kdl_parser-devel
 BuildRequires:  ros2-humble-launch_ros-devel
 BuildRequires:  ros2-humble-launch_testing_ament_cmake-devel
+BuildRequires:  ros2-humble-orocos_kdl_vendor-devel
 BuildRequires:  ros2-humble-rcl_interfaces-devel
 BuildRequires:  ros2-humble-rclcpp-devel
 BuildRequires:  ros2-humble-rclcpp_components-devel
@@ -58,10 +58,10 @@ BuildRequires:  ros2-humble-std_msgs-devel
 BuildRequires:  ros2-humble-tf2_ros-devel
 BuildRequires:  ros2-humble-urdf-devel
 
-Requires:       orocos-kdl-devel
 Requires:       ros2-humble-builtin_interfaces
 Requires:       ros2-humble-geometry_msgs
 Requires:       ros2-humble-kdl_parser
+Requires:       ros2-humble-orocos_kdl_vendor
 Requires:       ros2-humble-rcl_interfaces
 Requires:       ros2-humble-rclcpp
 Requires:       ros2-humble-rclcpp_components
@@ -84,7 +84,6 @@ of the robot.
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       ros2-humble-ament_cmake-devel
-Requires:       orocos-kdl-devel
 Requires:       tinyxml-devel
 Requires:       urdfdom-devel
 Requires:       ros2-humble-ament_cmake_gtest-devel
@@ -96,6 +95,7 @@ Requires:       ros2-humble-geometry_msgs-devel
 Requires:       ros2-humble-kdl_parser-devel
 Requires:       ros2-humble-launch_ros-devel
 Requires:       ros2-humble-launch_testing_ament_cmake-devel
+Requires:       ros2-humble-orocos_kdl_vendor-devel
 Requires:       ros2-humble-rcl_interfaces-devel
 Requires:       ros2-humble-rclcpp-devel
 Requires:       ros2-humble-rclcpp_components-devel
@@ -127,10 +127,10 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
-CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
-FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
-FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}} -w -Wno-error=int-conversion" ; export FFLAGS ; \
+FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}} -w -Wno-error=int-conversion" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
 source %{_libdir}/ros2-humble/setup.bash

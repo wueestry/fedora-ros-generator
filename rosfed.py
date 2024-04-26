@@ -106,7 +106,13 @@ class RosPkg:
                                             Loader=yaml.FullLoader)
         except FileNotFoundError:
             pkg_specific_config = {}
-        self.pkg_config = {**common_config, **pkg_specific_config}
+        try:
+            distro_pkg_specific_config = yaml.load(open(
+                'cfg/{}/{}.yaml'.format(distro,self.name), 'r'),
+                                            Loader=yaml.FullLoader)
+        except FileNotFoundError:
+            distro_pkg_specific_config = {}
+        self.pkg_config = {**common_config, **pkg_specific_config, **distro_pkg_specific_config}
         self.release = self.pkg_config.get('release', 1)
         self.deps_mapping = {
             'build_depend': [self.build_deps],

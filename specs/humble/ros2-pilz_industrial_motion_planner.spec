@@ -38,7 +38,6 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python-unversioned-command
 
 BuildRequires:  boost-devel
-BuildRequires:  orocos-kdl-devel
 BuildRequires:  ros2-humble-ament_cmake-devel
 BuildRequires:  ros2-humble-ament_cmake_gmock-devel
 BuildRequires:  ros2-humble-ament_cmake_gtest-devel
@@ -59,6 +58,7 @@ BuildRequires:  ros2-humble-moveit_resources_prbt_support-devel
 BuildRequires:  ros2-humble-moveit_ros_move_group-devel
 BuildRequires:  ros2-humble-moveit_ros_planning-devel
 BuildRequires:  ros2-humble-moveit_ros_planning_interface-devel
+BuildRequires:  ros2-humble-orocos_kdl_vendor-devel
 BuildRequires:  ros2-humble-pilz_industrial_motion_planner_testutils-devel
 BuildRequires:  ros2-humble-pluginlib-devel
 BuildRequires:  ros2-humble-rclcpp-devel
@@ -70,7 +70,6 @@ BuildRequires:  ros2-humble-tf2_geometry_msgs-devel
 BuildRequires:  ros2-humble-tf2_kdl-devel
 BuildRequires:  ros2-humble-tf2_ros-devel
 
-Requires:       orocos-kdl-devel
 Requires:       ros2-humble-geometry_msgs
 Requires:       ros2-humble-moveit_common
 Requires:       ros2-humble-moveit_core
@@ -78,6 +77,7 @@ Requires:       ros2-humble-moveit_msgs
 Requires:       ros2-humble-moveit_ros_move_group
 Requires:       ros2-humble-moveit_ros_planning
 Requires:       ros2-humble-moveit_ros_planning_interface
+Requires:       ros2-humble-orocos_kdl_vendor
 Requires:       ros2-humble-pluginlib
 Requires:       ros2-humble-rclcpp
 Requires:       ros2-humble-tf2
@@ -102,7 +102,6 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       ros2-humble-ament_cmake-devel
 Requires:       ros2-humble-eigen3_cmake_module-devel
 Requires:       boost-devel
-Requires:       orocos-kdl-devel
 Requires:       ros2-humble-ament_cmake_gmock-devel
 Requires:       ros2-humble-ament_cmake_gtest-devel
 Requires:       ros2-humble-ament_lint_auto-devel
@@ -121,6 +120,7 @@ Requires:       ros2-humble-moveit_resources_prbt_support-devel
 Requires:       ros2-humble-moveit_ros_move_group-devel
 Requires:       ros2-humble-moveit_ros_planning-devel
 Requires:       ros2-humble-moveit_ros_planning_interface-devel
+Requires:       ros2-humble-orocos_kdl_vendor-devel
 Requires:       ros2-humble-pilz_industrial_motion_planner_testutils-devel
 Requires:       ros2-humble-pluginlib-devel
 Requires:       ros2-humble-rclcpp-devel
@@ -155,10 +155,10 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
-CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
-FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
-FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}} -w -Wno-error=int-conversion" ; export FFLAGS ; \
+FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}} -w -Wno-error=int-conversion" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
 source %{_libdir}/ros2-humble/setup.bash

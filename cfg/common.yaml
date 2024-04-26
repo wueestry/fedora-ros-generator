@@ -2,13 +2,13 @@ common:
   dependencies:
     build:
       translate:
-        - orocos-kdl:
-          from:
-            type: ros
-            pkg: orocos_kdl_vendor
-          to:
-            type: system
-            pkg: orocos-kdl-devel
+        #- orocos-kdl:
+        #  from:
+        #    type: ros
+        #    pkg: orocos_kdl_vendor
+        #  to:
+        #    type: system
+        #    pkg: orocos-kdl-devel
         - realsense2:
           from:
             type: ros
@@ -23,20 +23,6 @@ common:
           to:
             type: system
             pkg: python3-qt5
-        - zstd:
-          from:
-            type: ros
-            pkg: zstd_vendor
-          to:
-            type: system
-            pkg: libzstd-devel
-              #- yamlcpp:
-              #  from:
-              #    type: ros
-              #    pkg: yaml_cpp_vendor
-              #  to:
-              #    type: system
-              #    pkg: yaml-cpp-devel
         - tinyxml:
           from:
             type: ros
@@ -116,13 +102,13 @@ common:
             pkg: python3-sip-devel
     run:
       translate:
-        - orocos-kdl:
-          from:
-            type: ros
-            pkg: orocos_kdl_vendor
-          to:
-            type: system
-            pkg: orocos-kdl-devel
+        #- orocos-kdl:
+        #  from:
+        #    type: ros
+        #    pkg: orocos_kdl_vendor
+        #  to:
+        #    type: system
+        #    pkg: orocos-kdl-devel
         - realsense2:
           from:
             type: ros
@@ -130,13 +116,6 @@ common:
           to:
             type: system
             pkg: librealsense2-devel
-        - zstd:
-          from:
-            type: ros
-            pkg: zstd_vendor
-          to:
-            type: system
-            pkg: libzstd-devel
         - qt_bindings:
           from:
             type: system

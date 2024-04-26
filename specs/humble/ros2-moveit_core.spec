@@ -44,7 +44,6 @@ BuildRequires:  eigen3-devel
 BuildRequires:  fcl-devel
 BuildRequires:  libccd-devel
 BuildRequires:  octomap-devel
-BuildRequires:  orocos-kdl-devel
 BuildRequires:  pkgconfig
 BuildRequires:  tinyxml-devel
 BuildRequires:  ros2-humble-ament_cmake-devel
@@ -67,6 +66,7 @@ BuildRequires:  ros2-humble-moveit_msgs-devel
 BuildRequires:  ros2-humble-moveit_resources_panda_moveit_config-devel
 BuildRequires:  ros2-humble-moveit_resources_pr2_description-devel
 BuildRequires:  ros2-humble-octomap_msgs-devel
+BuildRequires:  ros2-humble-orocos_kdl_vendor-devel
 BuildRequires:  ros2-humble-pluginlib-devel
 BuildRequires:  ros2-humble-pybind11_vendor-devel
 BuildRequires:  ros2-humble-random_numbers-devel
@@ -138,7 +138,6 @@ Requires:       eigen3-devel
 Requires:       fcl-devel
 Requires:       libccd-devel
 Requires:       octomap-devel
-Requires:       orocos-kdl-devel
 Requires:       tinyxml-devel
 Requires:       ros2-humble-ament_cmake_gmock-devel
 Requires:       ros2-humble-ament_cmake_gtest-devel
@@ -158,6 +157,7 @@ Requires:       ros2-humble-moveit_msgs-devel
 Requires:       ros2-humble-moveit_resources_panda_moveit_config-devel
 Requires:       ros2-humble-moveit_resources_pr2_description-devel
 Requires:       ros2-humble-octomap_msgs-devel
+Requires:       ros2-humble-orocos_kdl_vendor-devel
 Requires:       ros2-humble-pluginlib-devel
 Requires:       ros2-humble-pybind11_vendor-devel
 Requires:       ros2-humble-random_numbers-devel
@@ -200,10 +200,10 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
-CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
-FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
-FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}} -w -Wno-error=int-conversion" ; export FFLAGS ; \
+FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}} -w -Wno-error=int-conversion" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
 source %{_libdir}/ros2-humble/setup.bash

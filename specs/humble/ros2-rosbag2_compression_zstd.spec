@@ -38,7 +38,6 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python3-colcon-common-extensions
 # BuildRequires:  python-unversioned-command
 
-BuildRequires:  libzstd-devel
 BuildRequires:  ros2-humble-ament_cmake-devel
 BuildRequires:  ros2-humble-ament_cmake_gmock-devel
 BuildRequires:  ros2-humble-ament_lint_auto-devel
@@ -50,12 +49,13 @@ BuildRequires:  ros2-humble-rcpputils-devel
 BuildRequires:  ros2-humble-rcutils-devel
 BuildRequires:  ros2-humble-rosbag2_compression-devel
 BuildRequires:  ros2-humble-rosbag2_test_common-devel
+BuildRequires:  ros2-humble-zstd_vendor-devel
 
-Requires:       libzstd-devel
 Requires:       ros2-humble-pluginlib
 Requires:       ros2-humble-rcpputils
 Requires:       ros2-humble-rcutils
 Requires:       ros2-humble-rosbag2_compression
+Requires:       ros2-humble-zstd_vendor
 
 Provides:  ros2-humble-rosbag2_compression_zstd = 0.15.9-1
 Obsoletes: ros2-humble-rosbag2_compression_zstd < 0.15.9-1
@@ -69,7 +69,6 @@ Zstandard compression library implementation of rosbag2_compression
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       ros2-humble-ament_cmake-devel
-Requires:       libzstd-devel
 Requires:       ros2-humble-ament_cmake_gmock-devel
 Requires:       ros2-humble-ament_lint_auto-devel
 Requires:       ros2-humble-ament_lint_common-devel
@@ -80,6 +79,7 @@ Requires:       ros2-humble-rcpputils-devel
 Requires:       ros2-humble-rcutils-devel
 Requires:       ros2-humble-rosbag2_compression-devel
 Requires:       ros2-humble-rosbag2_test_common-devel
+Requires:       ros2-humble-zstd_vendor-devel
 
 Provides: ros2-humble-rosbag2_compression_zstd-devel = 0.15.9-1
 Obsoletes: ros2-humble-rosbag2_compression_zstd-devel < 0.15.9-1
@@ -105,10 +105,10 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 
-CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w" ; export CFLAGS ; \
-CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w" ; export CXXFLAGS ; \
-FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FFLAGS ; \
-FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}}" ; export FCFLAGS ; \
+CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CFLAGS ; \
+CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CXXFLAGS ; \
+FFLAGS=" -Wno-error ${FFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}} -w -Wno-error=int-conversion" ; export FFLAGS ; \
+FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}} -w -Wno-error=int-conversion" ; export FCFLAGS ; \
 %{?__global_ldflags:LDFLAGS="${LDFLAGS:-%__global_ldflags}" ; export LDFLAGS ;} \
 
 source %{_libdir}/ros2-humble/setup.bash
