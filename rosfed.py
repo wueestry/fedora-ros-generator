@@ -83,6 +83,7 @@ class RosPkg:
         self.rosdistro = distro
         self.name = name
         self.spec = ''
+        self.meta_spec = ''
         self.distro = distro
         self.distro_info = generator.get_wet_distro(distro)
         try:
@@ -129,6 +130,14 @@ class RosPkg:
     def get_full_name(self):
         """ Get the full name of the package, e.g., ros-catkin. """
         return 'ros2-{}-{}'.format(self.distro,self.name)
+
+    def get_meta_pkg_name(self):
+        """ Get the full name of the package, e.g., ros-catkin. """
+        return 'ros-{}-{}'.format(self.distro,self.name.replace("_","-"))
+
+    def get_meta_spec(self):
+        """ Get the full name of the package, e.g., ros-catkin. """
+        return 'ros-{}'.format(self.name)
 
     def compute_dependencies(self):
         for child in self.xml:
@@ -377,7 +386,10 @@ class SpecFileGenerator:
         version = ros_pkg.get_version()
         outfile = os.path.join(self.destination,
                                'ros2-{}.spec'.format(ros_pkg.name))
+        meta_outfile = os.path.join(self.destination,
+                               '{}.spec'.format(ros_pkg.name.replace('_', '-')))
         ros_pkg.spec = outfile
+        ros_pkg.meta_spec = meta_outfile
         pkg_changelog_entry = self.changelog_entry
         if os.path.isfile(outfile):
             if self.only_new:
@@ -410,6 +422,7 @@ class SpecFileGenerator:
                 ros_pkg.name))
         except jinja2.exceptions.TemplateNotFound:
             spec_template = self.jinja_env.get_template('pkg.spec.j2')
+        meta_spec_template = self.jinja_env.get_template('meta_pkg.spec.j2')
         spec = spec_template.render(
             pkg_name=ros_pkg.name,
             distro=self.distro,
@@ -433,8 +446,27 @@ class SpecFileGenerator:
             build_flags=ros_pkg.get_build_flags(),
             no_debug=ros_pkg.has_no_debug(),
         )
+        meta_spec = meta_spec_template.render(
+            meta_name=ros_pkg.name.replace('_', '-'),
+            pkg_name=ros_pkg.name,
+            distro=self.distro,
+            pkg_version=version,
+            license=ros_pkg.get_license(),
+            pkg_url=ros_pkg.get_website(),
+            pkg_description=ros_pkg.get_description(),
+            pkg_release=ros_pkg.get_release(),
+            user_string=self.user_string,
+            date=time.strftime("%a %b %d %Y", time.gmtime()),
+            changelog=changelog,
+            changelog_entry=pkg_changelog_entry,
+            noarch=ros_pkg.is_noarch(),
+            obsolete_distro_pkg=self.obsolete_distro_pkg,
+            has_devel=ros_pkg.has_devel()
+        )
         with open(outfile, 'w') as spec_file:
             spec_file.write(spec)
+        with open(meta_outfile, 'w') as meta_spec_file:
+            meta_spec_file.write(meta_spec)
         self.packages_lock.acquire()
         self.generated_packages[ros_pkg.name] = ros_pkg
         self.packages_lock.release()

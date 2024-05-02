@@ -163,6 +163,18 @@ class CoprBuilder:
                             build_progress['finished'],
                             build_progress['total'], node.name), 'green')
                     wait_for_build = False
+                    pkg_version = node.pkg.get_version_release()
+                    if not self.pkg_is_built(chroot, node.pkg.get_meta_pkg_name(),
+                                         pkg_version):
+                      cprint(
+                          '{}/{}/{}: Also build meta package for {}'.format(
+                              build_progress['building'], build_progress['finished'],
+                              build_progress['total'], node.name), 'blue')
+                      meta_build = self.build_spec(chroot=chroot, spec=node.pkg.meta_spec)
+                      node.build_id = meta_build.id
+                      node.state = build_tree.BuildState.BUILDING
+                      build_ids.append(node.build_id)
+                      wait_for_build = False
                 else:
                     assert node.state == build_tree.BuildState.PENDING, \
                             'Unexpected build state {} of package node ' \
@@ -185,6 +197,18 @@ class CoprBuilder:
                     '{}/{}/{}: Successful build: {}'.format(
                         build_progress['building'], build_progress['finished'],
                         build_progress['total'], node.name), 'green')
+                pkg_version = node.pkg.get_version_release()
+                if not self.pkg_is_built(chroot, node.pkg.get_meta_pkg_name(),
+                                     pkg_version):
+                  cprint(
+                      '{}/{}/{}: Also build meta package for {}'.format(
+                          build_progress['building'], build_progress['finished'],
+                          build_progress['total'], node.name), 'blue')
+                  meta_build = self.build_spec(chroot=chroot, spec=node.pkg.meta_spec)
+                  node.build_id = meta_build.id
+                  node.state = build_tree.BuildState.BUILDING
+                  build_ids.append(node.build_id)
+                  wait_for_build = False
             else:
                 node.state = build_tree.BuildState.FAILED
                 build_progress = tree.get_build_progress()
@@ -290,6 +314,7 @@ def main():
     for chroot in args.chroot:
         for pkg in args.pkg_name:
             spec = args.spec_dir + pkg + '.spec'
+            meta_spec = args.spec_dir + pkg.replace('_', '-') + '.spec'
             need_build = args.force
             if not need_build:
                 version_info = spec_utils.get_version_from_spec(spec)
@@ -300,6 +325,9 @@ def main():
             if need_build:
                 copr_builder.build_spec(chroot=chroot,
                                         spec=spec,
+                                        wait_for_completion=True)
+                copr_builder.build_spec(chroot=chroot,
+                                        spec=meta_spec,
                                         wait_for_completion=True)
 
 
