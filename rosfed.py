@@ -548,7 +548,7 @@ def main():
     parser.add_argument('-B',
                         '--build-order-file',
                         type=argparse.FileType('w'),
-                        default=None,
+                        default="build_order",
                         help='Print the order in which the packages should be '
                         'built, requires -r')
     parser.add_argument(

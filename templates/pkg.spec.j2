@@ -220,7 +220,6 @@ find %{buildroot}/%{_libdir}/ros2-{{ distro}}/lib*/ -mindepth 1 -maxdepth 1 \
 
 {% if has_devel %}
 touch files_devel.list
-# TODO: is cmake/ necessary? it stems from the yaml vendor
 find %{buildroot}/%{_libdir}/ros2-{{ distro }}/{lib*/pkgconfig,include/,cmake/,{{ pkg_name }}/include/,share/{{ pkg_name }}/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 {% endif %}
