@@ -148,6 +148,8 @@ class RosPkg:
                         try:
                             if(child.attrib["condition"] == "$ROS_VERSION == 1"):
                              continue
+                            if(child.attrib["condition"] == "$GZ_BUILD_FROM_SOURCE != ''"):
+                             continue
                         except KeyError:
                             pass
                         self.distro_info.get_release_package_xml(pkg)

@@ -156,6 +156,7 @@ tar --strip-components=1 -xf %{SOURCE{{ loop.index0 }}}
 %install
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
+GZ_BUILD_FROM_SURCE=1; export GZ_BUILD_FROM_SOURCE
 
 {% block install_environment %}
 CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CFLAGS ; \
