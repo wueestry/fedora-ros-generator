@@ -1,0 +1,30 @@
+# Meta Package
+Name:           ros-jazzy-steering-controllers-library
+Version:        4.7.0
+Release:        1%{?dist}
+License:        Apache License 2.0
+URL:            http://www.ros.org/
+Summary:        Meta package for ros2-jazzy-steering_controllers_library and its development package to adhere to ubuntu pkg names
+BuildArch: noarch
+
+Requires:       ros2-jazzy-steering_controllers_library
+Requires:       ros2-jazzy-steering_controllers_library-devel
+
+Obsoletes: ros-jazzy-steering-controllers-library < 4.7.0-1
+
+%description
+Package for steering robot configurations including odometry and
+interfaces.
+
+%build
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%install
+
+%files
+
+%changelog
+* Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.7.0-1
+- Update to latest release

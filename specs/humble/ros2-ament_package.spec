@@ -84,6 +84,7 @@ tar --strip-components=1 -xf %{SOURCE0}
 %install
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
+GZ_BUILD_FROM_SURCE=1; export GZ_BUILD_FROM_SOURCE
 
 CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CFLAGS ; \
 CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CXXFLAGS ; \

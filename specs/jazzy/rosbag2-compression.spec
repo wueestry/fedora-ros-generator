@@ -1,0 +1,29 @@
+# Meta Package
+Name:           ros-jazzy-rosbag2-compression
+Version:        0.26.2
+Release:        1%{?dist}
+License:        Apache License 2.0
+URL:            http://www.ros.org/
+Summary:        Meta package for ros2-jazzy-rosbag2_compression and its development package to adhere to ubuntu pkg names
+BuildArch: noarch
+
+Requires:       ros2-jazzy-rosbag2_compression
+Requires:       ros2-jazzy-rosbag2_compression-devel
+
+Obsoletes: ros-jazzy-rosbag2-compression < 0.26.2-1
+
+%description
+Compression implementations for rosbag2 bags and messages.
+
+%build
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%install
+
+%files
+
+%changelog
+* Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.26.2-1
+- Update to latest release

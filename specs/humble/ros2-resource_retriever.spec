@@ -41,7 +41,6 @@ BuildRequires: python3-vcstool
 BuildRequires:  boost-devel
 BuildRequires:  console-bridge-devel
 BuildRequires:  gtest-devel
-BuildRequires:  libcurl-devel
 BuildRequires:  log4cxx-devel
 BuildRequires:  python3-pytest
 BuildRequires:  tinyxml-devel
@@ -53,11 +52,12 @@ BuildRequires:  ros2-humble-ament_index_python-devel
 BuildRequires:  ros2-humble-ament_lint_auto-devel
 BuildRequires:  ros2-humble-ament_lint_common-devel
 BuildRequires:  ros2-humble-ament_package-devel
+BuildRequires:  ros2-humble-libcurl_vendor-devel
 BuildRequires:  ros2-humble-python_cmake_module-devel
 
-Requires:       libcurl-devel
 Requires:       ros2-humble-ament_index_cpp
 Requires:       ros2-humble-ament_index_python
+Requires:       ros2-humble-libcurl_vendor
 
 Provides:  ros2-humble-resource_retriever = 3.1.1-1
 Obsoletes: ros2-humble-resource_retriever < 3.1.1-1
@@ -79,7 +79,6 @@ Requires:       ros2-humble-ament_cmake_ros-devel
 Requires:       boost-devel
 Requires:       console-bridge-devel
 Requires:       gtest-devel
-Requires:       libcurl-devel
 Requires:       log4cxx-devel
 Requires:       python3-pytest
 Requires:       tinyxml-devel
@@ -90,6 +89,7 @@ Requires:       ros2-humble-ament_index_python-devel
 Requires:       ros2-humble-ament_lint_auto-devel
 Requires:       ros2-humble-ament_lint_common-devel
 Requires:       ros2-humble-ament_package-devel
+Requires:       ros2-humble-libcurl_vendor-devel
 Requires:       ros2-humble-python_cmake_module-devel
 
 Provides: ros2-humble-resource_retriever-devel = 3.1.1-1
@@ -115,6 +115,7 @@ tar --strip-components=1 -xf %{SOURCE0}
 %install
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
+GZ_BUILD_FROM_SURCE=1; export GZ_BUILD_FROM_SOURCE
 
 CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CFLAGS ; \
 CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CXXFLAGS ; \
@@ -149,6 +150,68 @@ colcon \
 # remove wrong buildroot prefixes
 find %{buildroot}/%{_libdir}/ros2-humble/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
 
+# # Move include directory if source path exists
+# if [ -d %{buildroot}/%{_libdir}/ros2-humble/opt/resource_retriever/include ]; then
+#     # If destination path does not exist, create it
+#     if [ ! -d %{buildroot}/%{_libdir}/ros2-humble/include/resource_retriever ]; then
+#         mkdir -p %{buildroot}/%{_libdir}/ros2-humble/include/resource_retriever
+#     fi
+#     # Move the directory
+#     mv -f %{buildroot}/%{_libdir}/ros2-humble/opt/resource_retriever/include/* %{buildroot}/%{_libdir}/ros2-humble/include/resource_retriever
+# fi
+# 
+# # Move share directory if source path exists
+# if [ -d %{buildroot}/%{_libdir}/ros2-humble/opt/resource_retriever/share ]; then
+#     # If destination path does not exist, create it
+#     if [ ! -d %{buildroot}/%{_libdir}/ros2-humble/share ]; then
+#         mkdir -p %{buildroot}/%{_libdir}/ros2-humble/share
+#     fi
+#     # Move the directory
+#     mv -f %{buildroot}/%{_libdir}/ros2-humble/opt/resource_retriever/share %{buildroot}/%{_libdir}/ros2-humble/
+#     find %{buildroot}/%{_libdir}/ros2-humble/share -type f -exec sed -i "s:opt/resource_retriever/::g" {} \;
+# fi
+# 
+# # Move bin directory if source path exists
+# if [ -d %{buildroot}/%{_libdir}/ros2-humble/opt/resource_retriever/bin ]; then
+#     # If destination path does not exist, create it
+#     if [ ! -d %{buildroot}/%{_libdir}/ros2-humble/bin ]; then
+#         mkdir -p %{buildroot}/%{_libdir}/ros2-humble/bin
+#     fi
+#     # Move the directory
+#     mv -f %{buildroot}/%{_libdir}/ros2-humble/opt/resource_retriever/bin %{buildroot}/%{_libdir}/ros2-humble/
+# fi
+# 
+# # Move extra_cmake directory if source path exists
+# if [ -d %{buildroot}/%{_libdir}/ros2-humble/opt/resource_retriever/extra_cmake ]; then
+#     # If destination path does not exist, create it
+#     if [ ! -d %{buildroot}/%{_libdir}/ros2-humble/extra_cmake ]; then
+#         mkdir -p %{buildroot}/%{_libdir}/ros2-humble/extra_cmake
+#     fi
+#     # Move the directory
+#     mv -f %{buildroot}/%{_libdir}/ros2-humble/opt/resource_retriever/extra_cmake %{buildroot}/%{_libdir}/ros2-humble/
+#     find %{buildroot}/%{_libdir}/ros2-humble/extra_cmake -type f -exec sed -i "s:opt/resource_retriever/::g" {} \;
+# fi
+# 
+# # Move lib directory if source path exists
+# if [ -d %{buildroot}/%{_libdir}/ros2-humble/opt/resource_retriever/lib ]; then
+#     # If destination path does not exist, create it
+#     if [ ! -d %{buildroot}/%{_libdir}/ros2-humble/lib ]; then
+#         mkdir -p %{buildroot}/%{_libdir}/ros2-humble/lib
+#     fi
+#     # Move the directory
+#     mv -f %{buildroot}/%{_libdir}/ros2-humble/opt/resource_retriever/lib %{buildroot}/%{_libdir}/ros2-humble/lib
+# fi
+# 
+# # Move lib64 directory if source path exists
+# if [ -d %{buildroot}/%{_libdir}/ros2-humble/opt/resource_retriever/lib64 ]; then
+#     # If destination path does not exist, create it
+#     if [ ! -d %{buildroot}/%{_libdir}/ros2-humble/lib64 ]; then
+#         mkdir -p %{buildroot}/%{_libdir}/ros2-humble/lib64
+#     fi
+#     # Move the directory
+#     mv -f %{buildroot}/%{_libdir}/ros2-humble/opt/resource_retriever/lib64 %{buildroot}/%{_libdir}/ros2-humble/lib64
+# fi
+
 rm -rf %{buildroot}/%{_libdir}/ros2-humble/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
 
 # remove __pycache__
@@ -156,14 +219,13 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-humble/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
+find %{buildroot}/%{_libdir}/ros2-humble/{opt,bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-humble/lib*/ -mindepth 1 -maxdepth 1 \
   ! -name pkgconfig ! -name "python*" \
   | sed "s:%{buildroot}/::" >> files.list
 
 touch files_devel.list
-# TODO: is cmake/ necessary? it stems from the yaml vendor
 find %{buildroot}/%{_libdir}/ros2-humble/{lib*/pkgconfig,include/,cmake/,resource_retriever/include/,share/resource_retriever/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 

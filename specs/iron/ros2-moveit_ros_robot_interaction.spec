@@ -122,6 +122,7 @@ tar --strip-components=1 -xf %{SOURCE0}
 %install
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
+GZ_BUILD_FROM_SURCE=1; export GZ_BUILD_FROM_SOURCE
 
 CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CFLAGS ; \
 CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CXXFLAGS ; \
@@ -156,6 +157,68 @@ colcon \
 # remove wrong buildroot prefixes
 find %{buildroot}/%{_libdir}/ros2-iron/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
 
+# # Move include directory if source path exists
+# if [ -d %{buildroot}/%{_libdir}/ros2-iron/opt/moveit_ros_robot_interaction/include ]; then
+#     # If destination path does not exist, create it
+#     if [ ! -d %{buildroot}/%{_libdir}/ros2-iron/include/moveit_ros_robot_interaction ]; then
+#         mkdir -p %{buildroot}/%{_libdir}/ros2-iron/include/moveit_ros_robot_interaction
+#     fi
+#     # Move the directory
+#     mv -f %{buildroot}/%{_libdir}/ros2-iron/opt/moveit_ros_robot_interaction/include/* %{buildroot}/%{_libdir}/ros2-iron/include/moveit_ros_robot_interaction
+# fi
+# 
+# # Move share directory if source path exists
+# if [ -d %{buildroot}/%{_libdir}/ros2-iron/opt/moveit_ros_robot_interaction/share ]; then
+#     # If destination path does not exist, create it
+#     if [ ! -d %{buildroot}/%{_libdir}/ros2-iron/share ]; then
+#         mkdir -p %{buildroot}/%{_libdir}/ros2-iron/share
+#     fi
+#     # Move the directory
+#     mv -f %{buildroot}/%{_libdir}/ros2-iron/opt/moveit_ros_robot_interaction/share %{buildroot}/%{_libdir}/ros2-iron/
+#     find %{buildroot}/%{_libdir}/ros2-iron/share -type f -exec sed -i "s:opt/moveit_ros_robot_interaction/::g" {} \;
+# fi
+# 
+# # Move bin directory if source path exists
+# if [ -d %{buildroot}/%{_libdir}/ros2-iron/opt/moveit_ros_robot_interaction/bin ]; then
+#     # If destination path does not exist, create it
+#     if [ ! -d %{buildroot}/%{_libdir}/ros2-iron/bin ]; then
+#         mkdir -p %{buildroot}/%{_libdir}/ros2-iron/bin
+#     fi
+#     # Move the directory
+#     mv -f %{buildroot}/%{_libdir}/ros2-iron/opt/moveit_ros_robot_interaction/bin %{buildroot}/%{_libdir}/ros2-iron/
+# fi
+# 
+# # Move extra_cmake directory if source path exists
+# if [ -d %{buildroot}/%{_libdir}/ros2-iron/opt/moveit_ros_robot_interaction/extra_cmake ]; then
+#     # If destination path does not exist, create it
+#     if [ ! -d %{buildroot}/%{_libdir}/ros2-iron/extra_cmake ]; then
+#         mkdir -p %{buildroot}/%{_libdir}/ros2-iron/extra_cmake
+#     fi
+#     # Move the directory
+#     mv -f %{buildroot}/%{_libdir}/ros2-iron/opt/moveit_ros_robot_interaction/extra_cmake %{buildroot}/%{_libdir}/ros2-iron/
+#     find %{buildroot}/%{_libdir}/ros2-iron/extra_cmake -type f -exec sed -i "s:opt/moveit_ros_robot_interaction/::g" {} \;
+# fi
+# 
+# # Move lib directory if source path exists
+# if [ -d %{buildroot}/%{_libdir}/ros2-iron/opt/moveit_ros_robot_interaction/lib ]; then
+#     # If destination path does not exist, create it
+#     if [ ! -d %{buildroot}/%{_libdir}/ros2-iron/lib ]; then
+#         mkdir -p %{buildroot}/%{_libdir}/ros2-iron/lib
+#     fi
+#     # Move the directory
+#     mv -f %{buildroot}/%{_libdir}/ros2-iron/opt/moveit_ros_robot_interaction/lib %{buildroot}/%{_libdir}/ros2-iron/lib
+# fi
+# 
+# # Move lib64 directory if source path exists
+# if [ -d %{buildroot}/%{_libdir}/ros2-iron/opt/moveit_ros_robot_interaction/lib64 ]; then
+#     # If destination path does not exist, create it
+#     if [ ! -d %{buildroot}/%{_libdir}/ros2-iron/lib64 ]; then
+#         mkdir -p %{buildroot}/%{_libdir}/ros2-iron/lib64
+#     fi
+#     # Move the directory
+#     mv -f %{buildroot}/%{_libdir}/ros2-iron/opt/moveit_ros_robot_interaction/lib64 %{buildroot}/%{_libdir}/ros2-iron/lib64
+# fi
+
 rm -rf %{buildroot}/%{_libdir}/ros2-iron/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
 
 # remove __pycache__
@@ -163,14 +226,13 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-iron/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
+find %{buildroot}/%{_libdir}/ros2-iron/{opt,bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-iron/lib*/ -mindepth 1 -maxdepth 1 \
   ! -name pkgconfig ! -name "python*" \
   | sed "s:%{buildroot}/::" >> files.list
 
 touch files_devel.list
-# TODO: is cmake/ necessary? it stems from the yaml vendor
 find %{buildroot}/%{_libdir}/ros2-iron/{lib*/pkgconfig,include/,cmake/,moveit_ros_robot_interaction/include/,share/moveit_ros_robot_interaction/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 

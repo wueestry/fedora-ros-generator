@@ -8,7 +8,6 @@ URL:            http://gazebosim.org/tutorials?cat=connect_ros
 
 Source0:        https://github.com/ros2-gbp/gazebo_ros_pkgs-release/archive/release/iron/gazebo_ros/3.7.0-3.tar.gz#/ros2-iron-gazebo_ros-3.7.0-source0.tar.gz
 
-Patch0: ros-gazebo_ros.build-with-cpp17.patch
 
 
 # common BRs
@@ -38,9 +37,6 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python3-colcon-common-extensions
 # BuildRequires:  python-unversioned-command
 
-BuildRequires:  bullet-devel
-BuildRequires:  gazebo-devel
-BuildRequires:  libuuid-devel
 BuildRequires:  tinyxml-devel
 BuildRequires:  ros2-iron-ament_cmake-devel
 BuildRequires:  ros2-iron-ament_cmake_gtest-devel
@@ -60,7 +56,6 @@ BuildRequires:  ros2-iron-ros2run-devel
 BuildRequires:  ros2-iron-sensor_msgs-devel
 BuildRequires:  ros2-iron-std_msgs-devel
 BuildRequires:  ros2-iron-std_srvs-devel
-BuildRequires:  ros2-iron-trajectory_msgs-devel
 
 Requires:       python3-lxml
 Requires:       tinyxml-devel
@@ -88,9 +83,6 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       ros2-iron-ament_cmake-devel
 Requires:       ros2-iron-geometry_msgs-devel
 Requires:       ros2-iron-sensor_msgs-devel
-Requires:       bullet-devel
-Requires:       gazebo-devel
-Requires:       libuuid-devel
 Requires:       tinyxml-devel
 Requires:       ros2-iron-ament_cmake_gtest-devel
 Requires:       ros2-iron-ament_lint_auto-devel
@@ -107,7 +99,6 @@ Requires:       ros2-iron-rmw-devel
 Requires:       ros2-iron-ros2run-devel
 Requires:       ros2-iron-std_msgs-devel
 Requires:       ros2-iron-std_srvs-devel
-Requires:       ros2-iron-trajectory_msgs-devel
 Requires:       ros2-iron-launch_ros-devel
 
 Provides: ros2-iron-gazebo_ros-devel = 3.7.0-1
@@ -124,7 +115,6 @@ applications that use %{name}.
 
 %setup -c -T
 tar --strip-components=1 -xf %{SOURCE0}
-%patch 0 -p1
 
 %build
 # nothing to do here
@@ -133,6 +123,7 @@ tar --strip-components=1 -xf %{SOURCE0}
 %install
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
+GZ_BUILD_FROM_SURCE=1; export GZ_BUILD_FROM_SOURCE
 
 CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CFLAGS ; \
 CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CXXFLAGS ; \
@@ -167,6 +158,68 @@ colcon \
 # remove wrong buildroot prefixes
 find %{buildroot}/%{_libdir}/ros2-iron/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
 
+# # Move include directory if source path exists
+# if [ -d %{buildroot}/%{_libdir}/ros2-iron/opt/gazebo_ros/include ]; then
+#     # If destination path does not exist, create it
+#     if [ ! -d %{buildroot}/%{_libdir}/ros2-iron/include/gazebo_ros ]; then
+#         mkdir -p %{buildroot}/%{_libdir}/ros2-iron/include/gazebo_ros
+#     fi
+#     # Move the directory
+#     mv -f %{buildroot}/%{_libdir}/ros2-iron/opt/gazebo_ros/include/* %{buildroot}/%{_libdir}/ros2-iron/include/gazebo_ros
+# fi
+# 
+# # Move share directory if source path exists
+# if [ -d %{buildroot}/%{_libdir}/ros2-iron/opt/gazebo_ros/share ]; then
+#     # If destination path does not exist, create it
+#     if [ ! -d %{buildroot}/%{_libdir}/ros2-iron/share ]; then
+#         mkdir -p %{buildroot}/%{_libdir}/ros2-iron/share
+#     fi
+#     # Move the directory
+#     mv -f %{buildroot}/%{_libdir}/ros2-iron/opt/gazebo_ros/share %{buildroot}/%{_libdir}/ros2-iron/
+#     find %{buildroot}/%{_libdir}/ros2-iron/share -type f -exec sed -i "s:opt/gazebo_ros/::g" {} \;
+# fi
+# 
+# # Move bin directory if source path exists
+# if [ -d %{buildroot}/%{_libdir}/ros2-iron/opt/gazebo_ros/bin ]; then
+#     # If destination path does not exist, create it
+#     if [ ! -d %{buildroot}/%{_libdir}/ros2-iron/bin ]; then
+#         mkdir -p %{buildroot}/%{_libdir}/ros2-iron/bin
+#     fi
+#     # Move the directory
+#     mv -f %{buildroot}/%{_libdir}/ros2-iron/opt/gazebo_ros/bin %{buildroot}/%{_libdir}/ros2-iron/
+# fi
+# 
+# # Move extra_cmake directory if source path exists
+# if [ -d %{buildroot}/%{_libdir}/ros2-iron/opt/gazebo_ros/extra_cmake ]; then
+#     # If destination path does not exist, create it
+#     if [ ! -d %{buildroot}/%{_libdir}/ros2-iron/extra_cmake ]; then
+#         mkdir -p %{buildroot}/%{_libdir}/ros2-iron/extra_cmake
+#     fi
+#     # Move the directory
+#     mv -f %{buildroot}/%{_libdir}/ros2-iron/opt/gazebo_ros/extra_cmake %{buildroot}/%{_libdir}/ros2-iron/
+#     find %{buildroot}/%{_libdir}/ros2-iron/extra_cmake -type f -exec sed -i "s:opt/gazebo_ros/::g" {} \;
+# fi
+# 
+# # Move lib directory if source path exists
+# if [ -d %{buildroot}/%{_libdir}/ros2-iron/opt/gazebo_ros/lib ]; then
+#     # If destination path does not exist, create it
+#     if [ ! -d %{buildroot}/%{_libdir}/ros2-iron/lib ]; then
+#         mkdir -p %{buildroot}/%{_libdir}/ros2-iron/lib
+#     fi
+#     # Move the directory
+#     mv -f %{buildroot}/%{_libdir}/ros2-iron/opt/gazebo_ros/lib %{buildroot}/%{_libdir}/ros2-iron/lib
+# fi
+# 
+# # Move lib64 directory if source path exists
+# if [ -d %{buildroot}/%{_libdir}/ros2-iron/opt/gazebo_ros/lib64 ]; then
+#     # If destination path does not exist, create it
+#     if [ ! -d %{buildroot}/%{_libdir}/ros2-iron/lib64 ]; then
+#         mkdir -p %{buildroot}/%{_libdir}/ros2-iron/lib64
+#     fi
+#     # Move the directory
+#     mv -f %{buildroot}/%{_libdir}/ros2-iron/opt/gazebo_ros/lib64 %{buildroot}/%{_libdir}/ros2-iron/lib64
+# fi
+
 rm -rf %{buildroot}/%{_libdir}/ros2-iron/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
 
 # remove __pycache__
@@ -174,14 +227,13 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-iron/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
+find %{buildroot}/%{_libdir}/ros2-iron/{opt,bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-iron/lib*/ -mindepth 1 -maxdepth 1 \
   ! -name pkgconfig ! -name "python*" \
   | sed "s:%{buildroot}/::" >> files.list
 
 touch files_devel.list
-# TODO: is cmake/ necessary? it stems from the yaml vendor
 find %{buildroot}/%{_libdir}/ros2-iron/{lib*/pkgconfig,include/,cmake/,gazebo_ros/include/,share/gazebo_ros/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 

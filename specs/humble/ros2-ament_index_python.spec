@@ -84,6 +84,7 @@ tar --strip-components=1 -xf %{SOURCE0}
 %install
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
+GZ_BUILD_FROM_SURCE=1; export GZ_BUILD_FROM_SOURCE
 
 CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CFLAGS ; \
 CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CXXFLAGS ; \
@@ -118,6 +119,68 @@ colcon \
 # remove wrong buildroot prefixes
 find %{buildroot}/%{_libdir}/ros2-humble/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
 
+# # Move include directory if source path exists
+# if [ -d %{buildroot}/%{_libdir}/ros2-humble/opt/ament_index_python/include ]; then
+#     # If destination path does not exist, create it
+#     if [ ! -d %{buildroot}/%{_libdir}/ros2-humble/include/ament_index_python ]; then
+#         mkdir -p %{buildroot}/%{_libdir}/ros2-humble/include/ament_index_python
+#     fi
+#     # Move the directory
+#     mv -f %{buildroot}/%{_libdir}/ros2-humble/opt/ament_index_python/include/* %{buildroot}/%{_libdir}/ros2-humble/include/ament_index_python
+# fi
+# 
+# # Move share directory if source path exists
+# if [ -d %{buildroot}/%{_libdir}/ros2-humble/opt/ament_index_python/share ]; then
+#     # If destination path does not exist, create it
+#     if [ ! -d %{buildroot}/%{_libdir}/ros2-humble/share ]; then
+#         mkdir -p %{buildroot}/%{_libdir}/ros2-humble/share
+#     fi
+#     # Move the directory
+#     mv -f %{buildroot}/%{_libdir}/ros2-humble/opt/ament_index_python/share %{buildroot}/%{_libdir}/ros2-humble/
+#     find %{buildroot}/%{_libdir}/ros2-humble/share -type f -exec sed -i "s:opt/ament_index_python/::g" {} \;
+# fi
+# 
+# # Move bin directory if source path exists
+# if [ -d %{buildroot}/%{_libdir}/ros2-humble/opt/ament_index_python/bin ]; then
+#     # If destination path does not exist, create it
+#     if [ ! -d %{buildroot}/%{_libdir}/ros2-humble/bin ]; then
+#         mkdir -p %{buildroot}/%{_libdir}/ros2-humble/bin
+#     fi
+#     # Move the directory
+#     mv -f %{buildroot}/%{_libdir}/ros2-humble/opt/ament_index_python/bin %{buildroot}/%{_libdir}/ros2-humble/
+# fi
+# 
+# # Move extra_cmake directory if source path exists
+# if [ -d %{buildroot}/%{_libdir}/ros2-humble/opt/ament_index_python/extra_cmake ]; then
+#     # If destination path does not exist, create it
+#     if [ ! -d %{buildroot}/%{_libdir}/ros2-humble/extra_cmake ]; then
+#         mkdir -p %{buildroot}/%{_libdir}/ros2-humble/extra_cmake
+#     fi
+#     # Move the directory
+#     mv -f %{buildroot}/%{_libdir}/ros2-humble/opt/ament_index_python/extra_cmake %{buildroot}/%{_libdir}/ros2-humble/
+#     find %{buildroot}/%{_libdir}/ros2-humble/extra_cmake -type f -exec sed -i "s:opt/ament_index_python/::g" {} \;
+# fi
+# 
+# # Move lib directory if source path exists
+# if [ -d %{buildroot}/%{_libdir}/ros2-humble/opt/ament_index_python/lib ]; then
+#     # If destination path does not exist, create it
+#     if [ ! -d %{buildroot}/%{_libdir}/ros2-humble/lib ]; then
+#         mkdir -p %{buildroot}/%{_libdir}/ros2-humble/lib
+#     fi
+#     # Move the directory
+#     mv -f %{buildroot}/%{_libdir}/ros2-humble/opt/ament_index_python/lib %{buildroot}/%{_libdir}/ros2-humble/lib
+# fi
+# 
+# # Move lib64 directory if source path exists
+# if [ -d %{buildroot}/%{_libdir}/ros2-humble/opt/ament_index_python/lib64 ]; then
+#     # If destination path does not exist, create it
+#     if [ ! -d %{buildroot}/%{_libdir}/ros2-humble/lib64 ]; then
+#         mkdir -p %{buildroot}/%{_libdir}/ros2-humble/lib64
+#     fi
+#     # Move the directory
+#     mv -f %{buildroot}/%{_libdir}/ros2-humble/opt/ament_index_python/lib64 %{buildroot}/%{_libdir}/ros2-humble/lib64
+# fi
+
 rm -rf %{buildroot}/%{_libdir}/ros2-humble/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
 
 # remove __pycache__
@@ -125,14 +188,13 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-humble/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
+find %{buildroot}/%{_libdir}/ros2-humble/{opt,bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-humble/lib*/ -mindepth 1 -maxdepth 1 \
   ! -name pkgconfig ! -name "python*" \
   | sed "s:%{buildroot}/::" >> files.list
 
 touch files_devel.list
-# TODO: is cmake/ necessary? it stems from the yaml vendor
 find %{buildroot}/%{_libdir}/ros2-humble/{lib*/pkgconfig,include/,cmake/,ament_index_python/include/,share/ament_index_python/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 

@@ -1,0 +1,34 @@
+# Meta Package
+Name:           ros-humble-examples-rclcpp-multithreaded-executor
+Version:        0.15.1
+Release:        1%{?dist}
+License:        Apache License 2.0
+URL:            http://www.ros.org/
+Summary:        Meta package for ros2-humble-examples_rclcpp_multithreaded_executor and its development package to adhere to ubuntu pkg names
+BuildArch: noarch
+
+Requires:       ros2-humble-examples_rclcpp_multithreaded_executor
+Requires:       ros2-humble-examples_rclcpp_multithreaded_executor-devel
+
+Obsoletes: ros-humble-examples-rclcpp-multithreaded-executor < 0.15.1-1
+
+%description
+Package containing example of how to implement a multithreaded
+executor
+
+%build
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%install
+
+%files
+
+%changelog
+* Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.15.1-1
+- update to latest upstream release
+* Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.15.1-1
+- update to latest upstream release
+* Mon Mar 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.15.1-1
+- Initial humble build

@@ -30,13 +30,6 @@ common:
           to:
             type: system
             pkg: tinyxml-devel
-        - libcurl:
-          from:
-            type: ros
-            pkg: libcurl_vendor
-          to:
-            type: system
-            pkg: libcurl-devel
         - octomap:
           from:
             type: ros
@@ -51,13 +44,13 @@ common:
           to:
             type: system
             pkg: fcl-devel
-        - assimp:
-          from:
-            type: ros
-            pkg: rviz_assimp_vendor
-          to:
-            type: system
-            pkg: assimp-devel
+        #- assimp:
+        #  from:
+        #    type: ros
+        #    pkg: rviz_assimp_vendor
+        #  to:
+        #    type: system
+        #    pkg: assimp-devel
         - opencv:
           from:
             type: ros
@@ -137,13 +130,6 @@ common:
           to:
             type: system
             pkg: tinyxml-devel
-        - libcurl:
-          from:
-            type: ros
-            pkg: libcurl_vendor
-          to:
-            type: system
-            pkg: libcurl-devel
         - octomap:
           from:
             type: ros
@@ -158,13 +144,13 @@ common:
           to:
             type: system
             pkg: fcl-devel
-        - assimp:
-          from:
-            type: ros
-            pkg: rviz_assimp_vendor
-          to:
-            type: system
-            pkg: assimp-devel
+        #- assimp:
+        #  from:
+        #    type: ros
+        #    pkg: rviz_assimp_vendor
+        #  to:
+        #    type: system
+        #    pkg: assimp-devel
         - opencv:
           from:
             type: ros
