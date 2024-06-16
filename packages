@@ -1,0 +1,16 @@
+#!/bin/sh
+#
+base_args=" -r -c 'Update to latest release' -b desktop nav2_bringup robot_localization webots_ros2 ros2_controllers ros2_control tf_transformations moveit moveit_visual_tools moveit_hybrid_planning moveit_servo realsense2_description plansys2_core plansys2_bringup "
+jazzy_args=" -r -c 'Update to latest release' -b desktop robot_localization webots_ros2 ros2_controllers ros2_control tf_transformations moveit moveit_visual_tools moveit_hybrid_planning moveit_servo bondcpp behaviortree_cpp diagnostic_updater"
+chroots=" --chroot fedora-39-x86_64 --chroot fedora-40-x86_64 "
+eval "./rosfed.py --distro jazzy ${jazzy_args} ${chroots} " &
+eval "./rosfed.py --distro iron ${base_args} ${chroots} " &
+eval "./rosfed.py --distro humble ${base_args}  turtlebot3_navigation2 ${chroots}"
+
+#base_args=" -b desktop nav2_bringup robot_localization webots_ros2 ros2_controllers ros2_control tf_transformations moveit moveit_visual_tools moveit_hybrid_planning moveit_servo realsense2_description plansys2_core plansys2_bringup -r -c 'Update to latest release' "
+#jazzy_args=" -b ros_core -r -c 'Update to latest release' "
+#chroots=" --chroot fedora-39-x86_64 --chroot fedora-40-x86_64 "
+#echo ${base_args}
+#./rosfed.py --distro iron ${base_args} ${chroots} 
+#echo ./rosfed.py --distro humble ${base_args}  turtlebot3_navigation2 ${chroots} &
+# ./rosfed.py --distro jazzy ${base_args} --chroot fedora-40-x86_64 &
