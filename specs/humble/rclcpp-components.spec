@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-humble-rclcpp-components
-Version:        16.0.8
+Version:        16.0.9
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-humble-rclcpp_components
 Requires:       ros2-humble-rclcpp_components-devel
 
-Obsoletes: ros-humble-rclcpp-components < 16.0.8-1
+Obsoletes: ros-humble-rclcpp-components < 16.0.9-1
 
 %description
 Package containing tools for dynamically loadable components
@@ -25,6 +25,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.16.0.9-1
+- Update to latest release
 * Mon Feb 12 2024 Tarik Viehmann - humble.16.0.8-1
 - update to latest release
 * Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.16.0.7-1

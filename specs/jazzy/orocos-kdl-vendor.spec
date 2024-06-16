@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-orocos-kdl-vendor
-Version:        0.5.0
+Version:        0.5.1
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-orocos_kdl_vendor
 Requires:       ros2-jazzy-orocos_kdl_vendor-devel
 
-Obsoletes: ros-jazzy-orocos-kdl-vendor < 0.5.0-1
+Obsoletes: ros-jazzy-orocos-kdl-vendor < 0.5.1-1
 
 %description
 Wrapper around orocos_kdl, providing nothing but a dependency on
@@ -27,5 +27,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.5.1-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.5.0-1
 - Update to latest release

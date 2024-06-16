@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-humble-nav2-map-server
-Version:        1.1.14
+Version:        1.1.15
 Release:        1%{?dist}
 License:        Apache-2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-humble-nav2_map_server
 Requires:       ros2-humble-nav2_map_server-devel
 
-Obsoletes: ros-humble-nav2-map-server < 1.1.14-1
+Obsoletes: ros-humble-nav2-map-server < 1.1.15-1
 
 %description
 Refactored map server for ROS2 Navigation
@@ -25,6 +25,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.15-1
+- Update to latest release
 * Tue Apr 09 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.14-1
 - Update to latest release
 * Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.13-1

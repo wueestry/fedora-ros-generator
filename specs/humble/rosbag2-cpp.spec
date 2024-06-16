@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-humble-rosbag2-cpp
-Version:        0.15.9
+Version:        0.15.11
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-humble-rosbag2_cpp
 Requires:       ros2-humble-rosbag2_cpp-devel
 
-Obsoletes: ros-humble-rosbag2-cpp < 0.15.9-1
+Obsoletes: ros-humble-rosbag2-cpp < 0.15.11-1
 
 %description
 C++ ROSBag2 client library
@@ -25,6 +25,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.15.11-1
+- Update to latest release
 * Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.15.9-1
 - Update to latest release
 * Sat Oct 21 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.15.8-1

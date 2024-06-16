@@ -1,12 +1,12 @@
 Name:           ros2-iron-nav_2d_utils
-Version:        1.2.7
+Version:        1.2.9
 Release:        1%{?dist}
 Summary:        ROS package nav_2d_utils
 
 License:        BSD-3-Clause
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/SteveMacenski/navigation2-release/archive/release/iron/nav_2d_utils/1.2.7-1.tar.gz#/ros2-iron-nav_2d_utils-1.2.7-source0.tar.gz
+Source0:        https://github.com/SteveMacenski/navigation2-release/archive/release/iron/nav_2d_utils/1.2.9-1.tar.gz#/ros2-iron-nav_2d_utils-1.2.9-source0.tar.gz
 
 Patch0: ros-nav2_dwb_controller.init_variables.patch
 
@@ -62,8 +62,8 @@ Requires:       ros2-iron-std_msgs
 Requires:       ros2-iron-tf2
 Requires:       ros2-iron-tf2_geometry_msgs
 
-Provides:  ros2-iron-nav_2d_utils = 1.2.7-1
-Obsoletes: ros2-iron-nav_2d_utils < 1.2.7-1
+Provides:  ros2-iron-nav_2d_utils = 1.2.9-1
+Obsoletes: ros2-iron-nav_2d_utils < 1.2.9-1
 
 
 
@@ -88,8 +88,8 @@ Requires:       ros2-iron-std_msgs-devel
 Requires:       ros2-iron-tf2-devel
 Requires:       ros2-iron-tf2_geometry_msgs-devel
 
-Provides: ros2-iron-nav_2d_utils-devel = 1.2.7-1
-Obsoletes: ros2-iron-nav_2d_utils-devel < 1.2.7-1
+Provides: ros2-iron-nav_2d_utils-devel = 1.2.9-1
+Obsoletes: ros2-iron-nav_2d_utils-devel < 1.2.9-1
 
 
 %description devel
@@ -261,5 +261,9 @@ done
 
 
 %changelog
+* Wed Jun 05 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.1.2.9-1
+- Update to latest release
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.1.2.8-1
+- Update to latest release
 * Fri Apr 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.1.2.7-1
 - Update to latest release

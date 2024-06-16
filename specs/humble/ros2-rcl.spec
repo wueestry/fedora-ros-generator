@@ -1,12 +1,12 @@
 Name:           ros2-humble-rcl
-Version:        5.3.7
+Version:        5.3.8
 Release:        1%{?dist}
 Summary:        ROS package rcl
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rcl-release/archive/release/humble/rcl/5.3.7-1.tar.gz#/ros2-humble-rcl-5.3.7-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rcl-release/archive/release/humble/rcl/5.3.8-1.tar.gz#/ros2-humble-rcl-5.3.8-source0.tar.gz
 
 
 
@@ -69,8 +69,8 @@ Requires:       ros2-humble-rmw_implementation
 Requires:       ros2-humble-rosidl_runtime_c
 Requires:       ros2-humble-tracetools
 
-Provides:  ros2-humble-rcl = 5.3.7-1
-Obsoletes: ros2-humble-rcl < 5.3.7-1
+Provides:  ros2-humble-rcl = 5.3.8-1
+Obsoletes: ros2-humble-rcl < 5.3.8-1
 
 
 
@@ -105,8 +105,8 @@ Requires:       ros2-humble-rosidl_runtime_c-devel
 Requires:       ros2-humble-test_msgs-devel
 Requires:       ros2-humble-tracetools-devel
 
-Provides: ros2-humble-rcl-devel = 5.3.7-1
-Obsoletes: ros2-humble-rcl-devel < 5.3.7-1
+Provides: ros2-humble-rcl-devel = 5.3.8-1
+Obsoletes: ros2-humble-rcl-devel < 5.3.8-1
 
 
 %description devel
@@ -277,6 +277,8 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.5.3.8-1
+- Update to latest release
 * Mon Feb 12 2024 Tarik Viehmann - humble.5.3.7-1
 - update to latest release
 * Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.5.3.6-1

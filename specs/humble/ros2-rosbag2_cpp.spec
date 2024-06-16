@@ -1,12 +1,12 @@
 Name:           ros2-humble-rosbag2_cpp
-Version:        0.15.9
+Version:        0.15.11
 Release:        1%{?dist}
 Summary:        ROS package rosbag2_cpp
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rosbag2-release/archive/release/humble/rosbag2_cpp/0.15.9-1.tar.gz#/ros2-humble-rosbag2_cpp-0.15.9-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rosbag2-release/archive/release/humble/rosbag2_cpp/0.15.11-1.tar.gz#/ros2-humble-rosbag2_cpp-0.15.11-source0.tar.gz
 
 
 
@@ -73,8 +73,8 @@ Requires:       ros2-humble-rosidl_typesupport_cpp
 Requires:       ros2-humble-rosidl_typesupport_introspection_cpp
 Requires:       ros2-humble-shared_queues_vendor
 
-Provides:  ros2-humble-rosbag2_cpp = 0.15.9-1
-Obsoletes: ros2-humble-rosbag2_cpp < 0.15.9-1
+Provides:  ros2-humble-rosbag2_cpp = 0.15.11-1
+Obsoletes: ros2-humble-rosbag2_cpp < 0.15.11-1
 
 
 
@@ -106,8 +106,8 @@ Requires:       ros2-humble-shared_queues_vendor-devel
 Requires:       ros2-humble-test_msgs-devel
 Requires:       ros2-humble-rosbag2_storage_default_plugins-devel
 
-Provides: ros2-humble-rosbag2_cpp-devel = 0.15.9-1
-Obsoletes: ros2-humble-rosbag2_cpp-devel < 0.15.9-1
+Provides: ros2-humble-rosbag2_cpp-devel = 0.15.11-1
+Obsoletes: ros2-humble-rosbag2_cpp-devel < 0.15.11-1
 
 
 %description devel
@@ -278,6 +278,8 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.15.11-1
+- Update to latest release
 * Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.15.9-1
 - Update to latest release
 * Sat Oct 21 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.15.8-1

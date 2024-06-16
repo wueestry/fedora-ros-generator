@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-zstd_vendor
-Version:        0.26.2
+Version:        0.26.3
 Release:        1%{?dist}
 Summary:        ROS package zstd_vendor
 
 License:        Apache License 2.0
 URL:            https://facebook.github.io/zstd/
 
-Source0:        https://github.com/ros2-gbp/rosbag2-release/archive/release/jazzy/zstd_vendor/0.26.2-1.tar.gz#/ros2-jazzy-zstd_vendor-0.26.2-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rosbag2-release/archive/release/jazzy/zstd_vendor/0.26.3-1.tar.gz#/ros2-jazzy-zstd_vendor-0.26.3-source0.tar.gz
 
 
 BuildArch: noarch
@@ -44,8 +44,8 @@ BuildRequires:  ros2-jazzy-ament_cmake_vendor_package-devel
 BuildRequires:  ros2-jazzy-ament_package-devel
 
 
-Provides:  ros2-jazzy-zstd_vendor = 0.26.2-1
-Obsoletes: ros2-jazzy-zstd_vendor < 0.26.2-1
+Provides:  ros2-jazzy-zstd_vendor = 0.26.3-1
+Obsoletes: ros2-jazzy-zstd_vendor < 0.26.3-1
 
 
 
@@ -60,8 +60,8 @@ Requires:       ros2-jazzy-ament_cmake_vendor_package-devel
 Requires:       libzstd-devel
 Requires:       ros2-jazzy-ament_package-devel
 
-Provides: ros2-jazzy-zstd_vendor-devel = 0.26.2-1
-Obsoletes: ros2-jazzy-zstd_vendor-devel < 0.26.2-1
+Provides: ros2-jazzy-zstd_vendor-devel = 0.26.3-1
+Obsoletes: ros2-jazzy-zstd_vendor-devel < 0.26.3-1
 
 
 %description devel
@@ -232,5 +232,7 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.26.3-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.26.2-1
 - Update to latest release

@@ -1,12 +1,12 @@
 Name:           ros2-iron-controller_manager
-Version:        3.24.0
+Version:        3.25.0
 Release:        1%{?dist}
 Summary:        ROS package controller_manager
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ros2_control-release/archive/release/iron/controller_manager/3.24.0-1.tar.gz#/ros2-iron-controller_manager-3.24.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ros2_control-release/archive/release/iron/controller_manager/3.25.0-1.tar.gz#/ros2-iron-controller_manager-3.25.0-source0.tar.gz
 
 
 
@@ -79,8 +79,8 @@ Requires:       ros2-iron-ros2param
 Requires:       ros2-iron-ros2run
 Requires:       ros2-iron-std_msgs
 
-Provides:  ros2-iron-controller_manager = 3.24.0-1
-Obsoletes: ros2-iron-controller_manager < 3.24.0-1
+Provides:  ros2-iron-controller_manager = 3.25.0-1
+Obsoletes: ros2-iron-controller_manager < 3.25.0-1
 
 
 
@@ -115,8 +115,8 @@ Requires:       ros2-iron-ros2param-devel
 Requires:       ros2-iron-ros2run-devel
 Requires:       ros2-iron-std_msgs-devel
 
-Provides: ros2-iron-controller_manager-devel = 3.24.0-1
-Obsoletes: ros2-iron-controller_manager-devel < 3.24.0-1
+Provides: ros2-iron-controller_manager-devel = 3.25.0-1
+Obsoletes: ros2-iron-controller_manager-devel < 3.25.0-1
 
 
 %description devel
@@ -287,5 +287,7 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.3.25.0-1
+- Update to latest release
 * Fri Apr 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.3.24.0-1
 - Update to latest release

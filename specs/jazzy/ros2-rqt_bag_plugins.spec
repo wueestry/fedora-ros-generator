@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-rqt_bag_plugins
-Version:        1.5.2
+Version:        1.5.3
 Release:        1%{?dist}
 Summary:        ROS package rqt_bag_plugins
 
 License:        BSD
 URL:            http://wiki.ros.org/rqt_bag
 
-Source0:        https://github.com/ros2-gbp/rqt_bag-release/archive/release/jazzy/rqt_bag_plugins/1.5.2-2.tar.gz#/ros2-jazzy-rqt_bag_plugins-1.5.2-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rqt_bag-release/archive/release/jazzy/rqt_bag_plugins/1.5.3-1.tar.gz#/ros2-jazzy-rqt_bag_plugins-1.5.3-source0.tar.gz
 
 
 BuildArch: noarch
@@ -53,8 +53,8 @@ Requires:       ros2-jazzy-rqt_plot
 Requires:       ros2-jazzy-sensor_msgs
 Requires:       ros2-jazzy-std_msgs
 
-Provides:  ros2-jazzy-rqt_bag_plugins = 1.5.2-1
-Obsoletes: ros2-jazzy-rqt_bag_plugins < 1.5.2-1
+Provides:  ros2-jazzy-rqt_bag_plugins = 1.5.3-1
+Obsoletes: ros2-jazzy-rqt_bag_plugins < 1.5.3-1
 
 
 
@@ -77,8 +77,8 @@ Requires:       ros2-jazzy-rqt_plot-devel
 Requires:       ros2-jazzy-sensor_msgs-devel
 Requires:       ros2-jazzy-std_msgs-devel
 
-Provides: ros2-jazzy-rqt_bag_plugins-devel = 1.5.2-1
-Obsoletes: ros2-jazzy-rqt_bag_plugins-devel < 1.5.2-1
+Provides: ros2-jazzy-rqt_bag_plugins-devel = 1.5.3-1
+Obsoletes: ros2-jazzy-rqt_bag_plugins-devel < 1.5.3-1
 
 
 %description devel
@@ -249,5 +249,7 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.1.5.3-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.1.5.2-1
 - Update to latest release

@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-humble-ros2cli-test-interfaces
-Version:        0.18.9
+Version:        0.18.10
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-humble-ros2cli_test_interfaces
 Requires:       ros2-humble-ros2cli_test_interfaces-devel
 
-Obsoletes: ros-humble-ros2cli-test-interfaces < 0.18.9-1
+Obsoletes: ros-humble-ros2cli-test-interfaces < 0.18.10-1
 
 %description
 A package containing interface definitions for testing ros2cli.
@@ -25,6 +25,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.18.10-1
+- Update to latest release
 * Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.18.9-1
 - Update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.18.7-1

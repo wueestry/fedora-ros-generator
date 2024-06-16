@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-humble-ament-lint
-Version:        0.12.10
+Version:        0.12.11
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-humble-ament_lint
 Requires:       ros2-humble-ament_lint-devel
 
-Obsoletes: ros-humble-ament-lint < 0.12.10-1
+Obsoletes: ros-humble-ament-lint < 0.12.11-1
 
 %description
 Providing common API for ament linter packages.
@@ -25,6 +25,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.12.11-1
+- Update to latest release
 * Mon Feb 12 2024 Tarik Viehmann - humble.0.12.10-1
 - update to latest release
 * Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.12.9-1

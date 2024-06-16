@@ -1,12 +1,12 @@
 Name:           ros2-humble-ros2doctor
-Version:        0.18.9
+Version:        0.18.10
 Release:        1%{?dist}
 Summary:        ROS package ros2doctor
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ros2cli-release/archive/release/humble/ros2doctor/0.18.9-1.tar.gz#/ros2-humble-ros2doctor-0.18.9-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ros2cli-release/archive/release/humble/ros2doctor/0.18.10-1.tar.gz#/ros2-humble-ros2doctor-0.18.10-source0.tar.gz
 
 
 BuildArch: noarch
@@ -61,8 +61,8 @@ Requires:       ros2-humble-rclpy
 Requires:       ros2-humble-ros2cli
 Requires:       ros2-humble-ros_environment
 
-Provides:  ros2-humble-ros2doctor = 0.18.9-1
-Obsoletes: ros2-humble-ros2doctor < 0.18.9-1
+Provides:  ros2-humble-ros2doctor = 0.18.10-1
+Obsoletes: ros2-humble-ros2doctor < 0.18.10-1
 
 
 
@@ -89,8 +89,8 @@ Requires:       ros2-humble-ament_index_python-devel
 Requires:       ros2-humble-rclpy-devel
 Requires:       ros2-humble-ros_environment-devel
 
-Provides: ros2-humble-ros2doctor-devel = 0.18.9-1
-Obsoletes: ros2-humble-ros2doctor-devel < 0.18.9-1
+Provides: ros2-humble-ros2doctor-devel = 0.18.10-1
+Obsoletes: ros2-humble-ros2doctor-devel < 0.18.10-1
 
 
 %description devel
@@ -261,6 +261,8 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.18.10-1
+- Update to latest release
 * Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.18.9-1
 - Update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.18.7-1

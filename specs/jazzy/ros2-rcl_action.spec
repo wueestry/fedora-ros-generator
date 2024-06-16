@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-rcl_action
-Version:        9.2.2
+Version:        9.2.3
 Release:        1%{?dist}
 Summary:        ROS package rcl_action
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rcl-release/archive/release/jazzy/rcl_action/9.2.2-1.tar.gz#/ros2-jazzy-rcl_action-9.2.2-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rcl-release/archive/release/jazzy/rcl_action/9.2.3-1.tar.gz#/ros2-jazzy-rcl_action-9.2.3-source0.tar.gz
 
 
 
@@ -58,8 +58,8 @@ Requires:       ros2-jazzy-rcutils
 Requires:       ros2-jazzy-rmw
 Requires:       ros2-jazzy-rosidl_runtime_c
 
-Provides:  ros2-jazzy-rcl_action = 9.2.2-1
-Obsoletes: ros2-jazzy-rcl_action < 9.2.2-1
+Provides:  ros2-jazzy-rcl_action = 9.2.3-1
+Obsoletes: ros2-jazzy-rcl_action < 9.2.3-1
 
 
 
@@ -84,8 +84,8 @@ Requires:       ros2-jazzy-rmw_implementation_cmake-devel
 Requires:       ros2-jazzy-rosidl_runtime_c-devel
 Requires:       ros2-jazzy-test_msgs-devel
 
-Provides: ros2-jazzy-rcl_action-devel = 9.2.2-1
-Obsoletes: ros2-jazzy-rcl_action-devel < 9.2.2-1
+Provides: ros2-jazzy-rcl_action-devel = 9.2.3-1
+Obsoletes: ros2-jazzy-rcl_action-devel < 9.2.3-1
 
 
 %description devel
@@ -256,5 +256,7 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.9.2.3-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.9.2.2-1
 - Update to latest release

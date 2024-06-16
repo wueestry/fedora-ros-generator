@@ -1,12 +1,12 @@
 Name:           ros2-humble-nav2_dwb_controller
-Version:        1.1.14
+Version:        1.1.15
 Release:        1%{?dist}
 Summary:        ROS package nav2_dwb_controller
 
 License:        Apache-2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/SteveMacenski/navigation2-release/archive/release/humble/nav2_dwb_controller/1.1.14-1.tar.gz#/ros2-humble-nav2_dwb_controller-1.1.14-source0.tar.gz
+Source0:        https://github.com/SteveMacenski/navigation2-release/archive/release/humble/nav2_dwb_controller/1.1.15-1.tar.gz#/ros2-humble-nav2_dwb_controller-1.1.15-source0.tar.gz
 
 
 BuildArch: noarch
@@ -56,8 +56,8 @@ Requires:       ros2-humble-dwb_plugins
 Requires:       ros2-humble-nav_2d_msgs
 Requires:       ros2-humble-nav_2d_utils
 
-Provides:  ros2-humble-nav2_dwb_controller = 1.1.14-1
-Obsoletes: ros2-humble-nav2_dwb_controller < 1.1.14-1
+Provides:  ros2-humble-nav2_dwb_controller = 1.1.15-1
+Obsoletes: ros2-humble-nav2_dwb_controller < 1.1.15-1
 
 
 
@@ -77,8 +77,8 @@ Requires:       ros2-humble-dwb_plugins-devel
 Requires:       ros2-humble-nav_2d_msgs-devel
 Requires:       ros2-humble-nav_2d_utils-devel
 
-Provides: ros2-humble-nav2_dwb_controller-devel = 1.1.14-1
-Obsoletes: ros2-humble-nav2_dwb_controller-devel < 1.1.14-1
+Provides: ros2-humble-nav2_dwb_controller-devel = 1.1.15-1
+Obsoletes: ros2-humble-nav2_dwb_controller-devel < 1.1.15-1
 
 
 %description devel
@@ -249,6 +249,8 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.15-1
+- Update to latest release
 * Tue Apr 09 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.14-1
 - Update to latest release
 * Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.13-1

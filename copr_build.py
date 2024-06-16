@@ -166,6 +166,7 @@ class CoprBuilder:
                     pkg_version = node.pkg.get_version_release()
                     if not self.pkg_is_built(chroot, node.pkg.get_meta_pkg_name(),
                                          pkg_version):
+                      build_progress = tree.get_build_progress()
                       cprint(
                           '{}/{}/{}: Also build meta package for {}'.format(
                               build_progress['building'], build_progress['finished'],
@@ -200,6 +201,7 @@ class CoprBuilder:
                 pkg_version = node.pkg.get_version_release()
                 if not self.pkg_is_built(chroot, node.pkg.get_meta_pkg_name(),
                                      pkg_version):
+                  build_progress = tree.get_build_progress()
                   cprint(
                       '{}/{}/{}: Also build meta package for {}'.format(
                           build_progress['building'], build_progress['finished'],
@@ -224,6 +226,7 @@ class CoprBuilder:
 
     build_cache = {}
     new_build = True
+    cache_refreshed = False
     def get_from_cache(self, pkg_name):
         matches = []
 
@@ -247,6 +250,7 @@ class CoprBuilder:
         if self.new_build:
             self.build_cache = self.copr_client.build_proxy.get_list(self.owner, self.project)
             self.new_build = False
+            self.cache_refreshed = True
         for build in self.get_from_cache(pkg_name):
             if build.state != 'succeeded':
                 continue
@@ -256,11 +260,17 @@ class CoprBuilder:
                 r'(.+?)(?:\.(?:fc|rhel|f\d+|epel|el)\d+)?',
                 build['source_package']['version']).group(1)
             if build_version == (pkg_version):
+                self.cache_refreshed = False
                 return True
             print(build_version)
             print(pkg_version)
             print("version mismatch")
-        return False
+        if not self.cache_refreshed:
+          self.new_build = True
+          return self.pkg_is_built(chroot, pkg_name, pkg_version)
+        else:
+          self.new_build = True
+          return False
 
     def wait_for_completion(self, builds):
         """ Wait until all given builds are finished.

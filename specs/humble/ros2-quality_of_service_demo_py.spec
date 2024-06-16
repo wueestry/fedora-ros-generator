@@ -1,12 +1,12 @@
 Name:           ros2-humble-quality_of_service_demo_py
-Version:        0.20.3
+Version:        0.20.4
 Release:        1%{?dist}
 Summary:        ROS package quality_of_service_demo_py
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/demos-release/archive/release/humble/quality_of_service_demo_py/0.20.3-1.tar.gz#/ros2-humble-quality_of_service_demo_py-0.20.3-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/demos-release/archive/release/humble/quality_of_service_demo_py/0.20.4-1.tar.gz#/ros2-humble-quality_of_service_demo_py-0.20.4-source0.tar.gz
 
 
 BuildArch: noarch
@@ -47,8 +47,8 @@ BuildRequires:  ros2-humble-ament_pep257-devel
 Requires:       ros2-humble-rclpy
 Requires:       ros2-humble-std_msgs
 
-Provides:  ros2-humble-quality_of_service_demo_py = 0.20.3-1
-Obsoletes: ros2-humble-quality_of_service_demo_py < 0.20.3-1
+Provides:  ros2-humble-quality_of_service_demo_py = 0.20.4-1
+Obsoletes: ros2-humble-quality_of_service_demo_py < 0.20.4-1
 
 
 
@@ -66,8 +66,8 @@ Requires:       ros2-humble-ament_pep257-devel
 Requires:       ros2-humble-rclpy-devel
 Requires:       ros2-humble-std_msgs-devel
 
-Provides: ros2-humble-quality_of_service_demo_py-devel = 0.20.3-1
-Obsoletes: ros2-humble-quality_of_service_demo_py-devel < 0.20.3-1
+Provides: ros2-humble-quality_of_service_demo_py-devel = 0.20.4-1
+Obsoletes: ros2-humble-quality_of_service_demo_py-devel < 0.20.4-1
 
 
 %description devel
@@ -238,6 +238,8 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.20.4-1
+- Update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.20.3-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.20.3-1

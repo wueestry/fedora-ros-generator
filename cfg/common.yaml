@@ -23,13 +23,13 @@ common:
           to:
             type: system
             pkg: python3-qt5
-        - tinyxml:
-          from:
-            type: ros
-            pkg: tinyxml_vendor
-          to:
-            type: system
-            pkg: tinyxml-devel
+        # - tinyxml:
+        #   from:
+        #     type: ros
+        #     pkg: tinyxml_vendor
+        #   to:
+        #     type: system
+        #     pkg: tinyxml-devel
         - octomap:
           from:
             type: ros
@@ -123,13 +123,13 @@ common:
               #  to:
               #    type: system
               #    pkg: yaml-cpp-devel
-        - tinyxml:
-          from:
-            type: ros
-            pkg: tinyxml_vendor
-          to:
-            type: system
-            pkg: tinyxml-devel
+        # - tinyxml:
+        #   from:
+        #     type: ros
+        #     pkg: tinyxml_vendor
+        #   to:
+        #     type: system
+        #     pkg: tinyxml-devel
         - octomap:
           from:
             type: ros

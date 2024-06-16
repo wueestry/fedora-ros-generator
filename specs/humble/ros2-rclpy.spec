@@ -1,12 +1,12 @@
 Name:           ros2-humble-rclpy
-Version:        3.3.12
+Version:        3.3.13
 Release:        1%{?dist}
 Summary:        ROS package rclpy
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rclpy-release/archive/release/humble/rclpy/3.3.12-1.tar.gz#/ros2-humble-rclpy-3.3.12-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rclpy-release/archive/release/humble/rclpy/3.3.13-1.tar.gz#/ros2-humble-rclpy-3.3.13-source0.tar.gz
 
 
 
@@ -76,8 +76,8 @@ Requires:       ros2-humble-rosidl_runtime_c
 Requires:       ros2-humble-rpyutils
 Requires:       ros2-humble-unique_identifier_msgs
 
-Provides:  ros2-humble-rclpy = 3.3.12-1
-Obsoletes: ros2-humble-rclpy < 3.3.12-1
+Provides:  ros2-humble-rclpy = 3.3.13-1
+Obsoletes: ros2-humble-rclpy < 3.3.13-1
 
 
 
@@ -116,8 +116,8 @@ Requires:       ros2-humble-rcl_interfaces-devel
 Requires:       ros2-humble-rosgraph_msgs-devel
 Requires:       ros2-humble-rpyutils-devel
 
-Provides: ros2-humble-rclpy-devel = 3.3.12-1
-Obsoletes: ros2-humble-rclpy-devel < 3.3.12-1
+Provides: ros2-humble-rclpy-devel = 3.3.13-1
+Obsoletes: ros2-humble-rclpy-devel < 3.3.13-1
 
 
 %description devel
@@ -288,6 +288,8 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.3.13-1
+- Update to latest release
 * Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.3.12-1
 - Update to latest release
 * Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.3.11-1

@@ -1,12 +1,12 @@
 Name:           ros2-iron-tf2_eigen_kdl
-Version:        0.31.6
+Version:        0.31.7
 Release:        1%{?dist}
 Summary:        ROS package tf2_eigen_kdl
 
 License:        BSD
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/geometry2-release/archive/release/iron/tf2_eigen_kdl/0.31.6-1.tar.gz#/ros2-iron-tf2_eigen_kdl-0.31.6-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/geometry2-release/archive/release/iron/tf2_eigen_kdl/0.31.7-1.tar.gz#/ros2-iron-tf2_eigen_kdl-0.31.7-source0.tar.gz
 
 Patch0: ros-tf2_eigen_kdl.remove-orocos-kdl-vendor.patch
 
@@ -50,8 +50,8 @@ BuildRequires:  ros2-iron-tf2-devel
 Requires:       ros2-iron-orocos_kdl_vendor
 Requires:       ros2-iron-tf2
 
-Provides:  ros2-iron-tf2_eigen_kdl = 0.31.6-1
-Obsoletes: ros2-iron-tf2_eigen_kdl < 0.31.6-1
+Provides:  ros2-iron-tf2_eigen_kdl = 0.31.7-1
+Obsoletes: ros2-iron-tf2_eigen_kdl < 0.31.7-1
 
 
 
@@ -70,8 +70,8 @@ Requires:       ros2-iron-ament_package-devel
 Requires:       ros2-iron-orocos_kdl_vendor-devel
 Requires:       ros2-iron-tf2-devel
 
-Provides: ros2-iron-tf2_eigen_kdl-devel = 0.31.6-1
-Obsoletes: ros2-iron-tf2_eigen_kdl-devel < 0.31.6-1
+Provides: ros2-iron-tf2_eigen_kdl-devel = 0.31.7-1
+Obsoletes: ros2-iron-tf2_eigen_kdl-devel < 0.31.7-1
 
 
 %description devel
@@ -243,5 +243,7 @@ done
 
 
 %changelog
+* Wed Jun 05 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.0.31.7-1
+- Update to latest release
 * Fri Apr 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.0.31.6-1
 - Update to latest release

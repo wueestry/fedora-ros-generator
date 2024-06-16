@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-imu_sensor_broadcaster
-Version:        4.7.0
+Version:        4.9.0
 Release:        1%{?dist}
 Summary:        ROS package imu_sensor_broadcaster
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ros2_controllers-release/archive/release/jazzy/imu_sensor_broadcaster/4.7.0-2.tar.gz#/ros2-jazzy-imu_sensor_broadcaster-4.7.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ros2_controllers-release/archive/release/jazzy/imu_sensor_broadcaster/4.9.0-1.tar.gz#/ros2-jazzy-imu_sensor_broadcaster-4.9.0-source0.tar.gz
 
 
 
@@ -65,8 +65,8 @@ Requires:       ros2-jazzy-rclcpp_lifecycle
 Requires:       ros2-jazzy-realtime_tools
 Requires:       ros2-jazzy-sensor_msgs
 
-Provides:  ros2-jazzy-imu_sensor_broadcaster = 4.7.0-1
-Obsoletes: ros2-jazzy-imu_sensor_broadcaster < 4.7.0-1
+Provides:  ros2-jazzy-imu_sensor_broadcaster = 4.9.0-1
+Obsoletes: ros2-jazzy-imu_sensor_broadcaster < 4.9.0-1
 
 
 
@@ -94,8 +94,8 @@ Requires:       ros2-jazzy-realtime_tools-devel
 Requires:       ros2-jazzy-ros2_control_test_assets-devel
 Requires:       ros2-jazzy-sensor_msgs-devel
 
-Provides: ros2-jazzy-imu_sensor_broadcaster-devel = 4.7.0-1
-Obsoletes: ros2-jazzy-imu_sensor_broadcaster-devel < 4.7.0-1
+Provides: ros2-jazzy-imu_sensor_broadcaster-devel = 4.9.0-1
+Obsoletes: ros2-jazzy-imu_sensor_broadcaster-devel < 4.9.0-1
 
 
 %description devel
@@ -266,5 +266,9 @@ done
 
 
 %changelog
+* Wed Jun 05 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.9.0-1
+- Update to latest release
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.8.0-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.7.0-1
 - Update to latest release

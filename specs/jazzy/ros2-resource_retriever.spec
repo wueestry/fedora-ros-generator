@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-resource_retriever
-Version:        3.4.1
+Version:        3.4.2
 Release:        1%{?dist}
 Summary:        ROS package resource_retriever
 
 License:        BSD
 URL:            http://ros.org/wiki/resource_retriever
 
-Source0:        https://github.com/ros2-gbp/resource_retriever-release/archive/release/jazzy/resource_retriever/3.4.1-2.tar.gz#/ros2-jazzy-resource_retriever-3.4.1-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/resource_retriever-release/archive/release/jazzy/resource_retriever/3.4.2-2.tar.gz#/ros2-jazzy-resource_retriever-3.4.2-source0.tar.gz
 
 
 
@@ -53,8 +53,8 @@ Requires:       ros2-jazzy-ament_index_cpp
 Requires:       ros2-jazzy-ament_index_python
 Requires:       ros2-jazzy-libcurl_vendor
 
-Provides:  ros2-jazzy-resource_retriever = 3.4.1-1
-Obsoletes: ros2-jazzy-resource_retriever < 3.4.1-1
+Provides:  ros2-jazzy-resource_retriever = 3.4.2-1
+Obsoletes: ros2-jazzy-resource_retriever < 3.4.2-1
 
 
 
@@ -81,8 +81,8 @@ Requires:       ros2-jazzy-ament_package-devel
 Requires:       ros2-jazzy-libcurl_vendor-devel
 Requires:       ros2-jazzy-python_cmake_module-devel
 
-Provides: ros2-jazzy-resource_retriever-devel = 3.4.1-1
-Obsoletes: ros2-jazzy-resource_retriever-devel < 3.4.1-1
+Provides: ros2-jazzy-resource_retriever-devel = 3.4.2-1
+Obsoletes: ros2-jazzy-resource_retriever-devel < 3.4.2-1
 
 
 %description devel
@@ -253,5 +253,7 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.3.4.2-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.3.4.1-1
 - Update to latest release

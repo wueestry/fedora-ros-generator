@@ -1,12 +1,12 @@
 Name:           ros2-humble-rqt_bag_plugins
-Version:        1.1.4
+Version:        1.1.5
 Release:        1%{?dist}
 Summary:        ROS package rqt_bag_plugins
 
 License:        BSD
 URL:            http://wiki.ros.org/rqt_bag
 
-Source0:        https://github.com/ros2-gbp/rqt_bag-release/archive/release/humble/rqt_bag_plugins/1.1.4-1.tar.gz#/ros2-humble-rqt_bag_plugins-1.1.4-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rqt_bag-release/archive/release/humble/rqt_bag_plugins/1.1.5-1.tar.gz#/ros2-humble-rqt_bag_plugins-1.1.5-source0.tar.gz
 
 
 BuildArch: noarch
@@ -52,8 +52,8 @@ Requires:       ros2-humble-rqt_plot
 Requires:       ros2-humble-sensor_msgs
 Requires:       ros2-humble-std_msgs
 
-Provides:  ros2-humble-rqt_bag_plugins = 1.1.4-1
-Obsoletes: ros2-humble-rqt_bag_plugins < 1.1.4-1
+Provides:  ros2-humble-rqt_bag_plugins = 1.1.5-1
+Obsoletes: ros2-humble-rqt_bag_plugins < 1.1.5-1
 
 
 
@@ -75,8 +75,8 @@ Requires:       ros2-humble-rqt_plot-devel
 Requires:       ros2-humble-sensor_msgs-devel
 Requires:       ros2-humble-std_msgs-devel
 
-Provides: ros2-humble-rqt_bag_plugins-devel = 1.1.4-1
-Obsoletes: ros2-humble-rqt_bag_plugins-devel < 1.1.4-1
+Provides: ros2-humble-rqt_bag_plugins-devel = 1.1.5-1
+Obsoletes: ros2-humble-rqt_bag_plugins-devel < 1.1.5-1
 
 
 %description devel
@@ -247,6 +247,8 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.5-1
+- Update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.4-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.4-1

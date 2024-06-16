@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-dummy_sensors
-Version:        0.33.2
+Version:        0.33.3
 Release:        1%{?dist}
 Summary:        ROS package dummy_sensors
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/demos-release/archive/release/jazzy/dummy_sensors/0.33.2-2.tar.gz#/ros2-jazzy-dummy_sensors-0.33.2-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/demos-release/archive/release/jazzy/dummy_sensors/0.33.3-1.tar.gz#/ros2-jazzy-dummy_sensors-0.33.3-source0.tar.gz
 
 
 
@@ -48,8 +48,8 @@ BuildRequires:  ros2-jazzy-sensor_msgs-devel
 Requires:       ros2-jazzy-rclcpp
 Requires:       ros2-jazzy-sensor_msgs
 
-Provides:  ros2-jazzy-dummy_sensors = 0.33.2-1
-Obsoletes: ros2-jazzy-dummy_sensors < 0.33.2-1
+Provides:  ros2-jazzy-dummy_sensors = 0.33.3-1
+Obsoletes: ros2-jazzy-dummy_sensors < 0.33.3-1
 
 
 
@@ -67,8 +67,8 @@ Requires:       ros2-jazzy-ament_package-devel
 Requires:       ros2-jazzy-rclcpp-devel
 Requires:       ros2-jazzy-sensor_msgs-devel
 
-Provides: ros2-jazzy-dummy_sensors-devel = 0.33.2-1
-Obsoletes: ros2-jazzy-dummy_sensors-devel < 0.33.2-1
+Provides: ros2-jazzy-dummy_sensors-devel = 0.33.3-1
+Obsoletes: ros2-jazzy-dummy_sensors-devel < 0.33.3-1
 
 
 %description devel
@@ -239,5 +239,7 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.33.3-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.33.2-1
 - Update to latest release

@@ -8,7 +8,6 @@ URL:            https://github.com/ros2/rviz/blob/ros2/README.md
 
 Source0:        https://github.com/ros2-gbp/rviz-release/archive/release/iron/rviz_rendering/12.4.7-1.tar.gz#/ros2-iron-rviz_rendering-12.4.7-source0.tar.gz
 
-Patch0: ros-rviz_rendering.remove-assimp-vendor.patch
 
 
 # common BRs
@@ -106,7 +105,6 @@ applications that use %{name}.
 
 %setup -c -T
 tar --strip-components=1 -xf %{SOURCE0}
-%patch 0 -p1
 
 %build
 # nothing to do here

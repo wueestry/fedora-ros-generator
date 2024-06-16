@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-rmw_cyclonedds_cpp
-Version:        2.2.0
+Version:        2.2.1
 Release:        1%{?dist}
 Summary:        ROS package rmw_cyclonedds_cpp
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rmw_cyclonedds-release/archive/release/jazzy/rmw_cyclonedds_cpp/2.2.0-2.tar.gz#/ros2-jazzy-rmw_cyclonedds_cpp-2.2.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rmw_cyclonedds-release/archive/release/jazzy/rmw_cyclonedds_cpp/2.2.1-1.tar.gz#/ros2-jazzy-rmw_cyclonedds_cpp-2.2.1-source0.tar.gz
 
 
 
@@ -63,8 +63,8 @@ Requires:       ros2-jazzy-rosidl_typesupport_introspection_c
 Requires:       ros2-jazzy-rosidl_typesupport_introspection_cpp
 Requires:       ros2-jazzy-tracetools
 
-Provides:  ros2-jazzy-rmw_cyclonedds_cpp = 2.2.0-1
-Obsoletes: ros2-jazzy-rmw_cyclonedds_cpp < 2.2.0-1
+Provides:  ros2-jazzy-rmw_cyclonedds_cpp = 2.2.1-1
+Obsoletes: ros2-jazzy-rmw_cyclonedds_cpp < 2.2.1-1
 
 
 
@@ -90,8 +90,8 @@ Requires:       ros2-jazzy-rosidl_typesupport_introspection_c-devel
 Requires:       ros2-jazzy-rosidl_typesupport_introspection_cpp-devel
 Requires:       ros2-jazzy-tracetools-devel
 
-Provides: ros2-jazzy-rmw_cyclonedds_cpp-devel = 2.2.0-1
-Obsoletes: ros2-jazzy-rmw_cyclonedds_cpp-devel < 2.2.0-1
+Provides: ros2-jazzy-rmw_cyclonedds_cpp-devel = 2.2.1-1
+Obsoletes: ros2-jazzy-rmw_cyclonedds_cpp-devel < 2.2.1-1
 
 
 %description devel
@@ -262,5 +262,7 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.2.1-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.2.0-1
 - Update to latest release

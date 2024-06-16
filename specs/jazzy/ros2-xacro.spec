@@ -8,7 +8,6 @@ URL:            http://ros.org/wiki/xacro
 
 Source0:        https://github.com/ros2-gbp/xacro-release/archive/release/jazzy/xacro/2.0.11-2.tar.gz#/ros2-jazzy-xacro-2.0.11-source0.tar.gz
 
-Patch0: ros2.xacro.regex_fix.patch
 
 BuildArch: noarch
 
@@ -85,7 +84,6 @@ applications that use %{name}.
 
 %setup -c -T
 tar --strip-components=1 -xf %{SOURCE0}
-%patch 0 -p1
 
 %build
 # nothing to do here

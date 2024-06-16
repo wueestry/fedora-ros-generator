@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-desktop
-Version:        0.10.0
+Version:        0.11.0
 Release:        1%{?dist}
 Summary:        ROS package desktop
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/variants-release/archive/release/jazzy/desktop/0.10.0-4.tar.gz#/ros2-jazzy-desktop-0.10.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/variants-release/archive/release/jazzy/desktop/0.11.0-1.tar.gz#/ros2-jazzy-desktop-0.11.0-source0.tar.gz
 
 
 BuildArch: noarch
@@ -90,8 +90,8 @@ Requires:       ros2-jazzy-tlsf_cpp
 Requires:       ros2-jazzy-topic_monitor
 Requires:       ros2-jazzy-turtlesim
 
-Provides:  ros2-jazzy-desktop = 0.10.0-1
-Obsoletes: ros2-jazzy-desktop < 0.10.0-1
+Provides:  ros2-jazzy-desktop = 0.11.0-1
+Obsoletes: ros2-jazzy-desktop < 0.11.0-1
 
 
 
@@ -153,8 +153,8 @@ Requires:       ros2-jazzy-tlsf_cpp-devel
 Requires:       ros2-jazzy-topic_monitor-devel
 Requires:       ros2-jazzy-turtlesim-devel
 
-Provides: ros2-jazzy-desktop-devel = 0.10.0-1
-Obsoletes: ros2-jazzy-desktop-devel < 0.10.0-1
+Provides: ros2-jazzy-desktop-devel = 0.11.0-1
+Obsoletes: ros2-jazzy-desktop-devel < 0.11.0-1
 
 
 %description devel
@@ -325,5 +325,7 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.11.0-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.10.0-1
 - Update to latest release

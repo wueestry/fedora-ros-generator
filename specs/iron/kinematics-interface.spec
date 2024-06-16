@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-iron-kinematics-interface
-Version:        1.0.0
+Version:        1.1.0
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-iron-kinematics_interface
 Requires:       ros2-iron-kinematics_interface-devel
 
-Obsoletes: ros-iron-kinematics-interface < 1.0.0-1
+Obsoletes: ros-iron-kinematics-interface < 1.1.0-1
 
 %description
 Kinematics interface for ROS 2 control
@@ -25,5 +25,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.1.1.0-1
+- Update to latest release
 * Fri Apr 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.1.0.0-1
 - Update to latest release

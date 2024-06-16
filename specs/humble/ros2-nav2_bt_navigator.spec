@@ -1,12 +1,12 @@
 Name:           ros2-humble-nav2_bt_navigator
-Version:        1.1.14
+Version:        1.1.15
 Release:        1%{?dist}
 Summary:        ROS package nav2_bt_navigator
 
 License:        Apache-2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/SteveMacenski/navigation2-release/archive/release/humble/nav2_bt_navigator/1.1.14-1.tar.gz#/ros2-humble-nav2_bt_navigator-1.1.14-source0.tar.gz
+Source0:        https://github.com/SteveMacenski/navigation2-release/archive/release/humble/nav2_bt_navigator/1.1.15-1.tar.gz#/ros2-humble-nav2_bt_navigator-1.1.15-source0.tar.gz
 
 
 
@@ -69,8 +69,8 @@ Requires:       ros2-humble-rclcpp_lifecycle
 Requires:       ros2-humble-std_msgs
 Requires:       ros2-humble-tf2_ros
 
-Provides:  ros2-humble-nav2_bt_navigator = 1.1.14-1
-Obsoletes: ros2-humble-nav2_bt_navigator < 1.1.14-1
+Provides:  ros2-humble-nav2_bt_navigator = 1.1.15-1
+Obsoletes: ros2-humble-nav2_bt_navigator < 1.1.15-1
 
 
 
@@ -99,8 +99,8 @@ Requires:       ros2-humble-std_msgs-devel
 Requires:       ros2-humble-std_srvs-devel
 Requires:       ros2-humble-tf2_ros-devel
 
-Provides: ros2-humble-nav2_bt_navigator-devel = 1.1.14-1
-Obsoletes: ros2-humble-nav2_bt_navigator-devel < 1.1.14-1
+Provides: ros2-humble-nav2_bt_navigator-devel = 1.1.15-1
+Obsoletes: ros2-humble-nav2_bt_navigator-devel < 1.1.15-1
 
 
 %description devel
@@ -271,6 +271,8 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.15-1
+- Update to latest release
 * Tue Apr 09 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.14-1
 - Update to latest release
 * Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.13-1

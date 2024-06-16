@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-humble-realsense2-camera-msgs
-Version:        4.54.1
+Version:        4.55.1
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/wiki/RealSense
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-humble-realsense2_camera_msgs
 Requires:       ros2-humble-realsense2_camera_msgs-devel
 
-Obsoletes: ros-humble-realsense2-camera-msgs < 4.54.1-1
+Obsoletes: ros-humble-realsense2-camera-msgs < 4.55.1-1
 
 %description
 RealSense camera_msgs package containing realsense camera messages
@@ -26,6 +26,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Wed Jun 05 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.4.55.1-1
+- Update to latest release
 * Thu Feb 22 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.4.54.1-1
 - update to latest release
 * Thu May 04 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.4.51.1-2

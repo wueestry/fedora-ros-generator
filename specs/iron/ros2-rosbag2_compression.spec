@@ -8,7 +8,6 @@ URL:            http://www.ros.org/
 
 Source0:        https://github.com/ros2-gbp/rosbag2-release/archive/release/iron/rosbag2_compression/0.22.6-1.tar.gz#/ros2-iron-rosbag2_compression-0.22.6-source0.tar.gz
 
-Patch0: ros2-rosbag2_compression.cstdint.patch
 
 
 # common BRs
@@ -94,7 +93,6 @@ applications that use %{name}.
 
 %setup -c -T
 tar --strip-components=1 -xf %{SOURCE0}
-%patch 0 -p1
 
 %build
 # nothing to do here

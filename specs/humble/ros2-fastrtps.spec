@@ -1,12 +1,12 @@
 Name:           ros2-humble-fastrtps
-Version:        2.6.7
+Version:        2.6.8
 Release:        1%{?dist}
 Summary:        ROS package fastrtps
 
 License:        Apache 2.0
 URL:            https://www.eprosima.com/
 
-Source0:        https://github.com/ros2-gbp/fastrtps-release/archive/release/humble/fastrtps/2.6.7-1.tar.gz#/ros2-humble-fastrtps-2.6.7-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/fastrtps-release/archive/release/humble/fastrtps/2.6.8-1.tar.gz#/ros2-humble-fastrtps-2.6.8-source0.tar.gz
 
 
 
@@ -49,8 +49,8 @@ BuildRequires:  ros2-humble-foonathan_memory_vendor-devel
 Requires:       ros2-humble-fastcdr
 Requires:       ros2-humble-foonathan_memory_vendor
 
-Provides:  ros2-humble-fastrtps = 2.6.7-1
-Obsoletes: ros2-humble-fastrtps < 2.6.7-1
+Provides:  ros2-humble-fastrtps = 2.6.8-1
+Obsoletes: ros2-humble-fastrtps < 2.6.8-1
 
 
 
@@ -78,8 +78,8 @@ Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-fastcdr-devel
 Requires:       ros2-humble-foonathan_memory_vendor-devel
 
-Provides: ros2-humble-fastrtps-devel = 2.6.7-1
-Obsoletes: ros2-humble-fastrtps-devel < 2.6.7-1
+Provides: ros2-humble-fastrtps-devel = 2.6.8-1
+Obsoletes: ros2-humble-fastrtps-devel < 2.6.8-1
 
 
 %description devel
@@ -250,6 +250,8 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.6.8-1
+- Update to latest release
 * Mon Feb 12 2024 Tarik Viehmann - humble.2.6.7-1
 - update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.6.6-1

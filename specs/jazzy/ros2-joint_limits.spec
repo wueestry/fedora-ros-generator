@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-joint_limits
-Version:        4.8.0
+Version:        4.11.0
 Release:        1%{?dist}
 Summary:        ROS package joint_limits
 
 License:        Apache License 2.0
 URL:            https://github.com/ros-controls/ros2_control/wiki
 
-Source0:        https://github.com/ros2-gbp/ros2_control-release/archive/release/jazzy/joint_limits/4.8.0-2.tar.gz#/ros2-jazzy-joint_limits-4.8.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ros2_control-release/archive/release/jazzy/joint_limits/4.11.0-1.tar.gz#/ros2-jazzy-joint_limits-4.11.0-source0.tar.gz
 
 
 BuildArch: noarch
@@ -39,9 +39,9 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python-unversioned-command
 
 BuildRequires:  ros2-jazzy-ament_cmake-devel
-BuildRequires:  ros2-jazzy-ament_cmake_gen_version_h-devel
 BuildRequires:  ros2-jazzy-ament_cmake_gtest-devel
 BuildRequires:  ros2-jazzy-ament_package-devel
+BuildRequires:  ros2-jazzy-launch_ros-devel
 BuildRequires:  ros2-jazzy-launch_testing_ament_cmake-devel
 BuildRequires:  ros2-jazzy-rclcpp-devel
 BuildRequires:  ros2-jazzy-rclcpp_lifecycle-devel
@@ -51,8 +51,8 @@ Requires:       ros2-jazzy-rclcpp
 Requires:       ros2-jazzy-rclcpp_lifecycle
 Requires:       ros2-jazzy-urdf
 
-Provides:  ros2-jazzy-joint_limits = 4.8.0-1
-Obsoletes: ros2-jazzy-joint_limits < 4.8.0-1
+Provides:  ros2-jazzy-joint_limits = 4.11.0-1
+Obsoletes: ros2-jazzy-joint_limits < 4.11.0-1
 
 
 
@@ -63,16 +63,16 @@ Interfaces for handling of joint limits for controllers or hardware.
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
 Requires:       ros2-jazzy-ament_cmake-devel
-Requires:       ros2-jazzy-ament_cmake_gen_version_h-devel
 Requires:       ros2-jazzy-ament_cmake_gtest-devel
 Requires:       ros2-jazzy-ament_package-devel
+Requires:       ros2-jazzy-launch_ros-devel
 Requires:       ros2-jazzy-launch_testing_ament_cmake-devel
 Requires:       ros2-jazzy-rclcpp-devel
 Requires:       ros2-jazzy-rclcpp_lifecycle-devel
 Requires:       ros2-jazzy-urdf-devel
 
-Provides: ros2-jazzy-joint_limits-devel = 4.8.0-1
-Obsoletes: ros2-jazzy-joint_limits-devel < 4.8.0-1
+Provides: ros2-jazzy-joint_limits-devel = 4.11.0-1
+Obsoletes: ros2-jazzy-joint_limits-devel < 4.11.0-1
 
 
 %description devel
@@ -243,5 +243,7 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.11.0-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.8.0-1
 - Update to latest release

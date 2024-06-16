@@ -1,12 +1,12 @@
 Name:           ros2-iron-joint_limits
-Version:        3.24.0
+Version:        3.25.0
 Release:        1%{?dist}
 Summary:        ROS package joint_limits
 
 License:        Apache License 2.0
 URL:            https://github.com/ros-controls/ros2_control/wiki
 
-Source0:        https://github.com/ros2-gbp/ros2_control-release/archive/release/iron/joint_limits/3.24.0-1.tar.gz#/ros2-iron-joint_limits-3.24.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ros2_control-release/archive/release/iron/joint_limits/3.25.0-1.tar.gz#/ros2-iron-joint_limits-3.25.0-source0.tar.gz
 
 
 BuildArch: noarch
@@ -50,8 +50,8 @@ Requires:       ros2-iron-rclcpp
 Requires:       ros2-iron-rclcpp_lifecycle
 Requires:       ros2-iron-urdf
 
-Provides:  ros2-iron-joint_limits = 3.24.0-1
-Obsoletes: ros2-iron-joint_limits < 3.24.0-1
+Provides:  ros2-iron-joint_limits = 3.25.0-1
+Obsoletes: ros2-iron-joint_limits < 3.25.0-1
 
 
 
@@ -69,8 +69,8 @@ Requires:       ros2-iron-rclcpp-devel
 Requires:       ros2-iron-rclcpp_lifecycle-devel
 Requires:       ros2-iron-urdf-devel
 
-Provides: ros2-iron-joint_limits-devel = 3.24.0-1
-Obsoletes: ros2-iron-joint_limits-devel < 3.24.0-1
+Provides: ros2-iron-joint_limits-devel = 3.25.0-1
+Obsoletes: ros2-iron-joint_limits-devel < 3.25.0-1
 
 
 %description devel
@@ -241,5 +241,7 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.3.25.0-1
+- Update to latest release
 * Fri Apr 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.3.24.0-1
 - Update to latest release

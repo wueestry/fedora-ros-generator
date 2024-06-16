@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-humble-fastrtps
-Version:        2.6.7
+Version:        2.6.8
 Release:        1%{?dist}
 License:        Apache 2.0
 URL:            https://www.eprosima.com/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-humble-fastrtps
 Requires:       ros2-humble-fastrtps-devel
 
-Obsoletes: ros-humble-fastrtps < 2.6.7-1
+Obsoletes: ros-humble-fastrtps < 2.6.8-1
 
 %description
 *eprosima Fast DDS* (formerly Fast RTPS) is a C++ implementation of
@@ -34,6 +34,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.6.8-1
+- Update to latest release
 * Mon Feb 12 2024 Tarik Viehmann - humble.2.6.7-1
 - update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.6.6-1

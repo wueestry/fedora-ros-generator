@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-image_transport
-Version:        5.1.2
+Version:        5.1.3
 Release:        1%{?dist}
 Summary:        ROS package image_transport
 
 License:        BSD
 URL:            http://ros.org/wiki/image_transport
 
-Source0:        https://github.com/ros2-gbp/image_common-release/archive/release/jazzy/image_transport/5.1.2-2.tar.gz#/ros2-jazzy-image_transport-5.1.2-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/image_common-release/archive/release/jazzy/image_transport/5.1.3-1.tar.gz#/ros2-jazzy-image_transport-5.1.3-source0.tar.gz
 
 
 
@@ -57,8 +57,8 @@ Requires:       ros2-jazzy-rclcpp
 Requires:       ros2-jazzy-rclcpp_components
 Requires:       ros2-jazzy-sensor_msgs
 
-Provides:  ros2-jazzy-image_transport = 5.1.2-1
-Obsoletes: ros2-jazzy-image_transport < 5.1.2-1
+Provides:  ros2-jazzy-image_transport = 5.1.3-1
+Obsoletes: ros2-jazzy-image_transport < 5.1.3-1
 
 
 
@@ -86,8 +86,8 @@ Requires:       ros2-jazzy-rclcpp-devel
 Requires:       ros2-jazzy-rclcpp_components-devel
 Requires:       ros2-jazzy-sensor_msgs-devel
 
-Provides: ros2-jazzy-image_transport-devel = 5.1.2-1
-Obsoletes: ros2-jazzy-image_transport-devel < 5.1.2-1
+Provides: ros2-jazzy-image_transport-devel = 5.1.3-1
+Obsoletes: ros2-jazzy-image_transport-devel < 5.1.3-1
 
 
 %description devel
@@ -258,5 +258,7 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.5.1.3-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.5.1.2-1
 - Update to latest release

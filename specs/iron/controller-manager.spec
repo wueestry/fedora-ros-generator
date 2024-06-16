@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-iron-controller-manager
-Version:        3.24.0
+Version:        3.25.0
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-iron-controller_manager
 Requires:       ros2-iron-controller_manager-devel
 
-Obsoletes: ros-iron-controller-manager < 3.24.0-1
+Obsoletes: ros-iron-controller-manager < 3.25.0-1
 
 %description
 Description of controller_manager
@@ -25,5 +25,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.3.25.0-1
+- Update to latest release
 * Fri Apr 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.3.24.0-1
 - Update to latest release

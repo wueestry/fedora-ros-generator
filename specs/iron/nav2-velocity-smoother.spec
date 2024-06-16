@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-iron-nav2-velocity-smoother
-Version:        1.2.7
+Version:        1.2.9
 Release:        1%{?dist}
 License:        Apache-2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-iron-nav2_velocity_smoother
 Requires:       ros2-iron-nav2_velocity_smoother-devel
 
-Obsoletes: ros-iron-nav2-velocity-smoother < 1.2.7-1
+Obsoletes: ros-iron-nav2-velocity-smoother < 1.2.9-1
 
 %description
 Nav2's Output velocity smoother
@@ -25,5 +25,9 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Wed Jun 05 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.1.2.9-1
+- Update to latest release
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.1.2.8-1
+- Update to latest release
 * Fri Apr 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.1.2.7-1
 - Update to latest release

@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-humble-rmw-implementation-cmake
-Version:        6.1.1
+Version:        6.1.2
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-humble-rmw_implementation_cmake
 Requires:       ros2-humble-rmw_implementation_cmake-devel
 
-Obsoletes: ros-humble-rmw-implementation-cmake < 6.1.1-1
+Obsoletes: ros-humble-rmw-implementation-cmake < 6.1.2-1
 
 %description
 CMake functions which can discover and enumerate available
@@ -26,6 +26,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.6.1.2-1
+- Update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.6.1.1-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.6.1.1-1

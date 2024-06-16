@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-humble-rcutils
-Version:        5.1.5
+Version:        5.1.6
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-humble-rcutils
 Requires:       ros2-humble-rcutils-devel
 
-Obsoletes: ros-humble-rcutils < 5.1.5-1
+Obsoletes: ros-humble-rcutils < 5.1.6-1
 
 %description
 Package containing various utility types and functions for C
@@ -25,6 +25,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.5.1.6-1
+- Update to latest release
 * Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.5.1.5-1
 - Update to latest release
 * Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.5.1.4-1

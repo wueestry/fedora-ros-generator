@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-humble-resource-retriever
-Version:        3.1.1
+Version:        3.1.2
 Release:        1%{?dist}
 License:        BSD
 URL:            http://ros.org/wiki/resource_retriever
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-humble-resource_retriever
 Requires:       ros2-humble-resource_retriever-devel
 
-Obsoletes: ros-humble-resource-retriever < 3.1.1-1
+Obsoletes: ros-humble-resource-retriever < 3.1.2-1
 
 %description
 This package retrieves data from url-format files such as http://,
@@ -30,6 +30,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.1.2-1
+- Update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.1.1-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.1.1-1

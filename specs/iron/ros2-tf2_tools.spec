@@ -1,12 +1,12 @@
 Name:           ros2-iron-tf2_tools
-Version:        0.31.6
+Version:        0.31.7
 Release:        1%{?dist}
 Summary:        ROS package tf2_tools
 
 License:        BSD
 URL:            http://www.ros.org/wiki/tf2_tools
 
-Source0:        https://github.com/ros2-gbp/geometry2-release/archive/release/iron/tf2_tools/0.31.6-1.tar.gz#/ros2-iron-tf2_tools-0.31.6-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/geometry2-release/archive/release/iron/tf2_tools/0.31.7-1.tar.gz#/ros2-iron-tf2_tools-0.31.7-source0.tar.gz
 
 
 BuildArch: noarch
@@ -47,8 +47,8 @@ Requires:       ros2-iron-tf2_msgs
 Requires:       ros2-iron-tf2_py
 Requires:       ros2-iron-tf2_ros_py
 
-Provides:  ros2-iron-tf2_tools = 0.31.6-1
-Obsoletes: ros2-iron-tf2_tools < 0.31.6-1
+Provides:  ros2-iron-tf2_tools = 0.31.7-1
+Obsoletes: ros2-iron-tf2_tools < 0.31.7-1
 
 
 
@@ -64,8 +64,8 @@ Requires:       ros2-iron-tf2_msgs-devel
 Requires:       ros2-iron-tf2_py-devel
 Requires:       ros2-iron-tf2_ros_py-devel
 
-Provides: ros2-iron-tf2_tools-devel = 0.31.6-1
-Obsoletes: ros2-iron-tf2_tools-devel < 0.31.6-1
+Provides: ros2-iron-tf2_tools-devel = 0.31.7-1
+Obsoletes: ros2-iron-tf2_tools-devel < 0.31.7-1
 
 
 %description devel
@@ -236,5 +236,7 @@ done
 
 
 %changelog
+* Wed Jun 05 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.0.31.7-1
+- Update to latest release
 * Fri Apr 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.0.31.6-1
 - Update to latest release

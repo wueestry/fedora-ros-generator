@@ -37,7 +37,6 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python3-colcon-common-extensions
 # BuildRequires:  python-unversioned-command
 
-BuildRequires:  tinyxml-devel
 BuildRequires:  ros2-iron-ament_cmake-devel
 BuildRequires:  ros2-iron-ament_cmake_gtest-devel
 BuildRequires:  ros2-iron-ament_lint_auto-devel
@@ -56,9 +55,9 @@ BuildRequires:  ros2-iron-ros2run-devel
 BuildRequires:  ros2-iron-sensor_msgs-devel
 BuildRequires:  ros2-iron-std_msgs-devel
 BuildRequires:  ros2-iron-std_srvs-devel
+BuildRequires:  ros2-iron-tinyxml_vendor-devel
 
 Requires:       python3-lxml
-Requires:       tinyxml-devel
 Requires:       ros2-iron-builtin_interfaces
 Requires:       ros2-iron-gazebo_dev
 Requires:       ros2-iron-gazebo_msgs
@@ -68,6 +67,7 @@ Requires:       ros2-iron-rclcpp
 Requires:       ros2-iron-rclpy
 Requires:       ros2-iron-rmw
 Requires:       ros2-iron-std_srvs
+Requires:       ros2-iron-tinyxml_vendor
 
 Provides:  ros2-iron-gazebo_ros = 3.7.0-1
 Obsoletes: ros2-iron-gazebo_ros < 3.7.0-1
@@ -83,7 +83,6 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       ros2-iron-ament_cmake-devel
 Requires:       ros2-iron-geometry_msgs-devel
 Requires:       ros2-iron-sensor_msgs-devel
-Requires:       tinyxml-devel
 Requires:       ros2-iron-ament_cmake_gtest-devel
 Requires:       ros2-iron-ament_lint_auto-devel
 Requires:       ros2-iron-ament_lint_common-devel
@@ -99,6 +98,7 @@ Requires:       ros2-iron-rmw-devel
 Requires:       ros2-iron-ros2run-devel
 Requires:       ros2-iron-std_msgs-devel
 Requires:       ros2-iron-std_srvs-devel
+Requires:       ros2-iron-tinyxml_vendor-devel
 Requires:       ros2-iron-launch_ros-devel
 
 Provides: ros2-iron-gazebo_ros-devel = 3.7.0-1

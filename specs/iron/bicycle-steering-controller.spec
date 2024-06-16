@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-iron-bicycle-steering-controller
-Version:        3.22.0
+Version:        3.24.0
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-iron-bicycle_steering_controller
 Requires:       ros2-iron-bicycle_steering_controller-devel
 
-Obsoletes: ros-iron-bicycle-steering-controller < 3.22.0-1
+Obsoletes: ros-iron-bicycle-steering-controller < 3.24.0-1
 
 %description
 Steering controller with bicycle kinematics. Rear fixed wheel is
@@ -26,5 +26,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.3.24.0-1
+- Update to latest release
 * Fri Apr 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.3.22.0-1
 - Update to latest release

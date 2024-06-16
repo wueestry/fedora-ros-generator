@@ -42,10 +42,11 @@ BuildRequires:  console-bridge-devel
 BuildRequires:  tinyxml-devel
 BuildRequires:  ros2-humble-ament_package-devel
 BuildRequires:  ros2-humble-console_bridge_vendor-devel
+BuildRequires:  ros2-humble-tinyxml_vendor-devel
 BuildRequires:  ros2-humble-urdfdom_headers-devel
 
-Requires:       tinyxml-devel
 Requires:       ros2-humble-console_bridge_vendor
+Requires:       ros2-humble-tinyxml_vendor
 Requires:       ros2-humble-urdfdom_headers
 
 Provides:  ros2-humble-urdfdom = 3.0.2-1
@@ -64,6 +65,7 @@ Requires:       console-bridge-devel
 Requires:       tinyxml-devel
 Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-console_bridge_vendor-devel
+Requires:       ros2-humble-tinyxml_vendor-devel
 Requires:       ros2-humble-urdfdom_headers-devel
 
 Provides: ros2-humble-urdfdom-devel = 3.0.2-1

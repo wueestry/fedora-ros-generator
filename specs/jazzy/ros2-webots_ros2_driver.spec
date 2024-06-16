@@ -8,7 +8,7 @@ URL:            http://wiki.ros.org/webots_ros2
 
 Source0:        https://github.com/ros2-gbp/webots_ros2-release/archive/release/jazzy/webots_ros2_driver/2023.1.2-4.tar.gz#/ros2-jazzy-webots_ros2_driver-2023.1.2-source0.tar.gz
 
-Patch0: ros2-webots_ros2_driver.python-version.patch
+Patch0: ros2.webots_ros2_driver.python3.12.patch
 
 
 # common BRs

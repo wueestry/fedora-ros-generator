@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-point_cloud_transport
-Version:        4.0.0
+Version:        4.0.1
 Release:        1%{?dist}
 Summary:        ROS package point_cloud_transport
 
 License:        BSD
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/point_cloud_transport-release/archive/release/jazzy/point_cloud_transport/4.0.0-2.tar.gz#/ros2-jazzy-point_cloud_transport-4.0.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/point_cloud_transport-release/archive/release/jazzy/point_cloud_transport/4.0.1-1.tar.gz#/ros2-jazzy-point_cloud_transport-4.0.1-source0.tar.gz
 
 
 
@@ -55,8 +55,8 @@ Requires:       ros2-jazzy-rclcpp_components
 Requires:       ros2-jazzy-rcpputils
 Requires:       ros2-jazzy-sensor_msgs
 
-Provides:  ros2-jazzy-point_cloud_transport = 4.0.0-1
-Obsoletes: ros2-jazzy-point_cloud_transport < 4.0.0-1
+Provides:  ros2-jazzy-point_cloud_transport = 4.0.1-1
+Obsoletes: ros2-jazzy-point_cloud_transport < 4.0.1-1
 
 
 
@@ -78,8 +78,8 @@ Requires:       ros2-jazzy-rclcpp_components-devel
 Requires:       ros2-jazzy-rcpputils-devel
 Requires:       ros2-jazzy-sensor_msgs-devel
 
-Provides: ros2-jazzy-point_cloud_transport-devel = 4.0.0-1
-Obsoletes: ros2-jazzy-point_cloud_transport-devel < 4.0.0-1
+Provides: ros2-jazzy-point_cloud_transport-devel = 4.0.1-1
+Obsoletes: ros2-jazzy-point_cloud_transport-devel < 4.0.1-1
 
 
 %description devel
@@ -250,5 +250,7 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.0.1-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.0.0-1
 - Update to latest release

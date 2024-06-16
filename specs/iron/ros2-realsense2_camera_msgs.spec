@@ -1,12 +1,12 @@
 Name:           ros2-iron-realsense2_camera_msgs
-Version:        4.54.1
+Version:        4.55.1
 Release:        1%{?dist}
 Summary:        ROS package realsense2_camera_msgs
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/wiki/RealSense
 
-Source0:        https://github.com/IntelRealSense/realsense-ros-release/archive/release/iron/realsense2_camera_msgs/4.54.1-2.tar.gz#/ros2-iron-realsense2_camera_msgs-4.54.1-source0.tar.gz
+Source0:        https://github.com/IntelRealSense/realsense-ros-release/archive/release/iron/realsense2_camera_msgs/4.55.1-1.tar.gz#/ros2-iron-realsense2_camera_msgs-4.55.1-source0.tar.gz
 
 
 
@@ -42,14 +42,16 @@ BuildRequires:  ros2-iron-ament_lint_common-devel
 BuildRequires:  ros2-iron-ament_package-devel
 BuildRequires:  ros2-iron-builtin_interfaces-devel
 BuildRequires:  ros2-iron-rosidl_default_generators-devel
+BuildRequires:  ros2-iron-sensor_msgs-devel
 BuildRequires:  ros2-iron-std_msgs-devel
 
 Requires:       ros2-iron-builtin_interfaces
 Requires:       ros2-iron-rosidl_default_runtime
+Requires:       ros2-iron-sensor_msgs
 Requires:       ros2-iron-std_msgs
 
-Provides:  ros2-iron-realsense2_camera_msgs = 4.54.1-1
-Obsoletes: ros2-iron-realsense2_camera_msgs < 4.54.1-1
+Provides:  ros2-iron-realsense2_camera_msgs = 4.55.1-1
+Obsoletes: ros2-iron-realsense2_camera_msgs < 4.55.1-1
 
 
 
@@ -65,11 +67,12 @@ Requires:       ros2-iron-rosidl_default_generators-devel
 Requires:       ros2-iron-ament_lint_common-devel
 Requires:       ros2-iron-ament_package-devel
 Requires:       ros2-iron-builtin_interfaces-devel
+Requires:       ros2-iron-sensor_msgs-devel
 Requires:       ros2-iron-std_msgs-devel
 Requires:       ros2-iron-rosidl_default_runtime-devel
 
-Provides: ros2-iron-realsense2_camera_msgs-devel = 4.54.1-1
-Obsoletes: ros2-iron-realsense2_camera_msgs-devel < 4.54.1-1
+Provides: ros2-iron-realsense2_camera_msgs-devel = 4.55.1-1
+Obsoletes: ros2-iron-realsense2_camera_msgs-devel < 4.55.1-1
 
 
 %description devel
@@ -240,5 +243,7 @@ done
 
 
 %changelog
+* Wed Jun 05 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.4.55.1-1
+- Update to latest release
 * Fri Apr 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.4.54.1-1
 - Update to latest release

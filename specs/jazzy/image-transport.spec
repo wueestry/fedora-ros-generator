@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-image-transport
-Version:        5.1.2
+Version:        5.1.3
 Release:        1%{?dist}
 License:        BSD
 URL:            http://ros.org/wiki/image_transport
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-image_transport
 Requires:       ros2-jazzy-image_transport-devel
 
-Obsoletes: ros-jazzy-image-transport < 5.1.2-1
+Obsoletes: ros-jazzy-image-transport < 5.1.3-1
 
 %description
 image_transport should always be used to subscribe to and publish
@@ -29,5 +29,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.5.1.3-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.5.1.2-1
 - Update to latest release

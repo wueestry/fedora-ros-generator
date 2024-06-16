@@ -1,12 +1,12 @@
 Name:           ros2-iron-tf2_py
-Version:        0.31.6
+Version:        0.31.7
 Release:        1%{?dist}
 Summary:        ROS package tf2_py
 
 License:        BSD
 URL:            http://ros.org/wiki/tf2_py
 
-Source0:        https://github.com/ros2-gbp/geometry2-release/archive/release/iron/tf2_py/0.31.6-1.tar.gz#/ros2-iron-tf2_py-0.31.6-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/geometry2-release/archive/release/iron/tf2_py/0.31.7-1.tar.gz#/ros2-iron-tf2_py-0.31.7-source0.tar.gz
 
 
 
@@ -52,8 +52,8 @@ Requires:       ros2-iron-rclpy
 Requires:       ros2-iron-rpyutils
 Requires:       ros2-iron-tf2
 
-Provides:  ros2-iron-tf2_py = 0.31.6-1
-Obsoletes: ros2-iron-tf2_py < 0.31.6-1
+Provides:  ros2-iron-tf2_py = 0.31.7-1
+Obsoletes: ros2-iron-tf2_py < 0.31.7-1
 
 
 
@@ -75,8 +75,8 @@ Requires:       ros2-iron-builtin_interfaces-devel
 Requires:       ros2-iron-rclpy-devel
 Requires:       ros2-iron-rpyutils-devel
 
-Provides: ros2-iron-tf2_py-devel = 0.31.6-1
-Obsoletes: ros2-iron-tf2_py-devel < 0.31.6-1
+Provides: ros2-iron-tf2_py-devel = 0.31.7-1
+Obsoletes: ros2-iron-tf2_py-devel < 0.31.7-1
 
 
 %description devel
@@ -248,5 +248,7 @@ done
 
 
 %changelog
+* Wed Jun 05 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.0.31.7-1
+- Update to latest release
 * Fri Apr 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.0.31.6-1
 - Update to latest release

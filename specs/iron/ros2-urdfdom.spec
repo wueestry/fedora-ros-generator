@@ -43,10 +43,11 @@ BuildRequires:  python3-devel
 BuildRequires:  tinyxml-devel
 BuildRequires:  ros2-iron-ament_package-devel
 BuildRequires:  ros2-iron-console_bridge_vendor-devel
+BuildRequires:  ros2-iron-tinyxml_vendor-devel
 BuildRequires:  ros2-iron-urdfdom_headers-devel
 
-Requires:       tinyxml-devel
 Requires:       ros2-iron-console_bridge_vendor
+Requires:       ros2-iron-tinyxml_vendor
 Requires:       ros2-iron-urdfdom_headers
 
 Provides:  ros2-iron-urdfdom = 3.1.1-1
@@ -66,6 +67,7 @@ Requires:       python3-devel
 Requires:       tinyxml-devel
 Requires:       ros2-iron-ament_package-devel
 Requires:       ros2-iron-console_bridge_vendor-devel
+Requires:       ros2-iron-tinyxml_vendor-devel
 Requires:       ros2-iron-urdfdom_headers-devel
 
 Provides: ros2-iron-urdfdom-devel = 3.1.1-1

@@ -1,12 +1,12 @@
 Name:           ros2-humble-dwb_msgs
-Version:        1.1.14
+Version:        1.1.15
 Release:        1%{?dist}
 Summary:        ROS package dwb_msgs
 
 License:        BSD-3-Clause
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/SteveMacenski/navigation2-release/archive/release/humble/dwb_msgs/1.1.14-1.tar.gz#/ros2-humble-dwb_msgs-1.1.14-source0.tar.gz
+Source0:        https://github.com/SteveMacenski/navigation2-release/archive/release/humble/dwb_msgs/1.1.15-1.tar.gz#/ros2-humble-dwb_msgs-1.1.15-source0.tar.gz
 
 
 
@@ -53,8 +53,8 @@ Requires:       ros2-humble-nav_msgs
 Requires:       ros2-humble-rosidl_default_runtime
 Requires:       ros2-humble-std_msgs
 
-Provides:  ros2-humble-dwb_msgs = 1.1.14-1
-Obsoletes: ros2-humble-dwb_msgs < 1.1.14-1
+Provides:  ros2-humble-dwb_msgs = 1.1.15-1
+Obsoletes: ros2-humble-dwb_msgs < 1.1.15-1
 
 
 
@@ -73,8 +73,8 @@ Requires:       ros2-humble-nav_msgs-devel
 Requires:       ros2-humble-rosidl_default_runtime-devel
 Requires:       ros2-humble-std_msgs-devel
 
-Provides: ros2-humble-dwb_msgs-devel = 1.1.14-1
-Obsoletes: ros2-humble-dwb_msgs-devel < 1.1.14-1
+Provides: ros2-humble-dwb_msgs-devel = 1.1.15-1
+Obsoletes: ros2-humble-dwb_msgs-devel < 1.1.15-1
 
 
 %description devel
@@ -245,6 +245,8 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.15-1
+- Update to latest release
 * Tue Apr 09 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.14-1
 - Update to latest release
 * Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.13-1

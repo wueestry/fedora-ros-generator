@@ -1,12 +1,12 @@
 Name:           ros2-iron-shape_msgs
-Version:        5.0.0
+Version:        5.0.1
 Release:        1%{?dist}
 Summary:        ROS package shape_msgs
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/common_interfaces-release/archive/release/iron/shape_msgs/5.0.0-2.tar.gz#/ros2-iron-shape_msgs-5.0.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/common_interfaces-release/archive/release/iron/shape_msgs/5.0.1-1.tar.gz#/ros2-iron-shape_msgs-5.0.1-source0.tar.gz
 
 
 
@@ -46,8 +46,8 @@ BuildRequires:  ros2-iron-rosidl_default_generators-devel
 Requires:       ros2-iron-geometry_msgs
 Requires:       ros2-iron-rosidl_default_runtime
 
-Provides:  ros2-iron-shape_msgs = 5.0.0-1
-Obsoletes: ros2-iron-shape_msgs < 5.0.0-1
+Provides:  ros2-iron-shape_msgs = 5.0.1-1
+Obsoletes: ros2-iron-shape_msgs < 5.0.1-1
 
 
 
@@ -65,8 +65,8 @@ Requires:       ros2-iron-ament_package-devel
 Requires:       ros2-iron-geometry_msgs-devel
 Requires:       ros2-iron-rosidl_default_runtime-devel
 
-Provides: ros2-iron-shape_msgs-devel = 5.0.0-1
-Obsoletes: ros2-iron-shape_msgs-devel < 5.0.0-1
+Provides: ros2-iron-shape_msgs-devel = 5.0.1-1
+Obsoletes: ros2-iron-shape_msgs-devel < 5.0.1-1
 
 
 %description devel
@@ -237,5 +237,7 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.5.0.1-1
+- Update to latest release
 * Fri Apr 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.5.0.0-1
 - Update to latest release

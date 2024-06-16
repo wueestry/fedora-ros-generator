@@ -6,7 +6,7 @@ Summary:        ROS package rmw_connextdds_common
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rmw_connextdds-release/archive/release/jazzy/rmw_connextdds_common/0.22.0-1.tar.gz#/ros2-jazzy-rmw_connextdds_common-0.22.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rmw_connextdds-release/archive/release/jazzy/rmw_connextdds_common/0.22.0-2.tar.gz#/ros2-jazzy-rmw_connextdds_common-0.22.0-source0.tar.gz
 
 
 BuildArch: noarch

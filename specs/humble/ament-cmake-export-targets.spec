@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-humble-ament-cmake-export-targets
-Version:        1.3.8
+Version:        1.3.9
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-humble-ament_cmake_export_targets
 Requires:       ros2-humble-ament_cmake_export_targets-devel
 
-Obsoletes: ros-humble-ament-cmake-export-targets < 1.3.8-1
+Obsoletes: ros-humble-ament-cmake-export-targets < 1.3.9-1
 
 %description
 The ability to export targets to downstream packages in the ament
@@ -26,6 +26,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.3.9-1
+- Update to latest release
 * Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.3.8-1
 - Update to latest release
 * Mon Feb 12 2024 Tarik Viehmann - humble.1.3.7-1

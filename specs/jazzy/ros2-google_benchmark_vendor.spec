@@ -9,6 +9,7 @@ URL:            https://github.com/google/benchmark
 Source0:        https://github.com/ros2-gbp/google_benchmark_vendor-release/archive/release/jazzy/google_benchmark_vendor/0.5.0-2.tar.gz#/ros2-jazzy-google_benchmark_vendor-0.5.0-source0.tar.gz
 
 
+BuildArch: noarch
 
 # common BRs
 BuildRequires: patchelf
@@ -53,7 +54,7 @@ This package provides Google Benchmark.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       %{name} = %{version}-%{release}
 Requires:       cmake
 Requires:       git
 Requires:       google-benchmark-devel

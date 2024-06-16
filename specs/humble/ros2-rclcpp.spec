@@ -1,12 +1,12 @@
 Name:           ros2-humble-rclcpp
-Version:        16.0.8
+Version:        16.0.9
 Release:        1%{?dist}
 Summary:        ROS package rclcpp
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rclcpp-release/archive/release/humble/rclcpp/16.0.8-1.tar.gz#/ros2-humble-rclcpp-16.0.8-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rclcpp-release/archive/release/humble/rclcpp/16.0.9-1.tar.gz#/ros2-humble-rclcpp-16.0.9-source0.tar.gz
 
 
 
@@ -76,8 +76,8 @@ Requires:       ros2-humble-rmw
 Requires:       ros2-humble-statistics_msgs
 Requires:       ros2-humble-tracetools
 
-Provides:  ros2-humble-rclcpp = 16.0.8-1
-Obsoletes: ros2-humble-rclcpp < 16.0.8-1
+Provides:  ros2-humble-rclcpp = 16.0.9-1
+Obsoletes: ros2-humble-rclcpp < 16.0.9-1
 
 
 
@@ -117,8 +117,8 @@ Requires:       ros2-humble-statistics_msgs-devel
 Requires:       ros2-humble-test_msgs-devel
 Requires:       ros2-humble-tracetools-devel
 
-Provides: ros2-humble-rclcpp-devel = 16.0.8-1
-Obsoletes: ros2-humble-rclcpp-devel < 16.0.8-1
+Provides: ros2-humble-rclcpp-devel = 16.0.9-1
+Obsoletes: ros2-humble-rclcpp-devel < 16.0.9-1
 
 
 %description devel
@@ -289,6 +289,8 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.16.0.9-1
+- Update to latest release
 * Mon Feb 12 2024 Tarik Viehmann - humble.16.0.8-1
 - update to latest release
 * Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.16.0.7-1

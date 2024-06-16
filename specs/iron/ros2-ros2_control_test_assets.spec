@@ -1,12 +1,12 @@
 Name:           ros2-iron-ros2_control_test_assets
-Version:        3.24.0
+Version:        3.25.0
 Release:        1%{?dist}
 Summary:        ROS package ros2_control_test_assets
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ros2_control-release/archive/release/iron/ros2_control_test_assets/3.24.0-1.tar.gz#/ros2-iron-ros2_control_test_assets-3.24.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ros2_control-release/archive/release/iron/ros2_control_test_assets/3.25.0-1.tar.gz#/ros2-iron-ros2_control_test_assets-3.25.0-source0.tar.gz
 
 
 BuildArch: noarch
@@ -42,8 +42,8 @@ BuildRequires:  ros2-iron-ament_cmake-devel
 BuildRequires:  ros2-iron-ament_package-devel
 
 
-Provides:  ros2-iron-ros2_control_test_assets = 3.24.0-1
-Obsoletes: ros2-iron-ros2_control_test_assets < 3.24.0-1
+Provides:  ros2-iron-ros2_control_test_assets = 3.25.0-1
+Obsoletes: ros2-iron-ros2_control_test_assets < 3.25.0-1
 
 
 
@@ -56,8 +56,8 @@ Requires:       %{name} = %{version}-%{release}
 Requires:       ros2-iron-ament_cmake-devel
 Requires:       ros2-iron-ament_package-devel
 
-Provides: ros2-iron-ros2_control_test_assets-devel = 3.24.0-1
-Obsoletes: ros2-iron-ros2_control_test_assets-devel < 3.24.0-1
+Provides: ros2-iron-ros2_control_test_assets-devel = 3.25.0-1
+Obsoletes: ros2-iron-ros2_control_test_assets-devel < 3.25.0-1
 
 
 %description devel
@@ -228,5 +228,7 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.3.25.0-1
+- Update to latest release
 * Fri Apr 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.3.24.0-1
 - Update to latest release

@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-rosidl_typesupport_introspection_c
-Version:        4.6.1
+Version:        4.6.2
 Release:        1%{?dist}
 Summary:        ROS package rosidl_typesupport_introspection_c
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rosidl-release/archive/release/jazzy/rosidl_typesupport_introspection_c/4.6.1-1.tar.gz#/ros2-jazzy-rosidl_typesupport_introspection_c-4.6.1-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rosidl-release/archive/release/jazzy/rosidl_typesupport_introspection_c/4.6.2-1.tar.gz#/ros2-jazzy-rosidl_typesupport_introspection_c-4.6.2-source0.tar.gz
 
 
 
@@ -55,8 +55,8 @@ Requires:       ros2-jazzy-rosidl_generator_c
 Requires:       ros2-jazzy-rosidl_parser
 Requires:       ros2-jazzy-rosidl_pycommon
 
-Provides:  ros2-jazzy-rosidl_typesupport_introspection_c = 4.6.1-1
-Obsoletes: ros2-jazzy-rosidl_typesupport_introspection_c < 4.6.1-1
+Provides:  ros2-jazzy-rosidl_typesupport_introspection_c = 4.6.2-1
+Obsoletes: ros2-jazzy-rosidl_typesupport_introspection_c < 4.6.2-1
 
 
 
@@ -82,8 +82,8 @@ Requires:       ros2-jazzy-ament_index_python-devel
 Requires:       ros2-jazzy-rosidl_cli-devel
 Requires:       ros2-jazzy-rosidl_parser-devel
 
-Provides: ros2-jazzy-rosidl_typesupport_introspection_c-devel = 4.6.1-1
-Obsoletes: ros2-jazzy-rosidl_typesupport_introspection_c-devel < 4.6.1-1
+Provides: ros2-jazzy-rosidl_typesupport_introspection_c-devel = 4.6.2-1
+Obsoletes: ros2-jazzy-rosidl_typesupport_introspection_c-devel < 4.6.2-1
 
 
 %description devel
@@ -254,5 +254,7 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.6.2-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.6.1-1
 - Update to latest release

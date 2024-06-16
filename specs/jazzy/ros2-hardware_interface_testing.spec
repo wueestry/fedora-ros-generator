@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-hardware_interface_testing
-Version:        4.8.0
+Version:        4.11.0
 Release:        1%{?dist}
 Summary:        ROS package hardware_interface_testing
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ros2_control-release/archive/release/jazzy/hardware_interface_testing/4.8.0-2.tar.gz#/ros2-jazzy-hardware_interface_testing-4.8.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ros2_control-release/archive/release/jazzy/hardware_interface_testing/4.11.0-1.tar.gz#/ros2-jazzy-hardware_interface_testing-4.11.0-source0.tar.gz
 
 
 
@@ -54,8 +54,8 @@ Requires:       ros2-jazzy-pluginlib
 Requires:       ros2-jazzy-rclcpp_lifecycle
 Requires:       ros2-jazzy-ros2_control_test_assets
 
-Provides:  ros2-jazzy-hardware_interface_testing = 4.8.0-1
-Obsoletes: ros2-jazzy-hardware_interface_testing < 4.8.0-1
+Provides:  ros2-jazzy-hardware_interface_testing = 4.11.0-1
+Obsoletes: ros2-jazzy-hardware_interface_testing < 4.11.0-1
 
 
 
@@ -75,8 +75,8 @@ Requires:       ros2-jazzy-pluginlib-devel
 Requires:       ros2-jazzy-rclcpp_lifecycle-devel
 Requires:       ros2-jazzy-ros2_control_test_assets-devel
 
-Provides: ros2-jazzy-hardware_interface_testing-devel = 4.8.0-1
-Obsoletes: ros2-jazzy-hardware_interface_testing-devel < 4.8.0-1
+Provides: ros2-jazzy-hardware_interface_testing-devel = 4.11.0-1
+Obsoletes: ros2-jazzy-hardware_interface_testing-devel < 4.11.0-1
 
 
 %description devel
@@ -247,5 +247,7 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.11.0-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.8.0-1
 - Update to latest release

@@ -6,7 +6,7 @@ Summary:        ROS package rti_connext_dds_cmake_module
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rmw_connextdds-release/archive/release/jazzy/rti_connext_dds_cmake_module/0.22.0-1.tar.gz#/ros2-jazzy-rti_connext_dds_cmake_module-0.22.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rmw_connextdds-release/archive/release/jazzy/rti_connext_dds_cmake_module/0.22.0-2.tar.gz#/ros2-jazzy-rti_connext_dds_cmake_module-0.22.0-source0.tar.gz
 
 
 BuildArch: noarch

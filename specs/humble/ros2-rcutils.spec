@@ -1,12 +1,12 @@
 Name:           ros2-humble-rcutils
-Version:        5.1.5
+Version:        5.1.6
 Release:        1%{?dist}
 Summary:        ROS package rcutils
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rcutils-release/archive/release/humble/rcutils/5.1.5-1.tar.gz#/ros2-humble-rcutils-5.1.5-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rcutils-release/archive/release/humble/rcutils/5.1.6-1.tar.gz#/ros2-humble-rcutils-5.1.6-source0.tar.gz
 
 
 
@@ -55,8 +55,8 @@ BuildRequires:  ros2-humble-performance_test_fixture-devel
 
 Requires:       libatomic
 
-Provides:  ros2-humble-rcutils = 5.1.5-1
-Obsoletes: ros2-humble-rcutils < 5.1.5-1
+Provides:  ros2-humble-rcutils = 5.1.6-1
+Obsoletes: ros2-humble-rcutils < 5.1.6-1
 
 
 
@@ -82,8 +82,8 @@ Requires:       ros2-humble-mimick_vendor-devel
 Requires:       ros2-humble-osrf_testing_tools_cpp-devel
 Requires:       ros2-humble-performance_test_fixture-devel
 
-Provides: ros2-humble-rcutils-devel = 5.1.5-1
-Obsoletes: ros2-humble-rcutils-devel < 5.1.5-1
+Provides: ros2-humble-rcutils-devel = 5.1.6-1
+Obsoletes: ros2-humble-rcutils-devel < 5.1.6-1
 
 
 %description devel
@@ -254,6 +254,8 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.5.1.6-1
+- Update to latest release
 * Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.5.1.5-1
 - Update to latest release
 * Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.5.1.4-1

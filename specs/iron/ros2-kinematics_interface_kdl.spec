@@ -1,12 +1,12 @@
 Name:           ros2-iron-kinematics_interface_kdl
-Version:        1.0.0
+Version:        1.1.0
 Release:        1%{?dist}
 Summary:        ROS package kinematics_interface_kdl
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/kinematics_interface-release/archive/release/iron/kinematics_interface_kdl/1.0.0-1.tar.gz#/ros2-iron-kinematics_interface_kdl-1.0.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/kinematics_interface-release/archive/release/iron/kinematics_interface_kdl/1.1.0-1.tar.gz#/ros2-iron-kinematics_interface_kdl-1.1.0-source0.tar.gz
 
 
 
@@ -53,8 +53,8 @@ Requires:       ros2-iron-kinematics_interface
 Requires:       ros2-iron-pluginlib
 Requires:       ros2-iron-tf2_eigen_kdl
 
-Provides:  ros2-iron-kinematics_interface_kdl = 1.0.0-1
-Obsoletes: ros2-iron-kinematics_interface_kdl < 1.0.0-1
+Provides:  ros2-iron-kinematics_interface_kdl = 1.1.0-1
+Obsoletes: ros2-iron-kinematics_interface_kdl < 1.1.0-1
 
 
 
@@ -75,8 +75,8 @@ Requires:       ros2-iron-pluginlib-devel
 Requires:       ros2-iron-ros2_control_test_assets-devel
 Requires:       ros2-iron-tf2_eigen_kdl-devel
 
-Provides: ros2-iron-kinematics_interface_kdl-devel = 1.0.0-1
-Obsoletes: ros2-iron-kinematics_interface_kdl-devel < 1.0.0-1
+Provides: ros2-iron-kinematics_interface_kdl-devel = 1.1.0-1
+Obsoletes: ros2-iron-kinematics_interface_kdl-devel < 1.1.0-1
 
 
 %description devel
@@ -247,5 +247,7 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.1.1.0-1
+- Update to latest release
 * Fri Apr 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.1.0.0-1
 - Update to latest release

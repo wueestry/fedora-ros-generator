@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-ros2pkg
-Version:        0.32.0
+Version:        0.32.1
 Release:        1%{?dist}
 Summary:        ROS package ros2pkg
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ros2cli-release/archive/release/jazzy/ros2pkg/0.32.0-2.tar.gz#/ros2-jazzy-ros2pkg-0.32.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ros2cli-release/archive/release/jazzy/ros2pkg/0.32.1-1.tar.gz#/ros2-jazzy-ros2pkg-0.32.1-source0.tar.gz
 
 
 BuildArch: noarch
@@ -56,8 +56,8 @@ Requires:       ros2-jazzy-ament_copyright
 Requires:       ros2-jazzy-ament_index_python
 Requires:       ros2-jazzy-ros2cli
 
-Provides:  ros2-jazzy-ros2pkg = 0.32.0-1
-Obsoletes: ros2-jazzy-ros2pkg < 0.32.0-1
+Provides:  ros2-jazzy-ros2pkg = 0.32.1-1
+Obsoletes: ros2-jazzy-ros2pkg < 0.32.1-1
 
 
 
@@ -80,8 +80,8 @@ Requires:       ros2-jazzy-ament_copyright-devel
 Requires:       ros2-jazzy-ament_index_python-devel
 Requires:       ros2-jazzy-ros2cli-devel
 
-Provides: ros2-jazzy-ros2pkg-devel = 0.32.0-1
-Obsoletes: ros2-jazzy-ros2pkg-devel < 0.32.0-1
+Provides: ros2-jazzy-ros2pkg-devel = 0.32.1-1
+Obsoletes: ros2-jazzy-ros2pkg-devel < 0.32.1-1
 
 
 %description devel
@@ -252,5 +252,7 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.32.1-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.32.0-1
 - Update to latest release

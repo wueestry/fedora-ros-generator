@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-humble-rcpputils
-Version:        2.4.2
+Version:        2.4.3
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-humble-rcpputils
 Requires:       ros2-humble-rcpputils-devel
 
-Obsoletes: ros-humble-rcpputils < 2.4.2-1
+Obsoletes: ros-humble-rcpputils < 2.4.3-1
 
 %description
 Package containing utility code for C++.
@@ -25,6 +25,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.4.3-1
+- Update to latest release
 * Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.4.2-1
 - Update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.4.1-1

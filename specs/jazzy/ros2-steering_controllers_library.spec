@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-steering_controllers_library
-Version:        4.7.0
+Version:        4.9.0
 Release:        1%{?dist}
 Summary:        ROS package steering_controllers_library
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ros2_controllers-release/archive/release/jazzy/steering_controllers_library/4.7.0-2.tar.gz#/ros2-jazzy-steering_controllers_library-4.7.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ros2_controllers-release/archive/release/jazzy/steering_controllers_library/4.9.0-1.tar.gz#/ros2-jazzy-steering_controllers_library-4.9.0-source0.tar.gz
 
 
 
@@ -77,8 +77,8 @@ Requires:       ros2-jazzy-tf2
 Requires:       ros2-jazzy-tf2_geometry_msgs
 Requires:       ros2-jazzy-tf2_msgs
 
-Provides:  ros2-jazzy-steering_controllers_library = 4.7.0-1
-Obsoletes: ros2-jazzy-steering_controllers_library < 4.7.0-1
+Provides:  ros2-jazzy-steering_controllers_library = 4.9.0-1
+Obsoletes: ros2-jazzy-steering_controllers_library < 4.9.0-1
 
 
 
@@ -112,8 +112,8 @@ Requires:       ros2-jazzy-tf2-devel
 Requires:       ros2-jazzy-tf2_geometry_msgs-devel
 Requires:       ros2-jazzy-tf2_msgs-devel
 
-Provides: ros2-jazzy-steering_controllers_library-devel = 4.7.0-1
-Obsoletes: ros2-jazzy-steering_controllers_library-devel < 4.7.0-1
+Provides: ros2-jazzy-steering_controllers_library-devel = 4.9.0-1
+Obsoletes: ros2-jazzy-steering_controllers_library-devel < 4.9.0-1
 
 
 %description devel
@@ -284,5 +284,9 @@ done
 
 
 %changelog
+* Wed Jun 05 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.9.0-1
+- Update to latest release
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.8.0-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.7.0-1
 - Update to latest release

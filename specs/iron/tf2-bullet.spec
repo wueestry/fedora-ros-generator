@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-iron-tf2-bullet
-Version:        0.31.6
+Version:        0.31.7
 Release:        1%{?dist}
 License:        BSD
 URL:            http://www.ros.org/wiki/tf2_bullet
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-iron-tf2_bullet
 Requires:       ros2-iron-tf2_bullet-devel
 
-Obsoletes: ros-iron-tf2-bullet < 0.31.6-1
+Obsoletes: ros-iron-tf2-bullet < 0.31.7-1
 
 %description
 tf2_bullet
@@ -25,5 +25,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Wed Jun 05 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.0.31.7-1
+- Update to latest release
 * Fri Apr 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.0.31.6-1
 - Update to latest release

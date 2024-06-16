@@ -1,12 +1,12 @@
 Name:           ros2-iron-pcl_conversions
-Version:        2.4.0
+Version:        2.5.3
 Release:        1%{?dist}
 Summary:        ROS package pcl_conversions
 
 License:        BSD
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/perception_pcl-release/archive/release/iron/pcl_conversions/2.4.0-5.tar.gz#/ros2-iron-pcl_conversions-2.4.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/perception_pcl-release/archive/release/iron/pcl_conversions/2.5.3-1.tar.gz#/ros2-iron-pcl_conversions-2.5.3-source0.tar.gz
 
 
 BuildArch: noarch
@@ -49,14 +49,15 @@ BuildRequires:  ros2-iron-rclcpp-devel
 BuildRequires:  ros2-iron-sensor_msgs-devel
 BuildRequires:  ros2-iron-std_msgs-devel
 
+Requires:       pcl
 Requires:       ros2-iron-message_filters
 Requires:       ros2-iron-pcl_msgs
 Requires:       ros2-iron-rclcpp
 Requires:       ros2-iron-sensor_msgs
 Requires:       ros2-iron-std_msgs
 
-Provides:  ros2-iron-pcl_conversions = 2.4.0-1
-Obsoletes: ros2-iron-pcl_conversions < 2.4.0-1
+Provides:  ros2-iron-pcl_conversions = 2.5.3-1
+Obsoletes: ros2-iron-pcl_conversions < 2.5.3-1
 
 
 
@@ -66,9 +67,9 @@ Provides conversions from PCL data types and ROS message types
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
+Requires:       pcl-devel
 Requires:       ros2-iron-ament_cmake-devel
 Requires:       eigen3-devel
-Requires:       pcl-devel
 Requires:       ros2-iron-ament_cmake_gtest-devel
 Requires:       ros2-iron-ament_package-devel
 Requires:       ros2-iron-message_filters-devel
@@ -77,8 +78,8 @@ Requires:       ros2-iron-rclcpp-devel
 Requires:       ros2-iron-sensor_msgs-devel
 Requires:       ros2-iron-std_msgs-devel
 
-Provides: ros2-iron-pcl_conversions-devel = 2.4.0-1
-Obsoletes: ros2-iron-pcl_conversions-devel < 2.4.0-1
+Provides: ros2-iron-pcl_conversions-devel = 2.5.3-1
+Obsoletes: ros2-iron-pcl_conversions-devel < 2.5.3-1
 
 
 %description devel
@@ -249,5 +250,7 @@ done
 
 
 %changelog
+* Wed Jun 05 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.2.5.3-1
+- Update to latest release
 * Fri Apr 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.2.4.0-1
 - Update to latest release

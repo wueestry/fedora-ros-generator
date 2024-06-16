@@ -1,12 +1,12 @@
 Name:           ros2-humble-message_filters
-Version:        4.3.3
+Version:        4.3.4
 Release:        1%{?dist}
 Summary:        ROS package message_filters
 
 License:        BSD
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ros2_message_filters-release/archive/release/humble/message_filters/4.3.3-2.tar.gz#/ros2-humble-message_filters-4.3.3-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ros2_message_filters-release/archive/release/humble/message_filters/4.3.4-1.tar.gz#/ros2-humble-message_filters-4.3.4-source0.tar.gz
 
 
 
@@ -53,8 +53,8 @@ BuildRequires:  ros2-humble-std_msgs-devel
 Requires:       ros2-humble-builtin_interfaces
 Requires:       ros2-humble-rclpy
 
-Provides:  ros2-humble-message_filters = 4.3.3-1
-Obsoletes: ros2-humble-message_filters < 4.3.3-1
+Provides:  ros2-humble-message_filters = 4.3.4-1
+Obsoletes: ros2-humble-message_filters < 4.3.4-1
 
 
 
@@ -81,8 +81,8 @@ Requires:       ros2-humble-std_msgs-devel
 Requires:       ros2-humble-builtin_interfaces-devel
 Requires:       ros2-humble-rclpy-devel
 
-Provides: ros2-humble-message_filters-devel = 4.3.3-1
-Obsoletes: ros2-humble-message_filters-devel < 4.3.3-1
+Provides: ros2-humble-message_filters-devel = 4.3.4-1
+Obsoletes: ros2-humble-message_filters-devel < 4.3.4-1
 
 
 %description devel
@@ -253,6 +253,8 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.4.3.4-1
+- Update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.4.3.3-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.4.3.3-1

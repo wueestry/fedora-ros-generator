@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-logging_demo
-Version:        0.33.2
+Version:        0.33.3
 Release:        1%{?dist}
 Summary:        ROS package logging_demo
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/demos-release/archive/release/jazzy/logging_demo/0.33.2-2.tar.gz#/ros2-jazzy-logging_demo-0.33.2-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/demos-release/archive/release/jazzy/logging_demo/0.33.3-1.tar.gz#/ros2-jazzy-logging_demo-0.33.3-source0.tar.gz
 
 
 
@@ -59,8 +59,8 @@ Requires:       ros2-jazzy-rcutils
 Requires:       ros2-jazzy-rosidl_default_runtime
 Requires:       ros2-jazzy-std_msgs
 
-Provides:  ros2-jazzy-logging_demo = 0.33.2-1
-Obsoletes: ros2-jazzy-logging_demo < 0.33.2-1
+Provides:  ros2-jazzy-logging_demo = 0.33.3-1
+Obsoletes: ros2-jazzy-logging_demo < 0.33.3-1
 
 
 
@@ -87,8 +87,8 @@ Requires:       ros2-jazzy-rmw_implementation_cmake-devel
 Requires:       ros2-jazzy-std_msgs-devel
 Requires:       ros2-jazzy-rosidl_default_runtime-devel
 
-Provides: ros2-jazzy-logging_demo-devel = 0.33.2-1
-Obsoletes: ros2-jazzy-logging_demo-devel < 0.33.2-1
+Provides: ros2-jazzy-logging_demo-devel = 0.33.3-1
+Obsoletes: ros2-jazzy-logging_demo-devel < 0.33.3-1
 
 
 %description devel
@@ -259,5 +259,7 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.33.3-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.33.2-1
 - Update to latest release

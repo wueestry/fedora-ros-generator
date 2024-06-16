@@ -1,12 +1,12 @@
 Name:           ros2-humble-action_tutorials_cpp
-Version:        0.20.3
+Version:        0.20.4
 Release:        1%{?dist}
 Summary:        ROS package action_tutorials_cpp
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/demos-release/archive/release/humble/action_tutorials_cpp/0.20.3-1.tar.gz#/ros2-humble-action_tutorials_cpp-0.20.3-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/demos-release/archive/release/humble/action_tutorials_cpp/0.20.4-1.tar.gz#/ros2-humble-action_tutorials_cpp-0.20.4-source0.tar.gz
 
 
 
@@ -51,8 +51,8 @@ Requires:       ros2-humble-rclcpp
 Requires:       ros2-humble-rclcpp_action
 Requires:       ros2-humble-rclcpp_components
 
-Provides:  ros2-humble-action_tutorials_cpp = 0.20.3-1
-Obsoletes: ros2-humble-action_tutorials_cpp < 0.20.3-1
+Provides:  ros2-humble-action_tutorials_cpp = 0.20.4-1
+Obsoletes: ros2-humble-action_tutorials_cpp < 0.20.4-1
 
 
 
@@ -71,8 +71,8 @@ Requires:       ros2-humble-rclcpp-devel
 Requires:       ros2-humble-rclcpp_action-devel
 Requires:       ros2-humble-rclcpp_components-devel
 
-Provides: ros2-humble-action_tutorials_cpp-devel = 0.20.3-1
-Obsoletes: ros2-humble-action_tutorials_cpp-devel < 0.20.3-1
+Provides: ros2-humble-action_tutorials_cpp-devel = 0.20.4-1
+Obsoletes: ros2-humble-action_tutorials_cpp-devel < 0.20.4-1
 
 
 %description devel
@@ -243,6 +243,8 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.20.4-1
+- Update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.20.3-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.20.3-1

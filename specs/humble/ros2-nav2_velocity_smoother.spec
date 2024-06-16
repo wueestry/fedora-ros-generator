@@ -1,12 +1,12 @@
 Name:           ros2-humble-nav2_velocity_smoother
-Version:        1.1.14
+Version:        1.1.15
 Release:        1%{?dist}
 Summary:        ROS package nav2_velocity_smoother
 
 License:        Apache-2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/SteveMacenski/navigation2-release/archive/release/humble/nav2_velocity_smoother/1.1.14-1.tar.gz#/ros2-humble-nav2_velocity_smoother-1.1.14-source0.tar.gz
+Source0:        https://github.com/SteveMacenski/navigation2-release/archive/release/humble/nav2_velocity_smoother/1.1.15-1.tar.gz#/ros2-humble-nav2_velocity_smoother-1.1.15-source0.tar.gz
 
 
 
@@ -53,8 +53,8 @@ Requires:       ros2-humble-nav2_util
 Requires:       ros2-humble-rclcpp
 Requires:       ros2-humble-rclcpp_components
 
-Provides:  ros2-humble-nav2_velocity_smoother = 1.1.14-1
-Obsoletes: ros2-humble-nav2_velocity_smoother < 1.1.14-1
+Provides:  ros2-humble-nav2_velocity_smoother = 1.1.15-1
+Obsoletes: ros2-humble-nav2_velocity_smoother < 1.1.15-1
 
 
 
@@ -75,8 +75,8 @@ Requires:       ros2-humble-nav2_util-devel
 Requires:       ros2-humble-rclcpp-devel
 Requires:       ros2-humble-rclcpp_components-devel
 
-Provides: ros2-humble-nav2_velocity_smoother-devel = 1.1.14-1
-Obsoletes: ros2-humble-nav2_velocity_smoother-devel < 1.1.14-1
+Provides: ros2-humble-nav2_velocity_smoother-devel = 1.1.15-1
+Obsoletes: ros2-humble-nav2_velocity_smoother-devel < 1.1.15-1
 
 
 %description devel
@@ -247,6 +247,8 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.15-1
+- Update to latest release
 * Tue Apr 09 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.14-1
 - Update to latest release
 * Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.1.13-1

@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-orocos_kdl_vendor
-Version:        0.5.0
+Version:        0.5.1
 Release:        1%{?dist}
 Summary:        ROS package orocos_kdl_vendor
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/orocos_kdl_vendor-release/archive/release/jazzy/orocos_kdl_vendor/0.5.0-3.tar.gz#/ros2-jazzy-orocos_kdl_vendor-0.5.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/orocos_kdl_vendor-release/archive/release/jazzy/orocos_kdl_vendor/0.5.1-2.tar.gz#/ros2-jazzy-orocos_kdl_vendor-0.5.1-source0.tar.gz
 
 
 BuildArch: noarch
@@ -49,8 +49,8 @@ BuildRequires:  ros2-jazzy-eigen3_cmake_module-devel
 
 Requires:       ros2-jazzy-eigen3_cmake_module
 
-Provides:  ros2-jazzy-orocos_kdl_vendor = 0.5.0-1
-Obsoletes: ros2-jazzy-orocos_kdl_vendor < 0.5.0-1
+Provides:  ros2-jazzy-orocos_kdl_vendor = 0.5.1-1
+Obsoletes: ros2-jazzy-orocos_kdl_vendor < 0.5.1-1
 
 
 
@@ -71,8 +71,8 @@ Requires:       ros2-jazzy-ament_lint_common-devel
 Requires:       ros2-jazzy-ament_package-devel
 Requires:       ros2-jazzy-eigen3_cmake_module-devel
 
-Provides: ros2-jazzy-orocos_kdl_vendor-devel = 0.5.0-1
-Obsoletes: ros2-jazzy-orocos_kdl_vendor-devel < 0.5.0-1
+Provides: ros2-jazzy-orocos_kdl_vendor-devel = 0.5.1-1
+Obsoletes: ros2-jazzy-orocos_kdl_vendor-devel < 0.5.1-1
 
 
 %description devel
@@ -243,5 +243,7 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.5.1-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.5.0-1
 - Update to latest release

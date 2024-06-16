@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-humble-tf2-bullet
-Version:        0.25.6
+Version:        0.25.7
 Release:        1%{?dist}
 License:        BSD
 URL:            http://www.ros.org/wiki/tf2_bullet
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-humble-tf2_bullet
 Requires:       ros2-humble-tf2_bullet-devel
 
-Obsoletes: ros-humble-tf2-bullet < 0.25.6-1
+Obsoletes: ros-humble-tf2-bullet < 0.25.7-1
 
 %description
 tf2_bullet
@@ -25,6 +25,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Wed Jun 05 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.25.7-1
+- Update to latest release
 * Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.25.6-1
 - Update to latest release
 * Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.25.5-1

@@ -1,12 +1,12 @@
 Name:           ros2-humble-ament_cmake_core
-Version:        1.3.8
+Version:        1.3.9
 Release:        1%{?dist}
 Summary:        ROS package ament_cmake_core
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ament_cmake-release/archive/release/humble/ament_cmake_core/1.3.8-1.tar.gz#/ros2-humble-ament_cmake_core-1.3.8-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ament_cmake-release/archive/release/humble/ament_cmake_core/1.3.9-1.tar.gz#/ros2-humble-ament_cmake_core-1.3.9-source0.tar.gz
 
 
 BuildArch: noarch
@@ -43,8 +43,8 @@ BuildRequires:  python3-catkin_pkg
 BuildRequires:  ros2-humble-ament_package-devel
 
 
-Provides:  ros2-humble-ament_cmake_core = 1.3.8-1
-Obsoletes: ros2-humble-ament_cmake_core < 1.3.8-1
+Provides:  ros2-humble-ament_cmake_core = 1.3.9-1
+Obsoletes: ros2-humble-ament_cmake_core < 1.3.9-1
 
 
 
@@ -64,8 +64,8 @@ Requires:       cmake
 Requires:       python3-catkin_pkg
 Requires:       ros2-humble-ament_package-devel
 
-Provides: ros2-humble-ament_cmake_core-devel = 1.3.8-1
-Obsoletes: ros2-humble-ament_cmake_core-devel < 1.3.8-1
+Provides: ros2-humble-ament_cmake_core-devel = 1.3.9-1
+Obsoletes: ros2-humble-ament_cmake_core-devel < 1.3.9-1
 
 
 %description devel
@@ -236,6 +236,8 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.3.9-1
+- Update to latest release
 * Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.3.8-1
 - Update to latest release
 * Mon Feb 12 2024 Tarik Viehmann - humble.1.3.7-1

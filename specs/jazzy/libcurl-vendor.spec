@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-libcurl-vendor
-Version:        3.4.1
+Version:        3.4.2
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            https://github.com/curl/curl
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-libcurl_vendor
 Requires:       ros2-jazzy-libcurl_vendor-devel
 
-Obsoletes: ros-jazzy-libcurl-vendor < 3.4.1-1
+Obsoletes: ros-jazzy-libcurl-vendor < 3.4.2-1
 
 %description
 Wrapper around libcurl, it provides a fixed CMake module and an
@@ -26,5 +26,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.3.4.2-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.3.4.1-1
 - Update to latest release

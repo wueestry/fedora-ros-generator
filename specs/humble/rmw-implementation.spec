@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-humble-rmw-implementation
-Version:        2.8.2
+Version:        2.8.3
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-humble-rmw_implementation
 Requires:       ros2-humble-rmw_implementation-devel
 
-Obsoletes: ros-humble-rmw-implementation < 2.8.2-1
+Obsoletes: ros-humble-rmw-implementation < 2.8.3-1
 
 %description
 Proxy implementation of the ROS 2 Middleware Interface.
@@ -25,6 +25,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.8.3-1
+- Update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.8.2-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.8.2-1

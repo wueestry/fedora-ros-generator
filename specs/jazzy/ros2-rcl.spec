@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-rcl
-Version:        9.2.2
+Version:        9.2.3
 Release:        1%{?dist}
 Summary:        ROS package rcl
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rcl-release/archive/release/jazzy/rcl/9.2.2-1.tar.gz#/ros2-jazzy-rcl-9.2.2-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rcl-release/archive/release/jazzy/rcl/9.2.3-1.tar.gz#/ros2-jazzy-rcl-9.2.3-source0.tar.gz
 
 
 
@@ -78,8 +78,8 @@ Requires:       ros2-jazzy-service_msgs
 Requires:       ros2-jazzy-tracetools
 Requires:       ros2-jazzy-type_description_interfaces
 
-Provides:  ros2-jazzy-rcl = 9.2.2-1
-Obsoletes: ros2-jazzy-rcl < 9.2.2-1
+Provides:  ros2-jazzy-rcl = 9.2.3-1
+Obsoletes: ros2-jazzy-rcl < 9.2.3-1
 
 
 
@@ -119,8 +119,8 @@ Requires:       ros2-jazzy-test_msgs-devel
 Requires:       ros2-jazzy-tracetools-devel
 Requires:       ros2-jazzy-type_description_interfaces-devel
 
-Provides: ros2-jazzy-rcl-devel = 9.2.2-1
-Obsoletes: ros2-jazzy-rcl-devel < 9.2.2-1
+Provides: ros2-jazzy-rcl-devel = 9.2.3-1
+Obsoletes: ros2-jazzy-rcl-devel < 9.2.3-1
 
 
 %description devel
@@ -291,5 +291,7 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.9.2.3-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.9.2.2-1
 - Update to latest release

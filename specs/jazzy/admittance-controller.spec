@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-admittance-controller
-Version:        4.7.0
+Version:        4.9.0
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-admittance_controller
 Requires:       ros2-jazzy-admittance_controller-devel
 
-Obsoletes: ros-jazzy-admittance-controller < 4.7.0-1
+Obsoletes: ros-jazzy-admittance-controller < 4.9.0-1
 
 %description
 Implementation of admittance controllers for different input and
@@ -26,5 +26,9 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Wed Jun 05 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.9.0-1
+- Update to latest release
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.8.0-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.7.0-1
 - Update to latest release

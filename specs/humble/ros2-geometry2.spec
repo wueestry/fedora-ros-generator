@@ -1,12 +1,12 @@
 Name:           ros2-humble-geometry2
-Version:        0.25.6
+Version:        0.25.7
 Release:        1%{?dist}
 Summary:        ROS package geometry2
 
 License:        BSD
 URL:            http://www.ros.org/wiki/geometry2
 
-Source0:        https://github.com/ros2-gbp/geometry2-release/archive/release/humble/geometry2/0.25.6-1.tar.gz#/ros2-humble-geometry2-0.25.6-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/geometry2-release/archive/release/humble/geometry2/0.25.7-1.tar.gz#/ros2-humble-geometry2-0.25.7-source0.tar.gz
 
 
 BuildArch: noarch
@@ -53,8 +53,8 @@ Requires:       ros2-humble-tf2_ros
 Requires:       ros2-humble-tf2_sensor_msgs
 Requires:       ros2-humble-tf2_tools
 
-Provides:  ros2-humble-geometry2 = 0.25.6-1
-Obsoletes: ros2-humble-geometry2 < 0.25.6-1
+Provides:  ros2-humble-geometry2 = 0.25.7-1
+Obsoletes: ros2-humble-geometry2 < 0.25.7-1
 
 
 
@@ -79,8 +79,8 @@ Requires:       ros2-humble-tf2_ros-devel
 Requires:       ros2-humble-tf2_sensor_msgs-devel
 Requires:       ros2-humble-tf2_tools-devel
 
-Provides: ros2-humble-geometry2-devel = 0.25.6-1
-Obsoletes: ros2-humble-geometry2-devel < 0.25.6-1
+Provides: ros2-humble-geometry2-devel = 0.25.7-1
+Obsoletes: ros2-humble-geometry2-devel < 0.25.7-1
 
 
 %description devel
@@ -251,6 +251,8 @@ done
 
 
 %changelog
+* Wed Jun 05 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.25.7-1
+- Update to latest release
 * Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.25.6-1
 - Update to latest release
 * Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.25.5-1

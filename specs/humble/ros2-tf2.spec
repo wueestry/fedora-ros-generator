@@ -1,12 +1,12 @@
 Name:           ros2-humble-tf2
-Version:        0.25.6
+Version:        0.25.7
 Release:        1%{?dist}
 Summary:        ROS package tf2
 
 License:        BSD
 URL:            http://www.ros.org/wiki/tf2
 
-Source0:        https://github.com/ros2-gbp/geometry2-release/archive/release/humble/tf2/0.25.6-1.tar.gz#/ros2-humble-tf2-0.25.6-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/geometry2-release/archive/release/humble/tf2/0.25.7-1.tar.gz#/ros2-humble-tf2-0.25.7-source0.tar.gz
 
 
 
@@ -44,6 +44,7 @@ BuildRequires:  ros2-humble-ament_cmake-devel
 BuildRequires:  ros2-humble-ament_cmake_copyright-devel
 BuildRequires:  ros2-humble-ament_cmake_cppcheck-devel
 BuildRequires:  ros2-humble-ament_cmake_cpplint-devel
+BuildRequires:  ros2-humble-ament_cmake_google_benchmark-devel
 BuildRequires:  ros2-humble-ament_cmake_gtest-devel
 BuildRequires:  ros2-humble-ament_cmake_lint_cmake-devel
 BuildRequires:  ros2-humble-ament_cmake_uncrustify-devel
@@ -60,8 +61,8 @@ Requires:       ros2-humble-console_bridge_vendor
 Requires:       ros2-humble-geometry_msgs
 Requires:       ros2-humble-rcutils
 
-Provides:  ros2-humble-tf2 = 0.25.6-1
-Obsoletes: ros2-humble-tf2 < 0.25.6-1
+Provides:  ros2-humble-tf2 = 0.25.7-1
+Obsoletes: ros2-humble-tf2 < 0.25.7-1
 
 
 
@@ -83,6 +84,7 @@ Requires:       gtest-devel
 Requires:       ros2-humble-ament_cmake_copyright-devel
 Requires:       ros2-humble-ament_cmake_cppcheck-devel
 Requires:       ros2-humble-ament_cmake_cpplint-devel
+Requires:       ros2-humble-ament_cmake_google_benchmark-devel
 Requires:       ros2-humble-ament_cmake_gtest-devel
 Requires:       ros2-humble-ament_cmake_lint_cmake-devel
 Requires:       ros2-humble-ament_cmake_uncrustify-devel
@@ -93,8 +95,8 @@ Requires:       ros2-humble-console_bridge_vendor-devel
 Requires:       ros2-humble-geometry_msgs-devel
 Requires:       ros2-humble-rcutils-devel
 
-Provides: ros2-humble-tf2-devel = 0.25.6-1
-Obsoletes: ros2-humble-tf2-devel < 0.25.6-1
+Provides: ros2-humble-tf2-devel = 0.25.7-1
+Obsoletes: ros2-humble-tf2-devel < 0.25.7-1
 
 
 %description devel
@@ -265,6 +267,8 @@ done
 
 
 %changelog
+* Wed Jun 05 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.25.7-1
+- Update to latest release
 * Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.25.6-1
 - Update to latest release
 * Wed Dec 06 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.25.5-1

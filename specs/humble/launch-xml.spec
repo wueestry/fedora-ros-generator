@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-humble-launch-xml
-Version:        1.0.5
+Version:        1.0.6
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-humble-launch_xml
 Requires:       ros2-humble-launch_xml-devel
 
-Obsoletes: ros-humble-launch-xml < 1.0.5-1
+Obsoletes: ros-humble-launch-xml < 1.0.6-1
 
 %description
 XML frontend for the launch package.
@@ -25,6 +25,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.0.6-1
+- Update to latest release
 * Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.0.5-1
 - Update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.0.4-1

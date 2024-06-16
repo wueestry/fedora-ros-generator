@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-iron-nav2-voxel-grid
-Version:        1.2.7
+Version:        1.2.9
 Release:        1%{?dist}
 License:        BSD-3-Clause
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-iron-nav2_voxel_grid
 Requires:       ros2-iron-nav2_voxel_grid-devel
 
-Obsoletes: ros-iron-nav2-voxel-grid < 1.2.7-1
+Obsoletes: ros-iron-nav2-voxel-grid < 1.2.9-1
 
 %description
 voxel_grid provides an implementation of an efficient 3D voxel grid.
@@ -32,5 +32,9 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Wed Jun 05 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.1.2.9-1
+- Update to latest release
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.1.2.8-1
+- Update to latest release
 * Fri Apr 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.1.2.7-1
 - Update to latest release

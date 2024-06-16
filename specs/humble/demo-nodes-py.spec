@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-humble-demo-nodes-py
-Version:        0.20.3
+Version:        0.20.4
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-humble-demo_nodes_py
 Requires:       ros2-humble-demo_nodes_py-devel
 
-Obsoletes: ros-humble-demo-nodes-py < 0.20.3-1
+Obsoletes: ros-humble-demo-nodes-py < 0.20.4-1
 
 %description
 Python nodes which were previously in the ros2/examples repository but
@@ -26,6 +26,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.20.4-1
+- Update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.20.3-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.20.3-1

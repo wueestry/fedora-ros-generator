@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-humble-sros2
-Version:        0.10.4
+Version:        0.10.5
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-humble-sros2
 Requires:       ros2-humble-sros2-devel
 
-Obsoletes: ros-humble-sros2 < 0.10.4-1
+Obsoletes: ros-humble-sros2 < 0.10.5-1
 
 %description
 Command line tools for managing SROS2 keys
@@ -25,6 +25,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.10.5-1
+- Update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.10.4-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.10.4-1

@@ -1,12 +1,12 @@
 Name:           ros2-humble-transmission_interface
-Version:        2.40.0
+Version:        2.41.0
 Release:        1%{?dist}
 Summary:        ROS package transmission_interface
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ros2_control-release/archive/release/humble/transmission_interface/2.40.0-1.tar.gz#/ros2-humble-transmission_interface-2.40.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ros2_control-release/archive/release/humble/transmission_interface/2.41.0-1.tar.gz#/ros2-humble-transmission_interface-2.41.0-source0.tar.gz
 
 
 
@@ -49,8 +49,8 @@ BuildRequires:  ros2-humble-pluginlib-devel
 Requires:       ros2-humble-hardware_interface
 Requires:       ros2-humble-pluginlib
 
-Provides:  ros2-humble-transmission_interface = 2.40.0-1
-Obsoletes: ros2-humble-transmission_interface < 2.40.0-1
+Provides:  ros2-humble-transmission_interface = 2.41.0-1
+Obsoletes: ros2-humble-transmission_interface < 2.41.0-1
 
 
 
@@ -71,8 +71,8 @@ Requires:       ros2-humble-ament_package-devel
 Requires:       ros2-humble-hardware_interface-devel
 Requires:       ros2-humble-pluginlib-devel
 
-Provides: ros2-humble-transmission_interface-devel = 2.40.0-1
-Obsoletes: ros2-humble-transmission_interface-devel < 2.40.0-1
+Provides: ros2-humble-transmission_interface-devel = 2.41.0-1
+Obsoletes: ros2-humble-transmission_interface-devel < 2.41.0-1
 
 
 %description devel
@@ -243,6 +243,8 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.41.0-1
+- Update to latest release
 * Wed Mar 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.40.0-1
 - Update to latest release
 * Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.39.1-1

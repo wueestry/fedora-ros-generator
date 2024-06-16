@@ -1,12 +1,12 @@
 Name:           ros2-iron-fastrtps
-Version:        2.10.3
+Version:        2.10.4
 Release:        1%{?dist}
 Summary:        ROS package fastrtps
 
 License:        Apache 2.0
 URL:            https://www.eprosima.com/
 
-Source0:        https://github.com/ros2-gbp/fastrtps-release/archive/release/iron/fastrtps/2.10.3-1.tar.gz#/ros2-iron-fastrtps-2.10.3-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/fastrtps-release/archive/release/iron/fastrtps/2.10.4-1.tar.gz#/ros2-iron-fastrtps-2.10.4-source0.tar.gz
 
 
 
@@ -49,8 +49,8 @@ BuildRequires:  ros2-iron-foonathan_memory_vendor-devel
 Requires:       ros2-iron-fastcdr
 Requires:       ros2-iron-foonathan_memory_vendor
 
-Provides:  ros2-iron-fastrtps = 2.10.3-1
-Obsoletes: ros2-iron-fastrtps < 2.10.3-1
+Provides:  ros2-iron-fastrtps = 2.10.4-1
+Obsoletes: ros2-iron-fastrtps < 2.10.4-1
 
 
 
@@ -78,8 +78,8 @@ Requires:       ros2-iron-ament_package-devel
 Requires:       ros2-iron-fastcdr-devel
 Requires:       ros2-iron-foonathan_memory_vendor-devel
 
-Provides: ros2-iron-fastrtps-devel = 2.10.3-1
-Obsoletes: ros2-iron-fastrtps-devel < 2.10.3-1
+Provides: ros2-iron-fastrtps-devel = 2.10.4-1
+Obsoletes: ros2-iron-fastrtps-devel < 2.10.4-1
 
 
 %description devel
@@ -250,5 +250,7 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.2.10.4-1
+- Update to latest release
 * Fri Apr 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.2.10.3-1
 - Update to latest release

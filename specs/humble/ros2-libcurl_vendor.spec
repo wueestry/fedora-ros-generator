@@ -1,12 +1,12 @@
 Name:           ros2-humble-libcurl_vendor
-Version:        3.1.1
+Version:        3.1.2
 Release:        1%{?dist}
 Summary:        ROS package libcurl_vendor
 
 License:        Apache License 2.0
 URL:            https://github.com/curl/curl
 
-Source0:        https://github.com/ros2-gbp/resource_retriever-release/archive/release/humble/libcurl_vendor/3.1.1-1.tar.gz#/ros2-humble-libcurl_vendor-3.1.1-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/resource_retriever-release/archive/release/humble/libcurl_vendor/3.1.2-1.tar.gz#/ros2-humble-libcurl_vendor-3.1.2-source0.tar.gz
 
 
 BuildArch: noarch
@@ -45,8 +45,8 @@ BuildRequires:  ros2-humble-ament_cmake-devel
 BuildRequires:  ros2-humble-ament_package-devel
 
 
-Provides:  ros2-humble-libcurl_vendor = 3.1.1-1
-Obsoletes: ros2-humble-libcurl_vendor < 3.1.1-1
+Provides:  ros2-humble-libcurl_vendor = 3.1.2-1
+Obsoletes: ros2-humble-libcurl_vendor < 3.1.2-1
 
 
 
@@ -63,8 +63,8 @@ Requires:       file
 Requires:       libcurl-devel curl
 Requires:       ros2-humble-ament_package-devel
 
-Provides: ros2-humble-libcurl_vendor-devel = 3.1.1-1
-Obsoletes: ros2-humble-libcurl_vendor-devel < 3.1.1-1
+Provides: ros2-humble-libcurl_vendor-devel = 3.1.2-1
+Obsoletes: ros2-humble-libcurl_vendor-devel < 3.1.2-1
 
 
 %description devel
@@ -235,5 +235,7 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.1.2-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.1.1-1
 - Update to latest release

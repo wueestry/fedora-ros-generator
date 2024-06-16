@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-humble-std-msgs
-Version:        4.2.3
+Version:        4.2.4
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-humble-std_msgs
 Requires:       ros2-humble-std_msgs-devel
 
-Obsoletes: ros-humble-std-msgs < 4.2.3-1
+Obsoletes: ros-humble-std-msgs < 4.2.4-1
 
 %description
 A package containing some standard message definitions.
@@ -25,6 +25,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.4.2.4-1
+- Update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.4.2.3-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.4.2.3-1

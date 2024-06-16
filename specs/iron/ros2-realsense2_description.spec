@@ -1,12 +1,12 @@
 Name:           ros2-iron-realsense2_description
-Version:        4.54.1
+Version:        4.55.1
 Release:        1%{?dist}
 Summary:        ROS package realsense2_description
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/wiki/RealSense
 
-Source0:        https://github.com/IntelRealSense/realsense-ros-release/archive/release/iron/realsense2_description/4.54.1-2.tar.gz#/ros2-iron-realsense2_description-4.54.1-source0.tar.gz
+Source0:        https://github.com/IntelRealSense/realsense-ros-release/archive/release/iron/realsense2_description/4.55.1-1.tar.gz#/ros2-iron-realsense2_description-4.55.1-source0.tar.gz
 
 
 BuildArch: noarch
@@ -52,8 +52,8 @@ Requires:       ros2-iron-rclcpp_components
 Requires:       ros2-iron-realsense2_camera_msgs
 Requires:       ros2-iron-xacro
 
-Provides:  ros2-iron-realsense2_description = 4.54.1-1
-Obsoletes: ros2-iron-realsense2_description < 4.54.1-1
+Provides:  ros2-iron-realsense2_description = 4.55.1-1
+Obsoletes: ros2-iron-realsense2_description < 4.55.1-1
 
 
 
@@ -73,8 +73,8 @@ Requires:       ros2-iron-realsense2_camera_msgs-devel
 Requires:       ros2-iron-launch_ros-devel
 Requires:       ros2-iron-xacro-devel
 
-Provides: ros2-iron-realsense2_description-devel = 4.54.1-1
-Obsoletes: ros2-iron-realsense2_description-devel < 4.54.1-1
+Provides: ros2-iron-realsense2_description-devel = 4.55.1-1
+Obsoletes: ros2-iron-realsense2_description-devel < 4.55.1-1
 
 
 %description devel
@@ -245,5 +245,7 @@ done
 
 
 %changelog
+* Wed Jun 05 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.4.55.1-1
+- Update to latest release
 * Fri Apr 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.4.54.1-1
 - Update to latest release

@@ -1,12 +1,12 @@
 Name:           ros2-humble-sros2_cmake
-Version:        0.10.4
+Version:        0.10.5
 Release:        1%{?dist}
 Summary:        ROS package sros2_cmake
 
 License:        Apache 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/sros2-release/archive/release/humble/sros2_cmake/0.10.4-2.tar.gz#/ros2-humble-sros2_cmake-0.10.4-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/sros2-release/archive/release/humble/sros2_cmake/0.10.5-1.tar.gz#/ros2-humble-sros2_cmake-0.10.5-source0.tar.gz
 
 
 BuildArch: noarch
@@ -47,8 +47,8 @@ BuildRequires:  ros2-humble-ros2cli-devel
 BuildRequires:  ros2-humble-sros2-devel
 
 
-Provides:  ros2-humble-sros2_cmake = 0.10.4-1
-Obsoletes: ros2-humble-sros2_cmake < 0.10.4-1
+Provides:  ros2-humble-sros2_cmake = 0.10.5-1
+Obsoletes: ros2-humble-sros2_cmake < 0.10.5-1
 
 
 
@@ -66,8 +66,8 @@ Requires:       ros2-humble-ament_lint_auto-devel
 Requires:       ros2-humble-ament_lint_common-devel
 Requires:       ros2-humble-ament_package-devel
 
-Provides: ros2-humble-sros2_cmake-devel = 0.10.4-1
-Obsoletes: ros2-humble-sros2_cmake-devel < 0.10.4-1
+Provides: ros2-humble-sros2_cmake-devel = 0.10.5-1
+Obsoletes: ros2-humble-sros2_cmake-devel < 0.10.5-1
 
 
 %description devel
@@ -238,6 +238,8 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.10.5-1
+- Update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.10.4-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.10.4-1

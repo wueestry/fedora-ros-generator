@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-iron-fastrtps
-Version:        2.10.3
+Version:        2.10.4
 Release:        1%{?dist}
 License:        Apache 2.0
 URL:            https://www.eprosima.com/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-iron-fastrtps
 Requires:       ros2-iron-fastrtps-devel
 
-Obsoletes: ros-iron-fastrtps < 2.10.3-1
+Obsoletes: ros-iron-fastrtps < 2.10.4-1
 
 %description
 *eprosima Fast DDS* (formerly Fast RTPS) is a C++ implementation of
@@ -34,5 +34,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.2.10.4-1
+- Update to latest release
 * Fri Apr 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - iron.2.10.3-1
 - Update to latest release

@@ -1,12 +1,12 @@
 Name:           ros2-humble-launch_testing_ament_cmake
-Version:        1.0.5
+Version:        1.0.6
 Release:        1%{?dist}
 Summary:        ROS package launch_testing_ament_cmake
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/launch-release/archive/release/humble/launch_testing_ament_cmake/1.0.5-1.tar.gz#/ros2-humble-launch_testing_ament_cmake-1.0.5-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/launch-release/archive/release/humble/launch_testing_ament_cmake/1.0.6-1.tar.gz#/ros2-humble-launch_testing_ament_cmake-1.0.6-source0.tar.gz
 
 
 BuildArch: noarch
@@ -46,8 +46,8 @@ BuildRequires:  ros2-humble-launch_testing-devel
 BuildRequires:  ros2-humble-python_cmake_module-devel
 
 
-Provides:  ros2-humble-launch_testing_ament_cmake = 1.0.5-1
-Obsoletes: ros2-humble-launch_testing_ament_cmake < 1.0.5-1
+Provides:  ros2-humble-launch_testing_ament_cmake = 1.0.6-1
+Obsoletes: ros2-humble-launch_testing_ament_cmake < 1.0.6-1
 
 
 
@@ -65,8 +65,8 @@ Requires:       ros2-humble-python_cmake_module-devel
 Requires:       ros2-humble-ament_cmake_copyright-devel
 Requires:       ros2-humble-ament_package-devel
 
-Provides: ros2-humble-launch_testing_ament_cmake-devel = 1.0.5-1
-Obsoletes: ros2-humble-launch_testing_ament_cmake-devel < 1.0.5-1
+Provides: ros2-humble-launch_testing_ament_cmake-devel = 1.0.6-1
+Obsoletes: ros2-humble-launch_testing_ament_cmake-devel < 1.0.6-1
 
 
 %description devel
@@ -237,6 +237,8 @@ done
 
 
 %changelog
+* Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.0.6-1
+- Update to latest release
 * Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.0.5-1
 - Update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.0.4-1
