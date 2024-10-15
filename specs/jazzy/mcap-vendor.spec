@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-mcap-vendor
-Version:        0.26.3
+Version:        0.26.4
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-mcap_vendor
 Requires:       ros2-jazzy-mcap_vendor-devel
 
-Obsoletes: ros-jazzy-mcap-vendor < 0.26.3-1
+Obsoletes: ros-jazzy-mcap-vendor < 0.26.4-1
 
 %description
 mcap vendor package
@@ -25,6 +25,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.26.4-1
+- Update to latest release
 * Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.26.3-1
 - Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.26.2-1

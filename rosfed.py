@@ -39,7 +39,7 @@ class PkgResolver:
         q = base.sack.query()
         self.available_pkgs = q.available()
 
-    def get_system_package_name(self, pkg_name, rosdistro):
+    def get_system_package_name(self, parent_name,pkg_name, rosdistro):
         env = os.environ.copy()
         env["ROS_DISTRO"] = rosdistro
         cmd = subprocess.run([
@@ -56,8 +56,9 @@ class PkgResolver:
             res = self.available_pkgs.filter(name=pkg_name)
             deps = set([pkg.name for pkg in res])
             assert len(
-                deps) > 0, 'Could not find system package {}: {}'.format(
+                deps) > 0, 'Could not find system package {} for {}: {}'.format(
                     pkg_name,
+                    parent_name,
                     cmd.stderr.decode().rstrip()
                     or cmd.stdout.decode().rstrip())
         assert len(deps) == 1, 'Expected exactly one name, got: {}'.format(
@@ -96,6 +97,7 @@ class RosPkg:
         self.build_deps = {'ros': set(), 'system': set()}
         self.run_deps = {'ros': set(), 'system': set()}
         self.devel_deps = {'ros': set(), 'system': set()}
+        self.test_deps = {'ros': set(), 'system': set()}
         try:
             common_config = yaml.load(open('cfg/common.yaml'),
                                       Loader=yaml.FullLoader)
@@ -117,7 +119,7 @@ class RosPkg:
         self.release = self.pkg_config.get('release', 1)
         self.deps_mapping = {
             'build_depend': [self.build_deps],
-            'test_depend': [self.build_deps],
+            'test_depend': [self.test_deps],
             'run_depend': [self.run_deps],
             'buildtool_depend': [self.build_deps, self.devel_deps],
             'build_export_depend': [self.build_deps, self.devel_deps],
@@ -140,6 +142,8 @@ class RosPkg:
         return 'ros-{}'.format(self.name)
 
     def compute_dependencies(self):
+        if "dynamic_reconfigure" in self.xml:
+          print(self.xml, flush=True)
         for child in self.xml:
             for dep_key, dep_lists in self.deps_mapping.items():
                 if child.tag == dep_key:
@@ -150,6 +154,11 @@ class RosPkg:
                              continue
                             if(child.attrib["condition"] == "$GZ_BUILD_FROM_SOURCE != ''"):
                              continue
+                            if(child.attrib["condition"] == "$BUILD_WITH_LDMRS_SUPPORT == True"):
+                             continue
+                            if("$GZ_VERSION == " in child.attrib["condition"]):
+                             continue
+                            print(child.attrib["condition"], flush=True)
                         except KeyError:
                             pass
                         self.distro_info.get_release_package_xml(pkg)
@@ -164,7 +173,7 @@ class RosPkg:
                                 dep_list['system'].add(dep)
                         except KeyError:
                             system_pkg = \
-                                    self.resolver.get_system_package_name(pkg, self.rosdistro)
+                                    self.resolver.get_system_package_name(self.name, pkg, self.rosdistro)
                             for dep_list in dep_lists:
                                 dep_list['system'].add(system_pkg)
 
@@ -361,6 +370,7 @@ class SpecFileGenerator:
     def worker(self):
         while True:
             pkg = self.package_queue.get()
+            self.tprint(pkg)
             self.generate_spec_file(pkg)
             self.package_queue.task_done()
 

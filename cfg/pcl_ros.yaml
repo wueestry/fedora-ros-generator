@@ -1,7 +1,4 @@
 dependencies:
-  devel:
-    ros:
-      - dynamic_reconfigure
   build:
     system:
       - libuuid-devel
@@ -10,7 +7,3 @@ dependencies:
       - poco-devel
       - lz4-devel
       - libXext-devel
-      - java-17-openjdk-devel
-patches:
-  - ros-pcl_ros.dynamic_reconfigure.patch
-  - ros-pcl_ros.build-with-cpp17.patch

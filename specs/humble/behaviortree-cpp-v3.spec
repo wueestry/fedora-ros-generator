@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-humble-behaviortree-cpp-v3
-Version:        3.8.6
+Version:        3.8.7
 Release:        1%{?dist}
 License:        MIT
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-humble-behaviortree_cpp_v3
 Requires:       ros2-humble-behaviortree_cpp_v3-devel
 
-Obsoletes: ros-humble-behaviortree-cpp-v3 < 3.8.6-1
+Obsoletes: ros-humble-behaviortree-cpp-v3 < 3.8.7-1
 
 %description
 This package provides the Behavior Trees core library.
@@ -25,6 +25,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Mon Aug 12 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.8.7-1
+- Update to latest release
 * Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.8.6-1
 - Update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.3.8.5-1

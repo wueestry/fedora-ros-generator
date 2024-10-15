@@ -9,6 +9,13 @@ common:
         #  to:
         #    type: system
         #    pkg: orocos-kdl-devel
+        - rapidjson:
+          from:
+            type: system
+            pkg: rapidjson
+          to:
+            type: system
+            pkg: rapidjson-devel
         - realsense2:
           from:
             type: ros
@@ -95,6 +102,13 @@ common:
             pkg: python3-sip-devel
     run:
       translate:
+        - rapidjson:
+          from:
+            type: system
+            pkg: rapidjson
+          to:
+            type: system
+            pkg: rapidjson-devel
         #- orocos-kdl:
         #  from:
         #    type: ros
@@ -194,6 +208,27 @@ common:
             type: system
             pkg: python3-sip-devel
     distro_names:
+      rubocop: rubygem(rubocop)
+      tinyxml: tinyxml-devel
+      rapidjson: rapidjson-devel
+      qml-module-qt-labs-folderlistmodel: qt5-qtdeclarative
+      qml-module-qt-labs-platform: qt5-qtdeclarative
+      qml-module-qt-labs-settings: qt5-qtdeclarative
+      qml-module-qtcharts: qt5-qtdeclarative
+      qml-module-qtgraphicaleffects: qt5-qtdeclarative
+      qml-module-qtlocation: qt5-qtdeclarative
+      qml-module-qtpositioning: qt5-qtdeclarative
+      qml-module-qtquick-controls2: qt5-qtdeclarative
+      qml-module-qtquick-controls: qt5-qtdeclarative
+      qml-module-qtquick-dialogs: qt5-qtdeclarative
+      qml-module-qtquick-extras: qt5-qtdeclarative
+      qml-module-qtquick-layouts: qt5-qtdeclarative
+      qml-module-qtquick-templates2: qt5-qtdeclarative
+      qml-module-qtquick-window2: qt5-qtdeclarative
+      qml-module-qtquick2: qt5-qtdeclarative
+      libqt5-qml: qt5-qtdeclarative
+      qtbase5-dev: qt5-qtbase-devel
+      libqt5-quick: qt5-qtquickcontrols
       gazebo11: gazebo
       gazebo9: gazebo
       libcurl: libcurl
@@ -220,3 +255,4 @@ common:
       ignition-math6: ignition-math
       ignition-cmake2: ignition-cmake-devel
       rti-connext-dds-6.0.1: python-devel
+      sdformat12: sdformat-devel

@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-ament-cmake-export-link-flags
-Version:        2.5.0
+Version:        2.5.2
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-ament_cmake_export_link_flags
 Requires:       ros2-jazzy-ament_cmake_export_link_flags-devel
 
-Obsoletes: ros-jazzy-ament-cmake-export-link-flags < 2.5.0-1
+Obsoletes: ros-jazzy-ament-cmake-export-link-flags < 2.5.2-1
 
 %description
 The ability to export link flags to downstream packages in the ament
@@ -26,5 +26,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.5.2-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.5.0-1
 - Update to latest release

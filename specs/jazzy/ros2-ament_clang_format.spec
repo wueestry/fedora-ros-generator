@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-ament_clang_format
-Version:        0.17.0
+Version:        0.17.1
 Release:        1%{?dist}
 Summary:        ROS package ament_clang_format
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ament_lint-release/archive/release/jazzy/ament_clang_format/0.17.0-2.tar.gz#/ros2-jazzy-ament_clang_format-0.17.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ament_lint-release/archive/release/jazzy/ament_clang_format/0.17.1-1.tar.gz#/ros2-jazzy-ament_clang_format-0.17.1-source0.tar.gz
 
 
 BuildArch: noarch
@@ -44,11 +44,11 @@ BuildRequires:  ros2-jazzy-ament_flake8-devel
 BuildRequires:  ros2-jazzy-ament_package-devel
 BuildRequires:  ros2-jazzy-ament_pep257-devel
 
-Requires:       clang
+Requires:       clang-tools-extra git-clang-format
 Requires:       python3-pyyaml
 
-Provides:  ros2-jazzy-ament_clang_format = 0.17.0-1
-Obsoletes: ros2-jazzy-ament_clang_format < 0.17.0-1
+Provides:  ros2-jazzy-ament_clang_format = 0.17.1-1
+Obsoletes: ros2-jazzy-ament_clang_format < 0.17.1-1
 
 
 
@@ -65,8 +65,8 @@ Requires:       ros2-jazzy-ament_flake8-devel
 Requires:       ros2-jazzy-ament_package-devel
 Requires:       ros2-jazzy-ament_pep257-devel
 
-Provides: ros2-jazzy-ament_clang_format-devel = 0.17.0-1
-Obsoletes: ros2-jazzy-ament_clang_format-devel < 0.17.0-1
+Provides: ros2-jazzy-ament_clang_format-devel = 0.17.1-1
+Obsoletes: ros2-jazzy-ament_clang_format-devel < 0.17.1-1
 
 
 %description devel
@@ -237,5 +237,7 @@ done
 
 
 %changelog
+* Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.17.1-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.17.0-1
 - Update to latest release

@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-humble-rviz-rendering
-Version:        11.2.12
+Version:        11.2.13
 Release:        1%{?dist}
 License:        BSD
 URL:            https://github.com/ros2/rviz/blob/ros2/README.md
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-humble-rviz_rendering
 Requires:       ros2-humble-rviz_rendering-devel
 
-Obsoletes: ros-humble-rviz-rendering < 11.2.12-1
+Obsoletes: ros-humble-rviz-rendering < 11.2.13-1
 
 %description
 Library which provides the 3D rendering functionality in rviz.
@@ -25,6 +25,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Mon Aug 12 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.13-1
+- Update to latest release
 * Wed Mar 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.12-1
 - update to latest release
 * Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.11-1

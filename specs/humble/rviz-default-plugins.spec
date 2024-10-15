@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-humble-rviz-default-plugins
-Version:        11.2.12
+Version:        11.2.13
 Release:        1%{?dist}
 License:        BSD
 URL:            https://github.com/ros2/rviz/blob/ros2/README.md
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-humble-rviz_default_plugins
 Requires:       ros2-humble-rviz_default_plugins-devel
 
-Obsoletes: ros-humble-rviz-default-plugins < 11.2.12-1
+Obsoletes: ros-humble-rviz-default-plugins < 11.2.13-1
 
 %description
 Several default plugins for rviz to cover the basic functionality.
@@ -25,6 +25,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Mon Aug 12 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.13-1
+- Update to latest release
 * Wed Mar 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.12-1
 - update to latest release
 * Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.11-1

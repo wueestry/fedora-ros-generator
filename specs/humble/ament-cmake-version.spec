@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-humble-ament-cmake-version
-Version:        1.3.9
+Version:        1.3.10
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-humble-ament_cmake_version
 Requires:       ros2-humble-ament_cmake_version-devel
 
-Obsoletes: ros-humble-ament-cmake-version < 1.3.9-1
+Obsoletes: ros-humble-ament-cmake-version < 1.3.10-1
 
 %description
 The ability to override the exported package version in the ament
@@ -26,6 +26,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Mon Aug 12 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.3.10-1
+- Update to latest release
 * Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.3.9-1
 - Update to latest release
 * Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.1.3.8-1

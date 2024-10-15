@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-fastrtps
-Version:        2.14.0
+Version:        2.14.1
 Release:        1%{?dist}
 License:        Apache 2.0
 URL:            https://www.eprosima.com/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-fastrtps
 Requires:       ros2-jazzy-fastrtps-devel
 
-Obsoletes: ros-jazzy-fastrtps < 2.14.0-1
+Obsoletes: ros-jazzy-fastrtps < 2.14.1-1
 
 %description
 *eprosima Fast DDS* (formerly Fast RTPS) is a C++ implementation of
@@ -34,5 +34,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.14.1-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.14.0-1
 - Update to latest release

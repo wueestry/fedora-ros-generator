@@ -1,12 +1,12 @@
 Name:           ros2-humble-rviz_ogre_vendor
-Version:        11.2.12
+Version:        11.2.13
 Release:        1%{?dist}
 Summary:        ROS package rviz_ogre_vendor
 
 License:        Apache License 2.0
 URL:            https://www.ogre3d.org/
 
-Source0:        https://github.com/ros2-gbp/rviz-release/archive/release/humble/rviz_ogre_vendor/11.2.12-1.tar.gz#/ros2-humble-rviz_ogre_vendor-11.2.12-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rviz-release/archive/release/humble/rviz_ogre_vendor/11.2.13-1.tar.gz#/ros2-humble-rviz_ogre_vendor-11.2.13-source0.tar.gz
 Source1:  ogre_diff.patch
 
 Patch0: ros-rviz_ogre_vendor.build_with_egl.patch
@@ -14,6 +14,7 @@ Patch0: ros-rviz_ogre_vendor.build_with_egl.patch
 
 # common BRs
 BuildRequires: patchelf
+BuildRequires: coreutils
 BuildRequires: cmake
 BuildRequires: gcc-c++
 BuildRequires: git
@@ -47,14 +48,12 @@ BuildRequires:  libXrandr-devel
 BuildRequires:  mesa-libGL-devel mesa-libGLU-devel
 BuildRequires:  pkgconfig
 BuildRequires:  ros2-humble-ament_cmake-devel
-BuildRequires:  ros2-humble-ament_cmake_xmllint-devel
-BuildRequires:  ros2-humble-ament_lint_auto-devel
 BuildRequires:  ros2-humble-ament_package-devel
 
 Requires:       freetype
 
-Provides:  ros2-humble-rviz_ogre_vendor = 11.2.12-1
-Obsoletes: ros2-humble-rviz_ogre_vendor < 11.2.12-1
+Provides:  ros2-humble-rviz_ogre_vendor = 11.2.13-1
+Obsoletes: ros2-humble-rviz_ogre_vendor < 11.2.13-1
 
 
 
@@ -73,12 +72,10 @@ Requires:       libXaw-devel
 Requires:       libXrandr-devel
 Requires:       mesa-libGL-devel mesa-libGLU-devel
 Requires:       pkgconfig
-Requires:       ros2-humble-ament_cmake_xmllint-devel
-Requires:       ros2-humble-ament_lint_auto-devel
 Requires:       ros2-humble-ament_package-devel
 
-Provides: ros2-humble-rviz_ogre_vendor-devel = 11.2.12-1
-Obsoletes: ros2-humble-rviz_ogre_vendor-devel < 11.2.12-1
+Provides: ros2-humble-rviz_ogre_vendor-devel = 11.2.13-1
+Obsoletes: ros2-humble-rviz_ogre_vendor-devel < 11.2.13-1
 
 
 %description devel
@@ -106,6 +103,7 @@ mv %{SOURCE1} .
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 GZ_BUILD_FROM_SURCE=1; export GZ_BUILD_FROM_SOURCE
+export GZ_VERSION=harmonic;
 
 CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CFLAGS ; \
 CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CXXFLAGS ; \
@@ -120,7 +118,6 @@ source %{_libdir}/ros2-humble/setup.bash
 
 # DESTDIR=%{buildroot} ; export DESTDIR
 
-
 colcon \
   build \
   --merge-install \
@@ -131,6 +128,7 @@ colcon \
   -DCMAKE_C_FLAGS="$CFLAGS" \
   -DCMAKE_LD_FLAGS="$LDFLAGS" \
   -DBUILD_TESTING=OFF \
+  -Dgz_add_get_install_prefix_impl_OVERRIDE_INSTALL_PREFIX_ENV_VARIABLE="%{_libdir}/ros2-humble/opt/" \
   --base-paths . \
   --install-base %{buildroot}/%{_libdir}/ros2-humble/ \
   --packages-select rviz_ogre_vendor
@@ -161,6 +159,7 @@ find . -maxdepth 1 -type f -iname "*license*" | sed "s:^:%%license :" >> files.l
 
 find %{buildroot}/%{_libdir}/ros2-humble/ -name *__rosidl_generator_py.so -type f -exec patchelf --remove-rpath  {} \;
 # find %{buildroot}/%{_libdir}/ros2-humble/ -name *__rosidl_generator_py.so -type f -exec patchelf --force-rpath --add-rpath "%{_libdir}/ros2/lib" {} \;
+find %{buildroot}/%{_libdir}/ros2-humble/ -name "*.so*" -type f -exec patchelf  --shrink-rpath --allowed-rpath-prefixes %{_libdir} {} \;
 
 # replace cmake python macro in shebang
 for file in $(grep -rIl '^#!.*@PYTHON_EXECUTABLE@.*$' %{buildroot}) ; do
@@ -171,7 +170,7 @@ done
 
 
 echo "This is a package automatically generated with rosfed." >> README_FEDORA
-echo "See  https://github.com/morxa/rosfed for more information." >> README_FEDORA
+echo "See  https://github.com/TarikViehmann/rosfed for more information." >> README_FEDORA
 install -m 0644 -p -D -t %{buildroot}/%{_docdir}/%{name} README_FEDORA
 echo %{_docdir}/%{name} >> files.list
 install -m 0644 -p -D -t %{buildroot}/%{_docdir}/%{name}-devel README_FEDORA
@@ -184,12 +183,16 @@ for pyfile in $(grep -rIl '^#!.*python.*$' %{buildroot}) ; do
   %py3_shebang_fix $pyfile
 done
 
+sort files.list | uniq > files.list.tmp && mv files.list.tmp files.list
+sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp files_devel.list
 
 %files -f files.list
 %files devel -f files_devel.list
 
 
 %changelog
+* Mon Aug 12 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.13-1
+- Update to latest release
 * Wed Mar 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.12-1
 - update to latest release
 * Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.11-1

@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-smclib
-Version:        4.0.0
+Version:        4.1.0
 Release:        1%{?dist}
 License:        Mozilla Public License Version 1.1
 URL:            http://smc.sourceforge.net/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-smclib
 Requires:       ros2-jazzy-smclib-devel
 
-Obsoletes: ros-jazzy-smclib < 4.0.0-1
+Obsoletes: ros-jazzy-smclib < 4.1.0-1
 
 %description
 The State Machine Compiler (SMC) from http://smc.sourceforge.net/
@@ -29,5 +29,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.1.0-1
+- Update to latest release
 * Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.0.0-1
 - Update to latest release

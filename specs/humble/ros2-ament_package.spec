@@ -13,6 +13,7 @@ BuildArch: noarch
 
 # common BRs
 BuildRequires: patchelf
+BuildRequires: coreutils
 BuildRequires: cmake
 BuildRequires: gcc-c++
 BuildRequires: git
@@ -39,8 +40,6 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python-unversioned-command
 
 BuildRequires:  python3
-BuildRequires:  python3-flake8
-BuildRequires:  python3-pytest
 BuildRequires:  python3-setuptools
 
 Requires:       python3
@@ -58,8 +57,6 @@ The parser for the manifest files in the ament buildsystem.
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
 Requires:       python3
-Requires:       python3-flake8
-Requires:       python3-pytest
 Requires:       python3-setuptools
 
 Provides: ros2-humble-ament_package-devel = 0.14.0-1
@@ -85,6 +82,7 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 GZ_BUILD_FROM_SURCE=1; export GZ_BUILD_FROM_SOURCE
+export GZ_VERSION=harmonic;
 
 CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CFLAGS ; \
 CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CXXFLAGS ; \
@@ -98,7 +96,6 @@ FCFLAGS="${FCFLAGS:-%optflags%{?_fmoddir: -I%_fmoddir}} -w -Wno-error=int-conver
 
 # DESTDIR=%{buildroot} ; export DESTDIR
 
-
 colcon \
   build \
   --merge-install \
@@ -109,6 +106,7 @@ colcon \
   -DCMAKE_C_FLAGS="$CFLAGS" \
   -DCMAKE_LD_FLAGS="$LDFLAGS" \
   -DBUILD_TESTING=OFF \
+  -Dgz_add_get_install_prefix_impl_OVERRIDE_INSTALL_PREFIX_ENV_VARIABLE="%{_libdir}/ros2-humble/opt/" \
   --base-paths . \
   --install-base %{buildroot}/%{_libdir}/ros2-humble/ \
   --packages-select ament_package
@@ -142,6 +140,7 @@ find . -maxdepth 1 -type f -iname "*license*" | sed "s:^:%%license :" >> files.l
 
 find %{buildroot}/%{_libdir}/ros2-humble/ -name *__rosidl_generator_py.so -type f -exec patchelf --remove-rpath  {} \;
 # find %{buildroot}/%{_libdir}/ros2-humble/ -name *__rosidl_generator_py.so -type f -exec patchelf --force-rpath --add-rpath "%{_libdir}/ros2/lib" {} \;
+find %{buildroot}/%{_libdir}/ros2-humble/ -name "*.so*" -type f -exec patchelf  --shrink-rpath --allowed-rpath-prefixes %{_libdir} {} \;
 
 # replace cmake python macro in shebang
 for file in $(grep -rIl '^#!.*@PYTHON_EXECUTABLE@.*$' %{buildroot}) ; do
@@ -152,7 +151,7 @@ done
 
 
 echo "This is a package automatically generated with rosfed." >> README_FEDORA
-echo "See  https://github.com/morxa/rosfed for more information." >> README_FEDORA
+echo "See  https://github.com/TarikViehmann/rosfed for more information." >> README_FEDORA
 install -m 0644 -p -D -t %{buildroot}/%{_docdir}/%{name} README_FEDORA
 echo %{_docdir}/%{name} >> files.list
 install -m 0644 -p -D -t %{buildroot}/%{_docdir}/%{name}-devel README_FEDORA
@@ -165,6 +164,8 @@ for pyfile in $(grep -rIl '^#!.*python.*$' %{buildroot}) ; do
   %py3_shebang_fix $pyfile
 done
 
+sort files.list | uniq > files.list.tmp && mv files.list.tmp files.list
+sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp files_devel.list
 
 %files -f files.list
 %files devel -f files_devel.list

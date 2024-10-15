@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-webots-ros2-tiago
-Version:        2023.1.2
+Version:        2023.1.3
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://wiki.ros.org/webots_ros2
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-webots_ros2_tiago
 Requires:       ros2-jazzy-webots_ros2_tiago-devel
 
-Obsoletes: ros-jazzy-webots-ros2-tiago < 2023.1.2-1
+Obsoletes: ros-jazzy-webots-ros2-tiago < 2023.1.3-1
 
 %description
 TIAGo robots ROS2 interface for Webots.
@@ -25,5 +25,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Mon Aug 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2023.1.3-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2023.1.2-1
 - Update to latest release

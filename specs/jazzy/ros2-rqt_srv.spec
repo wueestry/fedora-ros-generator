@@ -13,6 +13,7 @@ BuildArch: noarch
 
 # common BRs
 BuildRequires: patchelf
+BuildRequires: coreutils
 BuildRequires: cmake
 BuildRequires: gcc-c++
 BuildRequires: git
@@ -38,10 +39,7 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python3-colcon-common-extensions
 # BuildRequires:  python-unversioned-command
 
-BuildRequires:  python3-pytest
-BuildRequires:  ros2-jazzy-ament_flake8-devel
 BuildRequires:  ros2-jazzy-ament_package-devel
-BuildRequires:  ros2-jazzy-ament_xmllint-devel
 
 Requires:       ros2-jazzy-rqt_gui
 Requires:       ros2-jazzy-rqt_gui_py
@@ -58,10 +56,7 @@ A Python GUI plugin for introspecting available ROS service types.
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
-Requires:       python3-pytest
-Requires:       ros2-jazzy-ament_flake8-devel
 Requires:       ros2-jazzy-ament_package-devel
-Requires:       ros2-jazzy-ament_xmllint-devel
 Requires:       ros2-jazzy-rqt_gui-devel
 Requires:       ros2-jazzy-rqt_gui_py-devel
 Requires:       ros2-jazzy-rqt_msg-devel
@@ -89,6 +84,7 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 GZ_BUILD_FROM_SURCE=1; export GZ_BUILD_FROM_SOURCE
+export GZ_VERSION=harmonic;
 
 CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CFLAGS ; \
 CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CXXFLAGS ; \
@@ -103,7 +99,6 @@ source %{_libdir}/ros2-jazzy/setup.bash
 
 # DESTDIR=%{buildroot} ; export DESTDIR
 
-
 colcon \
   build \
   --merge-install \
@@ -114,6 +109,7 @@ colcon \
   -DCMAKE_C_FLAGS="$CFLAGS" \
   -DCMAKE_LD_FLAGS="$LDFLAGS" \
   -DBUILD_TESTING=OFF \
+  -Dgz_add_get_install_prefix_impl_OVERRIDE_INSTALL_PREFIX_ENV_VARIABLE="%{_libdir}/ros2-jazzy/opt/" \
   --base-paths . \
   --install-base %{buildroot}/%{_libdir}/ros2-jazzy/ \
   --packages-select rqt_srv
@@ -121,7 +117,9 @@ colcon \
 
 
 # remove wrong buildroot prefixes
-find %{buildroot}/%{_libdir}/ros2-jazzy/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
+# find %{buildroot}/%{_libdir}/ros2-jazzy/ -type f -exec sed -i "s:%{buildroot}::g" {} \;
+# we should exclude binaries from that as it might corrupt shared libraries
+find %{buildroot}/%{_libdir}/ros2-jazzy/ -type f ! -name '*.so*' -exec sh -c 'file "{}" | grep -q text && sed -i "s:%{buildroot}::g" "{}"' \;
 
 # # Move include directory if source path exists
 # if [ -d %{buildroot}/%{_libdir}/ros2-jazzy/opt/rqt_srv/include ]; then
@@ -130,85 +128,97 @@ find %{buildroot}/%{_libdir}/ros2-jazzy/ -type f -exec sed -i "s:%{buildroot}::g
 #         mkdir -p %{buildroot}/%{_libdir}/ros2-jazzy/include/rqt_srv
 #     fi
 #     # Move the directory
-#     mv -f %{buildroot}/%{_libdir}/ros2-jazzy/opt/rqt_srv/include/* %{buildroot}/%{_libdir}/ros2-jazzy/include/rqt_srv
+#     cp -r %{buildroot}/%{_libdir}/ros2-jazzy/opt/rqt_srv/include/* %{buildroot}/%{_libdir}/ros2-jazzy/include/rqt_srv/
+#     rm -rd %{buildroot}/%{_libdir}/ros2-jazzy/opt/rqt_srv/include
 # fi
-# 
-# # Move share directory if source path exists
-# if [ -d %{buildroot}/%{_libdir}/ros2-jazzy/opt/rqt_srv/share ]; then
-#     # If destination path does not exist, create it
-#     if [ ! -d %{buildroot}/%{_libdir}/ros2-jazzy/share ]; then
-#         mkdir -p %{buildroot}/%{_libdir}/ros2-jazzy/share
-#     fi
-#     # Move the directory
-#     mv -f %{buildroot}/%{_libdir}/ros2-jazzy/opt/rqt_srv/share %{buildroot}/%{_libdir}/ros2-jazzy/
-#     find %{buildroot}/%{_libdir}/ros2-jazzy/share -type f -exec sed -i "s:opt/rqt_srv/::g" {} \;
-# fi
-# 
-# # Move bin directory if source path exists
-# if [ -d %{buildroot}/%{_libdir}/ros2-jazzy/opt/rqt_srv/bin ]; then
-#     # If destination path does not exist, create it
-#     if [ ! -d %{buildroot}/%{_libdir}/ros2-jazzy/bin ]; then
-#         mkdir -p %{buildroot}/%{_libdir}/ros2-jazzy/bin
-#     fi
-#     # Move the directory
-#     mv -f %{buildroot}/%{_libdir}/ros2-jazzy/opt/rqt_srv/bin %{buildroot}/%{_libdir}/ros2-jazzy/
-# fi
-# 
-# # Move extra_cmake directory if source path exists
+
 # if [ -d %{buildroot}/%{_libdir}/ros2-jazzy/opt/rqt_srv/extra_cmake ]; then
 #     # If destination path does not exist, create it
-#     if [ ! -d %{buildroot}/%{_libdir}/ros2-jazzy/extra_cmake ]; then
-#         mkdir -p %{buildroot}/%{_libdir}/ros2-jazzy/extra_cmake
+#     if [ ! -d %{buildroot}/%{_libdir}/ros2-jazzy/rqt_srv/extra_cmake ]; then
+#         mkdir -p %{buildroot}/%{_libdir}/ros2-jazzy/rqt_srv/extra_cmake
 #     fi
 #     # Move the directory
-#     mv -f %{buildroot}/%{_libdir}/ros2-jazzy/opt/rqt_srv/extra_cmake %{buildroot}/%{_libdir}/ros2-jazzy/
-#     find %{buildroot}/%{_libdir}/ros2-jazzy/extra_cmake -type f -exec sed -i "s:opt/rqt_srv/::g" {} \;
+#     cp -r %{buildroot}/%{_libdir}/ros2-jazzy/opt/rqt_srv/extra_cmake/* %{buildroot}/%{_libdir}/ros2-jazzy/rqt_srv/extra_cmake/
+#     rm -rd %{buildroot}/%{_libdir}/ros2-jazzy/opt/rqt_srv/extra_cmake
 # fi
-# 
-# # Move lib directory if source path exists
-# if [ -d %{buildroot}/%{_libdir}/ros2-jazzy/opt/rqt_srv/lib ]; then
+
+# if [ -d %{buildroot}/%{_libdir}/ros2-jazzy/rqt_srv/share ]; then
 #     # If destination path does not exist, create it
-#     if [ ! -d %{buildroot}/%{_libdir}/ros2-jazzy/lib ]; then
-#         mkdir -p %{buildroot}/%{_libdir}/ros2-jazzy/lib
+#     if [ ! -d %{buildroot}/%{_libdir}/ros2-jazzy/share/rqt_srv ]; then
+#         mkdir -p %{buildroot}/%{_libdir}/ros2-jazzy/share/rqt_srv
 #     fi
 #     # Move the directory
-#     mv -f %{buildroot}/%{_libdir}/ros2-jazzy/opt/rqt_srv/lib %{buildroot}/%{_libdir}/ros2-jazzy/lib
+#     cp -r %{buildroot}/%{_libdir}/ros2-jazzy/rqt_srv/share/* %{buildroot}/%{_libdir}/ros2-jazzy/share/rqt_srv/
+#     rm -rd %{buildroot}/%{_libdir}/ros2-jazzy/rqt_srv/share
 # fi
-# 
-# # Move lib64 directory if source path exists
-# if [ -d %{buildroot}/%{_libdir}/ros2-jazzy/opt/rqt_srv/lib64 ]; then
+
+# # Move other opt path if source path exists
+# if [ -d %{buildroot}/%{_libdir}/ros2-jazzy/opt/rqt_srv]; then
 #     # If destination path does not exist, create it
-#     if [ ! -d %{buildroot}/%{_libdir}/ros2-jazzy/lib64 ]; then
-#         mkdir -p %{buildroot}/%{_libdir}/ros2-jazzy/lib64
+#     if [ ! -d %{buildroot}/%{_libdir}/ros2-jazzy ]; then
+#         mkdir -p %{buildroot}/%{_libdir}/ros2-jazzy
 #     fi
 #     # Move the directory
-#     mv -f %{buildroot}/%{_libdir}/ros2-jazzy/opt/rqt_srv/lib64 %{buildroot}/%{_libdir}/ros2-jazzy/lib64
+#     cp -r %{buildroot}/%{_libdir}/ros2-jazzy/opt/rqt_srv/* %{buildroot}/%{_libdir}/ros2-jazzy/
+#     rm  -rd %{buildroot}/%{_libdir}/ros2-jazzy/opt/rqt_srv
 # fi
 
 rm -rf %{buildroot}/%{_libdir}/ros2-jazzy/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
+
+# vendor pkg removal
+rm -rf %{buildroot}/%{_libdir}/ros2-jazzy/opt/share/rqt_srv/{.catkin,.rosinstall,_setup*,local_setup*,setup*,env.sh,.colcon_install_layout,COLCON_IGNORE,_local_setup*,_local_setup*}
 
 # remove __pycache__
 find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{opt,bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+  ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
   ! -name pkgconfig ! -name "python*" \
   | sed "s:%{buildroot}/::" >> files.list
 
+# paths for vendor packages
+find %{buildroot}/%{_libdir}/ros2-jazzy/rqt_srv/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
+  ! -name cmake ! -name include \
+  -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files.list
+find %{buildroot}/%{_libdir}/ros2-jazzy/opt/rqt_srv/{bin,etc,tools,lib64/python*,lib/python*/site-packages,share} \
+  ! -name cmake ! -name include \
+  -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files.list
+find %{buildroot}/%{_libdir}/ros2-jazzy/rqt_srv/lib*/ -mindepth 1 -maxdepth 1 \
+  ! -name pkgconfig ! -name "python*" \
+  | sed "s:%{buildroot}/::" >> files.list
+find %{buildroot}/%{_libdir}/ros2-jazzy/opt/rqt_srv/lib*/ -mindepth 1 -maxdepth 1 \
+  ! -name pkgconfig ! -name "python*" \
+  | sed "s:%{buildroot}/::" >> files.list
+find %{buildroot}/%{_libdir}/ros2-jazzy/opt/share/rqt_srv \
+  -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files.list
+
 touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,rqt_srv/include/,share/rqt_srv/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
-
-find . -maxdepth 1 -type f -iname "*readme*" | sed "s:^:%%doc :" >> files.list
+# paths for vendor packages
+find %{buildroot}/%{_libdir}/ros2-jazzy/rqt_srv/{lib*/pkgconfig,include/,cmake/,rqt_srv/include/,share/cmake} \
+  -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
+find %{buildroot}/%{_libdir}/ros2-jazzy/opt/rqt_srv/extra_cmake \
+  -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
+find %{buildroot}/%{_libdir}/ros2-jazzy/opt/rqt_srv/{lib*/pkgconfig,include/,cmake/,rqt_srv/include/,/share/cmake,/extra_cmake} \
+  -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
+find %{buildroot}/%{_libdir}/ros2-jazzy/opt/share/ament_index/resource_index \
+  -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
+find %{buildroot}/%{_libdir}/ros2-jazzy/opt/share/colcon-core/packages/ \
+  -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
+find %{buildroot}/%{_libdir}/ros2-jazzy/opt/share/rqt_srv/{hook,environment,cmake} \
+  -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find . -maxdepth 1 -type f -iname "*license*" | sed "s:^:%%license :" >> files.list
 
 
 
 find %{buildroot}/%{_libdir}/ros2-jazzy/ -name *__rosidl_generator_py.so -type f -exec patchelf --remove-rpath  {} \;
 # find %{buildroot}/%{_libdir}/ros2-jazzy/ -name *__rosidl_generator_py.so -type f -exec patchelf --force-rpath --add-rpath "%{_libdir}/ros2/lib" {} \;
+find %{buildroot}/%{_libdir}/ros2-jazzy/ -name "*.so*" -type f -exec patchelf  --shrink-rpath --allowed-rpath-prefixes %{_libdir} {} \;
 
 # replace cmake python macro in shebang
 for file in $(grep -rIl '^#!.*@PYTHON_EXECUTABLE@.*$' %{buildroot}) ; do
@@ -219,7 +229,7 @@ done
 
 
 echo "This is a package automatically generated with rosfed." >> README_FEDORA
-echo "See  https://github.com/morxa/rosfed for more information." >> README_FEDORA
+echo "See  https://github.com/TarikViehmann/rosfed for more information." >> README_FEDORA
 install -m 0644 -p -D -t %{buildroot}/%{_docdir}/%{name} README_FEDORA
 echo %{_docdir}/%{name} >> files.list
 install -m 0644 -p -D -t %{buildroot}/%{_docdir}/%{name}-devel README_FEDORA
@@ -232,6 +242,8 @@ for pyfile in $(grep -rIl '^#!.*python.*$' %{buildroot}) ; do
   %py3_shebang_fix $pyfile
 done
 
+sort files.list | uniq > files.list.tmp && mv files.list.tmp files.list
+sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp files_devel.list
 
 %files -f files.list
 %files devel -f files_devel.list

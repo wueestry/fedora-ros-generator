@@ -1,0 +1,38 @@
+{% block info %}
+# Meta Package
+Name:           ros-{{ distro }}-{{ meta_name }}
+Version:        {{ pkg_version }}
+Release:        {{ pkg_release }}%{?dist}
+License:        {{ license }}
+URL:            {{ pkg_url }}
+Summary:        Meta package for ros2-{{ distro }}-{{ pkg_name }} and its development package to adhere to ubuntu pkg names
+{% endblock %}
+BuildArch: noarch
+
+Requires:       ros2-{{ distro }}-{{ pkg_name }}
+{% if has_devel %}
+Requires:       ros2-{{ distro }}-{{ pkg_name }}-devel
+{% endif %}
+
+{% if obsolete_distro_pkg %}
+Obsoletes: ros-{{ distro }}-{{ meta_name }} < {{ pkg_version }}-{{ pkg_release }}
+{% endif %}
+
+%description
+{{ pkg_description }}
+
+%build
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%install
+
+%files
+
+%changelog
+{% if changelog_entry %}
+* {{ date }} {{ user_string }} - {{ distro }}.{{ pkg_version }}-{{ pkg_release }}
+- {{ changelog_entry }}
+{% endif %}
+{{ changelog }}

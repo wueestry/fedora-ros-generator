@@ -13,6 +13,7 @@ BuildArch: noarch
 
 # common BRs
 BuildRequires: patchelf
+BuildRequires: coreutils
 BuildRequires: cmake
 BuildRequires: gcc-c++
 BuildRequires: git
@@ -81,6 +82,7 @@ tar --strip-components=1 -xf %{SOURCE0}
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 GZ_BUILD_FROM_SURCE=1; export GZ_BUILD_FROM_SOURCE
+export GZ_VERSION=harmonic;
 
 CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CFLAGS ; \
 CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CXXFLAGS ; \
@@ -95,7 +97,6 @@ source %{_libdir}/ros2-jazzy/setup.bash
 
 # DESTDIR=%{buildroot} ; export DESTDIR
 
-
 colcon \
   build \
   --merge-install \
@@ -106,6 +107,7 @@ colcon \
   -DCMAKE_C_FLAGS="$CFLAGS" \
   -DCMAKE_LD_FLAGS="$LDFLAGS" \
   -DBUILD_TESTING=OFF \
+  -Dgz_add_get_install_prefix_impl_OVERRIDE_INSTALL_PREFIX_ENV_VARIABLE="%{_libdir}/ros2-jazzy/opt/" \
   --base-paths . \
   --install-base %{buildroot}/%{_libdir}/ros2-jazzy/ \
   --packages-select gmock_vendor
@@ -138,6 +140,7 @@ find . -maxdepth 1 -type f -iname "*license*" | sed "s:^:%%license :" >> files.l
 
 find %{buildroot}/%{_libdir}/ros2-jazzy/ -name *__rosidl_generator_py.so -type f -exec patchelf --remove-rpath  {} \;
 # find %{buildroot}/%{_libdir}/ros2-jazzy/ -name *__rosidl_generator_py.so -type f -exec patchelf --force-rpath --add-rpath "%{_libdir}/ros2/lib" {} \;
+find %{buildroot}/%{_libdir}/ros2-jazzy/ -name "*.so*" -type f -exec patchelf  --shrink-rpath --allowed-rpath-prefixes %{_libdir} {} \;
 
 # replace cmake python macro in shebang
 for file in $(grep -rIl '^#!.*@PYTHON_EXECUTABLE@.*$' %{buildroot}) ; do
@@ -148,7 +151,7 @@ done
 
 
 echo "This is a package automatically generated with rosfed." >> README_FEDORA
-echo "See  https://github.com/morxa/rosfed for more information." >> README_FEDORA
+echo "See  https://github.com/TarikViehmann/rosfed for more information." >> README_FEDORA
 install -m 0644 -p -D -t %{buildroot}/%{_docdir}/%{name} README_FEDORA
 echo %{_docdir}/%{name} >> files.list
 install -m 0644 -p -D -t %{buildroot}/%{_docdir}/%{name}-devel README_FEDORA
@@ -161,6 +164,8 @@ for pyfile in $(grep -rIl '^#!.*python.*$' %{buildroot}) ; do
   %py3_shebang_fix $pyfile
 done
 
+sort files.list | uniq > files.list.tmp && mv files.list.tmp files.list
+sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp files_devel.list
 
 %files -f files.list
 %files devel -f files_devel.list

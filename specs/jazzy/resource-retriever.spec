@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-resource-retriever
-Version:        3.4.2
+Version:        3.4.3
 Release:        1%{?dist}
 License:        BSD
 URL:            http://ros.org/wiki/resource_retriever
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-resource_retriever
 Requires:       ros2-jazzy-resource_retriever-devel
 
-Obsoletes: ros-jazzy-resource-retriever < 3.4.2-1
+Obsoletes: ros-jazzy-resource-retriever < 3.4.3-1
 
 %description
 This package retrieves data from url-format files such as http://,
@@ -30,6 +30,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.3.4.3-1
+- Update to latest release
 * Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.3.4.2-1
 - Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.3.4.1-1

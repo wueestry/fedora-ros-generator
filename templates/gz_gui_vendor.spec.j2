@@ -1,0 +1,6 @@
+{% extends "pkg.spec.j2" %}
+{% block meta %}
+# This is required due to mentions of BUILDROOT outside of elf sections in libgz-gui8.so
+# Removal of these strings corrupts the library
+%define __arch_install_post %{nil}
+{% endblock %}

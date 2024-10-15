@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-humble-rosbag2-compression
-Version:        0.15.11
+Version:        0.15.12
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-humble-rosbag2_compression
 Requires:       ros2-humble-rosbag2_compression-devel
 
-Obsoletes: ros-humble-rosbag2-compression < 0.15.11-1
+Obsoletes: ros-humble-rosbag2-compression < 0.15.12-1
 
 %description
 Compression implementations for rosbag2 bags and messages.
@@ -25,6 +25,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Mon Aug 12 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.15.12-1
+- Update to latest release
 * Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.15.11-1
 - Update to latest release
 * Mon Feb 19 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.15.9-1

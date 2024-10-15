@@ -1,0 +1,6 @@
+{% extends "pkg.spec.j2" %}
+{% block meta %}
+# This is required due to a stupid path in gz_cmake_vendor
+# Removal of these strings corrupts the library
+%define __arch_install_post %{nil}
+{% endblock %}

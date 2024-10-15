@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-humble-controller-manager-msgs
-Version:        2.41.0
+Version:        2.42.0
 Release:        1%{?dist}
 License:        BSD
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-humble-controller_manager_msgs
 Requires:       ros2-humble-controller_manager_msgs-devel
 
-Obsoletes: ros-humble-controller-manager-msgs < 2.41.0-1
+Obsoletes: ros-humble-controller-manager-msgs < 2.42.0-1
 
 %description
 Messages and services for the controller manager.
@@ -25,6 +25,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Mon Aug 12 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.42.0-1
+- Update to latest release
 * Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.41.0-1
 - Update to latest release
 * Wed Mar 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.2.40.0-1

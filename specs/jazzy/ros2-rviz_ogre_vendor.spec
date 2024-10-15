@@ -1,18 +1,19 @@
 Name:           ros2-jazzy-rviz_ogre_vendor
-Version:        14.1.1
+Version:        14.1.4
 Release:        1%{?dist}
 Summary:        ROS package rviz_ogre_vendor
 
 License:        Apache License 2.0
 URL:            https://www.ogre3d.org/
 
-Source0:        https://github.com/ros2-gbp/rviz-release/archive/release/jazzy/rviz_ogre_vendor/14.1.1-1.tar.gz#/ros2-jazzy-rviz_ogre_vendor-14.1.1-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rviz-release/archive/release/jazzy/rviz_ogre_vendor/14.1.4-1.tar.gz#/ros2-jazzy-rviz_ogre_vendor-14.1.4-source0.tar.gz
 Source1:  ogre_diff.patch
 
 
 
 # common BRs
 BuildRequires: patchelf
+BuildRequires: coreutils
 BuildRequires: cmake
 BuildRequires: gcc-c++
 BuildRequires: git
@@ -45,14 +46,12 @@ BuildRequires:  libXrandr-devel
 BuildRequires:  mesa-libGL-devel mesa-libGLU-devel
 BuildRequires:  ros2-jazzy-ament_cmake-devel
 BuildRequires:  ros2-jazzy-ament_cmake_vendor_package-devel
-BuildRequires:  ros2-jazzy-ament_cmake_xmllint-devel
-BuildRequires:  ros2-jazzy-ament_lint_auto-devel
 BuildRequires:  ros2-jazzy-ament_package-devel
 
 Requires:       freetype
 
-Provides:  ros2-jazzy-rviz_ogre_vendor = 14.1.1-1
-Obsoletes: ros2-jazzy-rviz_ogre_vendor < 14.1.1-1
+Provides:  ros2-jazzy-rviz_ogre_vendor = 14.1.4-1
+Obsoletes: ros2-jazzy-rviz_ogre_vendor < 14.1.4-1
 
 
 
@@ -70,12 +69,10 @@ Requires:       libX11-devel
 Requires:       libXaw-devel
 Requires:       libXrandr-devel
 Requires:       mesa-libGL-devel mesa-libGLU-devel
-Requires:       ros2-jazzy-ament_cmake_xmllint-devel
-Requires:       ros2-jazzy-ament_lint_auto-devel
 Requires:       ros2-jazzy-ament_package-devel
 
-Provides: ros2-jazzy-rviz_ogre_vendor-devel = 14.1.1-1
-Obsoletes: ros2-jazzy-rviz_ogre_vendor-devel < 14.1.1-1
+Provides: ros2-jazzy-rviz_ogre_vendor-devel = 14.1.4-1
+Obsoletes: ros2-jazzy-rviz_ogre_vendor-devel < 14.1.4-1
 
 
 %description devel
@@ -102,6 +99,7 @@ mv %{SOURCE1} .
 
 PYTHONUNBUFFERED=1 ; export PYTHONUNBUFFERED
 GZ_BUILD_FROM_SURCE=1; export GZ_BUILD_FROM_SOURCE
+export GZ_VERSION=harmonic;
 
 CFLAGS=" -Wno-error ${CFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CFLAGS ; \
 CXXFLAGS=" -Wno-error ${CXXFLAGS:-%optflags} -Wno-error -w -Wno-error=int-conversion" ; export CXXFLAGS ; \
@@ -116,7 +114,6 @@ source %{_libdir}/ros2-jazzy/setup.bash
 
 # DESTDIR=%{buildroot} ; export DESTDIR
 
-
 colcon \
   build \
   --merge-install \
@@ -127,6 +124,7 @@ colcon \
   -DCMAKE_C_FLAGS="$CFLAGS" \
   -DCMAKE_LD_FLAGS="$LDFLAGS" \
   -DBUILD_TESTING=OFF \
+  -Dgz_add_get_install_prefix_impl_OVERRIDE_INSTALL_PREFIX_ENV_VARIABLE="%{_libdir}/ros2-jazzy/opt/" \
   --base-paths . \
   --install-base %{buildroot}/%{_libdir}/ros2-jazzy/ \
   --packages-select rviz_ogre_vendor
@@ -157,6 +155,7 @@ find . -maxdepth 1 -type f -iname "*license*" | sed "s:^:%%license :" >> files.l
 
 find %{buildroot}/%{_libdir}/ros2-jazzy/ -name *__rosidl_generator_py.so -type f -exec patchelf --remove-rpath  {} \;
 # find %{buildroot}/%{_libdir}/ros2-jazzy/ -name *__rosidl_generator_py.so -type f -exec patchelf --force-rpath --add-rpath "%{_libdir}/ros2/lib" {} \;
+find %{buildroot}/%{_libdir}/ros2-jazzy/ -name "*.so*" -type f -exec patchelf  --shrink-rpath --allowed-rpath-prefixes %{_libdir} {} \;
 
 # replace cmake python macro in shebang
 for file in $(grep -rIl '^#!.*@PYTHON_EXECUTABLE@.*$' %{buildroot}) ; do
@@ -167,7 +166,7 @@ done
 
 
 echo "This is a package automatically generated with rosfed." >> README_FEDORA
-echo "See  https://github.com/morxa/rosfed for more information." >> README_FEDORA
+echo "See  https://github.com/TarikViehmann/rosfed for more information." >> README_FEDORA
 install -m 0644 -p -D -t %{buildroot}/%{_docdir}/%{name} README_FEDORA
 echo %{_docdir}/%{name} >> files.list
 install -m 0644 -p -D -t %{buildroot}/%{_docdir}/%{name}-devel README_FEDORA
@@ -180,12 +179,20 @@ for pyfile in $(grep -rIl '^#!.*python.*$' %{buildroot}) ; do
   %py3_shebang_fix $pyfile
 done
 
+sort files.list | uniq > files.list.tmp && mv files.list.tmp files.list
+sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp files_devel.list
 
 %files -f files.list
 %files devel -f files_devel.list
 
 
 %changelog
+* Mon Aug 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.14.1.4-1
+- Update to latest release
+* Wed Jul 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.14.1.3-1
+- Update to latest release
+* Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.14.1.2-1
+- Update to latest release
 * Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.14.1.1-1
 - Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.14.1.0-1

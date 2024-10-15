@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-humble-rviz-assimp-vendor
-Version:        11.2.12
+Version:        11.2.13
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://assimp.sourceforge.net/index.html
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-humble-rviz_assimp_vendor
 Requires:       ros2-humble-rviz_assimp_vendor-devel
 
-Obsoletes: ros-humble-rviz-assimp-vendor < 11.2.12-1
+Obsoletes: ros-humble-rviz-assimp-vendor < 11.2.13-1
 
 %description
 Wrapper around assimp, providing nothing but a dependency on assimp,
@@ -27,5 +27,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Mon Aug 12 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.13-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.11.2.12-1
 - Update to latest release

@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-ament-cmake-gen-version-h
-Version:        2.5.0
+Version:        2.5.2
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-ament_cmake_gen_version_h
 Requires:       ros2-jazzy-ament_cmake_gen_version_h-devel
 
-Obsoletes: ros-jazzy-ament-cmake-gen-version-h < 2.5.0-1
+Obsoletes: ros-jazzy-ament-cmake-gen-version-h < 2.5.2-1
 
 %description
 Generate a C header containing the version number of the package
@@ -25,5 +25,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.5.2-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.5.0-1
 - Update to latest release

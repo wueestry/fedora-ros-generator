@@ -6,6 +6,6 @@ dependencies:
       - tinyxml-devel
       - tinyxml2-devel
       - fcl-devel
-      - poco-devel
-patches:
- - ros.moveit_ros_bencharks.suppress-deprecation-warning.patch
+      #       - poco-devel
+ # patches:
+ # - ros.moveit_ros_bencharks.suppress-deprecation-warning.patch

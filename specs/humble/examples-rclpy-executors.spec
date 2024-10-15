@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-humble-examples-rclpy-executors
-Version:        0.15.1
+Version:        0.15.2
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-humble-examples_rclpy_executors
 Requires:       ros2-humble-examples_rclpy_executors-devel
 
-Obsoletes: ros-humble-examples-rclpy-executors < 0.15.1-1
+Obsoletes: ros-humble-examples-rclpy-executors < 0.15.2-1
 
 %description
 Examples of creating and using exectors to run multiple nodes in the
@@ -26,6 +26,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Mon Aug 12 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.15.2-1
+- Update to latest release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.15.1-1
 - update to latest upstream release
 * Wed Aug 23 2023 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.0.15.1-1

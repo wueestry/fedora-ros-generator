@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-pilz_industrial_motion_planner_testutils
-Version:        2.9.0
+Version:        2.10.0
 Release:        1%{?dist}
 Summary:        ROS package pilz_industrial_motion_planner_testutils
 
 License:        BSD-3-Clause
 URL:            http://moveit.ros.org
 
-Source0:        https://github.com/ros2-gbp/moveit2-release/archive/release/jazzy/pilz_industrial_motion_planner_testutils/2.9.0-1.tar.gz#/ros2-jazzy-pilz_industrial_motion_planner_testutils-2.9.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/moveit2-release/archive/release/jazzy/pilz_industrial_motion_planner_testutils/2.10.0-1.tar.gz#/ros2-jazzy-pilz_industrial_motion_planner_testutils-2.10.0-source0.tar.gz
 
 
 
@@ -38,8 +38,6 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python-unversioned-command
 
 BuildRequires:  ros2-jazzy-ament_cmake-devel
-BuildRequires:  ros2-jazzy-ament_lint_auto-devel
-BuildRequires:  ros2-jazzy-ament_lint_common-devel
 BuildRequires:  ros2-jazzy-ament_package-devel
 BuildRequires:  ros2-jazzy-eigen3_cmake_module-devel
 BuildRequires:  ros2-jazzy-moveit_common-devel
@@ -53,8 +51,8 @@ Requires:       ros2-jazzy-moveit_core
 Requires:       ros2-jazzy-moveit_msgs
 Requires:       ros2-jazzy-rclcpp
 
-Provides:  ros2-jazzy-pilz_industrial_motion_planner_testutils = 2.9.0-1
-Obsoletes: ros2-jazzy-pilz_industrial_motion_planner_testutils < 2.9.0-1
+Provides:  ros2-jazzy-pilz_industrial_motion_planner_testutils = 2.10.0-1
+Obsoletes: ros2-jazzy-pilz_industrial_motion_planner_testutils < 2.10.0-1
 
 
 
@@ -66,8 +64,6 @@ Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       ros2-jazzy-ament_cmake-devel
 Requires:       ros2-jazzy-eigen3_cmake_module-devel
-Requires:       ros2-jazzy-ament_lint_auto-devel
-Requires:       ros2-jazzy-ament_lint_common-devel
 Requires:       ros2-jazzy-ament_package-devel
 Requires:       ros2-jazzy-moveit_common-devel
 Requires:       ros2-jazzy-moveit_core-devel
@@ -75,8 +71,8 @@ Requires:       ros2-jazzy-moveit_msgs-devel
 Requires:       ros2-jazzy-rclcpp-devel
 Requires:       ros2-jazzy-tf2_eigen-devel
 
-Provides: ros2-jazzy-pilz_industrial_motion_planner_testutils-devel = 2.9.0-1
-Obsoletes: ros2-jazzy-pilz_industrial_motion_planner_testutils-devel < 2.9.0-1
+Provides: ros2-jazzy-pilz_industrial_motion_planner_testutils-devel = 2.10.0-1
+Obsoletes: ros2-jazzy-pilz_industrial_motion_planner_testutils-devel < 2.10.0-1
 
 
 %description devel
@@ -247,5 +243,7 @@ done
 
 
 %changelog
+* Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.10.0-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.9.0-1
 - Update to latest release

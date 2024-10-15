@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-ament_cmake_google_benchmark
-Version:        2.5.0
+Version:        2.5.2
 Release:        1%{?dist}
 Summary:        ROS package ament_cmake_google_benchmark
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ament_cmake-release/archive/release/jazzy/ament_cmake_google_benchmark/2.5.0-2.tar.gz#/ros2-jazzy-ament_cmake_google_benchmark-2.5.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ament_cmake-release/archive/release/jazzy/ament_cmake_google_benchmark/2.5.2-1.tar.gz#/ros2-jazzy-ament_cmake_google_benchmark-2.5.2-source0.tar.gz
 
 
 BuildArch: noarch
@@ -46,8 +46,8 @@ BuildRequires:  ros2-jazzy-ament_package-devel
 Requires:       ros2-jazzy-ament_cmake_test
 Requires:       ros2-jazzy-google_benchmark_vendor
 
-Provides:  ros2-jazzy-ament_cmake_google_benchmark = 2.5.0-1
-Obsoletes: ros2-jazzy-ament_cmake_google_benchmark < 2.5.0-1
+Provides:  ros2-jazzy-ament_cmake_google_benchmark = 2.5.2-1
+Obsoletes: ros2-jazzy-ament_cmake_google_benchmark < 2.5.2-1
 
 
 
@@ -65,8 +65,8 @@ Requires:       ros2-jazzy-ament_package-devel
 Requires:       ros2-jazzy-ament_cmake_test-devel
 Requires:       ros2-jazzy-google_benchmark_vendor-devel
 
-Provides: ros2-jazzy-ament_cmake_google_benchmark-devel = 2.5.0-1
-Obsoletes: ros2-jazzy-ament_cmake_google_benchmark-devel < 2.5.0-1
+Provides: ros2-jazzy-ament_cmake_google_benchmark-devel = 2.5.2-1
+Obsoletes: ros2-jazzy-ament_cmake_google_benchmark-devel < 2.5.2-1
 
 
 %description devel
@@ -237,5 +237,7 @@ done
 
 
 %changelog
+* Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.5.2-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.5.0-1
 - Update to latest release

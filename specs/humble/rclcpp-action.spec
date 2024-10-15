@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-humble-rclcpp-action
-Version:        16.0.9
+Version:        16.0.10
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-humble-rclcpp_action
 Requires:       ros2-humble-rclcpp_action-devel
 
-Obsoletes: ros-humble-rclcpp-action < 16.0.9-1
+Obsoletes: ros-humble-rclcpp-action < 16.0.10-1
 
 %description
 Adds action APIs for C++.
@@ -25,6 +25,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Mon Aug 12 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.16.0.10-1
+- Update to latest release
 * Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - humble.16.0.9-1
 - Update to latest release
 * Mon Feb 12 2024 Tarik Viehmann - humble.16.0.8-1

@@ -1,1 +1,3 @@
 noarch: true
+patches:
+ - ros2.gz_cmake_vendor.opt_path_fix.patch

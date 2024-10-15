@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-moveit_resources_prbt_pg70_support
-Version:        2.9.0
+Version:        2.10.0
 Release:        1%{?dist}
 Summary:        ROS package moveit_resources_prbt_pg70_support
 
 License:        Apache 2.0
 URL:            http://moveit.ros.org
 
-Source0:        https://github.com/ros2-gbp/moveit2-release/archive/release/jazzy/moveit_resources_prbt_pg70_support/2.9.0-1.tar.gz#/ros2-jazzy-moveit_resources_prbt_pg70_support-2.9.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/moveit2-release/archive/release/jazzy/moveit_resources_prbt_pg70_support/2.10.0-1.tar.gz#/ros2-jazzy-moveit_resources_prbt_pg70_support-2.10.0-source0.tar.gz
 
 
 BuildArch: noarch
@@ -46,8 +46,8 @@ Requires:       ros2-jazzy-moveit_resources_prbt_moveit_config
 Requires:       ros2-jazzy-moveit_resources_prbt_support
 Requires:       ros2-jazzy-xacro
 
-Provides:  ros2-jazzy-moveit_resources_prbt_pg70_support = 2.9.0-1
-Obsoletes: ros2-jazzy-moveit_resources_prbt_pg70_support < 2.9.0-1
+Provides:  ros2-jazzy-moveit_resources_prbt_pg70_support = 2.10.0-1
+Obsoletes: ros2-jazzy-moveit_resources_prbt_pg70_support < 2.10.0-1
 
 
 
@@ -64,8 +64,8 @@ Requires:       ros2-jazzy-moveit_resources_prbt_moveit_config-devel
 Requires:       ros2-jazzy-moveit_resources_prbt_support-devel
 Requires:       ros2-jazzy-xacro-devel
 
-Provides: ros2-jazzy-moveit_resources_prbt_pg70_support-devel = 2.9.0-1
-Obsoletes: ros2-jazzy-moveit_resources_prbt_pg70_support-devel < 2.9.0-1
+Provides: ros2-jazzy-moveit_resources_prbt_pg70_support-devel = 2.10.0-1
+Obsoletes: ros2-jazzy-moveit_resources_prbt_pg70_support-devel < 2.10.0-1
 
 
 %description devel
@@ -236,5 +236,7 @@ done
 
 
 %changelog
+* Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.10.0-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.9.0-1
 - Update to latest release
