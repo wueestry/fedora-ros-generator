@@ -1,0 +1,2 @@
+patches:
+ - ros2.webots_ros2_driver.python3.12.patch

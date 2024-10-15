@@ -1,0 +1,7 @@
+dependencies:
+  build:
+    system:
+      - tinyxml-devel
+      - NLopt-devel
+      - coin-or-Ipopt-devel
+      - pagmo2-devel
