@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-iceoryx-posh
-Version:        2.0.5
+Version:        2.0.6
 Release:        1%{?dist}
 License:        Apache 2.0
 URL:            https://iceoryx.io
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-iceoryx_posh
 Requires:       ros2-jazzy-iceoryx_posh-devel
 
-Obsoletes: ros-jazzy-iceoryx-posh < 2.0.5-1
+Obsoletes: ros-jazzy-iceoryx-posh < 2.0.6-1
 
 %description
 Eclipse iceoryx inter-process-communication (IPC) middleware Posix
@@ -26,5 +26,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.0.6-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.0.5-1
 - Update to latest release

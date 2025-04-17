@@ -2,3 +2,5 @@ dependencies:
   build:
     system:
       - libatomic
+patches:
+ - ros.gz_ogre_next_vendor.rm_explicit_stl_alloc_ctor.patch

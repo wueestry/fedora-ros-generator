@@ -1,0 +1,30 @@
+# Meta Package
+Name:           ros-jazzy-plansys2-lifecycle-manager
+Version:        2.0.18
+Release:        1%{?dist}
+License:        Apache License, Version 2.0
+URL:            http://www.ros.org/
+Summary:        Meta package for ros2-jazzy-plansys2_lifecycle_manager and its development package to adhere to ubuntu pkg names
+BuildArch: noarch
+
+Requires:       ros2-jazzy-plansys2_lifecycle_manager
+Requires:       ros2-jazzy-plansys2_lifecycle_manager-devel
+
+Obsoletes: ros-jazzy-plansys2-lifecycle-manager < 2.0.18-1
+
+%description
+A controller/manager for the lifecycle nodes of the ROS2 Planning
+System
+
+%build
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%install
+
+%files
+
+%changelog
+* Sat Mar 08 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.0.18-1
+- Update to latest release

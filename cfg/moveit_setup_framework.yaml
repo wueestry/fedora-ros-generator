@@ -1,0 +1,2 @@
+patches:
+ - ros.moveit_setup_framework.fmt_join.patch 

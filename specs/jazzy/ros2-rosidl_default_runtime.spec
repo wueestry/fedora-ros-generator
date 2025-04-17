@@ -175,7 +175,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -202,7 +202,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,rosidl_default_runtime/include/,share/rosidl_default_runtime/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/rosidl_default_runtime/{lib*/pkgconfig,include/,cmake/,rosidl_default_runtime/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/rosidl_default_runtime/{lib*/pkgconfig,include/,cmake/,extra_cmake/,rosidl_default_runtime/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/rosidl_default_runtime/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list

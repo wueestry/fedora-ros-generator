@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-trajectory_msgs
-Version:        5.3.5
+Version:        5.3.6
 Release:        1%{?dist}
 Summary:        ROS package trajectory_msgs
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/common_interfaces-release/archive/release/jazzy/trajectory_msgs/5.3.5-1.tar.gz#/ros2-jazzy-trajectory_msgs-5.3.5-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/common_interfaces-release/archive/release/jazzy/trajectory_msgs/5.3.6-1.tar.gz#/ros2-jazzy-trajectory_msgs-5.3.6-source0.tar.gz
 
 
 
@@ -50,8 +50,8 @@ Requires:       ros2-jazzy-geometry_msgs
 Requires:       ros2-jazzy-rosidl_default_runtime
 Requires:       ros2-jazzy-std_msgs
 
-Provides:  ros2-jazzy-trajectory_msgs = 5.3.5-1
-Obsoletes: ros2-jazzy-trajectory_msgs < 5.3.5-1
+Provides:  ros2-jazzy-trajectory_msgs = 5.3.6-1
+Obsoletes: ros2-jazzy-trajectory_msgs < 5.3.6-1
 
 
 
@@ -69,8 +69,8 @@ Requires:       ros2-jazzy-geometry_msgs-devel
 Requires:       ros2-jazzy-std_msgs-devel
 Requires:       ros2-jazzy-rosidl_default_runtime-devel
 
-Provides: ros2-jazzy-trajectory_msgs-devel = 5.3.5-1
-Obsoletes: ros2-jazzy-trajectory_msgs-devel < 5.3.5-1
+Provides: ros2-jazzy-trajectory_msgs-devel = 5.3.6-1
+Obsoletes: ros2-jazzy-trajectory_msgs-devel < 5.3.6-1
 
 
 %description devel
@@ -181,7 +181,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -208,7 +208,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,trajectory_msgs/include/,share/trajectory_msgs/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/trajectory_msgs/{lib*/pkgconfig,include/,cmake/,trajectory_msgs/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/trajectory_msgs/{lib*/pkgconfig,include/,cmake/,extra_cmake/,trajectory_msgs/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/trajectory_msgs/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -258,5 +258,7 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.5.3.6-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.5.3.5-1
 - Update to latest release

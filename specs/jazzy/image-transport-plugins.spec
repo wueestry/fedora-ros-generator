@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-image-transport-plugins
-Version:        4.0.2
+Version:        4.0.4
 Release:        1%{?dist}
 License:        BSD
 URL:            http://www.ros.org/wiki/image_transport_plugins
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-image_transport_plugins
 Requires:       ros2-jazzy-image_transport_plugins-devel
 
-Obsoletes: ros-jazzy-image-transport-plugins < 4.0.2-1
+Obsoletes: ros-jazzy-image-transport-plugins < 4.0.4-1
 
 %description
 A set of plugins for publishing and subscribing to sensor_msgs/Image
@@ -30,5 +30,9 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Fri Mar 14 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.0.4-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.0.3-1
+- Update to latest release
 * Sat Aug 03 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.0.2-1
 - Update to latest release

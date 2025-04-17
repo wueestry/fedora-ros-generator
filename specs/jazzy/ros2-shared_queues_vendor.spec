@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-shared_queues_vendor
-Version:        0.26.4
+Version:        0.26.5
 Release:        1%{?dist}
 Summary:        ROS package shared_queues_vendor
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rosbag2-release/archive/release/jazzy/shared_queues_vendor/0.26.4-1.tar.gz#/ros2-jazzy-shared_queues_vendor-0.26.4-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rosbag2-release/archive/release/jazzy/shared_queues_vendor/0.26.5-1.tar.gz#/ros2-jazzy-shared_queues_vendor-0.26.5-source0.tar.gz
 
 
 BuildArch: noarch
@@ -43,8 +43,8 @@ BuildRequires:  ros2-jazzy-ament_cmake-devel
 BuildRequires:  ros2-jazzy-ament_package-devel
 
 
-Provides:  ros2-jazzy-shared_queues_vendor = 0.26.4-1
-Obsoletes: ros2-jazzy-shared_queues_vendor < 0.26.4-1
+Provides:  ros2-jazzy-shared_queues_vendor = 0.26.5-1
+Obsoletes: ros2-jazzy-shared_queues_vendor < 0.26.5-1
 
 
 
@@ -57,8 +57,8 @@ Requires:       %{name} = %{version}-%{release}
 Requires:       ros2-jazzy-ament_cmake-devel
 Requires:       ros2-jazzy-ament_package-devel
 
-Provides: ros2-jazzy-shared_queues_vendor-devel = 0.26.4-1
-Obsoletes: ros2-jazzy-shared_queues_vendor-devel < 0.26.4-1
+Provides: ros2-jazzy-shared_queues_vendor-devel = 0.26.5-1
+Obsoletes: ros2-jazzy-shared_queues_vendor-devel < 0.26.5-1
 
 
 %description devel
@@ -246,6 +246,8 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Tue Oct 15 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.26.5-1
+- Update to latest release
 * Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.26.4-1
 - Update to latest release
 * Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.26.3-1

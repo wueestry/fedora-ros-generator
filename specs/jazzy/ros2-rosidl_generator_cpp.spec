@@ -1,13 +1,14 @@
 Name:           ros2-jazzy-rosidl_generator_cpp
-Version:        4.6.3
+Version:        4.6.5
 Release:        1%{?dist}
 Summary:        ROS package rosidl_generator_cpp
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rosidl-release/archive/release/jazzy/rosidl_generator_cpp/4.6.3-1.tar.gz#/ros2-jazzy-rosidl_generator_cpp-4.6.3-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rosidl-release/archive/release/jazzy/rosidl_generator_cpp/4.6.5-1.tar.gz#/ros2-jazzy-rosidl_generator_cpp-4.6.5-source0.tar.gz
 
+Patch0: ros.rosidl_generator_cpp.include_cstdint.patch
 
 BuildArch: noarch
 
@@ -53,8 +54,8 @@ Requires:       ros2-jazzy-rosidl_cli
 Requires:       ros2-jazzy-rosidl_generator_type_description
 Requires:       ros2-jazzy-rosidl_parser
 
-Provides:  ros2-jazzy-rosidl_generator_cpp = 4.6.3-1
-Obsoletes: ros2-jazzy-rosidl_generator_cpp < 4.6.3-1
+Provides:  ros2-jazzy-rosidl_generator_cpp = 4.6.5-1
+Obsoletes: ros2-jazzy-rosidl_generator_cpp < 4.6.5-1
 
 
 
@@ -77,8 +78,8 @@ Requires:       ros2-jazzy-rosidl_cli-devel
 Requires:       ros2-jazzy-rosidl_generator_type_description-devel
 Requires:       ros2-jazzy-rosidl_parser-devel
 
-Provides: ros2-jazzy-rosidl_generator_cpp-devel = 4.6.3-1
-Obsoletes: ros2-jazzy-rosidl_generator_cpp-devel < 4.6.3-1
+Provides: ros2-jazzy-rosidl_generator_cpp-devel = 4.6.5-1
+Obsoletes: ros2-jazzy-rosidl_generator_cpp-devel < 4.6.5-1
 
 
 %description devel
@@ -91,6 +92,7 @@ applications that use %{name}.
 
 %setup -c -T
 tar --strip-components=1 -xf %{SOURCE0}
+%patch 0 -p1
 
 %build
 # nothing to do here
@@ -189,7 +191,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -216,7 +218,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,rosidl_generator_cpp/include/,share/rosidl_generator_cpp/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/rosidl_generator_cpp/{lib*/pkgconfig,include/,cmake/,rosidl_generator_cpp/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/rosidl_generator_cpp/{lib*/pkgconfig,include/,cmake/,extra_cmake/,rosidl_generator_cpp/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/rosidl_generator_cpp/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -266,6 +268,10 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.6.5-1
+- Update to latest release
+* Tue Oct 15 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.6.4-1
+- Update to latest release
 * Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.6.3-1
 - Update to latest release
 * Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.6.2-1

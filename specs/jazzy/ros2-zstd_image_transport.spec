@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-zstd_image_transport
-Version:        4.0.2
+Version:        4.0.4
 Release:        1%{?dist}
 Summary:        ROS package zstd_image_transport
 
 License:        BSD
 URL:            http://www.ros.org/wiki/image_transport_plugins
 
-Source0:        https://github.com/ros2-gbp/image_transport_plugins-release/archive/release/jazzy/zstd_image_transport/4.0.2-1.tar.gz#/ros2-jazzy-zstd_image_transport-4.0.2-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/image_transport_plugins-release/archive/release/jazzy/zstd_image_transport/4.0.4-1.tar.gz#/ros2-jazzy-zstd_image_transport-4.0.4-source0.tar.gz
 
 
 
@@ -45,8 +45,8 @@ BuildRequires:  ros2-jazzy-image_transport-devel
 
 Requires:       ros2-jazzy-image_transport
 
-Provides:  ros2-jazzy-zstd_image_transport = 4.0.2-1
-Obsoletes: ros2-jazzy-zstd_image_transport < 4.0.2-1
+Provides:  ros2-jazzy-zstd_image_transport = 4.0.4-1
+Obsoletes: ros2-jazzy-zstd_image_transport < 4.0.4-1
 
 
 
@@ -62,8 +62,8 @@ Requires:       zlib-devel
 Requires:       ros2-jazzy-ament_package-devel
 Requires:       ros2-jazzy-image_transport-devel
 
-Provides: ros2-jazzy-zstd_image_transport-devel = 4.0.2-1
-Obsoletes: ros2-jazzy-zstd_image_transport-devel < 4.0.2-1
+Provides: ros2-jazzy-zstd_image_transport-devel = 4.0.4-1
+Obsoletes: ros2-jazzy-zstd_image_transport-devel < 4.0.4-1
 
 
 %description devel
@@ -174,7 +174,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -201,7 +201,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,zstd_image_transport/include/,share/zstd_image_transport/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/zstd_image_transport/{lib*/pkgconfig,include/,cmake/,zstd_image_transport/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/zstd_image_transport/{lib*/pkgconfig,include/,cmake/,extra_cmake/,zstd_image_transport/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/zstd_image_transport/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -251,5 +251,9 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Fri Mar 14 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.0.4-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.0.3-1
+- Update to latest release
 * Sat Aug 03 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.0.2-1
 - Update to latest release

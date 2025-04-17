@@ -1,0 +1,3 @@
+patches:
+ - ros.usb_cam.avcodec_include.patch
+ - ros.usb_cam.rm_xvmc.patch

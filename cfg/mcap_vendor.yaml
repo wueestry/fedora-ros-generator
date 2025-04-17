@@ -1,0 +1,2 @@
+patches:
+ - ros.mcap_vendor.include_cstdint.patch

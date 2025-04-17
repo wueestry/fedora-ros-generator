@@ -181,7 +181,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -208,7 +208,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,action_msgs/include/,share/action_msgs/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/action_msgs/{lib*/pkgconfig,include/,cmake/,action_msgs/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/action_msgs/{lib*/pkgconfig,include/,cmake/,extra_cmake/,action_msgs/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/action_msgs/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list

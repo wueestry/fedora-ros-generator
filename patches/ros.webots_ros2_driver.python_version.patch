@@ -1,0 +1,21 @@
+diff --color -urN webots_ros2-release-release-jazzy-webots_ros2_driver-2025.0.0-1/CMakeLists.txt webots_ros2-release-release-jazzy-webots_ros2_driver-2025.0.0-1-new/CMakeLists.txt
+--- webots_ros2-release-release-jazzy-webots_ros2_driver-2025.0.0-1/CMakeLists.txt	2025-02-18 15:23:54.000000000 +0100
++++ webots_ros2-release-release-jazzy-webots_ros2_driver-2025.0.0-1-new/CMakeLists.txt	2025-04-15 10:32:28.879942111 +0200
+@@ -31,13 +31,13 @@
+ find_package(yaml-cpp REQUIRED)
+ 
+ if($ENV{ROS_DISTRO} MATCHES "humble")
+-  find_package(Python 3.10 EXACT REQUIRED COMPONENTS Development)
++  find_package(Python REQUIRED COMPONENTS Development)
+ elseif($ENV{ROS_DISTRO} MATCHES "iron")
+-  find_package(Python 3.10 EXACT REQUIRED COMPONENTS Development)
++  find_package(Python REQUIRED COMPONENTS Development)
+ elseif($ENV{ROS_DISTRO} MATCHES "jazzy")
+-  find_package(Python 3.12 EXACT REQUIRED COMPONENTS Development)
++  find_package(Python REQUIRED COMPONENTS Development)
+ elseif($ENV{ROS_DISTRO} MATCHES "rolling")
+-  find_package(Python 3.12 EXACT REQUIRED COMPONENTS Development)
++  find_package(Python REQUIRED COMPONENTS Development)
+ endif()
+ 
+ add_custom_target(compile-lib-controller ALL

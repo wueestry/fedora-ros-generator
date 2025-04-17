@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-pcl_conversions
-Version:        2.6.1
+Version:        2.6.2
 Release:        1%{?dist}
 Summary:        ROS package pcl_conversions
 
 License:        BSD
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/perception_pcl-release/archive/release/jazzy/pcl_conversions/2.6.1-4.tar.gz#/ros2-jazzy-pcl_conversions-2.6.1-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/perception_pcl-release/archive/release/jazzy/pcl_conversions/2.6.2-1.tar.gz#/ros2-jazzy-pcl_conversions-2.6.2-source0.tar.gz
 
 
 BuildArch: noarch
@@ -56,8 +56,8 @@ Requires:       ros2-jazzy-rclcpp
 Requires:       ros2-jazzy-sensor_msgs
 Requires:       ros2-jazzy-std_msgs
 
-Provides:  ros2-jazzy-pcl_conversions = 2.6.1-1
-Obsoletes: ros2-jazzy-pcl_conversions < 2.6.1-1
+Provides:  ros2-jazzy-pcl_conversions = 2.6.2-1
+Obsoletes: ros2-jazzy-pcl_conversions < 2.6.2-1
 
 
 
@@ -67,9 +67,9 @@ Provides conversions from PCL data types and ROS message types
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
+Requires:       pcl-devel
 Requires:       ros2-jazzy-ament_cmake-devel
 Requires:       eigen3-devel
-Requires:       pcl-devel
 Requires:       ros2-jazzy-ament_package-devel
 Requires:       ros2-jazzy-message_filters-devel
 Requires:       ros2-jazzy-pcl_msgs-devel
@@ -77,8 +77,8 @@ Requires:       ros2-jazzy-rclcpp-devel
 Requires:       ros2-jazzy-sensor_msgs-devel
 Requires:       ros2-jazzy-std_msgs-devel
 
-Provides: ros2-jazzy-pcl_conversions-devel = 2.6.1-1
-Obsoletes: ros2-jazzy-pcl_conversions-devel < 2.6.1-1
+Provides: ros2-jazzy-pcl_conversions-devel = 2.6.2-1
+Obsoletes: ros2-jazzy-pcl_conversions-devel < 2.6.2-1
 
 
 %description devel
@@ -189,7 +189,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -216,7 +216,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,pcl_conversions/include/,share/pcl_conversions/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/pcl_conversions/{lib*/pkgconfig,include/,cmake/,pcl_conversions/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/pcl_conversions/{lib*/pkgconfig,include/,cmake/,extra_cmake/,pcl_conversions/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/pcl_conversions/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -266,5 +266,7 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Wed Nov 20 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.6.2-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.6.1-1
 - Update to latest release

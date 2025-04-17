@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-rviz_rendering
-Version:        14.1.4
+Version:        14.1.8
 Release:        1%{?dist}
 Summary:        ROS package rviz_rendering
 
 License:        BSD
 URL:            https://github.com/ros2/rviz/blob/ros2/README.md
 
-Source0:        https://github.com/ros2-gbp/rviz-release/archive/release/jazzy/rviz_rendering/14.1.4-1.tar.gz#/ros2-jazzy-rviz_rendering-14.1.4-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rviz-release/archive/release/jazzy/rviz_rendering/14.1.8-1.tar.gz#/ros2-jazzy-rviz_rendering-14.1.8-source0.tar.gz
 
 
 
@@ -55,8 +55,8 @@ Requires:       ros2-jazzy-resource_retriever
 Requires:       ros2-jazzy-rviz_assimp_vendor
 Requires:       ros2-jazzy-rviz_ogre_vendor
 
-Provides:  ros2-jazzy-rviz_rendering = 14.1.4-1
-Obsoletes: ros2-jazzy-rviz_rendering < 14.1.4-1
+Provides:  ros2-jazzy-rviz_rendering = 14.1.8-1
+Obsoletes: ros2-jazzy-rviz_rendering < 14.1.8-1
 
 
 
@@ -76,8 +76,8 @@ Requires:       ros2-jazzy-ament_package-devel
 Requires:       ros2-jazzy-resource_retriever-devel
 Requires:       ros2-jazzy-rviz_assimp_vendor-devel
 
-Provides: ros2-jazzy-rviz_rendering-devel = 14.1.4-1
-Obsoletes: ros2-jazzy-rviz_rendering-devel < 14.1.4-1
+Provides: ros2-jazzy-rviz_rendering-devel = 14.1.8-1
+Obsoletes: ros2-jazzy-rviz_rendering-devel < 14.1.8-1
 
 
 %description devel
@@ -188,7 +188,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -215,7 +215,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,rviz_rendering/include/,share/rviz_rendering/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/rviz_rendering/{lib*/pkgconfig,include/,cmake/,rviz_rendering/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/rviz_rendering/{lib*/pkgconfig,include/,cmake/,extra_cmake/,rviz_rendering/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/rviz_rendering/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -265,6 +265,14 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.14.1.8-1
+- Update to latest release
+* Sat Mar 08 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.14.1.7-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.14.1.6-1
+- Update to latest release
+* Tue Oct 15 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.14.1.5-1
+- Update to latest release
 * Mon Aug 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.14.1.4-1
 - Update to latest release
 * Wed Jul 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.14.1.3-1

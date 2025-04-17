@@ -1,1 +1,16 @@
-noarch: true
+dependencies:
+  exclude_build:
+    system: 
+      - orocos-kdl-devel
+    ros: 
+      - orocos-kdl-devel
+  exclude_run:
+    system: 
+      - orocos-kdl-devel
+    ros: 
+      - orocos-kdl-devel
+  exclude_devel:
+    system: 
+      - orocos-kdl-devel
+    ros: 
+      - orocos-kdl-devel

@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-ament-copyright
-Version:        0.17.1
+Version:        0.17.2
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-ament_copyright
 Requires:       ros2-jazzy-ament_copyright-devel
 
-Obsoletes: ros-jazzy-ament-copyright < 0.17.1-1
+Obsoletes: ros-jazzy-ament-copyright < 0.17.2-1
 
 %description
 The ability to check source files for copyright and license
@@ -26,6 +26,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.17.2-1
+- Update to latest release
 * Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.17.1-1
 - Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.17.0-1

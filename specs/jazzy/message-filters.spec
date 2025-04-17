@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-message-filters
-Version:        4.11.2
+Version:        4.11.5
 Release:        1%{?dist}
 License:        BSD
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-message_filters
 Requires:       ros2-jazzy-message_filters-devel
 
-Obsoletes: ros-jazzy-message-filters < 4.11.2-1
+Obsoletes: ros-jazzy-message-filters < 4.11.5-1
 
 %description
 A set of ROS 2 message filters which take in messages and may output
@@ -27,6 +27,12 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.11.5-1
+- Update to latest release
+* Sat Mar 08 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.11.4-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.11.3-1
+- Update to latest release
 * Thu Aug 01 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.11.2-1
 - Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.11.1-1

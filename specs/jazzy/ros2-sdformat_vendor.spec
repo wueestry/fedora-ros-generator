@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-sdformat_vendor
-Version:        0.0.6
+Version:        0.0.9
 Release:        1%{?dist}
 Summary:        ROS package sdformat_vendor
 
 License:        Apache License 2.0
 URL:            https://github.com/gazebosim/sdformat
 
-Source0:        https://github.com/ros2-gbp/sdformat_vendor-release/archive/release/jazzy/sdformat_vendor/0.0.6-1.tar.gz#/ros2-jazzy-sdformat_vendor-0.0.6-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/sdformat_vendor-release/archive/release/jazzy/sdformat_vendor/0.0.9-1.tar.gz#/ros2-jazzy-sdformat_vendor-0.0.9-source0.tar.gz
 
 
 
@@ -38,10 +38,10 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python3-colcon-common-extensions
 # BuildRequires:  python-unversioned-command
 
+BuildRequires:  cmake
 BuildRequires:  pybind11-devel
 BuildRequires:  tinyxml-devel
 BuildRequires:  tinyxml2-devel
-BuildRequires:  urdfdom-devel
 BuildRequires:  ros2-jazzy-ament_cmake_core-devel
 BuildRequires:  ros2-jazzy-ament_cmake_test-devel
 BuildRequires:  ros2-jazzy-ament_cmake_vendor_package-devel
@@ -50,14 +50,16 @@ BuildRequires:  ros2-jazzy-gz_cmake_vendor-devel
 BuildRequires:  ros2-jazzy-gz_math_vendor-devel
 BuildRequires:  ros2-jazzy-gz_tools_vendor-devel
 BuildRequires:  ros2-jazzy-gz_utils_vendor-devel
+BuildRequires:  ros2-jazzy-urdfdom-devel
 
 Requires:       ros2-jazzy-gz_cmake_vendor
 Requires:       ros2-jazzy-gz_math_vendor
 Requires:       ros2-jazzy-gz_tools_vendor
 Requires:       ros2-jazzy-gz_utils_vendor
+Requires:       ros2-jazzy-urdfdom
 
-Provides:  ros2-jazzy-sdformat_vendor = 0.0.6-1
-Obsoletes: ros2-jazzy-sdformat_vendor < 0.0.6-1
+Provides:  ros2-jazzy-sdformat_vendor = 0.0.9-1
+Obsoletes: ros2-jazzy-sdformat_vendor < 0.0.9-1
 
 
 # This is required due to mentions of BUILDROOT outside of elf sections in libgz-msgs10.so
@@ -65,28 +67,29 @@ Obsoletes: ros2-jazzy-sdformat_vendor < 0.0.6-1
 %define __arch_install_post %{nil}
 
 %description
-Vendor package for: sdformat14 14.5.0 SDFormat is an XML file format
+Vendor package for: sdformat14 14.7.0 SDFormat is an XML file format
 that describes environments, objects, and robots in a manner suitable
 for robotic applications
 
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake
 Requires:       ros2-jazzy-ament_cmake_core-devel
 Requires:       ros2-jazzy-ament_cmake_test-devel
 Requires:       ros2-jazzy-ament_cmake_vendor_package-devel
 Requires:       pybind11-devel
 Requires:       tinyxml-devel
 Requires:       tinyxml2-devel
-Requires:       urdfdom-devel
 Requires:       ros2-jazzy-ament_package-devel
 Requires:       ros2-jazzy-gz_cmake_vendor-devel
 Requires:       ros2-jazzy-gz_math_vendor-devel
 Requires:       ros2-jazzy-gz_tools_vendor-devel
 Requires:       ros2-jazzy-gz_utils_vendor-devel
+Requires:       ros2-jazzy-urdfdom-devel
 
-Provides: ros2-jazzy-sdformat_vendor-devel = 0.0.6-1
-Obsoletes: ros2-jazzy-sdformat_vendor-devel < 0.0.6-1
+Provides: ros2-jazzy-sdformat_vendor-devel = 0.0.9-1
+Obsoletes: ros2-jazzy-sdformat_vendor-devel < 0.0.9-1
 
 
 %description devel
@@ -197,7 +200,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -224,7 +227,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,sdformat_vendor/include/,share/sdformat_vendor/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/sdformat_vendor/{lib*/pkgconfig,include/,cmake/,sdformat_vendor/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/sdformat_vendor/{lib*/pkgconfig,include/,cmake/,extra_cmake/,sdformat_vendor/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/sdformat_vendor/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -274,6 +277,12 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Sat Mar 08 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.0.9-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.0.8-1
+- Update to latest release
+* Wed Nov 20 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.0.7-1
+- Update to latest release
 * Mon Aug 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.0.6-1
 - Update to latest release
 * Wed Jul 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.0.5-1

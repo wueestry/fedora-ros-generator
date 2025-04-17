@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-ament_pep257
-Version:        0.17.1
+Version:        0.17.2
 Release:        1%{?dist}
 Summary:        ROS package ament_pep257
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ament_lint-release/archive/release/jazzy/ament_pep257/0.17.1-1.tar.gz#/ros2-jazzy-ament_pep257-0.17.1-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ament_lint-release/archive/release/jazzy/ament_pep257/0.17.2-1.tar.gz#/ros2-jazzy-ament_pep257-0.17.2-source0.tar.gz
 
 
 BuildArch: noarch
@@ -44,8 +44,8 @@ BuildRequires:  ros2-jazzy-ament_package-devel
 Requires:       python3-pydocstyle
 Requires:       ros2-jazzy-ament_lint
 
-Provides:  ros2-jazzy-ament_pep257 = 0.17.1-1
-Obsoletes: ros2-jazzy-ament_pep257 < 0.17.1-1
+Provides:  ros2-jazzy-ament_pep257 = 0.17.2-1
+Obsoletes: ros2-jazzy-ament_pep257 < 0.17.2-1
 
 
 
@@ -59,8 +59,8 @@ Requires:       %{name} = %{version}-%{release}
 Requires:       ros2-jazzy-ament_package-devel
 Requires:       ros2-jazzy-ament_lint-devel
 
-Provides: ros2-jazzy-ament_pep257-devel = 0.17.1-1
-Obsoletes: ros2-jazzy-ament_pep257-devel < 0.17.1-1
+Provides: ros2-jazzy-ament_pep257-devel = 0.17.2-1
+Obsoletes: ros2-jazzy-ament_pep257-devel < 0.17.2-1
 
 
 %description devel
@@ -171,7 +171,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -198,7 +198,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,ament_pep257/include/,share/ament_pep257/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/ament_pep257/{lib*/pkgconfig,include/,cmake/,ament_pep257/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/ament_pep257/{lib*/pkgconfig,include/,cmake/,extra_cmake/,ament_pep257/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/ament_pep257/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -248,6 +248,8 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.17.2-1
+- Update to latest release
 * Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.17.1-1
 - Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.17.0-1

@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-rclpy
-Version:        7.1.1
+Version:        7.1.4
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-rclpy
 Requires:       ros2-jazzy-rclpy-devel
 
-Obsoletes: ros-jazzy-rclpy < 7.1.1-1
+Obsoletes: ros-jazzy-rclpy < 7.1.4-1
 
 %description
 Package containing the Python client.
@@ -25,5 +25,11 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.7.1.4-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.7.1.3-1
+- Update to latest release
+* Tue Oct 15 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.7.1.2-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.7.1.1-1
 - Update to latest release

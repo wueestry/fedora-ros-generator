@@ -1,0 +1,12 @@
+diff --color -urN moveit2-release-release-jazzy-moveit_setup_framework-2.12.2-1/src/urdf_config.cpp moveit2-release-release-jazzy-moveit_setup_framework-2.12.2-1-new/src/urdf_config.cpp
+--- moveit2-release-release-jazzy-moveit_setup_framework-2.12.2-1/src/urdf_config.cpp	2025-02-16 13:21:24.000000000 +0100
++++ moveit2-release-release-jazzy-moveit_setup_framework-2.12.2-1-new/src/urdf_config.cpp	2025-04-15 10:42:15.595022644 +0200
+@@ -85,7 +85,7 @@
+ {
+   urdf_path_ = urdf_file_path;
+   xacro_args_vec_ = xacro_args;
+-  xacro_args_ = fmt::format("{}", fmt::join(xacro_args_vec_, " "));
++  xacro_args_ = fmt::format("{}", rcpputils::join(xacro_args_vec_, " "));
+   setPackageName();
+   load();
+ }

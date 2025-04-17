@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-theora_image_transport
-Version:        4.0.2
+Version:        4.0.4
 Release:        1%{?dist}
 Summary:        ROS package theora_image_transport
 
 License:        BSD
 URL:            http://www.ros.org/wiki/image_transport_plugins
 
-Source0:        https://github.com/ros2-gbp/image_transport_plugins-release/archive/release/jazzy/theora_image_transport/4.0.2-1.tar.gz#/ros2-jazzy-theora_image_transport-4.0.2-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/image_transport_plugins-release/archive/release/jazzy/theora_image_transport/4.0.4-1.tar.gz#/ros2-jazzy-theora_image_transport-4.0.4-source0.tar.gz
 
 
 
@@ -66,8 +66,8 @@ Requires:       ros2-jazzy-rosidl_default_runtime
 Requires:       ros2-jazzy-sensor_msgs
 Requires:       ros2-jazzy-std_msgs
 
-Provides:  ros2-jazzy-theora_image_transport = 4.0.2-1
-Obsoletes: ros2-jazzy-theora_image_transport < 4.0.2-1
+Provides:  ros2-jazzy-theora_image_transport = 4.0.4-1
+Obsoletes: ros2-jazzy-theora_image_transport < 4.0.4-1
 
 
 
@@ -98,8 +98,8 @@ Requires:       ros2-jazzy-sensor_msgs-devel
 Requires:       ros2-jazzy-std_msgs-devel
 Requires:       ros2-jazzy-rosidl_default_runtime-devel
 
-Provides: ros2-jazzy-theora_image_transport-devel = 4.0.2-1
-Obsoletes: ros2-jazzy-theora_image_transport-devel < 4.0.2-1
+Provides: ros2-jazzy-theora_image_transport-devel = 4.0.4-1
+Obsoletes: ros2-jazzy-theora_image_transport-devel < 4.0.4-1
 
 
 %description devel
@@ -210,7 +210,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -237,7 +237,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,theora_image_transport/include/,share/theora_image_transport/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/theora_image_transport/{lib*/pkgconfig,include/,cmake/,theora_image_transport/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/theora_image_transport/{lib*/pkgconfig,include/,cmake/,extra_cmake/,theora_image_transport/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/theora_image_transport/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -287,5 +287,9 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Fri Mar 14 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.0.4-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.0.3-1
+- Update to latest release
 * Sat Aug 03 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.0.2-1
 - Update to latest release

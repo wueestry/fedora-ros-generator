@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-gz-dartsim-vendor
-Version:        0.0.2
+Version:        0.0.3
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            https://dartsim.github.io/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-gz_dartsim_vendor
 Requires:       ros2-jazzy-gz_dartsim_vendor-devel
 
-Obsoletes: ros-jazzy-gz-dartsim-vendor < 0.0.2-1
+Obsoletes: ros-jazzy-gz-dartsim-vendor < 0.0.3-1
 
 %description
 Vendor package for the DART physics engine v6.13.2
@@ -25,5 +25,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.0.3-1
+- Update to latest release
 * Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.0.2-1
 - Update to latest release

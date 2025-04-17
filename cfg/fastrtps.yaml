@@ -1,0 +1,2 @@
+patches:
+ - ros.fastrtps.cstdint_include.patch

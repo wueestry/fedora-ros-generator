@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-moveit-planners
-Version:        2.10.0
+Version:        2.12.2
 Release:        1%{?dist}
 License:        BSD-3-Clause
 URL:            http://moveit.ros.org
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-moveit_planners
 Requires:       ros2-jazzy-moveit_planners-devel
 
-Obsoletes: ros-jazzy-moveit-planners < 2.10.0-1
+Obsoletes: ros-jazzy-moveit-planners < 2.12.2-1
 
 %description
 Meta package that installs all available planners for MoveIt
@@ -25,6 +25,12 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Sat Mar 08 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.12.2-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.12.1-1
+- Update to latest release
+* Thu Nov 21 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.10.0-2
+- Rebuild due to srdfdom update
 * Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.10.0-1
 - Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.9.0-1

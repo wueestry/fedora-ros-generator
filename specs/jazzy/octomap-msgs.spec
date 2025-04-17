@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-octomap-msgs
-Version:        2.0.0
+Version:        2.0.1
 Release:        1%{?dist}
 License:        BSD
 URL:            http://ros.org/wiki/octomap_msgs
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-octomap_msgs
 Requires:       ros2-jazzy-octomap_msgs-devel
 
-Obsoletes: ros-jazzy-octomap-msgs < 2.0.0-1
+Obsoletes: ros-jazzy-octomap-msgs < 2.0.1-1
 
 %description
 This package provides messages and serializations / conversion for the
@@ -25,5 +25,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Wed Nov 20 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.0.1-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.0.0-1
 - Update to latest release

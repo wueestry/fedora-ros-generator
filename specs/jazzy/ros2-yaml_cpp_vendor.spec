@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-yaml_cpp_vendor
-Version:        9.0.0
+Version:        9.0.1
 Release:        1%{?dist}
 Summary:        ROS package yaml_cpp_vendor
 
 License:        Apache License 2.0
 URL:            https://github.com/jbeder/yaml-cpp
 
-Source0:        https://github.com/ros2-gbp/yaml_cpp_vendor-release/archive/release/jazzy/yaml_cpp_vendor/9.0.0-2.tar.gz#/ros2-jazzy-yaml_cpp_vendor-9.0.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/yaml_cpp_vendor-release/archive/release/jazzy/yaml_cpp_vendor/9.0.1-1.tar.gz#/ros2-jazzy-yaml_cpp_vendor-9.0.1-source0.tar.gz
 
 
 
@@ -44,8 +44,8 @@ BuildRequires:  ros2-jazzy-ament_cmake_vendor_package-devel
 BuildRequires:  ros2-jazzy-ament_package-devel
 
 
-Provides:  ros2-jazzy-yaml_cpp_vendor = 9.0.0-1
-Obsoletes: ros2-jazzy-yaml_cpp_vendor < 9.0.0-1
+Provides:  ros2-jazzy-yaml_cpp_vendor = 9.0.1-1
+Obsoletes: ros2-jazzy-yaml_cpp_vendor < 9.0.1-1
 
 
 
@@ -61,8 +61,8 @@ Requires:       ros2-jazzy-ament_cmake_vendor_package-devel
 Requires:       yaml-cpp-devel
 Requires:       ros2-jazzy-ament_package-devel
 
-Provides: ros2-jazzy-yaml_cpp_vendor-devel = 9.0.0-1
-Obsoletes: ros2-jazzy-yaml_cpp_vendor-devel < 9.0.0-1
+Provides: ros2-jazzy-yaml_cpp_vendor-devel = 9.0.1-1
+Obsoletes: ros2-jazzy-yaml_cpp_vendor-devel < 9.0.1-1
 
 
 %description devel
@@ -70,6 +70,7 @@ The %{name}-devel package contains libraries and header files for developing
 applications that use %{name}.
 
 
+%global debug_package %{nil}
 
 %prep
 
@@ -173,7 +174,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -200,7 +201,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,yaml_cpp_vendor/include/,share/yaml_cpp_vendor/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/yaml_cpp_vendor/{lib*/pkgconfig,include/,cmake/,yaml_cpp_vendor/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/yaml_cpp_vendor/{lib*/pkgconfig,include/,cmake/,extra_cmake/,yaml_cpp_vendor/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/yaml_cpp_vendor/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -250,5 +251,7 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.9.0.1-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.9.0.0-1
 - Update to latest release

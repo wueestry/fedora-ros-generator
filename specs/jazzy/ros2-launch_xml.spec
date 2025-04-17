@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-launch_xml
-Version:        3.4.2
+Version:        3.4.4
 Release:        1%{?dist}
 Summary:        ROS package launch_xml
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/launch-release/archive/release/jazzy/launch_xml/3.4.2-2.tar.gz#/ros2-jazzy-launch_xml-3.4.2-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/launch-release/archive/release/jazzy/launch_xml/3.4.4-1.tar.gz#/ros2-jazzy-launch_xml-3.4.4-source0.tar.gz
 
 
 BuildArch: noarch
@@ -44,8 +44,8 @@ BuildRequires:  ros2-jazzy-launch-devel
 
 Requires:       ros2-jazzy-launch
 
-Provides:  ros2-jazzy-launch_xml = 3.4.2-1
-Obsoletes: ros2-jazzy-launch_xml < 3.4.2-1
+Provides:  ros2-jazzy-launch_xml = 3.4.4-1
+Obsoletes: ros2-jazzy-launch_xml < 3.4.4-1
 
 
 
@@ -58,8 +58,8 @@ Requires:       %{name} = %{version}-%{release}
 Requires:       ros2-jazzy-ament_package-devel
 Requires:       ros2-jazzy-launch-devel
 
-Provides: ros2-jazzy-launch_xml-devel = 3.4.2-1
-Obsoletes: ros2-jazzy-launch_xml-devel < 3.4.2-1
+Provides: ros2-jazzy-launch_xml-devel = 3.4.4-1
+Obsoletes: ros2-jazzy-launch_xml-devel < 3.4.4-1
 
 
 %description devel
@@ -170,7 +170,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -197,7 +197,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,launch_xml/include/,share/launch_xml/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/launch_xml/{lib*/pkgconfig,include/,cmake/,launch_xml/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/launch_xml/{lib*/pkgconfig,include/,cmake/,extra_cmake/,launch_xml/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/launch_xml/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -247,5 +247,9 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.3.4.4-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.3.4.3-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.3.4.2-1
 - Update to latest release

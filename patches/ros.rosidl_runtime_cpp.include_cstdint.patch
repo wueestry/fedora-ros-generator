@@ -1,0 +1,12 @@
+diff --color -urN rosidl-release-release-jazzy-rosidl_runtime_cpp-4.6.5-1/include/rosidl_runtime_cpp/traits.hpp rosidl-release-release-jazzy-rosidl_runtime_cpp-4.6.5-1-new/include/rosidl_runtime_cpp/traits.hpp
+--- rosidl-release-release-jazzy-rosidl_runtime_cpp-4.6.5-1/include/rosidl_runtime_cpp/traits.hpp	2024-12-18 07:44:56.000000000 +0100
++++ rosidl-release-release-jazzy-rosidl_runtime_cpp-4.6.5-1-new/include/rosidl_runtime_cpp/traits.hpp	2025-04-13 01:57:14.236008944 +0200
+@@ -21,6 +21,8 @@
+ #include <string>
+ #include <type_traits>
+ 
++#include <cstdint>
++
+ namespace rosidl_generator_traits
+ {
+ 

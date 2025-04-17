@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-tlsf_cpp
-Version:        0.17.0
+Version:        0.17.1
 Release:        1%{?dist}
 Summary:        ROS package tlsf_cpp
 
 License:        GNU Lesser Public License 2.1
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/realtime_support-release/archive/release/jazzy/tlsf_cpp/0.17.0-3.tar.gz#/ros2-jazzy-tlsf_cpp-0.17.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/realtime_support-release/archive/release/jazzy/tlsf_cpp/0.17.1-3.tar.gz#/ros2-jazzy-tlsf_cpp-0.17.1-source0.tar.gz
 
 
 
@@ -51,8 +51,8 @@ Requires:       ros2-jazzy-rmw
 Requires:       ros2-jazzy-std_msgs
 Requires:       ros2-jazzy-tlsf
 
-Provides:  ros2-jazzy-tlsf_cpp = 0.17.0-1
-Obsoletes: ros2-jazzy-tlsf_cpp < 0.17.0-1
+Provides:  ros2-jazzy-tlsf_cpp = 0.17.1-1
+Obsoletes: ros2-jazzy-tlsf_cpp < 0.17.1-1
 
 
 
@@ -69,8 +69,8 @@ Requires:       ros2-jazzy-rmw-devel
 Requires:       ros2-jazzy-std_msgs-devel
 Requires:       ros2-jazzy-tlsf-devel
 
-Provides: ros2-jazzy-tlsf_cpp-devel = 0.17.0-1
-Obsoletes: ros2-jazzy-tlsf_cpp-devel < 0.17.0-1
+Provides: ros2-jazzy-tlsf_cpp-devel = 0.17.1-1
+Obsoletes: ros2-jazzy-tlsf_cpp-devel < 0.17.1-1
 
 
 %description devel
@@ -181,7 +181,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -208,7 +208,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,tlsf_cpp/include/,share/tlsf_cpp/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/tlsf_cpp/{lib*/pkgconfig,include/,cmake/,tlsf_cpp/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/tlsf_cpp/{lib*/pkgconfig,include/,cmake/,extra_cmake/,tlsf_cpp/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/tlsf_cpp/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -258,5 +258,7 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.17.1-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.17.0-1
 - Update to latest release

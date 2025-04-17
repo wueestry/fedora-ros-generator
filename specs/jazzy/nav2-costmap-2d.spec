@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-nav2-costmap-2d
-Version:        1.3.2
+Version:        1.3.5
 Release:        1%{?dist}
 License:        BSD-3-Clause
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-nav2_costmap_2d
 Requires:       ros2-jazzy-nav2_costmap_2d-devel
 
-Obsoletes: ros-jazzy-nav2-costmap-2d < 1.3.2-1
+Obsoletes: ros-jazzy-nav2-costmap-2d < 1.3.5-1
 
 %description
 This package provides an implementation of a 2D costmap that takes in
@@ -32,6 +32,12 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Sat Mar 08 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.1.3.5-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.1.3.4-1
+- Update to latest release
+* Wed Nov 20 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.1.3.3-1
+- Update to latest release
 * Mon Aug 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.1.3.2-1
 - Update to latest release
 * Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.1.3.1-1

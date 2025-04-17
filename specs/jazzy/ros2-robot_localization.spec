@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-robot_localization
-Version:        3.8.0
+Version:        3.8.2
 Release:        1%{?dist}
 Summary:        ROS package robot_localization
 
 License:        Apache License 2.0
 URL:            http://ros.org/wiki/robot_localization
 
-Source0:        https://github.com/ros2-gbp/robot_localization-release/archive/release/jazzy/robot_localization/3.8.0-1.tar.gz#/ros2-jazzy-robot_localization-3.8.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/robot_localization-release/archive/release/jazzy/robot_localization/3.8.2-1.tar.gz#/ros2-jazzy-robot_localization-3.8.2-source0.tar.gz
 
 
 
@@ -82,8 +82,8 @@ Requires:       ros2-jazzy-tf2_geometry_msgs
 Requires:       ros2-jazzy-tf2_ros
 Requires:       ros2-jazzy-yaml_cpp_vendor
 
-Provides:  ros2-jazzy-robot_localization = 3.8.0-1
-Obsoletes: ros2-jazzy-robot_localization < 3.8.0-1
+Provides:  ros2-jazzy-robot_localization = 3.8.2-1
+Obsoletes: ros2-jazzy-robot_localization < 3.8.2-1
 
 
 
@@ -120,8 +120,8 @@ Requires:       ros2-jazzy-tf2_ros-devel
 Requires:       ros2-jazzy-yaml_cpp_vendor-devel
 Requires:       ros2-jazzy-rosidl_default_runtime-devel
 
-Provides: ros2-jazzy-robot_localization-devel = 3.8.0-1
-Obsoletes: ros2-jazzy-robot_localization-devel < 3.8.0-1
+Provides: ros2-jazzy-robot_localization-devel = 3.8.2-1
+Obsoletes: ros2-jazzy-robot_localization-devel < 3.8.2-1
 
 
 %description devel
@@ -232,7 +232,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -259,7 +259,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,robot_localization/include/,share/robot_localization/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/robot_localization/{lib*/pkgconfig,include/,cmake/,robot_localization/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/robot_localization/{lib*/pkgconfig,include/,cmake/,extra_cmake/,robot_localization/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/robot_localization/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -309,5 +309,9 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.3.8.2-1
+- Update to latest release
+* Tue Oct 15 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.3.8.1-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.3.8.0-1
 - Update to latest release

@@ -1,0 +1,33 @@
+diff --color -urN rosidl-release-release-jazzy-rosidl_adapter-4.6.5-1/rosidl_adapter/resource/action.idl.em rosidl-release-release-jazzy-rosidl_adapter-4.6.5-1-new/rosidl_adapter/resource/action.idl.em
+--- rosidl-release-release-jazzy-rosidl_adapter-4.6.5-1/rosidl_adapter/resource/action.idl.em	2024-12-18 07:44:32.000000000 +0100
++++ rosidl-release-release-jazzy-rosidl_adapter-4.6.5-1-new/rosidl_adapter/resource/action.idl.em	2025-04-13 02:23:13.474200916 +0200
+@@ -14,6 +14,7 @@
+ @[for include_file in sorted(include_files)]@
+ #include "@(include_file)"
+ @[end for]@
++#include <cstdint>
+ 
+ module @(pkg_name) {
+   module action {
+diff --color -urN rosidl-release-release-jazzy-rosidl_adapter-4.6.5-1/rosidl_adapter/resource/msg.idl.em rosidl-release-release-jazzy-rosidl_adapter-4.6.5-1-new/rosidl_adapter/resource/msg.idl.em
+--- rosidl-release-release-jazzy-rosidl_adapter-4.6.5-1/rosidl_adapter/resource/msg.idl.em	2024-12-18 07:44:32.000000000 +0100
++++ rosidl-release-release-jazzy-rosidl_adapter-4.6.5-1-new/rosidl_adapter/resource/msg.idl.em	2025-04-13 02:22:48.249490026 +0200
+@@ -13,6 +13,7 @@
+ @[for include_file in sorted(include_files)]@
+ #include "@(include_file)"
+ @[end for]@
++#include <cstdint>
+ 
+ module @(pkg_name) {
+   module msg {
+diff --color -urN rosidl-release-release-jazzy-rosidl_adapter-4.6.5-1/rosidl_adapter/resource/srv.idl.em rosidl-release-release-jazzy-rosidl_adapter-4.6.5-1-new/rosidl_adapter/resource/srv.idl.em
+--- rosidl-release-release-jazzy-rosidl_adapter-4.6.5-1/rosidl_adapter/resource/srv.idl.em	2024-12-18 07:44:32.000000000 +0100
++++ rosidl-release-release-jazzy-rosidl_adapter-4.6.5-1-new/rosidl_adapter/resource/srv.idl.em	2025-04-13 02:23:01.038229372 +0200
+@@ -13,6 +13,7 @@
+ @[for include_file in sorted(include_files)]@
+ #include "@(include_file)"
+ @[end for]@
++#include <cstdint>
+ 
+ module @(pkg_name) {
+   module srv {

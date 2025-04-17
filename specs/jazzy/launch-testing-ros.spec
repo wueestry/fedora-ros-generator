@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-launch-testing-ros
-Version:        0.26.5
+Version:        0.26.7
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-launch_testing_ros
 Requires:       ros2-jazzy-launch_testing_ros-devel
 
-Obsoletes: ros-jazzy-launch-testing-ros < 0.26.5-1
+Obsoletes: ros-jazzy-launch-testing-ros < 0.26.7-1
 
 %description
 A package providing utilities for writing ROS2 enabled launch tests.
@@ -25,5 +25,9 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.26.7-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.26.6-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.26.5-1
 - Update to latest release

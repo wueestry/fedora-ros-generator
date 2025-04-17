@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-joint_state_broadcaster
-Version:        4.13.0
+Version:        4.23.0
 Release:        1%{?dist}
 Summary:        ROS package joint_state_broadcaster
 
 License:        Apache License 2.0
-URL:            http://www.ros.org/
+URL:            https://control.ros.org
 
-Source0:        https://github.com/ros2-gbp/ros2_controllers-release/archive/release/jazzy/joint_state_broadcaster/4.13.0-1.tar.gz#/ros2-jazzy-joint_state_broadcaster-4.13.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ros2_controllers-release/archive/release/jazzy/joint_state_broadcaster/4.23.0-1.tar.gz#/ros2-jazzy-joint_state_broadcaster-4.23.0-source0.tar.gz
 
 
 
@@ -46,9 +46,11 @@ BuildRequires:  ros2-jazzy-control_msgs-devel
 BuildRequires:  ros2-jazzy-controller_interface-devel
 BuildRequires:  ros2-jazzy-generate_parameter_library-devel
 BuildRequires:  ros2-jazzy-pluginlib-devel
+BuildRequires:  ros2-jazzy-rclcpp-devel
 BuildRequires:  ros2-jazzy-rclcpp_lifecycle-devel
 BuildRequires:  ros2-jazzy-rcutils-devel
 BuildRequires:  ros2-jazzy-realtime_tools-devel
+BuildRequires:  ros2-jazzy-ros2_control_cmake-devel
 BuildRequires:  ros2-jazzy-sensor_msgs-devel
 BuildRequires:  ros2-jazzy-urdf-devel
 
@@ -58,14 +60,15 @@ Requires:       ros2-jazzy-control_msgs
 Requires:       ros2-jazzy-controller_interface
 Requires:       ros2-jazzy-generate_parameter_library
 Requires:       ros2-jazzy-pluginlib
+Requires:       ros2-jazzy-rclcpp
 Requires:       ros2-jazzy-rclcpp_lifecycle
 Requires:       ros2-jazzy-rcutils
 Requires:       ros2-jazzy-realtime_tools
 Requires:       ros2-jazzy-sensor_msgs
 Requires:       ros2-jazzy-urdf
 
-Provides:  ros2-jazzy-joint_state_broadcaster = 4.13.0-1
-Obsoletes: ros2-jazzy-joint_state_broadcaster < 4.13.0-1
+Provides:  ros2-jazzy-joint_state_broadcaster = 4.23.0-1
+Obsoletes: ros2-jazzy-joint_state_broadcaster < 4.23.0-1
 
 
 
@@ -83,14 +86,16 @@ Requires:       ros2-jazzy-control_msgs-devel
 Requires:       ros2-jazzy-controller_interface-devel
 Requires:       ros2-jazzy-generate_parameter_library-devel
 Requires:       ros2-jazzy-pluginlib-devel
+Requires:       ros2-jazzy-rclcpp-devel
 Requires:       ros2-jazzy-rclcpp_lifecycle-devel
 Requires:       ros2-jazzy-rcutils-devel
 Requires:       ros2-jazzy-realtime_tools-devel
+Requires:       ros2-jazzy-ros2_control_cmake-devel
 Requires:       ros2-jazzy-sensor_msgs-devel
 Requires:       ros2-jazzy-urdf-devel
 
-Provides: ros2-jazzy-joint_state_broadcaster-devel = 4.13.0-1
-Obsoletes: ros2-jazzy-joint_state_broadcaster-devel < 4.13.0-1
+Provides: ros2-jazzy-joint_state_broadcaster-devel = 4.23.0-1
+Obsoletes: ros2-jazzy-joint_state_broadcaster-devel < 4.23.0-1
 
 
 %description devel
@@ -201,7 +206,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -228,7 +233,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,joint_state_broadcaster/include/,share/joint_state_broadcaster/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/joint_state_broadcaster/{lib*/pkgconfig,include/,cmake/,joint_state_broadcaster/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/joint_state_broadcaster/{lib*/pkgconfig,include/,cmake/,extra_cmake/,joint_state_broadcaster/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/joint_state_broadcaster/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -278,6 +283,18 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Sun Apr 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.23.0-1
+- Update to latest release
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.22.0-1
+- Update to latest release
+* Sat Mar 08 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.21.0-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.18.0-1
+- Update to latest release
+* Wed Nov 20 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.16.0-1
+- Update to latest release
+* Tue Oct 15 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.15.0-1
+- Update to latest release
 * Mon Aug 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.13.0-1
 - Update to latest release
 * Wed Jul 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.12.0-1

@@ -2,3 +2,5 @@ dependencies:
   build:
     system:
       - gts-devel
+patches:
+  - ros.gz_common_vendor.include_cstdint.patch

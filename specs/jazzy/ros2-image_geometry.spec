@@ -8,6 +8,7 @@ URL:            http://www.ros.org/
 
 Source0:        https://github.com/ros2-gbp/vision_opencv-release/archive/release/jazzy/image_geometry/4.1.0-1.tar.gz#/ros2-jazzy-image_geometry-4.1.0-source0.tar.gz
 
+Patch0: ros.image_geometry.include_cstdint.patch
 
 
 # common BRs
@@ -88,6 +89,7 @@ applications that use %{name}.
 
 %setup -c -T
 tar --strip-components=1 -xf %{SOURCE0}
+%patch 0 -p1
 
 %build
 # nothing to do here
@@ -186,7 +188,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -213,7 +215,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,image_geometry/include/,share/image_geometry/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/image_geometry/{lib*/pkgconfig,include/,cmake/,image_geometry/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/image_geometry/{lib*/pkgconfig,include/,cmake/,extra_cmake/,image_geometry/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/image_geometry/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list

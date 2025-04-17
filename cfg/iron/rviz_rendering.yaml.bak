@@ -1,0 +1,6 @@
+#dependencies:
+#  build:
+#    system:
+#      - assimp-devel
+#patches:
+#  - ros-rviz_rendering.remove-assimp-vendor.patch

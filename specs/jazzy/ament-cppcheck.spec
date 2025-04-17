@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-ament-cppcheck
-Version:        0.17.1
+Version:        0.17.2
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-ament_cppcheck
 Requires:       ros2-jazzy-ament_cppcheck-devel
 
-Obsoletes: ros-jazzy-ament-cppcheck < 0.17.1-1
+Obsoletes: ros-jazzy-ament-cppcheck < 0.17.2-1
 
 %description
 The ability to perform static code analysis on C/C++ code using
@@ -26,6 +26,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.17.2-1
+- Update to latest release
 * Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.17.1-1
 - Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.17.0-1

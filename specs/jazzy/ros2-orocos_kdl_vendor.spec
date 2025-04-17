@@ -9,7 +9,6 @@ URL:            http://www.ros.org/
 Source0:        https://github.com/ros2-gbp/orocos_kdl_vendor-release/archive/release/jazzy/orocos_kdl_vendor/0.5.1-2.tar.gz#/ros2-jazzy-orocos_kdl_vendor-0.5.1-source0.tar.gz
 
 
-BuildArch: noarch
 
 # common BRs
 BuildRequires: patchelf
@@ -40,7 +39,6 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python-unversioned-command
 
 BuildRequires:  eigen3-devel
-BuildRequires:  orocos-kdl-devel
 BuildRequires:  ros2-jazzy-ament_cmake-devel
 BuildRequires:  ros2-jazzy-ament_cmake_vendor_package-devel
 BuildRequires:  ros2-jazzy-ament_package-devel
@@ -60,11 +58,10 @@ orocos_kdl locally.
 
 %package        devel
 Summary:        Development files for %{name}
-Requires:       %{name} = %{version}-%{release}
+Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       ros2-jazzy-ament_cmake-devel
 Requires:       ros2-jazzy-ament_cmake_vendor_package-devel
 Requires:       eigen3-devel
-Requires:       orocos-kdl-devel
 Requires:       ros2-jazzy-ament_package-devel
 Requires:       ros2-jazzy-eigen3_cmake_module-devel
 
@@ -180,7 +177,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -207,7 +204,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,orocos_kdl_vendor/include/,share/orocos_kdl_vendor/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/orocos_kdl_vendor/{lib*/pkgconfig,include/,cmake/,orocos_kdl_vendor/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/orocos_kdl_vendor/{lib*/pkgconfig,include/,cmake/,extra_cmake/,orocos_kdl_vendor/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/orocos_kdl_vendor/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list

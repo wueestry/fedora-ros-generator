@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-common-interfaces
-Version:        5.3.5
+Version:        5.3.6
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-common_interfaces
 Requires:       ros2-jazzy-common_interfaces-devel
 
-Obsoletes: ros-jazzy-common-interfaces < 5.3.5-1
+Obsoletes: ros-jazzy-common-interfaces < 5.3.6-1
 
 %description
 common_interfaces contains messages and services that are widely used
@@ -26,5 +26,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.5.3.6-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.5.3.5-1
 - Update to latest release

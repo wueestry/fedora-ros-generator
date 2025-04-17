@@ -1,0 +1,12 @@
+diff --color -urN behaviortree_cpp_v4-release-release-jazzy-behaviortree_cpp-4.6.2-1/3rdparty/lexy/include/lexy/input_location.hpp behaviortree_cpp_v4-release-release-jazzy-behaviortree_cpp-4.6.2-1-new/3rdparty/lexy/include/lexy/input_location.hpp
+--- behaviortree_cpp_v4-release-release-jazzy-behaviortree_cpp-4.6.2-1/3rdparty/lexy/include/lexy/input_location.hpp	2024-06-26 11:46:02.000000000 +0200
++++ behaviortree_cpp_v4-release-release-jazzy-behaviortree_cpp-4.6.2-1-new/3rdparty/lexy/include/lexy/input_location.hpp	2025-04-13 19:59:10.243852721 +0200
+@@ -162,7 +162,7 @@
+     {
+         if (lhs._line_nr != rhs._line_nr)
+             return lhs._line_nr < rhs._line_nr;
+-        return lhs._column_nr < rhs._colum_nr;
++        return lhs._column_nr < rhs._column_nr;
+     }
+     friend constexpr bool operator<=(const input_location& lhs, const input_location& rhs)
+     {

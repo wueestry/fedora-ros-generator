@@ -3,3 +3,5 @@ dependencies:
     system:
       - gtest-devel
       - boost-devel
+patches:
+ - ros.image_geometry.include_cstdint.patch

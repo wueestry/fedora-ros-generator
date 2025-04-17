@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-image_pipeline
-Version:        5.0.4
+Version:        5.0.9
 Release:        1%{?dist}
 Summary:        ROS package image_pipeline
 
 License:        BSD
 URL:            https://index.ros.org/p/image_pipeline/github-ros-perception-image_pipeline/
 
-Source0:        https://github.com/ros2-gbp/image_pipeline-release/archive/release/jazzy/image_pipeline/5.0.4-1.tar.gz#/ros2-jazzy-image_pipeline-5.0.4-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/image_pipeline-release/archive/release/jazzy/image_pipeline/5.0.9-1.tar.gz#/ros2-jazzy-image_pipeline-5.0.9-source0.tar.gz
 
 
 BuildArch: noarch
@@ -50,8 +50,8 @@ Requires:       ros2-jazzy-image_rotate
 Requires:       ros2-jazzy-image_view
 Requires:       ros2-jazzy-stereo_image_proc
 
-Provides:  ros2-jazzy-image_pipeline = 5.0.4-1
-Obsoletes: ros2-jazzy-image_pipeline < 5.0.4-1
+Provides:  ros2-jazzy-image_pipeline = 5.0.9-1
+Obsoletes: ros2-jazzy-image_pipeline < 5.0.9-1
 
 
 
@@ -72,8 +72,8 @@ Requires:       ros2-jazzy-image_rotate-devel
 Requires:       ros2-jazzy-image_view-devel
 Requires:       ros2-jazzy-stereo_image_proc-devel
 
-Provides: ros2-jazzy-image_pipeline-devel = 5.0.4-1
-Obsoletes: ros2-jazzy-image_pipeline-devel < 5.0.4-1
+Provides: ros2-jazzy-image_pipeline-devel = 5.0.9-1
+Obsoletes: ros2-jazzy-image_pipeline-devel < 5.0.9-1
 
 
 %description devel
@@ -184,7 +184,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -211,7 +211,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,image_pipeline/include/,share/image_pipeline/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/image_pipeline/{lib*/pkgconfig,include/,cmake/,image_pipeline/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/image_pipeline/{lib*/pkgconfig,include/,cmake/,extra_cmake/,image_pipeline/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/image_pipeline/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -261,6 +261,12 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Fri Mar 14 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.5.0.9-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.5.0.6-1
+- Update to latest release
+* Wed Nov 20 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.5.0.5-1
+- Update to latest release
 * Mon Aug 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.5.0.4-1
 - Update to latest release
 * Sat Aug 03 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.5.0.3-1

@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-moveit_planners_ompl
-Version:        2.10.0
+Version:        2.12.2
 Release:        1%{?dist}
 Summary:        ROS package moveit_planners_ompl
 
 License:        BSD-3-Clause
 URL:            http://moveit.ros.org
 
-Source0:        https://github.com/ros2-gbp/moveit2-release/archive/release/jazzy/moveit_planners_ompl/2.10.0-1.tar.gz#/ros2-jazzy-moveit_planners_ompl-2.10.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/moveit2-release/archive/release/jazzy/moveit_planners_ompl/2.12.2-1.tar.gz#/ros2-jazzy-moveit_planners_ompl-2.12.2-source0.tar.gz
 
 
 
@@ -68,8 +68,8 @@ Requires:       ros2-jazzy-rclcpp
 Requires:       ros2-jazzy-tf2_eigen
 Requires:       ros2-jazzy-tf2_ros
 
-Provides:  ros2-jazzy-moveit_planners_ompl = 2.10.0-1
-Obsoletes: ros2-jazzy-moveit_planners_ompl < 2.10.0-1
+Provides:  ros2-jazzy-moveit_planners_ompl = 2.12.2-1
+Obsoletes: ros2-jazzy-moveit_planners_ompl < 2.12.2-1
 
 
 
@@ -99,8 +99,8 @@ Requires:       ros2-jazzy-rclcpp-devel
 Requires:       ros2-jazzy-tf2_eigen-devel
 Requires:       ros2-jazzy-tf2_ros-devel
 
-Provides: ros2-jazzy-moveit_planners_ompl-devel = 2.10.0-1
-Obsoletes: ros2-jazzy-moveit_planners_ompl-devel < 2.10.0-1
+Provides: ros2-jazzy-moveit_planners_ompl-devel = 2.12.2-1
+Obsoletes: ros2-jazzy-moveit_planners_ompl-devel < 2.12.2-1
 
 
 %description devel
@@ -211,7 +211,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -238,7 +238,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,moveit_planners_ompl/include/,share/moveit_planners_ompl/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/moveit_planners_ompl/{lib*/pkgconfig,include/,cmake/,moveit_planners_ompl/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/moveit_planners_ompl/{lib*/pkgconfig,include/,cmake/,extra_cmake/,moveit_planners_ompl/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/moveit_planners_ompl/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -288,6 +288,12 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Sat Mar 08 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.12.2-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.12.1-1
+- Update to latest release
+* Thu Nov 21 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.10.0-2
+- Rebuild due to srdfdom update
 * Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.10.0-1
 - Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.9.0-1

@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-webots-ros2-epuck
-Version:        2023.1.3
+Version:        2025.0.0
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://wiki.ros.org/webots_ros2
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-webots_ros2_epuck
 Requires:       ros2-jazzy-webots_ros2_epuck-devel
 
-Obsoletes: ros-jazzy-webots-ros2-epuck < 2023.1.3-1
+Obsoletes: ros-jazzy-webots-ros2-epuck < 2025.0.0-1
 
 %description
 E-puck2 driver for Webots simulated robot
@@ -25,6 +25,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Sat Mar 08 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2025.0.0-1
+- Update to latest release
 * Mon Aug 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2023.1.3-1
 - Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2023.1.2-1

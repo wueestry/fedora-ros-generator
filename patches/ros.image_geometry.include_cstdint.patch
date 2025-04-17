@@ -1,0 +1,12 @@
+diff --color -urN vision_opencv-release-release-jazzy-image_geometry-4.1.0-1/include/image_geometry/pinhole_camera_model.hpp vision_opencv-release-release-jazzy-image_geometry-4.1.0-1-new/include/image_geometry/pinhole_camera_model.hpp
+--- vision_opencv-release-release-jazzy-image_geometry-4.1.0-1/include/image_geometry/pinhole_camera_model.hpp	2024-06-25 14:51:41.000000000 +0200
++++ vision_opencv-release-release-jazzy-image_geometry-4.1.0-1-new/include/image_geometry/pinhole_camera_model.hpp	2025-04-12 22:52:05.017188210 +0200
+@@ -3,6 +3,8 @@
+ 
+ #include "image_geometry/visibility_control.hpp"
+ 
++#include <cstdint>
++
+ #include <sensor_msgs/msg/camera_info.hpp>
+ #include <opencv2/core/core.hpp>
+ #include <opencv2/imgproc/imgproc.hpp>

@@ -1,0 +1,11 @@
+diff --color -ur rosbag2-release-release-jazzy-mcap_vendor-0.26.6-1/src/main.cpp rosbag2-release-release-jazzy-mcap_vendor-0.26.6-1-new/src/main.cpp
+--- rosbag2-release-release-jazzy-mcap_vendor-0.26.6-1/src/main.cpp	2024-12-20 15:34:49.000000000 +0100
++++ rosbag2-release-release-jazzy-mcap_vendor-0.26.6-1-new/src/main.cpp	2025-04-12 00:04:31.419119152 +0200
+@@ -13,4 +13,7 @@
+ // limitations under the License.
+ 
+ #define MCAP_IMPLEMENTATION
++
++#include <cstdint>
++
+ #include <mcap/mcap.hpp>

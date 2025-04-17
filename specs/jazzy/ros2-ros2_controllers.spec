@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-ros2_controllers
-Version:        4.13.0
+Version:        4.23.0
 Release:        1%{?dist}
 Summary:        ROS package ros2_controllers
 
 License:        Apache License 2.0
 URL:            https://control.ros.org
 
-Source0:        https://github.com/ros2-gbp/ros2_controllers-release/archive/release/jazzy/ros2_controllers/4.13.0-1.tar.gz#/ros2-jazzy-ros2_controllers-4.13.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ros2_controllers-release/archive/release/jazzy/ros2_controllers/4.23.0-1.tar.gz#/ros2-jazzy-ros2_controllers-4.23.0-source0.tar.gz
 
 
 BuildArch: noarch
@@ -49,10 +49,16 @@ Requires:       ros2-jazzy-diff_drive_controller
 Requires:       ros2-jazzy-effort_controllers
 Requires:       ros2-jazzy-force_torque_sensor_broadcaster
 Requires:       ros2-jazzy-forward_command_controller
+Requires:       ros2-jazzy-gpio_controllers
+Requires:       ros2-jazzy-gps_sensor_broadcaster
+Requires:       ros2-jazzy-gripper_controllers
 Requires:       ros2-jazzy-imu_sensor_broadcaster
 Requires:       ros2-jazzy-joint_state_broadcaster
 Requires:       ros2-jazzy-joint_trajectory_controller
+Requires:       ros2-jazzy-mecanum_drive_controller
+Requires:       ros2-jazzy-parallel_gripper_controller
 Requires:       ros2-jazzy-pid_controller
+Requires:       ros2-jazzy-pose_broadcaster
 Requires:       ros2-jazzy-position_controllers
 Requires:       ros2-jazzy-range_sensor_broadcaster
 Requires:       ros2-jazzy-steering_controllers_library
@@ -60,13 +66,13 @@ Requires:       ros2-jazzy-tricycle_controller
 Requires:       ros2-jazzy-tricycle_steering_controller
 Requires:       ros2-jazzy-velocity_controllers
 
-Provides:  ros2-jazzy-ros2_controllers = 4.13.0-1
-Obsoletes: ros2-jazzy-ros2_controllers < 4.13.0-1
+Provides:  ros2-jazzy-ros2_controllers = 4.23.0-1
+Obsoletes: ros2-jazzy-ros2_controllers < 4.23.0-1
 
 
 
 %description
-Metapackage for ROS2 controllers related packages
+Metapackage for ros2_controllers related packages
 
 %package        devel
 Summary:        Development files for %{name}
@@ -80,10 +86,16 @@ Requires:       ros2-jazzy-diff_drive_controller-devel
 Requires:       ros2-jazzy-effort_controllers-devel
 Requires:       ros2-jazzy-force_torque_sensor_broadcaster-devel
 Requires:       ros2-jazzy-forward_command_controller-devel
+Requires:       ros2-jazzy-gpio_controllers-devel
+Requires:       ros2-jazzy-gps_sensor_broadcaster-devel
+Requires:       ros2-jazzy-gripper_controllers-devel
 Requires:       ros2-jazzy-imu_sensor_broadcaster-devel
 Requires:       ros2-jazzy-joint_state_broadcaster-devel
 Requires:       ros2-jazzy-joint_trajectory_controller-devel
+Requires:       ros2-jazzy-mecanum_drive_controller-devel
+Requires:       ros2-jazzy-parallel_gripper_controller-devel
 Requires:       ros2-jazzy-pid_controller-devel
+Requires:       ros2-jazzy-pose_broadcaster-devel
 Requires:       ros2-jazzy-position_controllers-devel
 Requires:       ros2-jazzy-range_sensor_broadcaster-devel
 Requires:       ros2-jazzy-steering_controllers_library-devel
@@ -91,8 +103,8 @@ Requires:       ros2-jazzy-tricycle_controller-devel
 Requires:       ros2-jazzy-tricycle_steering_controller-devel
 Requires:       ros2-jazzy-velocity_controllers-devel
 
-Provides: ros2-jazzy-ros2_controllers-devel = 4.13.0-1
-Obsoletes: ros2-jazzy-ros2_controllers-devel < 4.13.0-1
+Provides: ros2-jazzy-ros2_controllers-devel = 4.23.0-1
+Obsoletes: ros2-jazzy-ros2_controllers-devel < 4.23.0-1
 
 
 %description devel
@@ -203,7 +215,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -230,7 +242,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,ros2_controllers/include/,share/ros2_controllers/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/ros2_controllers/{lib*/pkgconfig,include/,cmake/,ros2_controllers/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/ros2_controllers/{lib*/pkgconfig,include/,cmake/,extra_cmake/,ros2_controllers/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/ros2_controllers/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -280,6 +292,18 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Sun Apr 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.23.0-1
+- Update to latest release
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.22.0-1
+- Update to latest release
+* Sat Mar 08 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.21.0-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.18.0-1
+- Update to latest release
+* Wed Nov 20 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.16.0-1
+- Update to latest release
+* Tue Oct 15 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.15.0-1
+- Update to latest release
 * Mon Aug 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.13.0-1
 - Update to latest release
 * Wed Jul 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.12.0-1

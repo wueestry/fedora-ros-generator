@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-nav2_waypoint_follower
-Version:        1.3.2
+Version:        1.3.5
 Release:        1%{?dist}
 Summary:        ROS package nav2_waypoint_follower
 
 License:        Apache-2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/SteveMacenski/navigation2-release/archive/release/jazzy/nav2_waypoint_follower/1.3.2-1.tar.gz#/ros2-jazzy-nav2_waypoint_follower-1.3.2-source0.tar.gz
+Source0:        https://github.com/SteveMacenski/navigation2-release/archive/release/jazzy/nav2_waypoint_follower/1.3.5-1.tar.gz#/ros2-jazzy-nav2_waypoint_follower-1.3.5-source0.tar.gz
 
 Patch0: ros-nav2_waypoint_follower.init_variables.patch
 
@@ -71,8 +71,8 @@ Requires:       ros2-jazzy-rclcpp_lifecycle
 Requires:       ros2-jazzy-robot_localization
 Requires:       ros2-jazzy-tf2_ros
 
-Provides:  ros2-jazzy-nav2_waypoint_follower = 1.3.2-1
-Obsoletes: ros2-jazzy-nav2_waypoint_follower < 1.3.2-1
+Provides:  ros2-jazzy-nav2_waypoint_follower = 1.3.5-1
+Obsoletes: ros2-jazzy-nav2_waypoint_follower < 1.3.5-1
 
 
 
@@ -99,8 +99,8 @@ Requires:       ros2-jazzy-rclcpp_lifecycle-devel
 Requires:       ros2-jazzy-robot_localization-devel
 Requires:       ros2-jazzy-tf2_ros-devel
 
-Provides: ros2-jazzy-nav2_waypoint_follower-devel = 1.3.2-1
-Obsoletes: ros2-jazzy-nav2_waypoint_follower-devel < 1.3.2-1
+Provides: ros2-jazzy-nav2_waypoint_follower-devel = 1.3.5-1
+Obsoletes: ros2-jazzy-nav2_waypoint_follower-devel < 1.3.5-1
 
 
 %description devel
@@ -212,7 +212,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -239,7 +239,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,nav2_waypoint_follower/include/,share/nav2_waypoint_follower/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/nav2_waypoint_follower/{lib*/pkgconfig,include/,cmake/,nav2_waypoint_follower/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/nav2_waypoint_follower/{lib*/pkgconfig,include/,cmake/,extra_cmake/,nav2_waypoint_follower/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/nav2_waypoint_follower/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -289,6 +289,12 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Sat Mar 08 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.1.3.5-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.1.3.4-1
+- Update to latest release
+* Wed Nov 20 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.1.3.3-1
+- Update to latest release
 * Mon Aug 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.1.3.2-1
 - Update to latest release
 * Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.1.3.1-1

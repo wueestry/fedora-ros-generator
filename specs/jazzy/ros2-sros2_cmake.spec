@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-sros2_cmake
-Version:        0.13.2
+Version:        0.13.3
 Release:        1%{?dist}
 Summary:        ROS package sros2_cmake
 
 License:        Apache 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/sros2-release/archive/release/jazzy/sros2_cmake/0.13.2-1.tar.gz#/ros2-jazzy-sros2_cmake-0.13.2-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/sros2-release/archive/release/jazzy/sros2_cmake/0.13.3-1.tar.gz#/ros2-jazzy-sros2_cmake-0.13.3-source0.tar.gz
 
 
 BuildArch: noarch
@@ -46,8 +46,8 @@ BuildRequires:  ros2-jazzy-ros2cli-devel
 BuildRequires:  ros2-jazzy-sros2-devel
 
 
-Provides:  ros2-jazzy-sros2_cmake = 0.13.2-1
-Obsoletes: ros2-jazzy-sros2_cmake < 0.13.2-1
+Provides:  ros2-jazzy-sros2_cmake = 0.13.3-1
+Obsoletes: ros2-jazzy-sros2_cmake < 0.13.3-1
 
 
 
@@ -63,8 +63,8 @@ Requires:       ros2-jazzy-sros2-devel
 Requires:       ros2-jazzy-ament_cmake_test-devel
 Requires:       ros2-jazzy-ament_package-devel
 
-Provides: ros2-jazzy-sros2_cmake-devel = 0.13.2-1
-Obsoletes: ros2-jazzy-sros2_cmake-devel < 0.13.2-1
+Provides: ros2-jazzy-sros2_cmake-devel = 0.13.3-1
+Obsoletes: ros2-jazzy-sros2_cmake-devel < 0.13.3-1
 
 
 %description devel
@@ -175,7 +175,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -202,7 +202,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,sros2_cmake/include/,share/sros2_cmake/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/sros2_cmake/{lib*/pkgconfig,include/,cmake/,sros2_cmake/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/sros2_cmake/{lib*/pkgconfig,include/,cmake/,extra_cmake/,sros2_cmake/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/sros2_cmake/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -252,6 +252,8 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.13.3-1
+- Update to latest release
 * Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.13.2-1
 - Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.13.0-1

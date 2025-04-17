@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-depth_image_proc
-Version:        5.0.4
+Version:        5.0.9
 Release:        1%{?dist}
 Summary:        ROS package depth_image_proc
 
 License:        BSD
 URL:            https://index.ros.org/p/depth_image_proc/github-ros-perception-image_pipeline/
 
-Source0:        https://github.com/ros2-gbp/image_pipeline-release/archive/release/jazzy/depth_image_proc/5.0.4-1.tar.gz#/ros2-jazzy-depth_image_proc-5.0.4-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/image_pipeline-release/archive/release/jazzy/depth_image_proc/5.0.9-1.tar.gz#/ros2-jazzy-depth_image_proc-5.0.9-source0.tar.gz
 
 
 
@@ -73,8 +73,8 @@ Requires:       ros2-jazzy-tf2
 Requires:       ros2-jazzy-tf2_eigen
 Requires:       ros2-jazzy-tf2_ros
 
-Provides:  ros2-jazzy-depth_image_proc = 5.0.4-1
-Obsoletes: ros2-jazzy-depth_image_proc < 5.0.4-1
+Provides:  ros2-jazzy-depth_image_proc = 5.0.9-1
+Obsoletes: ros2-jazzy-depth_image_proc < 5.0.9-1
 
 
 
@@ -109,8 +109,8 @@ Requires:       ros2-jazzy-tf2-devel
 Requires:       ros2-jazzy-tf2_eigen-devel
 Requires:       ros2-jazzy-tf2_ros-devel
 
-Provides: ros2-jazzy-depth_image_proc-devel = 5.0.4-1
-Obsoletes: ros2-jazzy-depth_image_proc-devel < 5.0.4-1
+Provides: ros2-jazzy-depth_image_proc-devel = 5.0.9-1
+Obsoletes: ros2-jazzy-depth_image_proc-devel < 5.0.9-1
 
 
 %description devel
@@ -221,7 +221,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -248,7 +248,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,depth_image_proc/include/,share/depth_image_proc/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/depth_image_proc/{lib*/pkgconfig,include/,cmake/,depth_image_proc/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/depth_image_proc/{lib*/pkgconfig,include/,cmake/,extra_cmake/,depth_image_proc/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/depth_image_proc/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -298,6 +298,12 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Fri Mar 14 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.5.0.9-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.5.0.6-1
+- Update to latest release
+* Wed Nov 20 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.5.0.5-1
+- Update to latest release
 * Mon Aug 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.5.0.4-1
 - Update to latest release
 * Sat Aug 03 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.5.0.3-1

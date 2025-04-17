@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-gz-transport-vendor
-Version:        0.0.5
+Version:        0.0.6
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            https://github.com/gazebosim/gz-transport
@@ -10,10 +10,10 @@ BuildArch: noarch
 Requires:       ros2-jazzy-gz_transport_vendor
 Requires:       ros2-jazzy-gz_transport_vendor-devel
 
-Obsoletes: ros-jazzy-gz-transport-vendor < 0.0.5-1
+Obsoletes: ros-jazzy-gz-transport-vendor < 0.0.6-1
 
 %description
-Vendor package for: gz-transport13 13.4.0 Gazebo Transport: Provides
+Vendor package for: gz-transport13 13.4.1 Gazebo Transport: Provides
 fast and efficient asynchronous message passing, services, and data
 logging.
 
@@ -27,6 +27,8 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Sat Mar 08 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.0.6-1
+- Update to latest release
 * Mon Jul 22 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.0.5-1
 - Update to latest release
 * Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.0.4-1

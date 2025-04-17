@@ -1,0 +1,28 @@
+diff --color -urN gz_ogre_next_vendor-release-release-jazzy-gz_ogre_next_vendor-0.0.5-1/CMakeLists.txt gz_ogre_next_vendor-release-release-jazzy-gz_ogre_next_vendor-0.0.5-1-new/CMakeLists.txt
+--- gz_ogre_next_vendor-release-release-jazzy-gz_ogre_next_vendor-0.0.5-1/CMakeLists.txt	2024-05-07 23:42:36.000000000 +0200
++++ gz_ogre_next_vendor-release-release-jazzy-gz_ogre_next_vendor-0.0.5-1-new/CMakeLists.txt	2025-04-11 23:57:28.261131755 +0200
+@@ -35,6 +35,7 @@
+   GLOBAL_HOOK
+   PATCHES
+     patches/0001-Fix-incomplete-vulkan-linkage.patch
++    patches/0002-Remove-explicit-stl-allocator-keyword.patch
+ )
+ 
+ if(BUILD_TESTING)
+diff --color -urN gz_ogre_next_vendor-release-release-jazzy-gz_ogre_next_vendor-0.0.5-1/patches/0002-Remove-explicit-stl-allocator-keyword.patch gz_ogre_next_vendor-release-release-jazzy-gz_ogre_next_vendor-0.0.5-1-new/patches/0002-Remove-explicit-stl-allocator-keyword.patch
+--- gz_ogre_next_vendor-release-release-jazzy-gz_ogre_next_vendor-0.0.5-1/patches/0002-Remove-explicit-stl-allocator-keyword.patch	1970-01-01 01:00:00.000000000 +0100
++++ gz_ogre_next_vendor-release-release-jazzy-gz_ogre_next_vendor-0.0.5-1-new/patches/0002-Remove-explicit-stl-allocator-keyword.patch	2025-04-11 23:57:03.396563014 +0200
+@@ -0,0 +1,13 @@
++diff --git a/OgreMain/include/OgreMemorySTLAllocator.h b/OgreMain/include/OgreMemorySTLAllocator.h
++index 5cba9e160a..f734636855 100644
++--- a/OgreMain/include/OgreMemorySTLAllocator.h
+++++ b/OgreMain/include/OgreMemorySTLAllocator.h
++@@ -100,7 +100,7 @@ namespace Ogre
++         };
++
++         /// ctor
++-        inline explicit STLAllocator()
+++        inline STLAllocator()
++         { }
++
++         /// dtor

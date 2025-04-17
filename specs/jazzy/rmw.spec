@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-rmw
-Version:        7.3.1
+Version:        7.3.2
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-rmw
 Requires:       ros2-jazzy-rmw-devel
 
-Obsoletes: ros-jazzy-rmw < 7.3.1-1
+Obsoletes: ros-jazzy-rmw < 7.3.2-1
 
 %description
 Contains the ROS middleware API.
@@ -25,5 +25,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.7.3.2-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.7.3.1-1
 - Update to latest release

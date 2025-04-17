@@ -1,0 +1,12 @@
+diff --color -urN urdfdom-release-release-jazzy-urdfdom-4.0.1-1/urdf_parser/include/urdf_parser/urdf_parser.h urdfdom-release-release-jazzy-urdfdom-4.0.1-1-new/urdf_parser/include/urdf_parser/urdf_parser.h
+--- urdfdom-release-release-jazzy-urdfdom-4.0.1-1/urdf_parser/include/urdf_parser/urdf_parser.h	2024-09-12 00:01:55.000000000 +0200
++++ urdfdom-release-release-jazzy-urdfdom-4.0.1-1-new/urdf_parser/include/urdf_parser/urdf_parser.h	2025-04-12 00:01:06.180218471 +0200
+@@ -41,6 +41,8 @@
+ #include <string>
+ #include <vector>
+ 
++#include <cstdint>
++
+ #include <urdf_model/model.h>
+ #include <urdf_model/color.h>
+ #include <urdf_model/utils.h>

@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-ament_package
-Version:        0.16.3
+Version:        0.16.4
 Release:        1%{?dist}
 Summary:        ROS package ament_package
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ament_package-release/archive/release/jazzy/ament_package/0.16.3-3.tar.gz#/ros2-jazzy-ament_package-0.16.3-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ament_package-release/archive/release/jazzy/ament_package/0.16.4-1.tar.gz#/ros2-jazzy-ament_package-0.16.4-source0.tar.gz
 
 
 BuildArch: noarch
@@ -43,8 +43,8 @@ BuildRequires:  python3-setuptools
 
 Requires:       python3
 
-Provides:  ros2-jazzy-ament_package = 0.16.3-1
-Obsoletes: ros2-jazzy-ament_package < 0.16.3-1
+Provides:  ros2-jazzy-ament_package = 0.16.4-1
+Obsoletes: ros2-jazzy-ament_package < 0.16.4-1
 
 
 
@@ -56,8 +56,8 @@ Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
 Requires:       python3-setuptools
 
-Provides: ros2-jazzy-ament_package-devel = 0.16.3-1
-Obsoletes: ros2-jazzy-ament_package-devel < 0.16.3-1
+Provides: ros2-jazzy-ament_package-devel = 0.16.4-1
+Obsoletes: ros2-jazzy-ament_package-devel < 0.16.4-1
 
 
 %description devel
@@ -169,5 +169,7 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Thu Apr 10 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.16.4-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.16.3-1
 - Update to latest release

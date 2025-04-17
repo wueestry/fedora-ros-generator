@@ -6,5 +6,3 @@ dependencies:
       - libuuid-devel
       - tinyxml-devel
       - tinyxml2-devel
-patches:
- - ros2.image_proc.opencv4.9.patch

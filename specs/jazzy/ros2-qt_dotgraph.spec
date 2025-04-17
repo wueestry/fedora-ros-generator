@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-qt_dotgraph
-Version:        2.7.4
+Version:        2.7.5
 Release:        1%{?dist}
 Summary:        ROS package qt_dotgraph
 
 License:        BSD
 URL:            http://ros.org/wiki/qt_dotgraph
 
-Source0:        https://github.com/ros2-gbp/qt_gui_core-release/archive/release/jazzy/qt_dotgraph/2.7.4-2.tar.gz#/ros2-jazzy-qt_dotgraph-2.7.4-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/qt_gui_core-release/archive/release/jazzy/qt_dotgraph/2.7.5-1.tar.gz#/ros2-jazzy-qt_dotgraph-2.7.5-source0.tar.gz
 
 
 BuildArch: noarch
@@ -45,8 +45,8 @@ BuildRequires:  ros2-jazzy-ament_package-devel
 Requires:       python3-pydot
 Requires:       ros2-jazzy-python_qt_binding
 
-Provides:  ros2-jazzy-qt_dotgraph = 2.7.4-1
-Obsoletes: ros2-jazzy-qt_dotgraph < 2.7.4-1
+Provides:  ros2-jazzy-qt_dotgraph = 2.7.5-1
+Obsoletes: ros2-jazzy-qt_dotgraph < 2.7.5-1
 
 
 
@@ -60,8 +60,8 @@ Requires:       ros2-jazzy-ament_cmake-devel
 Requires:       ros2-jazzy-ament_package-devel
 Requires:       ros2-jazzy-python_qt_binding-devel
 
-Provides: ros2-jazzy-qt_dotgraph-devel = 2.7.4-1
-Obsoletes: ros2-jazzy-qt_dotgraph-devel < 2.7.4-1
+Provides: ros2-jazzy-qt_dotgraph-devel = 2.7.5-1
+Obsoletes: ros2-jazzy-qt_dotgraph-devel < 2.7.5-1
 
 
 %description devel
@@ -172,7 +172,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -199,7 +199,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,qt_dotgraph/include/,share/qt_dotgraph/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/qt_dotgraph/{lib*/pkgconfig,include/,cmake/,qt_dotgraph/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/qt_dotgraph/{lib*/pkgconfig,include/,cmake/,extra_cmake/,qt_dotgraph/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/qt_dotgraph/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -249,5 +249,7 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.7.5-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.7.4-1
 - Update to latest release

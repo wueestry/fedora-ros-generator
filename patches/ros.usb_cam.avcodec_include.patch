@@ -1,0 +1,11 @@
+diff --color -ur usb_cam-release-release-jazzy-usb_cam-0.8.1-1/CMakeLists.txt usb_cam-release-release-jazzy-usb_cam-0.8.1-1-new/CMakeLists.txt
+--- usb_cam-release-release-jazzy-usb_cam-0.8.1-1/CMakeLists.txt	2024-05-02 16:24:53.000000000 +0200
++++ usb_cam-release-release-jazzy-usb_cam-0.8.1-1-new/CMakeLists.txt	2025-03-15 01:07:14.882446224 +0100
+@@ -55,6 +55,7 @@
+ target_include_directories(${PROJECT_NAME} PUBLIC
+   "include"
+   ${OpenCV_INCLUDE_DIRS}
++  ${avcodec_INCLUDE_DIRS}
+ )
+ 
+ target_link_libraries(${PROJECT_NAME}

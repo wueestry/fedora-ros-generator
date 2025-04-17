@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-rcl
-Version:        9.2.3
+Version:        9.2.5
 Release:        1%{?dist}
 Summary:        ROS package rcl
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rcl-release/archive/release/jazzy/rcl/9.2.3-1.tar.gz#/ros2-jazzy-rcl-9.2.3-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rcl-release/archive/release/jazzy/rcl/9.2.5-1.tar.gz#/ros2-jazzy-rcl-9.2.5-source0.tar.gz
 
 
 
@@ -68,8 +68,8 @@ Requires:       ros2-jazzy-service_msgs
 Requires:       ros2-jazzy-tracetools
 Requires:       ros2-jazzy-type_description_interfaces
 
-Provides:  ros2-jazzy-rcl = 9.2.3-1
-Obsoletes: ros2-jazzy-rcl < 9.2.3-1
+Provides:  ros2-jazzy-rcl = 9.2.5-1
+Obsoletes: ros2-jazzy-rcl < 9.2.5-1
 
 
 
@@ -98,8 +98,8 @@ Requires:       ros2-jazzy-service_msgs-devel
 Requires:       ros2-jazzy-tracetools-devel
 Requires:       ros2-jazzy-type_description_interfaces-devel
 
-Provides: ros2-jazzy-rcl-devel = 9.2.3-1
-Obsoletes: ros2-jazzy-rcl-devel < 9.2.3-1
+Provides: ros2-jazzy-rcl-devel = 9.2.5-1
+Obsoletes: ros2-jazzy-rcl-devel < 9.2.5-1
 
 
 %description devel
@@ -210,7 +210,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -237,7 +237,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,rcl/include/,share/rcl/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/rcl/{lib*/pkgconfig,include/,cmake/,rcl/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/rcl/{lib*/pkgconfig,include/,cmake/,extra_cmake/,rcl/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/rcl/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -287,6 +287,10 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.9.2.5-1
+- Update to latest release
+* Tue Oct 15 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.9.2.4-1
+- Update to latest release
 * Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.9.2.3-1
 - Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.9.2.2-1

@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-slam-toolbox
-Version:        2.8.1
+Version:        2.8.2
 Release:        1%{?dist}
 License:        LGPL
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-slam_toolbox
 Requires:       ros2-jazzy-slam_toolbox-devel
 
-Obsoletes: ros-jazzy-slam-toolbox < 2.8.1-1
+Obsoletes: ros-jazzy-slam-toolbox < 2.8.2-1
 
 %description
 This package provides a sped up improved slam karto with updated SDK
@@ -26,5 +26,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.8.2-1
+- Update to latest release
 * Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.8.1-1
 - Update to latest release

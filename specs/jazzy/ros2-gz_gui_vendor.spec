@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-gz_gui_vendor
-Version:        0.0.4
+Version:        0.0.5
 Release:        1%{?dist}
 Summary:        ROS package gz_gui_vendor
 
 License:        Apache License 2.0
 URL:            https://github.com/gazebosim/gz-rendering
 
-Source0:        https://github.com/ros2-gbp/gz_gui_vendor-release/archive/release/jazzy/gz_gui_vendor/0.0.4-1.tar.gz#/ros2-jazzy-gz_gui_vendor-0.0.4-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/gz_gui_vendor-release/archive/release/jazzy/gz_gui_vendor/0.0.5-1.tar.gz#/ros2-jazzy-gz_gui_vendor-0.0.5-source0.tar.gz
 
 
 
@@ -38,6 +38,7 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python3-colcon-common-extensions
 # BuildRequires:  python-unversioned-command
 
+BuildRequires:  cmake
 BuildRequires:  protobuf-devel protobuf-compiler
 BuildRequires:  qt5-qtbase
 BuildRequires:  qt5-qtbase-devel
@@ -75,8 +76,8 @@ Requires:       ros2-jazzy-gz_tools_vendor
 Requires:       ros2-jazzy-gz_transport_vendor
 Requires:       ros2-jazzy-gz_utils_vendor
 
-Provides:  ros2-jazzy-gz_gui_vendor = 0.0.4-1
-Obsoletes: ros2-jazzy-gz_gui_vendor < 0.0.4-1
+Provides:  ros2-jazzy-gz_gui_vendor = 0.0.5-1
+Obsoletes: ros2-jazzy-gz_gui_vendor < 0.0.5-1
 
 
 # This is required due to mentions of BUILDROOT outside of elf sections in libgz-gui8.so
@@ -84,12 +85,13 @@ Obsoletes: ros2-jazzy-gz_gui_vendor < 0.0.4-1
 %define __arch_install_post %{nil}
 
 %description
-Vendor package for: gz-gui8 8.3.0 Gazebo GUI : Graphical interfaces
+Vendor package for: gz-gui8 8.4.0 Gazebo GUI : Graphical interfaces
 for robotics applications
 
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake
 Requires:       ros2-jazzy-ament_cmake_core-devel
 Requires:       ros2-jazzy-ament_cmake_test-devel
 Requires:       ros2-jazzy-ament_cmake_vendor_package-devel
@@ -113,8 +115,8 @@ Requires:       ros2-jazzy-gz_tools_vendor-devel
 Requires:       ros2-jazzy-gz_transport_vendor-devel
 Requires:       ros2-jazzy-gz_utils_vendor-devel
 
-Provides: ros2-jazzy-gz_gui_vendor-devel = 0.0.4-1
-Obsoletes: ros2-jazzy-gz_gui_vendor-devel < 0.0.4-1
+Provides: ros2-jazzy-gz_gui_vendor-devel = 0.0.5-1
+Obsoletes: ros2-jazzy-gz_gui_vendor-devel < 0.0.5-1
 
 
 %description devel
@@ -225,7 +227,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -252,7 +254,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,gz_gui_vendor/include/,share/gz_gui_vendor/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/gz_gui_vendor/{lib*/pkgconfig,include/,cmake/,gz_gui_vendor/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/gz_gui_vendor/{lib*/pkgconfig,include/,cmake/,extra_cmake/,gz_gui_vendor/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/gz_gui_vendor/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -302,6 +304,8 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Sat Mar 08 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.0.5-1
+- Update to latest release
 * Wed Jul 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.0.4-1
 - Update to latest release
 * Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.0.3-1

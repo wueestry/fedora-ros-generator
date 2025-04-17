@@ -1,1 +1,3 @@
-noarch: true
+no_debug: true
+patches:
+ - ros.rosidl_runtime_cpp.include_cstdint.patch

@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-gz_cmake_vendor
-Version:        0.0.8
+Version:        0.0.9
 Release:        1%{?dist}
 Summary:        ROS package gz_cmake_vendor
 
 License:        Apache License 2.0
 URL:            https://github.com/gazebosim/gz-cmake
 
-Source0:        https://github.com/ros2-gbp/gz_cmake_vendor-release/archive/release/jazzy/gz_cmake_vendor/0.0.8-1.tar.gz#/ros2-jazzy-gz_cmake_vendor-0.0.8-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/gz_cmake_vendor-release/archive/release/jazzy/gz_cmake_vendor/0.0.9-1.tar.gz#/ros2-jazzy-gz_cmake_vendor-0.0.9-source0.tar.gz
 
 Patch0: ros2.gz_cmake_vendor.opt_path_fix.patch
 
@@ -40,31 +40,35 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python3-colcon-common-extensions
 # BuildRequires:  python-unversioned-command
 
+BuildRequires:  cmake
+BuildRequires:  pkgconfig
 BuildRequires:  ros2-jazzy-ament_cmake_core-devel
 BuildRequires:  ros2-jazzy-ament_cmake_test-devel
 BuildRequires:  ros2-jazzy-ament_cmake_vendor_package-devel
 BuildRequires:  ros2-jazzy-ament_package-devel
 
 
-Provides:  ros2-jazzy-gz_cmake_vendor = 0.0.8-1
-Obsoletes: ros2-jazzy-gz_cmake_vendor < 0.0.8-1
+Provides:  ros2-jazzy-gz_cmake_vendor = 0.0.9-1
+Obsoletes: ros2-jazzy-gz_cmake_vendor < 0.0.9-1
 
 
 
 %description
-Vendor package for: gz-cmake3 3.5.3 Gazebo CMake : CMake Modules for
+Vendor package for: gz-cmake3 3.5.4 Gazebo CMake : CMake Modules for
 Gazebo Projects
 
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
+Requires:       cmake
+Requires:       pkgconfig
 Requires:       ros2-jazzy-ament_cmake_core-devel
 Requires:       ros2-jazzy-ament_cmake_test-devel
 Requires:       ros2-jazzy-ament_cmake_vendor_package-devel
 Requires:       ros2-jazzy-ament_package-devel
 
-Provides: ros2-jazzy-gz_cmake_vendor-devel = 0.0.8-1
-Obsoletes: ros2-jazzy-gz_cmake_vendor-devel < 0.0.8-1
+Provides: ros2-jazzy-gz_cmake_vendor-devel = 0.0.9-1
+Obsoletes: ros2-jazzy-gz_cmake_vendor-devel < 0.0.9-1
 
 
 %description devel
@@ -176,7 +180,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -203,7 +207,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,gz_cmake_vendor/include/,share/gz_cmake_vendor/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/gz_cmake_vendor/{lib*/pkgconfig,include/,cmake/,gz_cmake_vendor/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/gz_cmake_vendor/{lib*/pkgconfig,include/,cmake/,extra_cmake/,gz_cmake_vendor/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/gz_cmake_vendor/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -253,6 +257,8 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Sat Mar 08 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.0.9-1
+- Update to latest release
 * Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.0.8-1
 - Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.0.7-1

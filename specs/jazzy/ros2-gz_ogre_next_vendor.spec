@@ -8,6 +8,7 @@ URL:            https://www.ogre3d.org/
 
 Source0:        https://github.com/ros2-gbp/gz_ogre_next_vendor-release/archive/release/jazzy/gz_ogre_next_vendor/0.0.5-1.tar.gz#/ros2-jazzy-gz_ogre_next_vendor-0.0.5-source0.tar.gz
 
+Patch0: ros.gz_ogre_next_vendor.rm_explicit_stl_alloc_ctor.patch
 
 
 # common BRs
@@ -112,6 +113,7 @@ applications that use %{name}.
 
 %setup -c -T
 tar --strip-components=1 -xf %{SOURCE0}
+%patch 0 -p1
 
 %build
 # nothing to do here
@@ -210,7 +212,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -237,7 +239,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,gz_ogre_next_vendor/include/,share/gz_ogre_next_vendor/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/gz_ogre_next_vendor/{lib*/pkgconfig,include/,cmake/,gz_ogre_next_vendor/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/gz_ogre_next_vendor/{lib*/pkgconfig,include/,cmake/,extra_cmake/,gz_ogre_next_vendor/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/gz_ogre_next_vendor/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list

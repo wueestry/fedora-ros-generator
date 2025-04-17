@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-controller-manager-msgs
-Version:        4.16.1
+Version:        4.28.0
 Release:        1%{?dist}
 License:        BSD
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-controller_manager_msgs
 Requires:       ros2-jazzy-controller_manager_msgs-devel
 
-Obsoletes: ros-jazzy-controller-manager-msgs < 4.16.1-1
+Obsoletes: ros-jazzy-controller-manager-msgs < 4.28.0-1
 
 %description
 Messages and services for the controller manager.
@@ -25,6 +25,16 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Sun Apr 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.28.0-1
+- Update to latest release
+* Sat Mar 08 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.27.0-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.23.0-1
+- Update to latest release
+* Wed Nov 20 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.20.0-1
+- Update to latest release
+* Tue Oct 15 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.18.0-1
+- Update to latest release
 * Mon Aug 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.16.1-1
 - Update to latest release
 * Wed Jul 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.14.0-1

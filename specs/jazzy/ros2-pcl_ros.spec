@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-pcl_ros
-Version:        2.6.1
+Version:        2.6.2
 Release:        1%{?dist}
 Summary:        ROS package pcl_ros
 
 License:        BSD
 URL:            http://ros.org/wiki/perception_pcl
 
-Source0:        https://github.com/ros2-gbp/perception_pcl-release/archive/release/jazzy/pcl_ros/2.6.1-4.tar.gz#/ros2-jazzy-pcl_ros-2.6.1-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/perception_pcl-release/archive/release/jazzy/pcl_ros/2.6.2-1.tar.gz#/ros2-jazzy-pcl_ros-2.6.2-source0.tar.gz
 
 
 
@@ -54,6 +54,7 @@ BuildRequires:  ros2-jazzy-rclcpp-devel
 BuildRequires:  ros2-jazzy-rclcpp_components-devel
 BuildRequires:  ros2-jazzy-sensor_msgs-devel
 BuildRequires:  ros2-jazzy-tf2-devel
+BuildRequires:  ros2-jazzy-tf2_eigen-devel
 BuildRequires:  ros2-jazzy-tf2_geometry_msgs-devel
 BuildRequires:  ros2-jazzy-tf2_ros-devel
 
@@ -64,11 +65,12 @@ Requires:       ros2-jazzy-rclcpp
 Requires:       ros2-jazzy-rclcpp_components
 Requires:       ros2-jazzy-sensor_msgs
 Requires:       ros2-jazzy-tf2
+Requires:       ros2-jazzy-tf2_eigen
 Requires:       ros2-jazzy-tf2_geometry_msgs
 Requires:       ros2-jazzy-tf2_ros
 
-Provides:  ros2-jazzy-pcl_ros = 2.6.1-1
-Obsoletes: ros2-jazzy-pcl_ros < 2.6.1-1
+Provides:  ros2-jazzy-pcl_ros = 2.6.2-1
+Obsoletes: ros2-jazzy-pcl_ros < 2.6.2-1
 
 
 
@@ -80,12 +82,12 @@ geometry processing in ROS.
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       pcl-devel
 Requires:       ros2-jazzy-ament_cmake-devel
 Requires:       eigen3-devel
 Requires:       libuuid-devel
 Requires:       libXext-devel
 Requires:       lz4-devel
-Requires:       pcl-devel
 Requires:       poco-devel
 Requires:       tinyxml-devel
 Requires:       tinyxml2-devel
@@ -96,11 +98,12 @@ Requires:       ros2-jazzy-rclcpp-devel
 Requires:       ros2-jazzy-rclcpp_components-devel
 Requires:       ros2-jazzy-sensor_msgs-devel
 Requires:       ros2-jazzy-tf2-devel
+Requires:       ros2-jazzy-tf2_eigen-devel
 Requires:       ros2-jazzy-tf2_geometry_msgs-devel
 Requires:       ros2-jazzy-tf2_ros-devel
 
-Provides: ros2-jazzy-pcl_ros-devel = 2.6.1-1
-Obsoletes: ros2-jazzy-pcl_ros-devel < 2.6.1-1
+Provides: ros2-jazzy-pcl_ros-devel = 2.6.2-1
+Obsoletes: ros2-jazzy-pcl_ros-devel < 2.6.2-1
 
 
 %description devel
@@ -211,7 +214,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -238,7 +241,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,pcl_ros/include/,share/pcl_ros/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/pcl_ros/{lib*/pkgconfig,include/,cmake/,pcl_ros/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/pcl_ros/{lib*/pkgconfig,include/,cmake/,extra_cmake/,pcl_ros/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/pcl_ros/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -288,5 +291,7 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Wed Nov 20 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.6.2-1
+- Update to latest release
 * Sat Aug 03 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.6.1-1
 - Update to latest release

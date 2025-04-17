@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-moveit_resources_panda_moveit_config
-Version:        3.0.0
+Version:        3.1.0
 Release:        1%{?dist}
 Summary:        ROS package moveit_resources_panda_moveit_config
 
 License:        BSD
 URL:            http://moveit.ros.org/
 
-Source0:        https://github.com/ros2-gbp/moveit_resources-release/archive/release/jazzy/moveit_resources_panda_moveit_config/3.0.0-3.tar.gz#/ros2-jazzy-moveit_resources_panda_moveit_config-3.0.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/moveit_resources-release/archive/release/jazzy/moveit_resources_panda_moveit_config/3.1.0-1.tar.gz#/ros2-jazzy-moveit_resources_panda_moveit_config-3.1.0-source0.tar.gz
 
 
 BuildArch: noarch
@@ -42,14 +42,19 @@ BuildRequires: python3-vcstool
 BuildRequires:  ros2-jazzy-ament_cmake-devel
 BuildRequires:  ros2-jazzy-ament_package-devel
 
+Requires:       ros2-jazzy-controller_manager
+Requires:       ros2-jazzy-gripper_controllers
 Requires:       ros2-jazzy-joint_state_publisher
 Requires:       ros2-jazzy-joint_state_publisher_gui
 Requires:       ros2-jazzy-moveit_resources_panda_description
+Requires:       ros2-jazzy-position_controllers
 Requires:       ros2-jazzy-robot_state_publisher
+Requires:       ros2-jazzy-ros2cli_common_extensions
+Requires:       ros2-jazzy-topic_tools
 Requires:       ros2-jazzy-xacro
 
-Provides:  ros2-jazzy-moveit_resources_panda_moveit_config = 3.0.0-1
-Obsoletes: ros2-jazzy-moveit_resources_panda_moveit_config < 3.0.0-1
+Provides:  ros2-jazzy-moveit_resources_panda_moveit_config = 3.1.0-1
+Obsoletes: ros2-jazzy-moveit_resources_panda_moveit_config < 3.1.0-1
 
 
 
@@ -61,14 +66,19 @@ Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
 Requires:       ros2-jazzy-ament_cmake-devel
 Requires:       ros2-jazzy-ament_package-devel
+Requires:       ros2-jazzy-controller_manager-devel
+Requires:       ros2-jazzy-gripper_controllers-devel
 Requires:       ros2-jazzy-joint_state_publisher-devel
 Requires:       ros2-jazzy-joint_state_publisher_gui-devel
 Requires:       ros2-jazzy-moveit_resources_panda_description-devel
+Requires:       ros2-jazzy-position_controllers-devel
 Requires:       ros2-jazzy-robot_state_publisher-devel
+Requires:       ros2-jazzy-ros2cli_common_extensions-devel
+Requires:       ros2-jazzy-topic_tools-devel
 Requires:       ros2-jazzy-xacro-devel
 
-Provides: ros2-jazzy-moveit_resources_panda_moveit_config-devel = 3.0.0-1
-Obsoletes: ros2-jazzy-moveit_resources_panda_moveit_config-devel < 3.0.0-1
+Provides: ros2-jazzy-moveit_resources_panda_moveit_config-devel = 3.1.0-1
+Obsoletes: ros2-jazzy-moveit_resources_panda_moveit_config-devel < 3.1.0-1
 
 
 %description devel
@@ -179,7 +189,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -206,7 +216,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,moveit_resources_panda_moveit_config/include/,share/moveit_resources_panda_moveit_config/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/moveit_resources_panda_moveit_config/{lib*/pkgconfig,include/,cmake/,moveit_resources_panda_moveit_config/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/moveit_resources_panda_moveit_config/{lib*/pkgconfig,include/,cmake/,extra_cmake/,moveit_resources_panda_moveit_config/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/moveit_resources_panda_moveit_config/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -256,5 +266,9 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.3.1.0-1
+- Update to latest release
+* Thu Nov 21 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.3.0.0-2
+- Rebuild due to srdfdom update
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.3.0.0-1
 - Update to latest release

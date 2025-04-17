@@ -1,13 +1,14 @@
 Name:           ros2-jazzy-fastrtps
-Version:        2.14.1
+Version:        2.14.4
 Release:        1%{?dist}
 Summary:        ROS package fastrtps
 
 License:        Apache 2.0
 URL:            https://www.eprosima.com/
 
-Source0:        https://github.com/ros2-gbp/fastrtps-release/archive/release/jazzy/fastrtps/2.14.1-1.tar.gz#/ros2-jazzy-fastrtps-2.14.1-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/fastdds-release/archive/release/jazzy/fastrtps/2.14.4-1.tar.gz#/ros2-jazzy-fastrtps-2.14.4-source0.tar.gz
 
+Patch0: ros.fastrtps.cstdint_include.patch
 
 
 # common BRs
@@ -50,8 +51,8 @@ BuildRequires:  ros2-jazzy-foonathan_memory_vendor-devel
 Requires:       ros2-jazzy-fastcdr
 Requires:       ros2-jazzy-foonathan_memory_vendor
 
-Provides:  ros2-jazzy-fastrtps = 2.14.1-1
-Obsoletes: ros2-jazzy-fastrtps < 2.14.1-1
+Provides:  ros2-jazzy-fastrtps = 2.14.4-1
+Obsoletes: ros2-jazzy-fastrtps < 2.14.4-1
 
 
 
@@ -79,8 +80,8 @@ Requires:       ros2-jazzy-ament_package-devel
 Requires:       ros2-jazzy-fastcdr-devel
 Requires:       ros2-jazzy-foonathan_memory_vendor-devel
 
-Provides: ros2-jazzy-fastrtps-devel = 2.14.1-1
-Obsoletes: ros2-jazzy-fastrtps-devel < 2.14.1-1
+Provides: ros2-jazzy-fastrtps-devel = 2.14.4-1
+Obsoletes: ros2-jazzy-fastrtps-devel < 2.14.4-1
 
 
 %description devel
@@ -93,6 +94,7 @@ applications that use %{name}.
 
 %setup -c -T
 tar --strip-components=1 -xf %{SOURCE0}
+%patch 0 -p1
 
 %build
 # nothing to do here
@@ -191,7 +193,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -218,7 +220,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,fastrtps/include/,share/fastrtps/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/fastrtps/{lib*/pkgconfig,include/,cmake/,fastrtps/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/fastrtps/{lib*/pkgconfig,include/,cmake/,extra_cmake/,fastrtps/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/fastrtps/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -268,6 +270,10 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Wed Dec 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.14.4-1
+- Update to latest release
+* Tue Oct 22 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.14.3-1
+- Update to latest release
 * Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.14.1-1
 - Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.14.0-1

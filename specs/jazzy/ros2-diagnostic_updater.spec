@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-diagnostic_updater
-Version:        4.2.1
+Version:        4.2.3
 Release:        1%{?dist}
 Summary:        ROS package diagnostic_updater
 
 License:        BSD-3-Clause
 URL:            http://www.ros.org/wiki/diagnostic_updater
 
-Source0:        https://github.com/ros2-gbp/diagnostics-release/archive/release/jazzy/diagnostic_updater/4.2.1-1.tar.gz#/ros2-jazzy-diagnostic_updater-4.2.1-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/diagnostics-release/archive/release/jazzy/diagnostic_updater/4.2.3-1.tar.gz#/ros2-jazzy-diagnostic_updater-4.2.3-source0.tar.gz
 
 
 
@@ -40,6 +40,7 @@ BuildRequires: python3-vcstool
 
 BuildRequires:  ros2-jazzy-ament_cmake-devel
 BuildRequires:  ros2-jazzy-ament_cmake_python-devel
+BuildRequires:  ros2-jazzy-ament_cmake_ros-devel
 BuildRequires:  ros2-jazzy-ament_package-devel
 BuildRequires:  ros2-jazzy-diagnostic_msgs-devel
 BuildRequires:  ros2-jazzy-rclcpp-devel
@@ -51,8 +52,8 @@ Requires:       ros2-jazzy-rclcpp
 Requires:       ros2-jazzy-rclpy
 Requires:       ros2-jazzy-std_msgs
 
-Provides:  ros2-jazzy-diagnostic_updater = 4.2.1-1
-Obsoletes: ros2-jazzy-diagnostic_updater < 4.2.1-1
+Provides:  ros2-jazzy-diagnostic_updater = 4.2.3-1
+Obsoletes: ros2-jazzy-diagnostic_updater < 4.2.3-1
 
 
 
@@ -66,14 +67,15 @@ Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       ros2-jazzy-ament_cmake-devel
 Requires:       ros2-jazzy-ament_cmake_python-devel
+Requires:       ros2-jazzy-ament_cmake_ros-devel
 Requires:       ros2-jazzy-ament_package-devel
 Requires:       ros2-jazzy-diagnostic_msgs-devel
 Requires:       ros2-jazzy-rclcpp-devel
 Requires:       ros2-jazzy-rclpy-devel
 Requires:       ros2-jazzy-std_msgs-devel
 
-Provides: ros2-jazzy-diagnostic_updater-devel = 4.2.1-1
-Obsoletes: ros2-jazzy-diagnostic_updater-devel < 4.2.1-1
+Provides: ros2-jazzy-diagnostic_updater-devel = 4.2.3-1
+Obsoletes: ros2-jazzy-diagnostic_updater-devel < 4.2.3-1
 
 
 %description devel
@@ -184,7 +186,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -211,7 +213,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,diagnostic_updater/include/,share/diagnostic_updater/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/diagnostic_updater/{lib*/pkgconfig,include/,cmake/,diagnostic_updater/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/diagnostic_updater/{lib*/pkgconfig,include/,cmake/,extra_cmake/,diagnostic_updater/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/diagnostic_updater/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -261,6 +263,10 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Thu Apr 10 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.2.3-1
+- Update to latest release
+* Sat Mar 08 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.2.2-1
+- Update to latest release
 * Thu Aug 01 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.2.1-1
 - Update to latest release
 * Wed Jul 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.3.1.2-1

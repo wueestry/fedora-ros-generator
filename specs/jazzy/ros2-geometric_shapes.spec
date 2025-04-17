@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-geometric_shapes
-Version:        2.2.1
+Version:        2.3.2
 Release:        1%{?dist}
 Summary:        ROS package geometric_shapes
 
 License:        BSD
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/geometric_shapes-release/archive/release/jazzy/geometric_shapes/2.2.1-1.tar.gz#/ros2-jazzy-geometric_shapes-2.2.1-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/geometric_shapes-release/archive/release/jazzy/geometric_shapes/2.3.2-1.tar.gz#/ros2-jazzy-geometric_shapes-2.3.2-source0.tar.gz
 
 
 
@@ -41,6 +41,7 @@ BuildRequires: python3-vcstool
 BuildRequires:  assimp-devel
 BuildRequires:  boost-devel
 BuildRequires:  eigen3-devel
+BuildRequires:  fcl-devel
 BuildRequires:  gtest-devel
 BuildRequires:  octomap-devel
 BuildRequires:  pkgconfig
@@ -60,6 +61,7 @@ BuildRequires:  ros2-jazzy-visualization_msgs-devel
 
 Requires:       assimp
 Requires:       boost-filesystem
+Requires:       fcl
 Requires:       ros2-jazzy-console_bridge_vendor
 Requires:       ros2-jazzy-eigen_stl_containers
 Requires:       ros2-jazzy-geometry_msgs
@@ -70,8 +72,8 @@ Requires:       ros2-jazzy-rosidl_default_runtime
 Requires:       ros2-jazzy-shape_msgs
 Requires:       ros2-jazzy-visualization_msgs
 
-Provides:  ros2-jazzy-geometric_shapes = 2.2.1-1
-Obsoletes: ros2-jazzy-geometric_shapes < 2.2.1-1
+Provides:  ros2-jazzy-geometric_shapes = 2.3.2-1
+Obsoletes: ros2-jazzy-geometric_shapes < 2.3.2-1
 
 
 
@@ -88,6 +90,7 @@ Requires:       ros2-jazzy-ament_cmake-devel
 Requires:       ros2-jazzy-eigen3_cmake_module-devel
 Requires:       ros2-jazzy-rosidl_default_generators-devel
 Requires:       assimp-devel
+Requires:       fcl-devel
 Requires:       gtest-devel
 Requires:       octomap-devel
 Requires:       pkgconfig
@@ -103,8 +106,8 @@ Requires:       ros2-jazzy-shape_msgs-devel
 Requires:       ros2-jazzy-visualization_msgs-devel
 Requires:       ros2-jazzy-rosidl_default_runtime-devel
 
-Provides: ros2-jazzy-geometric_shapes-devel = 2.2.1-1
-Obsoletes: ros2-jazzy-geometric_shapes-devel < 2.2.1-1
+Provides: ros2-jazzy-geometric_shapes-devel = 2.3.2-1
+Obsoletes: ros2-jazzy-geometric_shapes-devel < 2.3.2-1
 
 
 %description devel
@@ -215,7 +218,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -242,7 +245,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,geometric_shapes/include/,share/geometric_shapes/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/geometric_shapes/{lib*/pkgconfig,include/,cmake/,geometric_shapes/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/geometric_shapes/{lib*/pkgconfig,include/,cmake/,extra_cmake/,geometric_shapes/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/geometric_shapes/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -292,6 +295,10 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Sat Mar 08 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.3.2-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.3.1-1
+- Update to latest release
 * Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.2.1-1
 - Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.1.3-1

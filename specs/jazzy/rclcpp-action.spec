@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-rclcpp-action
-Version:        28.1.3
+Version:        28.1.8
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-rclcpp_action
 Requires:       ros2-jazzy-rclcpp_action-devel
 
-Obsoletes: ros-jazzy-rclcpp-action < 28.1.3-1
+Obsoletes: ros-jazzy-rclcpp-action < 28.1.8-1
 
 %description
 Adds action APIs for C++.
@@ -25,6 +25,12 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.28.1.8-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.28.1.6-1
+- Update to latest release
+* Tue Oct 15 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.28.1.5-1
+- Update to latest release
 * Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.28.1.3-1
 - Update to latest release
 * Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.28.1.2-1

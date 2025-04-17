@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-gz_sensors_vendor
-Version:        0.0.4
+Version:        0.0.6
 Release:        1%{?dist}
 Summary:        ROS package gz_sensors_vendor
 
 License:        Apache License 2.0
 URL:            https://github.com/gazebosim/gz-sensors
 
-Source0:        https://github.com/ros2-gbp/gz_sensors_vendor-release/archive/release/jazzy/gz_sensors_vendor/0.0.4-1.tar.gz#/ros2-jazzy-gz_sensors_vendor-0.0.4-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/gz_sensors_vendor-release/archive/release/jazzy/gz_sensors_vendor/0.0.6-1.tar.gz#/ros2-jazzy-gz_sensors_vendor-0.0.6-source0.tar.gz
 
 
 
@@ -38,6 +38,7 @@ BuildRequires: python3-vcstool
 # BuildRequires:  python3-colcon-common-extensions
 # BuildRequires:  python-unversioned-command
 
+BuildRequires:  cmake
 BuildRequires:  ros2-jazzy-ament_cmake_core-devel
 BuildRequires:  ros2-jazzy-ament_cmake_test-devel
 BuildRequires:  ros2-jazzy-ament_cmake_vendor_package-devel
@@ -60,18 +61,19 @@ Requires:       ros2-jazzy-gz_tools_vendor
 Requires:       ros2-jazzy-gz_transport_vendor
 Requires:       ros2-jazzy-sdformat_vendor
 
-Provides:  ros2-jazzy-gz_sensors_vendor = 0.0.4-1
-Obsoletes: ros2-jazzy-gz_sensors_vendor < 0.0.4-1
+Provides:  ros2-jazzy-gz_sensors_vendor = 0.0.6-1
+Obsoletes: ros2-jazzy-gz_sensors_vendor < 0.0.6-1
 
 
 
 %description
-Vendor package for: gz-sensors8 8.2.0 Gazebo Sensors : Sensor models
+Vendor package for: gz-sensors8 8.2.2 Gazebo Sensors : Sensor models
 for simulation
 
 %package        devel
 Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
+Requires:       cmake
 Requires:       ros2-jazzy-ament_cmake_core-devel
 Requires:       ros2-jazzy-ament_cmake_test-devel
 Requires:       ros2-jazzy-ament_cmake_vendor_package-devel
@@ -85,8 +87,8 @@ Requires:       ros2-jazzy-gz_tools_vendor-devel
 Requires:       ros2-jazzy-gz_transport_vendor-devel
 Requires:       ros2-jazzy-sdformat_vendor-devel
 
-Provides: ros2-jazzy-gz_sensors_vendor-devel = 0.0.4-1
-Obsoletes: ros2-jazzy-gz_sensors_vendor-devel < 0.0.4-1
+Provides: ros2-jazzy-gz_sensors_vendor-devel = 0.0.6-1
+Obsoletes: ros2-jazzy-gz_sensors_vendor-devel < 0.0.6-1
 
 
 %description devel
@@ -197,7 +199,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -224,7 +226,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,gz_sensors_vendor/include/,share/gz_sensors_vendor/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/gz_sensors_vendor/{lib*/pkgconfig,include/,cmake/,gz_sensors_vendor/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/gz_sensors_vendor/{lib*/pkgconfig,include/,cmake/,extra_cmake/,gz_sensors_vendor/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/gz_sensors_vendor/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -274,6 +276,10 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Sat Mar 08 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.0.6-1
+- Update to latest release
+* Wed Nov 20 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.0.5-1
+- Update to latest release
 * Wed Jul 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.0.4-1
 - Update to latest release
 * Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.0.3-1

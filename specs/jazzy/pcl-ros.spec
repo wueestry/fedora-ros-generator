@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-pcl-ros
-Version:        2.6.1
+Version:        2.6.2
 Release:        1%{?dist}
 License:        BSD
 URL:            http://ros.org/wiki/perception_pcl
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-pcl_ros
 Requires:       ros2-jazzy-pcl_ros-devel
 
-Obsoletes: ros-jazzy-pcl-ros < 2.6.1-1
+Obsoletes: ros-jazzy-pcl-ros < 2.6.2-1
 
 %description
 PCL (Point Cloud Library) ROS interface stack. PCL-ROS is the
@@ -27,5 +27,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Wed Nov 20 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.6.2-1
+- Update to latest release
 * Sat Aug 03 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.6.1-1
 - Update to latest release

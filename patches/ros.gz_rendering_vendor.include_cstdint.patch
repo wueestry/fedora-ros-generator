@@ -1,0 +1,16 @@
+diff --color -urN gz_rendering_vendor-release-release-jazzy-gz_rendering_vendor-0.0.6-1/patches/0002-include-cstdint.patch gz_rendering_vendor-release-release-jazzy-gz_rendering_vendor-0.0.6-1-new/patches/0002-include-cstdint.patch
+--- gz_rendering_vendor-release-release-jazzy-gz_rendering_vendor-0.0.6-1/patches/0002-include-cstdint.patch	1970-01-01 01:00:00.000000000 +0100
++++ gz_rendering_vendor-release-release-jazzy-gz_rendering_vendor-0.0.6-1-new/patches/0002-include-cstdint.patch	2025-04-13 09:16:28.385126951 +0200
+@@ -0,0 +1,12 @@
++diff --git a/include/gz/rendering/config.hh.in b/include/gz/rendering/config.hh.in
++index f76f96d1..583dde41 100644
++--- a/include/gz/rendering/config.hh.in
+++++ b/include/gz/rendering/config.hh.in
++@@ -52,4 +52,6 @@
++ #define HAVE_OPTIX GZ_RENDERING_HAVE_OPTIX
++ #endif
++ 
+++#include <cstdint>
+++
++ #endif
++

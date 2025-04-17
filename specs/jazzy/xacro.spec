@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-xacro
-Version:        2.0.11
+Version:        2.0.13
 Release:        1%{?dist}
 License:        BSD
 URL:            http://ros.org/wiki/xacro
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-xacro
 Requires:       ros2-jazzy-xacro-devel
 
-Obsoletes: ros-jazzy-xacro < 2.0.11-1
+Obsoletes: ros-jazzy-xacro < 2.0.13-1
 
 %description
 Xacro (XML Macros) Xacro is an XML macro language. With xacro, you can
@@ -27,5 +27,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.0.13-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.0.11-1
 - Update to latest release

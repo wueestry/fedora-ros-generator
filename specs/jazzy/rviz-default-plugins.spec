@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-rviz-default-plugins
-Version:        14.1.4
+Version:        14.1.8
 Release:        1%{?dist}
 License:        BSD
 URL:            https://github.com/ros2/rviz/blob/ros2/README.md
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-rviz_default_plugins
 Requires:       ros2-jazzy-rviz_default_plugins-devel
 
-Obsoletes: ros-jazzy-rviz-default-plugins < 14.1.4-1
+Obsoletes: ros-jazzy-rviz-default-plugins < 14.1.8-1
 
 %description
 Several default plugins for rviz to cover the basic functionality.
@@ -25,6 +25,14 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.14.1.8-1
+- Update to latest release
+* Sat Mar 08 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.14.1.7-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.14.1.6-1
+- Update to latest release
+* Tue Oct 15 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.14.1.5-1
+- Update to latest release
 * Mon Aug 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.14.1.4-1
 - Update to latest release
 * Wed Jul 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.14.1.3-1

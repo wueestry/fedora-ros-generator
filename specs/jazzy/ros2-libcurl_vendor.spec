@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-libcurl_vendor
-Version:        3.4.3
+Version:        3.4.4
 Release:        1%{?dist}
 Summary:        ROS package libcurl_vendor
 
 License:        Apache License 2.0
 URL:            https://github.com/curl/curl
 
-Source0:        https://github.com/ros2-gbp/resource_retriever-release/archive/release/jazzy/libcurl_vendor/3.4.3-1.tar.gz#/ros2-jazzy-libcurl_vendor-3.4.3-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/resource_retriever-release/archive/release/jazzy/libcurl_vendor/3.4.4-1.tar.gz#/ros2-jazzy-libcurl_vendor-3.4.4-source0.tar.gz
 
 
 BuildArch: noarch
@@ -47,8 +47,8 @@ BuildRequires:  ros2-jazzy-ament_cmake_vendor_package-devel
 BuildRequires:  ros2-jazzy-ament_package-devel
 
 
-Provides:  ros2-jazzy-libcurl_vendor = 3.4.3-1
-Obsoletes: ros2-jazzy-libcurl_vendor < 3.4.3-1
+Provides:  ros2-jazzy-libcurl_vendor = 3.4.4-1
+Obsoletes: ros2-jazzy-libcurl_vendor < 3.4.4-1
 
 
 
@@ -66,8 +66,8 @@ Requires:       file
 Requires:       libcurl-devel curl
 Requires:       ros2-jazzy-ament_package-devel
 
-Provides: ros2-jazzy-libcurl_vendor-devel = 3.4.3-1
-Obsoletes: ros2-jazzy-libcurl_vendor-devel < 3.4.3-1
+Provides: ros2-jazzy-libcurl_vendor-devel = 3.4.4-1
+Obsoletes: ros2-jazzy-libcurl_vendor-devel < 3.4.4-1
 
 
 %description devel
@@ -178,7 +178,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -205,7 +205,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,libcurl_vendor/include/,share/libcurl_vendor/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/libcurl_vendor/{lib*/pkgconfig,include/,cmake/,libcurl_vendor/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/libcurl_vendor/{lib*/pkgconfig,include/,cmake/,extra_cmake/,libcurl_vendor/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/libcurl_vendor/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -255,6 +255,8 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Thu Apr 10 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.3.4.4-1
+- Update to latest release
 * Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.3.4.3-1
 - Update to latest release
 * Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.3.4.2-1

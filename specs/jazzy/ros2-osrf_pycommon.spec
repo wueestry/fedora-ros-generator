@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-osrf_pycommon
-Version:        2.1.4
+Version:        2.1.6
 Release:        1%{?dist}
 Summary:        ROS package osrf_pycommon
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/osrf_pycommon-release/archive/release/jazzy/osrf_pycommon/2.1.4-3.tar.gz#/ros2-jazzy-osrf_pycommon-2.1.4-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/osrf_pycommon-release/archive/release/jazzy/osrf_pycommon/2.1.6-1.tar.gz#/ros2-jazzy-osrf_pycommon-2.1.6-source0.tar.gz
 
 
 BuildArch: noarch
@@ -43,8 +43,8 @@ BuildRequires:  ros2-jazzy-ament_package-devel
 
 Requires:       python3
 
-Provides:  ros2-jazzy-osrf_pycommon = 2.1.4-1
-Obsoletes: ros2-jazzy-osrf_pycommon < 2.1.4-1
+Provides:  ros2-jazzy-osrf_pycommon = 2.1.6-1
+Obsoletes: ros2-jazzy-osrf_pycommon < 2.1.6-1
 
 
 
@@ -57,8 +57,8 @@ Summary:        Development files for %{name}
 Requires:       %{name} = %{version}-%{release}
 Requires:       ros2-jazzy-ament_package-devel
 
-Provides: ros2-jazzy-osrf_pycommon-devel = 2.1.4-1
-Obsoletes: ros2-jazzy-osrf_pycommon-devel < 2.1.4-1
+Provides: ros2-jazzy-osrf_pycommon-devel = 2.1.6-1
+Obsoletes: ros2-jazzy-osrf_pycommon-devel < 2.1.6-1
 
 
 %description devel
@@ -169,7 +169,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -196,7 +196,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,osrf_pycommon/include/,share/osrf_pycommon/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/osrf_pycommon/{lib*/pkgconfig,include/,cmake/,osrf_pycommon/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/osrf_pycommon/{lib*/pkgconfig,include/,cmake/,extra_cmake/,osrf_pycommon/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/osrf_pycommon/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -246,5 +246,9 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Thu Apr 10 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.1.6-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.1.5-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.1.4-1
 - Update to latest release

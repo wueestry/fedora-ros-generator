@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-rcl_logging_spdlog
-Version:        3.1.0
+Version:        3.1.1
 Release:        1%{?dist}
 Summary:        ROS package rcl_logging_spdlog
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rcl_logging-release/archive/release/jazzy/rcl_logging_spdlog/3.1.0-2.tar.gz#/ros2-jazzy-rcl_logging_spdlog-3.1.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rcl_logging-release/archive/release/jazzy/rcl_logging_spdlog/3.1.1-1.tar.gz#/ros2-jazzy-rcl_logging_spdlog-3.1.1-source0.tar.gz
 
 
 
@@ -51,8 +51,8 @@ Requires:       ros2-jazzy-rcpputils
 Requires:       ros2-jazzy-rcutils
 Requires:       ros2-jazzy-spdlog_vendor
 
-Provides:  ros2-jazzy-rcl_logging_spdlog = 3.1.0-1
-Obsoletes: ros2-jazzy-rcl_logging_spdlog < 3.1.0-1
+Provides:  ros2-jazzy-rcl_logging_spdlog = 3.1.1-1
+Obsoletes: ros2-jazzy-rcl_logging_spdlog < 3.1.1-1
 
 
 
@@ -70,8 +70,8 @@ Requires:       ros2-jazzy-rcpputils-devel
 Requires:       ros2-jazzy-rcutils-devel
 Requires:       ros2-jazzy-spdlog_vendor-devel
 
-Provides: ros2-jazzy-rcl_logging_spdlog-devel = 3.1.0-1
-Obsoletes: ros2-jazzy-rcl_logging_spdlog-devel < 3.1.0-1
+Provides: ros2-jazzy-rcl_logging_spdlog-devel = 3.1.1-1
+Obsoletes: ros2-jazzy-rcl_logging_spdlog-devel < 3.1.1-1
 
 
 %description devel
@@ -182,7 +182,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -209,7 +209,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,rcl_logging_spdlog/include/,share/rcl_logging_spdlog/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/rcl_logging_spdlog/{lib*/pkgconfig,include/,cmake/,rcl_logging_spdlog/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/rcl_logging_spdlog/{lib*/pkgconfig,include/,cmake/,extra_cmake/,rcl_logging_spdlog/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/rcl_logging_spdlog/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -259,5 +259,7 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.3.1.1-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.3.1.0-1
 - Update to latest release

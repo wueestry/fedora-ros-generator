@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-bondcpp
-Version:        4.1.0
+Version:        4.1.2
 Release:        1%{?dist}
 Summary:        ROS package bondcpp
 
-License:        BSD
+License:        BSD-3-Clause
 URL:            http://www.ros.org/wiki/bondcpp
 
-Source0:        https://github.com/ros2-gbp/bond_core-release/archive/release/jazzy/bondcpp/4.1.0-1.tar.gz#/ros2-jazzy-bondcpp-4.1.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/bond_core-release/archive/release/jazzy/bondcpp/4.1.2-1.tar.gz#/ros2-jazzy-bondcpp-4.1.2-source0.tar.gz
 
 
 
@@ -54,8 +54,8 @@ Requires:       ros2-jazzy-rclcpp
 Requires:       ros2-jazzy-rclcpp_lifecycle
 Requires:       ros2-jazzy-smclib
 
-Provides:  ros2-jazzy-bondcpp = 4.1.0-1
-Obsoletes: ros2-jazzy-bondcpp < 4.1.0-1
+Provides:  ros2-jazzy-bondcpp = 4.1.2-1
+Obsoletes: ros2-jazzy-bondcpp < 4.1.2-1
 
 
 
@@ -77,8 +77,8 @@ Requires:       ros2-jazzy-rclcpp-devel
 Requires:       ros2-jazzy-rclcpp_lifecycle-devel
 Requires:       ros2-jazzy-smclib-devel
 
-Provides: ros2-jazzy-bondcpp-devel = 4.1.0-1
-Obsoletes: ros2-jazzy-bondcpp-devel < 4.1.0-1
+Provides: ros2-jazzy-bondcpp-devel = 4.1.2-1
+Obsoletes: ros2-jazzy-bondcpp-devel < 4.1.2-1
 
 
 %description devel
@@ -189,7 +189,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -216,7 +216,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,bondcpp/include/,share/bondcpp/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/bondcpp/{lib*/pkgconfig,include/,cmake/,bondcpp/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/bondcpp/{lib*/pkgconfig,include/,cmake/,extra_cmake/,bondcpp/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/bondcpp/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -266,6 +266,8 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Sat Mar 08 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.1.2-1
+- Update to latest release
 * Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.1.0-1
 - Update to latest release
 * Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.0.0-1

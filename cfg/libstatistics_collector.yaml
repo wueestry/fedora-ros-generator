@@ -1,0 +1,2 @@
+patches:
+ - ros.libstatistics_collector.include_cstdint.patch

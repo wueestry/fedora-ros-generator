@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-quality_of_service_demo_py
-Version:        0.33.4
+Version:        0.33.5
 Release:        1%{?dist}
 Summary:        ROS package quality_of_service_demo_py
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/demos-release/archive/release/jazzy/quality_of_service_demo_py/0.33.4-1.tar.gz#/ros2-jazzy-quality_of_service_demo_py-0.33.4-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/demos-release/archive/release/jazzy/quality_of_service_demo_py/0.33.5-1.tar.gz#/ros2-jazzy-quality_of_service_demo_py-0.33.5-source0.tar.gz
 
 
 BuildArch: noarch
@@ -45,8 +45,8 @@ Requires:       ros2-jazzy-rclpy
 Requires:       ros2-jazzy-sensor_msgs
 Requires:       ros2-jazzy-std_msgs
 
-Provides:  ros2-jazzy-quality_of_service_demo_py = 0.33.4-1
-Obsoletes: ros2-jazzy-quality_of_service_demo_py < 0.33.4-1
+Provides:  ros2-jazzy-quality_of_service_demo_py = 0.33.5-1
+Obsoletes: ros2-jazzy-quality_of_service_demo_py < 0.33.5-1
 
 
 
@@ -61,8 +61,8 @@ Requires:       ros2-jazzy-rclpy-devel
 Requires:       ros2-jazzy-sensor_msgs-devel
 Requires:       ros2-jazzy-std_msgs-devel
 
-Provides: ros2-jazzy-quality_of_service_demo_py-devel = 0.33.4-1
-Obsoletes: ros2-jazzy-quality_of_service_demo_py-devel < 0.33.4-1
+Provides: ros2-jazzy-quality_of_service_demo_py-devel = 0.33.5-1
+Obsoletes: ros2-jazzy-quality_of_service_demo_py-devel < 0.33.5-1
 
 
 %description devel
@@ -173,7 +173,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -200,7 +200,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,quality_of_service_demo_py/include/,share/quality_of_service_demo_py/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/quality_of_service_demo_py/{lib*/pkgconfig,include/,cmake/,quality_of_service_demo_py/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/quality_of_service_demo_py/{lib*/pkgconfig,include/,cmake/,extra_cmake/,quality_of_service_demo_py/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/quality_of_service_demo_py/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -250,6 +250,8 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Tue Oct 15 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.33.5-1
+- Update to latest release
 * Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.33.4-1
 - Update to latest release
 * Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.33.3-1

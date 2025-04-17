@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-ros2interface
-Version:        0.32.1
+Version:        0.32.3
 Release:        1%{?dist}
 Summary:        ROS package ros2interface
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ros2cli-release/archive/release/jazzy/ros2interface/0.32.1-1.tar.gz#/ros2-jazzy-ros2interface-0.32.1-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ros2cli-release/archive/release/jazzy/ros2interface/0.32.3-1.tar.gz#/ros2-jazzy-ros2interface-0.32.3-source0.tar.gz
 
 
 BuildArch: noarch
@@ -46,8 +46,8 @@ Requires:       ros2-jazzy-ros2cli
 Requires:       ros2-jazzy-rosidl_adapter
 Requires:       ros2-jazzy-rosidl_runtime_py
 
-Provides:  ros2-jazzy-ros2interface = 0.32.1-1
-Obsoletes: ros2-jazzy-ros2interface < 0.32.1-1
+Provides:  ros2-jazzy-ros2interface = 0.32.3-1
+Obsoletes: ros2-jazzy-ros2interface < 0.32.3-1
 
 
 
@@ -63,8 +63,8 @@ Requires:       ros2-jazzy-ros2cli-devel
 Requires:       ros2-jazzy-rosidl_adapter-devel
 Requires:       ros2-jazzy-rosidl_runtime_py-devel
 
-Provides: ros2-jazzy-ros2interface-devel = 0.32.1-1
-Obsoletes: ros2-jazzy-ros2interface-devel < 0.32.1-1
+Provides: ros2-jazzy-ros2interface-devel = 0.32.3-1
+Obsoletes: ros2-jazzy-ros2interface-devel < 0.32.3-1
 
 
 %description devel
@@ -175,7 +175,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -202,7 +202,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,ros2interface/include/,share/ros2interface/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/ros2interface/{lib*/pkgconfig,include/,cmake/,ros2interface/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/ros2interface/{lib*/pkgconfig,include/,cmake/,extra_cmake/,ros2interface/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/ros2interface/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -252,6 +252,10 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.32.3-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.32.2-1
+- Update to latest release
 * Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.32.1-1
 - Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.32.0-1

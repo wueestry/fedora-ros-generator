@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-webots_ros2_tesla
-Version:        2023.1.3
+Version:        2025.0.0
 Release:        1%{?dist}
 Summary:        ROS package webots_ros2_tesla
 
 License:        Apache License 2.0
 URL:            http://wiki.ros.org/webots_ros2
 
-Source0:        https://github.com/ros2-gbp/webots_ros2-release/archive/release/jazzy/webots_ros2_tesla/2023.1.3-1.tar.gz#/ros2-jazzy-webots_ros2_tesla-2023.1.3-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/webots_ros2-release/archive/release/jazzy/webots_ros2_tesla/2025.0.0-1.tar.gz#/ros2-jazzy-webots_ros2_tesla-2025.0.0-source0.tar.gz
 
 
 BuildArch: noarch
@@ -48,8 +48,8 @@ Requires:       ros2-jazzy-builtin_interfaces
 Requires:       ros2-jazzy-rclpy
 Requires:       ros2-jazzy-webots_ros2_driver
 
-Provides:  ros2-jazzy-webots_ros2_tesla = 2023.1.3-1
-Obsoletes: ros2-jazzy-webots_ros2_tesla < 2023.1.3-1
+Provides:  ros2-jazzy-webots_ros2_tesla = 2025.0.0-1
+Obsoletes: ros2-jazzy-webots_ros2_tesla < 2025.0.0-1
 
 
 
@@ -65,8 +65,8 @@ Requires:       ros2-jazzy-builtin_interfaces-devel
 Requires:       ros2-jazzy-rclpy-devel
 Requires:       ros2-jazzy-webots_ros2_driver-devel
 
-Provides: ros2-jazzy-webots_ros2_tesla-devel = 2023.1.3-1
-Obsoletes: ros2-jazzy-webots_ros2_tesla-devel < 2023.1.3-1
+Provides: ros2-jazzy-webots_ros2_tesla-devel = 2025.0.0-1
+Obsoletes: ros2-jazzy-webots_ros2_tesla-devel < 2025.0.0-1
 
 
 %description devel
@@ -177,7 +177,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -204,7 +204,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,webots_ros2_tesla/include/,share/webots_ros2_tesla/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/webots_ros2_tesla/{lib*/pkgconfig,include/,cmake/,webots_ros2_tesla/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/webots_ros2_tesla/{lib*/pkgconfig,include/,cmake/,extra_cmake/,webots_ros2_tesla/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/webots_ros2_tesla/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -254,6 +254,8 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Sat Mar 08 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2025.0.0-1
+- Update to latest release
 * Mon Aug 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2023.1.3-1
 - Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2023.1.2-1

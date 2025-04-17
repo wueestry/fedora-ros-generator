@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-tricycle_controller
-Version:        4.13.0
+Version:        4.23.0
 Release:        1%{?dist}
 Summary:        ROS package tricycle_controller
 
 License:        Apache License 2.0
-URL:            http://www.ros.org/
+URL:            https://control.ros.org
 
-Source0:        https://github.com/ros2-gbp/ros2_controllers-release/archive/release/jazzy/tricycle_controller/4.13.0-1.tar.gz#/ros2-jazzy-tricycle_controller-4.13.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ros2_controllers-release/archive/release/jazzy/tricycle_controller/4.23.0-1.tar.gz#/ros2-jazzy-tricycle_controller-4.23.0-source0.tar.gz
 
 
 
@@ -53,6 +53,7 @@ BuildRequires:  ros2-jazzy-rclcpp-devel
 BuildRequires:  ros2-jazzy-rclcpp_lifecycle-devel
 BuildRequires:  ros2-jazzy-rcpputils-devel
 BuildRequires:  ros2-jazzy-realtime_tools-devel
+BuildRequires:  ros2-jazzy-ros2_control_cmake-devel
 BuildRequires:  ros2-jazzy-std_srvs-devel
 BuildRequires:  ros2-jazzy-tf2-devel
 BuildRequires:  ros2-jazzy-tf2_msgs-devel
@@ -73,8 +74,8 @@ Requires:       ros2-jazzy-std_srvs
 Requires:       ros2-jazzy-tf2
 Requires:       ros2-jazzy-tf2_msgs
 
-Provides:  ros2-jazzy-tricycle_controller = 4.13.0-1
-Obsoletes: ros2-jazzy-tricycle_controller < 4.13.0-1
+Provides:  ros2-jazzy-tricycle_controller = 4.23.0-1
+Obsoletes: ros2-jazzy-tricycle_controller < 4.23.0-1
 
 
 
@@ -99,12 +100,13 @@ Requires:       ros2-jazzy-rclcpp-devel
 Requires:       ros2-jazzy-rclcpp_lifecycle-devel
 Requires:       ros2-jazzy-rcpputils-devel
 Requires:       ros2-jazzy-realtime_tools-devel
+Requires:       ros2-jazzy-ros2_control_cmake-devel
 Requires:       ros2-jazzy-std_srvs-devel
 Requires:       ros2-jazzy-tf2-devel
 Requires:       ros2-jazzy-tf2_msgs-devel
 
-Provides: ros2-jazzy-tricycle_controller-devel = 4.13.0-1
-Obsoletes: ros2-jazzy-tricycle_controller-devel < 4.13.0-1
+Provides: ros2-jazzy-tricycle_controller-devel = 4.23.0-1
+Obsoletes: ros2-jazzy-tricycle_controller-devel < 4.23.0-1
 
 
 %description devel
@@ -215,7 +217,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -242,7 +244,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,tricycle_controller/include/,share/tricycle_controller/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/tricycle_controller/{lib*/pkgconfig,include/,cmake/,tricycle_controller/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/tricycle_controller/{lib*/pkgconfig,include/,cmake/,extra_cmake/,tricycle_controller/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/tricycle_controller/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -292,6 +294,18 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Sun Apr 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.23.0-1
+- Update to latest release
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.22.0-1
+- Update to latest release
+* Sat Mar 08 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.21.0-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.18.0-1
+- Update to latest release
+* Wed Nov 20 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.16.0-1
+- Update to latest release
+* Tue Oct 15 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.15.0-1
+- Update to latest release
 * Mon Aug 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.13.0-1
 - Update to latest release
 * Wed Jul 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.12.0-1

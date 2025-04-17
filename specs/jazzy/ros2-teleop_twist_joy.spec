@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-teleop_twist_joy
-Version:        2.6.0
+Version:        2.6.3
 Release:        1%{?dist}
 Summary:        ROS package teleop_twist_joy
 
 License:        BSD
 URL:            http://wiki.ros.org/teleop_twist_joy
 
-Source0:        https://github.com/ros2-gbp/teleop_twist_joy-release/archive/release/jazzy/teleop_twist_joy/2.6.0-3.tar.gz#/ros2-jazzy-teleop_twist_joy-2.6.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/teleop_twist_joy-release/archive/release/jazzy/teleop_twist_joy/2.6.3-1.tar.gz#/ros2-jazzy-teleop_twist_joy-2.6.3-source0.tar.gz
 
 
 
@@ -51,8 +51,8 @@ Requires:       ros2-jazzy-rclcpp
 Requires:       ros2-jazzy-rclcpp_components
 Requires:       ros2-jazzy-sensor_msgs
 
-Provides:  ros2-jazzy-teleop_twist_joy = 2.6.0-1
-Obsoletes: ros2-jazzy-teleop_twist_joy < 2.6.0-1
+Provides:  ros2-jazzy-teleop_twist_joy = 2.6.3-1
+Obsoletes: ros2-jazzy-teleop_twist_joy < 2.6.3-1
 
 
 
@@ -70,8 +70,8 @@ Requires:       ros2-jazzy-rclcpp_components-devel
 Requires:       ros2-jazzy-sensor_msgs-devel
 Requires:       ros2-jazzy-joy-devel
 
-Provides: ros2-jazzy-teleop_twist_joy-devel = 2.6.0-1
-Obsoletes: ros2-jazzy-teleop_twist_joy-devel < 2.6.0-1
+Provides: ros2-jazzy-teleop_twist_joy-devel = 2.6.3-1
+Obsoletes: ros2-jazzy-teleop_twist_joy-devel < 2.6.3-1
 
 
 %description devel
@@ -182,7 +182,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -209,7 +209,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,teleop_twist_joy/include/,share/teleop_twist_joy/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/teleop_twist_joy/{lib*/pkgconfig,include/,cmake/,teleop_twist_joy/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/teleop_twist_joy/{lib*/pkgconfig,include/,cmake/,extra_cmake/,teleop_twist_joy/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/teleop_twist_joy/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -259,5 +259,9 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.6.3-1
+- Update to latest release
+* Tue Oct 15 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.6.2-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.6.0-1
 - Update to latest release

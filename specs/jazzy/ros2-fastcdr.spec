@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-fastcdr
-Version:        2.2.2
+Version:        2.2.5
 Release:        1%{?dist}
 Summary:        ROS package fastcdr
 
 License:        Apache 2.0
 URL:            https://www.eprosima.com/
 
-Source0:        https://github.com/ros2-gbp/fastcdr-release/archive/release/jazzy/fastcdr/2.2.2-1.tar.gz#/ros2-jazzy-fastcdr-2.2.2-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/fastcdr-release/archive/release/jazzy/fastcdr/2.2.5-1.tar.gz#/ros2-jazzy-fastcdr-2.2.5-source0.tar.gz
 
 
 
@@ -42,8 +42,8 @@ BuildRequires:  cmake
 BuildRequires:  ros2-jazzy-ament_package-devel
 
 
-Provides:  ros2-jazzy-fastcdr = 2.2.2-1
-Obsoletes: ros2-jazzy-fastcdr < 2.2.2-1
+Provides:  ros2-jazzy-fastcdr = 2.2.5-1
+Obsoletes: ros2-jazzy-fastcdr < 2.2.5-1
 
 
 
@@ -59,8 +59,8 @@ Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       cmake
 Requires:       ros2-jazzy-ament_package-devel
 
-Provides: ros2-jazzy-fastcdr-devel = 2.2.2-1
-Obsoletes: ros2-jazzy-fastcdr-devel < 2.2.2-1
+Provides: ros2-jazzy-fastcdr-devel = 2.2.5-1
+Obsoletes: ros2-jazzy-fastcdr-devel < 2.2.5-1
 
 
 %description devel
@@ -171,7 +171,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -198,7 +198,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,fastcdr/include/,share/fastcdr/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/fastcdr/{lib*/pkgconfig,include/,cmake/,fastcdr/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/fastcdr/{lib*/pkgconfig,include/,cmake/,extra_cmake/,fastcdr/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/fastcdr/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -248,6 +248,10 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.2.5-1
+- Update to latest release
+* Tue Oct 15 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.2.4-1
+- Update to latest release
 * Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.2.2-1
 - Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.2.1-1

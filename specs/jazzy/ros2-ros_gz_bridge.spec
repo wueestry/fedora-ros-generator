@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-ros_gz_bridge
-Version:        1.0.3
+Version:        1.0.11
 Release:        1%{?dist}
 Summary:        ROS package ros_gz_bridge
 
 License:        Apache 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ros_ign-release/archive/release/jazzy/ros_gz_bridge/1.0.3-1.tar.gz#/ros2-jazzy-ros_gz_bridge-1.0.3-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ros_ign-release/archive/release/jazzy/ros_gz_bridge/1.0.11-1.tar.gz#/ros2-jazzy-ros_gz_bridge-1.0.11-source0.tar.gz
 
 
 
@@ -41,11 +41,14 @@ BuildRequires: python3-vcstool
 BuildRequires:  pkgconfig
 BuildRequires:  ros2-jazzy-actuator_msgs-devel
 BuildRequires:  ros2-jazzy-ament_cmake-devel
+BuildRequires:  ros2-jazzy-ament_cmake_python-devel
 BuildRequires:  ros2-jazzy-ament_package-devel
 BuildRequires:  ros2-jazzy-geometry_msgs-devel
 BuildRequires:  ros2-jazzy-gps_msgs-devel
 BuildRequires:  ros2-jazzy-gz_msgs_vendor-devel
 BuildRequires:  ros2-jazzy-gz_transport_vendor-devel
+BuildRequires:  ros2-jazzy-launch-devel
+BuildRequires:  ros2-jazzy-launch_ros-devel
 BuildRequires:  ros2-jazzy-nav_msgs-devel
 BuildRequires:  ros2-jazzy-rclcpp-devel
 BuildRequires:  ros2-jazzy-rclcpp_components-devel
@@ -64,6 +67,8 @@ Requires:       ros2-jazzy-geometry_msgs
 Requires:       ros2-jazzy-gps_msgs
 Requires:       ros2-jazzy-gz_msgs_vendor
 Requires:       ros2-jazzy-gz_transport_vendor
+Requires:       ros2-jazzy-launch
+Requires:       ros2-jazzy-launch_ros
 Requires:       ros2-jazzy-nav_msgs
 Requires:       ros2-jazzy-rclcpp
 Requires:       ros2-jazzy-rclcpp_components
@@ -76,8 +81,8 @@ Requires:       ros2-jazzy-trajectory_msgs
 Requires:       ros2-jazzy-vision_msgs
 Requires:       ros2-jazzy-yaml_cpp_vendor
 
-Provides:  ros2-jazzy-ros_gz_bridge = 1.0.3-1
-Obsoletes: ros2-jazzy-ros_gz_bridge < 1.0.3-1
+Provides:  ros2-jazzy-ros_gz_bridge = 1.0.11-1
+Obsoletes: ros2-jazzy-ros_gz_bridge < 1.0.11-1
 
 
 
@@ -89,6 +94,7 @@ Summary:        Development files for %{name}
 Requires:       %{name}%{?_isa} = %{version}-%{release}
 Requires:       pkgconfig
 Requires:       ros2-jazzy-ament_cmake-devel
+Requires:       ros2-jazzy-ament_cmake_python-devel
 Requires:       ros2-jazzy-rosidl_pycommon-devel
 Requires:       ros2-jazzy-actuator_msgs-devel
 Requires:       ros2-jazzy-ament_package-devel
@@ -96,6 +102,8 @@ Requires:       ros2-jazzy-geometry_msgs-devel
 Requires:       ros2-jazzy-gps_msgs-devel
 Requires:       ros2-jazzy-gz_msgs_vendor-devel
 Requires:       ros2-jazzy-gz_transport_vendor-devel
+Requires:       ros2-jazzy-launch-devel
+Requires:       ros2-jazzy-launch_ros-devel
 Requires:       ros2-jazzy-nav_msgs-devel
 Requires:       ros2-jazzy-rclcpp-devel
 Requires:       ros2-jazzy-rclcpp_components-devel
@@ -108,8 +116,8 @@ Requires:       ros2-jazzy-trajectory_msgs-devel
 Requires:       ros2-jazzy-vision_msgs-devel
 Requires:       ros2-jazzy-yaml_cpp_vendor-devel
 
-Provides: ros2-jazzy-ros_gz_bridge-devel = 1.0.3-1
-Obsoletes: ros2-jazzy-ros_gz_bridge-devel < 1.0.3-1
+Provides: ros2-jazzy-ros_gz_bridge-devel = 1.0.11-1
+Obsoletes: ros2-jazzy-ros_gz_bridge-devel < 1.0.11-1
 
 
 %description devel
@@ -220,7 +228,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -247,7 +255,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,ros_gz_bridge/include/,share/ros_gz_bridge/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/ros_gz_bridge/{lib*/pkgconfig,include/,cmake/,ros_gz_bridge/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/ros_gz_bridge/{lib*/pkgconfig,include/,cmake/,extra_cmake/,ros_gz_bridge/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/ros_gz_bridge/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -297,6 +305,14 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.1.0.11-1
+- Update to latest release
+* Sat Mar 08 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.1.0.9-1
+- Update to latest release
+* Wed Nov 20 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.1.0.7-1
+- Update to latest release
+* Tue Oct 15 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.1.0.5-1
+- Update to latest release
 * Wed Jul 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.1.0.3-1
 - Update to latest release
 * Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.1.0.2-1

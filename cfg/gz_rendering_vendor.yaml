@@ -1,0 +1,2 @@
+patches:
+ - ros.gz_rendering_vendor.include_cstdint.patch

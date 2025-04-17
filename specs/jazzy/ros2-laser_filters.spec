@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-laser_filters
-Version:        2.0.7
+Version:        2.0.8
 Release:        1%{?dist}
 Summary:        ROS package laser_filters
 
 License:        BSD
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/laser_filters-release/archive/release/jazzy/laser_filters/2.0.7-3.tar.gz#/ros2-jazzy-laser_filters-2.0.7-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/laser_filters-release/archive/release/jazzy/laser_filters/2.0.8-1.tar.gz#/ros2-jazzy-laser_filters-2.0.8-source0.tar.gz
 
 
 
@@ -50,9 +50,12 @@ BuildRequires:  ros2-jazzy-laser_geometry-devel
 BuildRequires:  ros2-jazzy-message_filters-devel
 BuildRequires:  ros2-jazzy-pluginlib-devel
 BuildRequires:  ros2-jazzy-rclcpp-devel
+BuildRequires:  ros2-jazzy-rclcpp_components-devel
 BuildRequires:  ros2-jazzy-rclcpp_lifecycle-devel
 BuildRequires:  ros2-jazzy-sensor_msgs-devel
 BuildRequires:  ros2-jazzy-tf2-devel
+BuildRequires:  ros2-jazzy-tf2_geometry_msgs-devel
+BuildRequires:  ros2-jazzy-tf2_kdl-devel
 BuildRequires:  ros2-jazzy-tf2_ros-devel
 
 Requires:       ros2-jazzy-angles
@@ -61,13 +64,16 @@ Requires:       ros2-jazzy-laser_geometry
 Requires:       ros2-jazzy-message_filters
 Requires:       ros2-jazzy-pluginlib
 Requires:       ros2-jazzy-rclcpp
+Requires:       ros2-jazzy-rclcpp_components
 Requires:       ros2-jazzy-rclcpp_lifecycle
 Requires:       ros2-jazzy-sensor_msgs
 Requires:       ros2-jazzy-tf2
+Requires:       ros2-jazzy-tf2_geometry_msgs
+Requires:       ros2-jazzy-tf2_kdl
 Requires:       ros2-jazzy-tf2_ros
 
-Provides:  ros2-jazzy-laser_filters = 2.0.7-1
-Obsoletes: ros2-jazzy-laser_filters < 2.0.7-1
+Provides:  ros2-jazzy-laser_filters = 2.0.8-1
+Obsoletes: ros2-jazzy-laser_filters < 2.0.8-1
 
 
 
@@ -90,13 +96,16 @@ Requires:       ros2-jazzy-laser_geometry-devel
 Requires:       ros2-jazzy-message_filters-devel
 Requires:       ros2-jazzy-pluginlib-devel
 Requires:       ros2-jazzy-rclcpp-devel
+Requires:       ros2-jazzy-rclcpp_components-devel
 Requires:       ros2-jazzy-rclcpp_lifecycle-devel
 Requires:       ros2-jazzy-sensor_msgs-devel
 Requires:       ros2-jazzy-tf2-devel
+Requires:       ros2-jazzy-tf2_geometry_msgs-devel
+Requires:       ros2-jazzy-tf2_kdl-devel
 Requires:       ros2-jazzy-tf2_ros-devel
 
-Provides: ros2-jazzy-laser_filters-devel = 2.0.7-1
-Obsoletes: ros2-jazzy-laser_filters-devel < 2.0.7-1
+Provides: ros2-jazzy-laser_filters-devel = 2.0.8-1
+Obsoletes: ros2-jazzy-laser_filters-devel < 2.0.8-1
 
 
 %description devel
@@ -207,7 +216,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -234,7 +243,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,laser_filters/include/,share/laser_filters/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/laser_filters/{lib*/pkgconfig,include/,cmake/,laser_filters/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/laser_filters/{lib*/pkgconfig,include/,cmake/,extra_cmake/,laser_filters/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/laser_filters/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -284,5 +293,7 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Wed Nov 20 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.0.8-1
+- Update to latest release
 * Sat Aug 03 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.0.7-1
 - Update to latest release

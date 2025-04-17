@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-tf2_kdl
-Version:        0.36.4
+Version:        0.36.9
 Release:        1%{?dist}
 Summary:        ROS package tf2_kdl
 
 License:        BSD
 URL:            http://ros.org/wiki/tf2
 
-Source0:        https://github.com/ros2-gbp/geometry2-release/archive/release/jazzy/tf2_kdl/0.36.4-1.tar.gz#/ros2-jazzy-tf2_kdl-0.36.4-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/geometry2-release/archive/release/jazzy/tf2_kdl/0.36.9-1.tar.gz#/ros2-jazzy-tf2_kdl-0.36.9-source0.tar.gz
 
 Patch0: ros-tf2_kdl.remove-orocos-kdl-vendor.patch
 
@@ -51,12 +51,13 @@ BuildRequires:  ros2-jazzy-tf2_ros-devel
 Requires:       ros2-jazzy-builtin_interfaces
 Requires:       ros2-jazzy-geometry_msgs
 Requires:       ros2-jazzy-orocos_kdl_vendor
+Requires:       ros2-jazzy-python_orocos_kdl_vendor
 Requires:       ros2-jazzy-tf2
 Requires:       ros2-jazzy-tf2_ros
 Requires:       ros2-jazzy-tf2_ros_py
 
-Provides:  ros2-jazzy-tf2_kdl = 0.36.4-1
-Obsoletes: ros2-jazzy-tf2_kdl < 0.36.4-1
+Provides:  ros2-jazzy-tf2_kdl = 0.36.9-1
+Obsoletes: ros2-jazzy-tf2_kdl < 0.36.9-1
 
 
 
@@ -73,10 +74,11 @@ Requires:       ros2-jazzy-geometry_msgs-devel
 Requires:       ros2-jazzy-orocos_kdl_vendor-devel
 Requires:       ros2-jazzy-tf2-devel
 Requires:       ros2-jazzy-tf2_ros-devel
+Requires:       ros2-jazzy-python_orocos_kdl_vendor-devel
 Requires:       ros2-jazzy-tf2_ros_py-devel
 
-Provides: ros2-jazzy-tf2_kdl-devel = 0.36.4-1
-Obsoletes: ros2-jazzy-tf2_kdl-devel < 0.36.4-1
+Provides: ros2-jazzy-tf2_kdl-devel = 0.36.9-1
+Obsoletes: ros2-jazzy-tf2_kdl-devel < 0.36.9-1
 
 
 %description devel
@@ -188,7 +190,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -215,7 +217,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,tf2_kdl/include/,share/tf2_kdl/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/tf2_kdl/{lib*/pkgconfig,include/,cmake/,tf2_kdl/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/tf2_kdl/{lib*/pkgconfig,include/,cmake/,extra_cmake/,tf2_kdl/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/tf2_kdl/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -265,6 +267,12 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.36.9-1
+- Update to latest release
+* Sat Mar 08 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.36.8-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.36.7-1
+- Update to latest release
 * Wed Jun 05 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.36.4-1
 - Update to latest release
 * Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.36.3-1

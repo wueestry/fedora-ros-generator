@@ -1,0 +1,16 @@
+dependencies:
+  exclude_build:
+    system: 
+      - python3-pykdl
+    ros: 
+      - python3-pykdl
+  exclude_run:
+    system: 
+      - python3-pykdl
+    ros: 
+      - python3-pykdl
+  exclude_devel:
+    system: 
+      - python3-pykdl
+    ros: 
+      - python3-pykdl

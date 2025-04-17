@@ -1,0 +1,12 @@
+diff --color -urN libstatistics_collector-release-release-jazzy-libstatistics_collector-1.7.4-1/include/libstatistics_collector/collector/generate_statistics_message.hpp libstatistics_collector-release-release-jazzy-libstatistics_collector-1.7.4-1-new/include/libstatistics_collector/collector/generate_statistics_message.hpp
+--- libstatistics_collector-release-release-jazzy-libstatistics_collector-1.7.4-1/include/libstatistics_collector/collector/generate_statistics_message.hpp	2024-12-18 06:26:51.000000000 +0100
++++ libstatistics_collector-release-release-jazzy-libstatistics_collector-1.7.4-1-new/include/libstatistics_collector/collector/generate_statistics_message.hpp	2025-04-13 00:17:08.697896140 +0200
+@@ -17,6 +17,8 @@
+ 
+ #include <string>
+ 
++#include <cstdint>
++
+ #include "builtin_interfaces/msg/time.hpp"
+ #include "statistics_msgs/msg/metrics_message.hpp"
+ 

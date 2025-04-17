@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-ros2controlcli
-Version:        4.16.1
+Version:        4.28.0
 Release:        1%{?dist}
 Summary:        ROS package ros2controlcli
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/ros2_control-release/archive/release/jazzy/ros2controlcli/4.16.1-1.tar.gz#/ros2-jazzy-ros2controlcli-4.16.1-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/ros2_control-release/archive/release/jazzy/ros2controlcli/4.28.0-1.tar.gz#/ros2-jazzy-ros2controlcli-4.28.0-source0.tar.gz
 
 
 BuildArch: noarch
@@ -58,13 +58,13 @@ Requires:       ros2-jazzy-ros2node
 Requires:       ros2-jazzy-ros2param
 Requires:       ros2-jazzy-rosidl_runtime_py
 
-Provides:  ros2-jazzy-ros2controlcli = 4.16.1-1
-Obsoletes: ros2-jazzy-ros2controlcli < 4.16.1-1
+Provides:  ros2-jazzy-ros2controlcli = 4.28.0-1
+Obsoletes: ros2-jazzy-ros2controlcli < 4.28.0-1
 
 
 
 %description
-The ROS 2 command line tools for ROS2 Control.
+The ROS 2 command line tools for ros2_control.
 
 %package        devel
 Summary:        Development files for %{name}
@@ -79,8 +79,8 @@ Requires:       ros2-jazzy-ros2node-devel
 Requires:       ros2-jazzy-ros2param-devel
 Requires:       ros2-jazzy-rosidl_runtime_py-devel
 
-Provides: ros2-jazzy-ros2controlcli-devel = 4.16.1-1
-Obsoletes: ros2-jazzy-ros2controlcli-devel < 4.16.1-1
+Provides: ros2-jazzy-ros2controlcli-devel = 4.28.0-1
+Obsoletes: ros2-jazzy-ros2controlcli-devel < 4.28.0-1
 
 
 %description devel
@@ -191,7 +191,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -218,7 +218,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,ros2controlcli/include/,share/ros2controlcli/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/ros2controlcli/{lib*/pkgconfig,include/,cmake/,ros2controlcli/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/ros2controlcli/{lib*/pkgconfig,include/,cmake/,extra_cmake/,ros2controlcli/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/ros2controlcli/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -268,6 +268,16 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Sun Apr 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.28.0-1
+- Update to latest release
+* Sat Mar 08 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.27.0-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.23.0-1
+- Update to latest release
+* Wed Nov 20 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.20.0-1
+- Update to latest release
+* Tue Oct 15 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.18.0-1
+- Update to latest release
 * Mon Aug 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.16.1-1
 - Update to latest release
 * Wed Jul 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.14.0-1

@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-sick_scan_xd
-Version:        3.5.0
+Version:        3.6.0
 Release:        1%{?dist}
 Summary:        ROS package sick_scan_xd
 
 License:        Apache-2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/sick_scan_xd-release/archive/release/jazzy/sick_scan_xd/3.5.0-1.tar.gz#/ros2-jazzy-sick_scan_xd-3.5.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/sick_scan_xd-release/archive/release/jazzy/sick_scan_xd/3.6.0-1.tar.gz#/ros2-jazzy-sick_scan_xd-3.6.0-source0.tar.gz
 
 
 
@@ -64,8 +64,8 @@ Requires:       ros2-jazzy-tf2
 Requires:       ros2-jazzy-tf2_ros
 Requires:       ros2-jazzy-visualization_msgs
 
-Provides:  ros2-jazzy-sick_scan_xd = 3.5.0-1
-Obsoletes: ros2-jazzy-sick_scan_xd < 3.5.0-1
+Provides:  ros2-jazzy-sick_scan_xd = 3.6.0-1
+Obsoletes: ros2-jazzy-sick_scan_xd < 3.6.0-1
 
 
 
@@ -90,8 +90,8 @@ Requires:       ros2-jazzy-tf2_ros-devel
 Requires:       ros2-jazzy-visualization_msgs-devel
 Requires:       ros2-jazzy-rosidl_default_runtime-devel
 
-Provides: ros2-jazzy-sick_scan_xd-devel = 3.5.0-1
-Obsoletes: ros2-jazzy-sick_scan_xd-devel < 3.5.0-1
+Provides: ros2-jazzy-sick_scan_xd-devel = 3.6.0-1
+Obsoletes: ros2-jazzy-sick_scan_xd-devel < 3.6.0-1
 
 
 %description devel
@@ -279,5 +279,7 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.3.6.0-1
+- Update to latest release
 * Mon Aug 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.3.5.0-1
 - Update to latest release

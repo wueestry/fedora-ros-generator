@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-rmw_cyclonedds_cpp
-Version:        2.2.2
+Version:        2.2.3
 Release:        1%{?dist}
 Summary:        ROS package rmw_cyclonedds_cpp
 
 License:        Apache License 2.0
 URL:            http://www.ros.org/
 
-Source0:        https://github.com/ros2-gbp/rmw_cyclonedds-release/archive/release/jazzy/rmw_cyclonedds_cpp/2.2.2-1.tar.gz#/ros2-jazzy-rmw_cyclonedds_cpp-2.2.2-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/rmw_cyclonedds-release/archive/release/jazzy/rmw_cyclonedds_cpp/2.2.3-1.tar.gz#/ros2-jazzy-rmw_cyclonedds_cpp-2.2.3-source0.tar.gz
 
 
 
@@ -62,8 +62,8 @@ Requires:       ros2-jazzy-rosidl_typesupport_introspection_c
 Requires:       ros2-jazzy-rosidl_typesupport_introspection_cpp
 Requires:       ros2-jazzy-tracetools
 
-Provides:  ros2-jazzy-rmw_cyclonedds_cpp = 2.2.2-1
-Obsoletes: ros2-jazzy-rmw_cyclonedds_cpp < 2.2.2-1
+Provides:  ros2-jazzy-rmw_cyclonedds_cpp = 2.2.3-1
+Obsoletes: ros2-jazzy-rmw_cyclonedds_cpp < 2.2.3-1
 
 
 
@@ -87,8 +87,8 @@ Requires:       ros2-jazzy-rosidl_typesupport_introspection_c-devel
 Requires:       ros2-jazzy-rosidl_typesupport_introspection_cpp-devel
 Requires:       ros2-jazzy-tracetools-devel
 
-Provides: ros2-jazzy-rmw_cyclonedds_cpp-devel = 2.2.2-1
-Obsoletes: ros2-jazzy-rmw_cyclonedds_cpp-devel < 2.2.2-1
+Provides: ros2-jazzy-rmw_cyclonedds_cpp-devel = 2.2.3-1
+Obsoletes: ros2-jazzy-rmw_cyclonedds_cpp-devel < 2.2.3-1
 
 
 %description devel
@@ -199,7 +199,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -226,7 +226,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,rmw_cyclonedds_cpp/include/,share/rmw_cyclonedds_cpp/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/rmw_cyclonedds_cpp/{lib*/pkgconfig,include/,cmake/,rmw_cyclonedds_cpp/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/rmw_cyclonedds_cpp/{lib*/pkgconfig,include/,cmake/,extra_cmake/,rmw_cyclonedds_cpp/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/rmw_cyclonedds_cpp/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -276,6 +276,8 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.2.3-1
+- Update to latest release
 * Sun Jul 14 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.2.2-1
 - Update to latest release
 * Fri May 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.2.2.1-1

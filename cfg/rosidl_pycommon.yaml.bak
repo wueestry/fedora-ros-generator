@@ -1,0 +1,2 @@
+patches:
+ - ros.rosidl_pycommon.empy4.patch

@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-sick-scan-xd
-Version:        3.5.0
+Version:        3.6.0
 Release:        1%{?dist}
 License:        Apache-2.0
 URL:            http://www.ros.org/
@@ -10,7 +10,7 @@ BuildArch: noarch
 Requires:       ros2-jazzy-sick_scan_xd
 Requires:       ros2-jazzy-sick_scan_xd-devel
 
-Obsoletes: ros-jazzy-sick-scan-xd < 3.5.0-1
+Obsoletes: ros-jazzy-sick-scan-xd < 3.6.0-1
 
 %description
 ROS 1 and 2 driver for SICK scanner
@@ -25,5 +25,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.3.6.0-1
+- Update to latest release
 * Mon Aug 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.3.5.0-1
 - Update to latest release

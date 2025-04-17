@@ -1,0 +1,68 @@
+diff --color -urN gz_common_vendor-release-release-jazzy-gz_common_vendor-0.0.8-1/0001.cstdint.patch gz_common_vendor-release-release-jazzy-gz_common_vendor-0.0.8-1-new/0001.cstdint.patch
+--- gz_common_vendor-release-release-jazzy-gz_common_vendor-0.0.8-1/0001.cstdint.patch	1970-01-01 01:00:00.000000000 +0100
++++ gz_common_vendor-release-release-jazzy-gz_common_vendor-0.0.8-1-new/0001.cstdint.patch	2025-04-15 10:29:07.677745826 +0200
+@@ -0,0 +1,52 @@
++diff --git a/include/gz/common/Battery.hh b/include/gz/common/Battery.hh
++index fa24ae6..cfb0127 100644
++--- a/include/gz/common/Battery.hh
+++++ b/include/gz/common/Battery.hh
++@@ -22,6 +22,8 @@
++ #include <memory>
++ #include <string>
++ 
+++#include <cstdint>
+++
++ #include <gz/common/Export.hh>
++ 
++ #include <gz/utils/ImplPtr.hh>
++diff --git a/include/gz/common/config.hh.in b/include/gz/common/config.hh.in
++index 02415b0..3a9ea0f 100644
++--- a/include/gz/common/config.hh.in
+++++ b/include/gz/common/config.hh.in
++@@ -30,6 +30,8 @@
++ 
++ #define GZ_COMMON_VERSION_HEADER "Gazebo Common, version ${PROJECT_VERSION_FULL}\nCopyright (C) 2017 Open Source Robotics Foundation.\nReleased under the Apache 2.0 License.\n\n"
++ 
+++#include <cstdint>
+++
++ #cmakedefine HAVE_AVDEVICE
++ 
++ #endif
++diff --git a/include/ignition/common/config.hh b/include/ignition/common/config.hh
++index a4eeecb..2ec15f2 100644
++--- a/include/ignition/common/config.hh
+++++ b/include/ignition/common/config.hh
++@@ -29,6 +29,8 @@
++ 
++ #define IGNITION_COMMON_VERSION_HEADER GZ_COMMON_VERSION_HEADER
++ 
+++#include <cstdint>
+++
++ namespace gz
++ {
++ }
++diff --git a/profiler/include/gz/common/Profiler.hh b/profiler/include/gz/common/Profiler.hh
++index 4ac856c..ae67fc6 100644
++--- a/profiler/include/gz/common/Profiler.hh
+++++ b/profiler/include/gz/common/Profiler.hh
++@@ -22,6 +22,8 @@
++ #include <string>
++ 
++ #include <gz/common/config.hh>
+++#include <cstdint>
+++
++ #include <gz/common/profiler/Export.hh>
++ #include <gz/common/SingletonT.hh>
++ 
+diff --color -urN gz_common_vendor-release-release-jazzy-gz_common_vendor-0.0.8-1/CMakeLists.txt gz_common_vendor-release-release-jazzy-gz_common_vendor-0.0.8-1-new/CMakeLists.txt
+--- gz_common_vendor-release-release-jazzy-gz_common_vendor-0.0.8-1/CMakeLists.txt	2025-02-07 16:52:20.000000000 +0100
++++ gz_common_vendor-release-release-jazzy-gz_common_vendor-0.0.8-1-new/CMakeLists.txt	2025-04-13 00:23:03.975351525 +0200
+@@ -46,6 +46,8 @@
+   CMAKE_ARGS
+     -DBUILD_DOCS:BOOL=OFF
+   GLOBAL_HOOK
++  PATCHES
++  0001.cstdint.patch
+ )
+ 
+ find_package(ament_cmake_test REQUIRED)

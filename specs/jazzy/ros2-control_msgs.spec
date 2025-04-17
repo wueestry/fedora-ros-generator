@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-control_msgs
-Version:        5.2.0
+Version:        5.4.0
 Release:        1%{?dist}
 Summary:        ROS package control_msgs
 
 License:        BSD-3-Clause
 URL:            https://control.ros.org
 
-Source0:        https://github.com/ros2-gbp/control_msgs-release/archive/release/jazzy/control_msgs/5.2.0-1.tar.gz#/ros2-jazzy-control_msgs-5.2.0-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/control_msgs-release/archive/release/jazzy/control_msgs/5.4.0-1.tar.gz#/ros2-jazzy-control_msgs-5.4.0-source0.tar.gz
 
 
 
@@ -56,8 +56,8 @@ Requires:       ros2-jazzy-sensor_msgs
 Requires:       ros2-jazzy-std_msgs
 Requires:       ros2-jazzy-trajectory_msgs
 
-Provides:  ros2-jazzy-control_msgs = 5.2.0-1
-Obsoletes: ros2-jazzy-control_msgs < 5.2.0-1
+Provides:  ros2-jazzy-control_msgs = 5.4.0-1
+Obsoletes: ros2-jazzy-control_msgs < 5.4.0-1
 
 
 
@@ -80,8 +80,8 @@ Requires:       ros2-jazzy-std_msgs-devel
 Requires:       ros2-jazzy-trajectory_msgs-devel
 Requires:       ros2-jazzy-rosidl_default_runtime-devel
 
-Provides: ros2-jazzy-control_msgs-devel = 5.2.0-1
-Obsoletes: ros2-jazzy-control_msgs-devel < 5.2.0-1
+Provides: ros2-jazzy-control_msgs-devel = 5.4.0-1
+Obsoletes: ros2-jazzy-control_msgs-devel < 5.4.0-1
 
 
 %description devel
@@ -192,7 +192,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -219,7 +219,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,control_msgs/include/,share/control_msgs/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/control_msgs/{lib*/pkgconfig,include/,cmake/,control_msgs/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/control_msgs/{lib*/pkgconfig,include/,cmake/,extra_cmake/,control_msgs/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/control_msgs/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -269,6 +269,10 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.5.4.0-1
+- Update to latest release
+* Wed Nov 20 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.5.3.0-1
+- Update to latest release
 * Thu Jul 11 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.5.2.0-1
 - Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.5.1.0-1

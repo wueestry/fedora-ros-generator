@@ -1,16 +1,16 @@
 # Meta Package
 Name:           ros-jazzy-velocity-controllers
-Version:        4.13.0
+Version:        4.23.0
 Release:        1%{?dist}
 License:        Apache License 2.0
-URL:            http://www.ros.org/
+URL:            https://control.ros.org
 Summary:        Meta package for ros2-jazzy-velocity_controllers and its development package to adhere to ubuntu pkg names
 BuildArch: noarch
 
 Requires:       ros2-jazzy-velocity_controllers
 Requires:       ros2-jazzy-velocity_controllers-devel
 
-Obsoletes: ros-jazzy-velocity-controllers < 4.13.0-1
+Obsoletes: ros-jazzy-velocity-controllers < 4.23.0-1
 
 %description
 Generic controller for forwarding commands.
@@ -25,6 +25,18 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Sun Apr 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.23.0-1
+- Update to latest release
+* Sat Apr 05 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.22.0-1
+- Update to latest release
+* Sat Mar 08 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.21.0-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.18.0-1
+- Update to latest release
+* Wed Nov 20 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.16.0-1
+- Update to latest release
+* Tue Oct 15 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.15.0-1
+- Update to latest release
 * Mon Aug 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.13.0-1
 - Update to latest release
 * Wed Jul 24 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.4.12.0-1

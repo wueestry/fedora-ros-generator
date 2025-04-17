@@ -1,0 +1,11 @@
+diff --color -urN rosidl-release-release-jazzy-rosidl_generator_cpp-4.6.5-1/resource/idl.hpp.em rosidl-release-release-jazzy-rosidl_generator_cpp-4.6.5-1-new/resource/idl.hpp.em
+--- rosidl-release-release-jazzy-rosidl_generator_cpp-4.6.5-1/resource/idl.hpp.em	2024-12-18 07:44:43.000000000 +0100
++++ rosidl-release-release-jazzy-rosidl_generator_cpp-4.6.5-1-new/resource/idl.hpp.em	2025-04-13 09:12:44.988374196 +0200
+@@ -22,6 +22,7 @@
+ #ifndef @(header_guard_variable)
+ #define @(header_guard_variable)
+ 
++#include <cstdint>
+ #include "@(include_base)__struct.hpp"
+ #include "@(include_base)__builder.hpp"
+ #include "@(include_base)__traits.hpp"

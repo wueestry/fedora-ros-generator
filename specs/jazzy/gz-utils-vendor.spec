@@ -1,6 +1,6 @@
 # Meta Package
 Name:           ros-jazzy-gz-utils-vendor
-Version:        0.0.4
+Version:        0.0.5
 Release:        1%{?dist}
 License:        Apache License 2.0
 URL:            https://github.com/gazebosim/gz-utils
@@ -10,10 +10,10 @@ BuildArch: noarch
 Requires:       ros2-jazzy-gz_utils_vendor
 Requires:       ros2-jazzy-gz_utils_vendor-devel
 
-Obsoletes: ros-jazzy-gz-utils-vendor < 0.0.4-1
+Obsoletes: ros-jazzy-gz-utils-vendor < 0.0.5-1
 
 %description
-Vendor package for: gz-utils2 2.2.0 Gazebo Utils : Classes and
+Vendor package for: gz-utils2 2.2.1 Gazebo Utils : Classes and
 functions for robot applications
 
 %build
@@ -26,5 +26,7 @@ rm -rf $RPM_BUILD_ROOT
 %files
 
 %changelog
+* Sat Mar 08 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.0.5-1
+- Update to latest release
 * Sat Apr 27 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.0.0.4-1
 - Update to latest release

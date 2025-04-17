@@ -1,12 +1,12 @@
 Name:           ros2-jazzy-camera_calibration
-Version:        5.0.4
+Version:        5.0.9
 Release:        1%{?dist}
 Summary:        ROS package camera_calibration
 
 License:        BSD
 URL:            https://index.ros.org/p/camera_calibration/github-ros-perception-image_pipeline/
 
-Source0:        https://github.com/ros2-gbp/image_pipeline-release/archive/release/jazzy/camera_calibration/5.0.4-1.tar.gz#/ros2-jazzy-camera_calibration-5.0.4-source0.tar.gz
+Source0:        https://github.com/ros2-gbp/image_pipeline-release/archive/release/jazzy/camera_calibration/5.0.9-1.tar.gz#/ros2-jazzy-camera_calibration-5.0.9-source0.tar.gz
 
 
 BuildArch: noarch
@@ -58,8 +58,8 @@ Requires:       ros2-jazzy-rclpy
 Requires:       ros2-jazzy-sensor_msgs
 Requires:       ros2-jazzy-std_srvs
 
-Provides:  ros2-jazzy-camera_calibration = 5.0.4-1
-Obsoletes: ros2-jazzy-camera_calibration < 5.0.4-1
+Provides:  ros2-jazzy-camera_calibration = 5.0.9-1
+Obsoletes: ros2-jazzy-camera_calibration < 5.0.9-1
 
 
 
@@ -80,8 +80,8 @@ Requires:       ros2-jazzy-rclpy-devel
 Requires:       ros2-jazzy-sensor_msgs-devel
 Requires:       ros2-jazzy-std_srvs-devel
 
-Provides: ros2-jazzy-camera_calibration-devel = 5.0.4-1
-Obsoletes: ros2-jazzy-camera_calibration-devel < 5.0.4-1
+Provides: ros2-jazzy-camera_calibration-devel = 5.0.9-1
+Obsoletes: ros2-jazzy-camera_calibration-devel < 5.0.9-1
 
 
 %description devel
@@ -192,7 +192,7 @@ find %{buildroot} -type d -name '__pycache__' -exec rm -rf {} +
 find . -name '*.pyc' -delete
 
 touch files.list
-find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/{share,bin,etc,tools,lib64/python*,lib/python*/site-packages,lib/python*/dist-packages} \
   ! -name cmake ! -name include \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/lib*/ -mindepth 1 -maxdepth 1 \
@@ -219,7 +219,7 @@ touch files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/{lib*/pkgconfig,include/,cmake/,camera_calibration/include/,share/camera_calibration/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" > files_devel.list
 # paths for vendor packages
-find %{buildroot}/%{_libdir}/ros2-jazzy/camera_calibration/{lib*/pkgconfig,include/,cmake/,camera_calibration/include/,share/cmake} \
+find %{buildroot}/%{_libdir}/ros2-jazzy/camera_calibration/{lib*/pkgconfig,include/,cmake/,extra_cmake/,camera_calibration/include/,share/cmake} \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
 find %{buildroot}/%{_libdir}/ros2-jazzy/opt/camera_calibration/extra_cmake \
   -mindepth 1 -maxdepth 1 | sed "s:%{buildroot}/::" >> files_devel.list
@@ -269,6 +269,12 @@ sort files_devel.list | uniq > files_devel.list.tmp && mv files_devel.list.tmp f
 
 
 %changelog
+* Fri Mar 14 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.5.0.9-1
+- Update to latest release
+* Mon Jan 13 2025 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.5.0.6-1
+- Update to latest release
+* Wed Nov 20 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.5.0.5-1
+- Update to latest release
 * Mon Aug 26 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.5.0.4-1
 - Update to latest release
 * Sat Aug 03 2024 Tarik Viehmann <viehmann@kbsg.rwth-aachen.de> - jazzy.5.0.3-1
