@@ -1,9 +1,0 @@
-dependencies:
-  build:
-    system:
-      - gtest-devel
-      - boost-devel
-    ros:
-      - cpp_common
-patches:
-  - ros-kinetic-image_geometry.catkin-fix-order.patch

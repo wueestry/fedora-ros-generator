@@ -1,0 +1,2 @@
+patches:
+  - ros-nav2_smoother.init_variables.patch

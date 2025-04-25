@@ -1,0 +1,2 @@
+patches:
+  - ros2-nav2_mppi_controller.disable-warnings.patch

@@ -1,0 +1,2 @@
+patches:
+  - ros-realsense2_camera.remove_librealsense_version.patch

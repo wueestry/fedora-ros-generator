@@ -1,0 +1,3 @@
+noarch: true
+patches:
+  - noetic/rosgraph.roslogging-loop-fix.patch

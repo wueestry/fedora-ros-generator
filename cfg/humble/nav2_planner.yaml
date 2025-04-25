@@ -1,0 +1,2 @@
+patches:
+  - ros-nav2_planner.init_variables.patch

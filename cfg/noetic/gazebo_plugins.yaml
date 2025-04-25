@@ -1,0 +1,13 @@
+dependencies:
+  build:
+    system:
+      - gazebo-devel
+      - bullet-devel
+      - libuuid-devel
+      - opencv-devel
+      - urdfdom-devel
+      - tinyxml2-devel
+      - tinyxml-devel
+      - poco-devel
+patches:
+  - noetic/gazebo_plugins.build-with-cpp17.patch

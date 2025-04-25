@@ -1,0 +1,9 @@
+dependencies:
+  build:
+    system:
+      - tinyxml-devel
+      - urdfdom-headers-devel
+      - urdfdom-devel
+      - eigen3-devel
+patches:
+  - noetic/kdl_parser.build-with-cpp17.patch

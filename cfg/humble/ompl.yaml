@@ -1,0 +1,6 @@
+dependencies:
+  build:
+    system:
+      - flann-devel
+patches:
+  - ros-ompl.fix-broken-copy.patch

@@ -1,0 +1,9 @@
+dependencies:
+  build:
+    system:
+      - gcc
+      - libatomic
+      - GeographicLib
+      - GeographicLib-devel
+patches:
+  - noetic/mavros.build-with-cpp17.patch

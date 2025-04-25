@@ -1,0 +1,12 @@
+noarch: true
+dependencies:
+  run:
+    system:
+      - python3-pyparsing
+  build:
+    system:
+      - python3-pyparsing
+      - gcc-c++
+patches:
+  - noetic/catkin.python-path-in-templates.patch
+  - noetic/catkin.python3.patch

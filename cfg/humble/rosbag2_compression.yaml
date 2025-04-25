@@ -1,0 +1,2 @@
+patches:
+  - ros2-rosbag2_compression.cstdint.patch

@@ -1,0 +1,7 @@
+dependencies:
+  build:
+    system:
+      - tinyxml2-devel
+      - poco-devel
+patches:
+  - noetic/urdf.build-with-cpp17.patch
