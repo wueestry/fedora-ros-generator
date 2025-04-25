@@ -87,7 +87,9 @@ class SpecFileGenerator:
             self.packages_lock.release()
         sources = ros_pkg.get_sources()
         version = ros_pkg.get_version()
-        outfile = os.path.join(self.destination, f"ros-{self.distro}-{ros_pkg.name}.spec")
+        outfile = os.path.join(
+            self.destination, f"ros-{self.distro}-{ros_pkg.name}.spec"
+        )
         ros_pkg.spec = outfile
         pkg_changelog_entry = self.changelog_entry
 
@@ -119,7 +121,9 @@ class SpecFileGenerator:
             if self.distro in ros:
                 spec_template = self.jinja_env.get_template(f"{ros_pkg.name}.spec.j2")
             else:
-                spec_template = self.jinja_env.get_template(f"ros2-{ros_pkg.name}.spec.j2")
+                spec_template = self.jinja_env.get_template(
+                    f"ros2-{ros_pkg.name}.spec.j2"
+                )
 
         except jinja2.exceptions.TemplateNotFound:
             if self.distro in ros:

@@ -24,7 +24,9 @@ class CoprBuilder:
         self.copr_client = copr.v3.Client.create_from_config_file()
         self.srpm_builder = SrpmBuilder()
 
-    def build_spec(self, chroot: str, spec: str, wait_for_completion: bool = False) -> list:
+    def build_spec(
+        self, chroot: str, spec: str, wait_for_completion: bool = False
+    ) -> list:
         """Build a package in COPR from a SPEC.
 
         Args:
@@ -50,7 +52,9 @@ class CoprBuilder:
         Returns:
             The build object created for this build.
         """
-        print(f"Building {srpm} for project {self.owner}/{self.project} with chroot {chroot}")
+        print(
+            f"Building {srpm} for project {self.owner}/{self.project} with chroot {chroot}"
+        )
         build = self.copr_client.build_proxy.create_from_file(
             ownername=self.owner,
             projectname=self.project,
@@ -89,14 +93,14 @@ class CoprBuilder:
                     node.state = BuildState.SUCCEEDED
                     build_progress = tree.get_build_progress()
                     cprint(
-                        f'{build_progress["building"]}/{build_progress["finished"]}/{build_progress["total"]}: {node.name} is already built, skipping!',
+                        f"{build_progress['building']}/{build_progress['finished']}/{build_progress['total']}: {node.name} is already built, skipping!",
                         "green",
                     )
                     wait_for_build = False
                 else:
-                    assert (
-                        node.state == BuildState.PENDING
-                    ), f"Unexpected build state {node.state} of package node {node.name}"
+                    assert node.state == BuildState.PENDING, (
+                        f"Unexpected build state {node.state} of package node {node.name}"
+                    )
                     build = self.build_spec(chroot=chroot, spec=node.pkg.spec)
                     node.build_id = build.id
                     node.state = BuildState.BUILDING
@@ -111,14 +115,14 @@ class CoprBuilder:
                 node.state = BuildState.SUCCEEDED
                 build_progress = tree.get_build_progress()
                 cprint(
-                    f'{build_progress["building"]}/{build_progress["finished"]}/{build_progress["total"]}: Successful build: {node.name}',
+                    f"{build_progress['building']}/{build_progress['finished']}/{build_progress['total']}: Successful build: {node.name}",
                     "green",
                 )
             else:
                 node.state = BuildState.FAILED
                 build_progress = tree.get_build_progress()
                 cprint(
-                    f'{build_progress["building"]}/{build_progress["finished"]}/{build_progress["total"]}: Failed build: {node.name}',
+                    f"{build_progress['building']}/{build_progress['finished']}/{build_progress['total']}: Failed build: {node.name}",
                     "red",
                 )
         return tree.is_built()
@@ -138,7 +142,9 @@ class CoprBuilder:
         Returns:
             True iff the package was already built in the project and chroot.
         """
-        for build in self.copr_client.build_proxy.get_list(self.owner, self.project, pkg_name):
+        for build in self.copr_client.build_proxy.get_list(
+            self.owner, self.project, pkg_name
+        ):
             if build.state != "succeeded":
                 continue
             if chroot not in build.chroots:

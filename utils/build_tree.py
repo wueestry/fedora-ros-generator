@@ -10,9 +10,9 @@ class Tree:
         self.nodes = {}
         for pkg in pkgs:
             self.add_pkg(pkg)
-        assert len([n for n in self.nodes.values() if n.is_initialized()]) == len(pkgs), (
-            f"Unexpected number of nodes: {len(self.nodes)}, " "expected: {len(pkgs)}"
-        )
+        assert len([n for n in self.nodes.values() if n.is_initialized()]) == len(
+            pkgs
+        ), f"Unexpected number of nodes: {len(self.nodes)}, expected: {{len(pkgs)}}"
         for node in self.nodes.values():
             if not node.is_initialized():
                 node.state = BuildState.SKIPPED
@@ -40,7 +40,9 @@ class Tree:
             node = self.nodes[pkg.name]
         if not node.is_initialized():
             deps = []
-            for dep in pkg.get_build_dependencies()["ros"] | pkg.get_run_dependencies()["ros"]:
+            for dep in (
+                pkg.get_build_dependencies()["ros"] | pkg.get_run_dependencies()["ros"]
+            ):
                 deps.append(self.add_pkg_stub(dep))
             node.init_deps(deps)
             node.pkg = pkg
