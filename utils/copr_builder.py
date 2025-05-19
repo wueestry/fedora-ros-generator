@@ -97,6 +97,18 @@ class CoprBuilder:
                         "green",
                     )
                     wait_for_build = False
+                    pkg_version = node.pkg.get_version_release()
+                    if not self.pkg_is_built(chroot, node.pkg.get_meta_pkg_name(), pkg_version):
+                        build_progress = tree.get_build_progress()
+                        cprint(
+                            f"{build_progress['building']}/{build_progress['finished']}/{build_progress['total']}: {node.name} is already built, skipping!",
+                            "blue",
+                        )
+                        meta_build = self.build_spec(chroot, node.pkg.meta_spec)
+                        node.build_id = meta_build.id
+                        node.state = BuildState.BUILDING
+                        build_ids.append(node.build_id)
+                        wait_for_build = False
                 else:
                     assert node.state == BuildState.PENDING, (
                         f"Unexpected build state {node.state} of package node {node.name}"
@@ -118,6 +130,15 @@ class CoprBuilder:
                     f"{build_progress['building']}/{build_progress['finished']}/{build_progress['total']}: Successful build: {node.name}",
                     "green",
                 )
+                pkg_version = node.pkg.get_version_release()
+                if not self.pkg_is_built(chroot, node.pkg.get_meta_pkg_name(), pkg_version):
+                    build_progress = tree.get_build_progress()
+                    cprint(f"{build_progress['building']}/{build_progress['finished']}/{build_progress['total']}: Also build meta package for {node.name}", "blue")
+                    meta_build = self.build_spec(chroot, node.pkg.meta_spec)
+                    node.build_id = meta_build.id
+                    node.state = BuildState.BUILDING
+                    build_ids.append(node.build_id)
+                    wait_for_build = False
             else:
                 node.state = BuildState.FAILED
                 build_progress = tree.get_build_progress()
@@ -131,6 +152,18 @@ class CoprBuilder:
     def get_builds(self) -> list:
         return self.copr_client.build_proxy.get_list(self.owner, self.project)
 
+    build_cache = {}
+    new_build = True
+    cache_refreshed = False
+    def get_from_cache(self, pkg_name):
+        matches = []
+
+        # Iterate over each entry in the data
+        for entry in self.build_cache:
+            if entry.source_package['name'] == pkg_name:
+                matches.append(entry)
+        return matches
+
     def pkg_is_built(self, chroot: str, pkg_name: str, pkg_version: str) -> bool:
         """Check if the given package is already built in the COPR.
 
@@ -142,19 +175,30 @@ class CoprBuilder:
         Returns:
             True iff the package was already built in the project and chroot.
         """
-        for build in self.copr_client.build_proxy.get_list(
-            self.owner, self.project, pkg_name
-        ):
-            if build.state != "succeeded":
+        if self.new_build:
+            self.build_cache = self.copr_client.build_proxy.get_list(self.owner, self.project)
+            self.new_build = False
+            self.cache_refreshed = True
+        for build in self.get_from_cache(pkg_name):
+            if build.state != 'succeeded':
                 continue
             if chroot not in build.chroots:
                 continue
             build_version = re.fullmatch(
-                "(.+?)(?:\.(?:fc|rhel|epel|el)\d+)?", build["source_package"]["version"]
-            ).group(1)
-            if build_version == pkg_version:
+                r'(.+?)(?:\.(?:fc|rhel|f\d+|epel|el)\d+)?',
+                build['source_package']['version']).group(1)
+            if build_version == (pkg_version):
+                self.cache_refreshed = False
                 return True
-        return False
+            print(build_version)
+            print(pkg_version)
+            print("version mismatch")
+        if not self.cache_refreshed:
+          self.new_build = True
+          return self.pkg_is_built(chroot, pkg_name, pkg_version)
+        else:
+          self.new_build = True
+          return False
 
     def wait_for_completion(self, builds: list) -> None:
         """Wait until all given builds are finished.

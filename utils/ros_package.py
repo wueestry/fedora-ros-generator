@@ -14,6 +14,7 @@ class RosPkg:
         self.rosdistro = distro
         self.name = name
         self.spec = ""
+        self.meta_spec = ""
 
         self.distro_info = generator.get_wet_distro(distro)
         try:
@@ -25,29 +26,42 @@ class RosPkg:
         self.build_deps: Dict[str, set] = {"ros": set(), "system": set()}
         self.run_deps: Dict[str, set] = {"ros": set(), "system": set()}
         self.devel_deps: Dict[str, set] = {"ros": set(), "system": set()}
+        self.test_deps: Dict[str, set] = {"ros": set(), "system", set()}
 
         try:
             common_file = "common.yaml" if self.rosdistro in ros else "ros2_common.yaml"
             common_config = cast(
                 dict,
-                yaml.load(open(f"cfg/{distro}/{common_file}"), Loader=yaml.FullLoader),
+                yaml.load(
+                    open(f"cfg/{common_file}", "r"), 
+                    Loader=yaml.FullLoader
+                ),
             )
         except FileNotFoundError:
             common_config = {}
 
         try:
-            name_versioned = self.name if self.rosdistro in ros else f"ros2_{self.name}"
             pkg_specific_config = cast(
                 dict,
                 yaml.load(
-                    open(f"cfg/{distro}/{name_versioned}.yaml", "r"),
+                    open(f"cfg/{self.name}.yaml", "r"),
                     Loader=yaml.FullLoader,
                 ),
             )
         except FileNotFoundError:
             pkg_specific_config = {}
+        try:
+            distro_pkg_specific_config = cast(
+                dict,
+                yaml.load(open(
+                    f"cfg/{distro}/{self.name}.yaml", "r"),
+                    Loader=yaml.FullLoader
+                )
+            )
+        except FileNotFoundError:
+            distro_pkg_specific_config = {}
 
-        self.pkg_config = {**common_config, **pkg_specific_config}
+        self.pkg_config = {**common_config, **pkg_specific_config, **distro_pkg_specific_config}
         self.release = self.pkg_config.get("release", 1)
 
         self.deps_mapping = {
@@ -63,11 +77,28 @@ class RosPkg:
         self.compute_dependencies()
 
     def compute_dependencies(self) -> None:
+        if "dynamic_reconfigure" in self.xml:
+            print(self.xml, flush=True)
+
         for child in self.xml:
             for dep_key, dep_lists in self.deps_mapping.items():
                 if child.tag == dep_key:
                     pkg = child.text
+
                     try:
+                        #  try:
+                        #      if(child.attrib["condition"] == "$ROS_VERSION == 1"):
+                        #       continue
+                        #      if(child.attrib["condition"] == "$GZ_BUILD_FROM_SOURCE != ''"):
+                        #       continue
+                        #      if(child.attrib["condition"] == "$BUILD_WITH_LDMRS_SUPPORT == True"):
+                        #       continue
+                        #      if("$GZ_VERSION == " in child.attrib["condition"]):
+                        #       continue
+                        #      print(child.attrib["condition"], flush=True)
+                        #  except KeyError:
+                        #      pass
+
                         self.distro_info.get_release_package_xml(pkg)
                         for dep_list in dep_lists:
                             dep_list["ros"].add(pkg)
@@ -188,16 +219,25 @@ class RosPkg:
         devel_deps = self.translate_dependencies("devel", devel_deps)
         return devel_deps
 
-    def get_sources(self) -> list:
-        try:
-            sources = self.pkg_config["sources"]
-        except KeyError:
-            sources = []
+    def get_ros_dependencies(self):
+        return self.get_build_dependencies()['ros'] | self.get_run_dependencies()['ros'] | self.get_devel_dependencies()['ros']
 
+    def get_sources_from_cfg(self) -> list:
+        try:
+            return self.pkg_config['sources']
+        except KeyError:
+            return []
+
+    def get_sources(self) -> list:
+        sources = self.get_sources_from_cfg()
         ros_pkg = generator.generate_rosinstall(
-            self.rosdistro, [self.name], deps=False, wet_only=True, tar=True
+            self.rosdistro,
+            [self.name],
+            deps=False,
+            wet_only=True,
+            tar=True,
         )
-        sources.append(ros_pkg[0]["tar"]["uri"])
+        sources.append(ros_pkg[0]['tar']['uri'])
         return sources
 
     def get_version(self) -> str:
@@ -209,7 +249,7 @@ class RosPkg:
         ).group(1)
 
     def get_version_release(self) -> None:
-        return f"{self.rosdistro}.{self.get_version()}-{self.get_release()}"
+        return f"{self.get_version()}-{self.get_release()}"
 
     def set_release(self, release: str) -> None:
         self.release = release
@@ -220,6 +260,14 @@ class RosPkg:
     def get_full_name(self) -> str:
         """Get the full name of the package, e.g., ros-catkin."""
         return f"ros-{self.rosdistro}-{self.name}"
+
+    def get_meta_pkg_name(self) -> str:
+        """ Get the full name of the package, e.g., ros-catkin. """
+        return f"ros-{self.rosdistro}-{self.name.replace("_", "-")}"
+
+    def get_meta_spec(self):
+        """ Get the full name of the package, e.g., ros-catkin. """
+        return f"ros-{self.name}"
 
     def get_license(self) -> str:
         return self.xml.find("license").text

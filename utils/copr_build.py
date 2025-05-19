@@ -42,6 +42,7 @@ def main() -> None:
     for chroot in args.chroot:
         for pkg in args.pkg_name:
             spec = args.spec_dir + pkg + ".spec"
+            meta_spec = args.spec_dir + pkg.replace('_', '-') + '.spec'
             need_build = args.force
             if not need_build:
                 version_info = spec_utils.get_version_from_spec(spec)
@@ -50,6 +51,9 @@ def main() -> None:
             if need_build:
                 copr_builder.build_spec(
                     chroot=chroot, spec=spec, wait_for_completion=True
+                )
+                copr_builder.build_spec(
+                    chroot=chroot, spec=meta_spec, wait_for_completion=True
                 )
 
 

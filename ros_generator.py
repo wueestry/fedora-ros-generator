@@ -24,7 +24,10 @@ def main() -> None:
         help="Generate spec files of dependencies recursively",
     )
     parser.add_argument(
-        "-D", "--distro", default="humble", help="ROS distro (default: %(default)s)"
+        "-D",
+        "--distro",
+        default="humble",
+        help="ROS distro (default: %(default)s)",
     )
     parser.add_argument(
         "-t",
@@ -59,12 +62,17 @@ def main() -> None:
     parser.add_argument(
         "--distro-specific-specs",
         default=True,
-        help="Divide spec files of different distros into seperate subfolders"
+        help="Divide spec files of different distros into seperate subfolders",
     )
     parser.add_argument(
-        "-c", "--changelog", type=str, default="", help="Set new changelog entry"
+        "-c",
+        "--changelog",
+        type=str,
+        default="",
+        help="Set new changelog entry",
     )
     build_args = parser.add_argument_group("build arguments")
+
     build_args.add_argument(
         "-b",
         "--build",
@@ -73,16 +81,24 @@ def main() -> None:
         help="Build the generated spec file",
     )
     build_args.add_argument(
-        "--build-srpm", action="store_true", default=False, help="Generate a SRPM"
+        "--build-srpm",
+        action="store_true",
+        default=False,
+        help="Generate a SRPM",
     )
     build_args.add_argument(
         "-o",
         "--copr-owner",
         type=str,
+        default="wueestry",
         help="Owner of the build COPR project",
     )
     build_args.add_argument(
-        "-p", "--copr-project", type=str, help="COPR build project name"
+        "-p",
+        "--copr-project",
+        type=str,
+        default="ros",
+        help="COPR build project name",
     )
     build_args.add_argument(
         "--chroot",
@@ -108,7 +124,11 @@ def main() -> None:
         action="store_false",
         help="No obsolete distro-specific package, e.g., ros-kinetic-catkin",
     )
-    parser.add_argument("ros_pkg", nargs="+", help="ROS package name")
+    parser.add_argument(
+        "ros_pkg",
+        nargs="+",
+        help="ROS package name",
+    )
     args = parser.parse_args()
 
     if args.distro_specific_specs:
@@ -118,7 +138,9 @@ def main() -> None:
 
     if not args.user_string:
         user_string = subprocess.run(
-            ["rpmdev-packager"], stderr=subprocess.DEVNULL, stdout=subprocess.PIPE
+            ["rpmdev-packager"],
+            stderr=subprocess.DEVNULL,
+            stdout=subprocess.PIPE,
         ).stdout
         if sys.version_info[0] > 2:
             user_string = user_string.decode(errors="replace")
@@ -152,10 +174,12 @@ def main() -> None:
         copr_builder = CoprBuilder(
             copr_owner=args.copr_owner, copr_project=args.copr_project
         )
+
         success = True
         for chroot in args.chroot:
             tree = Tree(list(packages.values()))
             success &= copr_builder.build_tree(chroot, tree, only_new=args.only_new)
+
         if success:
             sys.exit(0)
         else:

@@ -76,7 +76,7 @@ class SpecFileGenerator:
         build_deps = ros_pkg.get_build_dependencies()
         run_deps = ros_pkg.get_run_dependencies()
         devel_deps = ros_pkg.get_devel_dependencies()
-        ros_deps = build_deps["ros"] | run_deps["ros"] | devel_deps["ros"]
+        ros_deps = ros_pkg.get_ros_dependencies()
 
         if self.recursive:
             self.packages_lock.acquire()
@@ -90,7 +90,9 @@ class SpecFileGenerator:
         outfile = os.path.join(
             self.destination, f"ros-{self.distro}-{ros_pkg.name}.spec"
         )
+        meta_outfile = os.path.join(self.destination,f'{ros_pkg.name.replace("_", "-")}')
         ros_pkg.spec = outfile
+        ros_pkg.meta_spec = meta_outfile
         pkg_changelog_entry = self.changelog_entry
 
         if os.path.isfile(outfile):
@@ -102,7 +104,7 @@ class SpecFileGenerator:
                 # Release is not specified and Spec file exists, use new version
                 # or bump release if it is the same version.
                 version_info = get_version_from_spec(outfile)
-                if version_info["version"] == f"{self.distro}.{version}":
+                if version_info["version"] == f"{version}":
                     pkg_release_version = int(version_info["release"])
                     if self.bump_release:
                         assert pkg_changelog_entry, "Please provide a changelog entry."
@@ -130,7 +132,8 @@ class SpecFileGenerator:
                 spec_template = self.jinja_env.get_template("pkg.spec.j2")
             else:
                 spec_template = self.jinja_env.get_template("ros2-pkg.spec.j2")
-
+        
+        meta_spec_template = self.jinja_env.get_template('meta_pkg.spec.j2')
         spec = spec_template.render(
             pkg_name=ros_pkg.name,
             distro=self.distro,
@@ -144,7 +147,7 @@ class SpecFileGenerator:
             pkg_description=ros_pkg.get_description(),
             pkg_release=ros_pkg.get_release(),
             user_string=self.user_string,
-            date=time.strftime("%Y-%m-%d", time.gmtime()),
+            date=time.strftime("%a %d %b %Y", time.gmtime()),
             changelog=changelog,
             changelog_entry=pkg_changelog_entry,
             noarch=ros_pkg.is_noarch(),
@@ -154,8 +157,27 @@ class SpecFileGenerator:
             build_flags=ros_pkg.get_build_flags(),
             no_debug=ros_pkg.has_no_debug(),
         )
+        meta_spec = meta_spec_template.render(
+            meta_name=ros_pkg.name.replace('_', '-'),
+            pkg_name=ros_pkg.name,
+            distro=self.distro,
+            pkg_version=version,
+            license=ros_pkg.get_license(),
+            pkg_url=ros_pkg.get_website(),
+            pkg_description=ros_pkg.get_description(),
+            pkg_release=ros_pkg.get_release(),
+            user_string=self.user_string,
+            date=time.strftime("%a %d %b %Y", time.gmtime()),
+            changelog=changelog,
+            changelog_entry=pkg_changelog_entry,
+            noarch=ros_pkg.is_noarch(),
+            obsolete_distro_pkg=self.obsolete_distro_pkg,
+            has_devel=ros_pkg.has_devel()
+        )
         with open(outfile, "w") as spec_file:
             spec_file.write(spec)
+        with open(meta_outfile, 'w') as meta_spec_file:
+            meta_spec_file.write(meta_spec)
         self.packages_lock.acquire()
         self.generated_packages[ros_pkg.name] = ros_pkg
         self.packages_lock.release()

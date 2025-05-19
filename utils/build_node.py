@@ -34,4 +34,4 @@ class Node:
         return self.pkg != None and self.dependencies != None
 
     def is_built(self) -> bool:
-        return self.state == BuildState.SUCCEEDED
+        return self.built
